@@ -68,3 +68,8 @@ The second image is the **nodeJS** image where the application artifacts were bu
 
 ---
 
+## Documentation
+- [BitBucket Pipelines](https://docs.launchdarkly.com/integrations/bitbucket-pipelines?utm_source=google&utm_medium=cpc&obility_id=126914704714&utm_campaign=&utm_term=&utm_content=529046860681&_bm=b&_bn=g&gclid=Cj0KCQjwwNWKBhDAARIsAJ8HkheO3YpyjRBKc4TSNovlTNxCZWwC32kWPv17SOG7zGceZenBf-Vb0-0aAvAbEALw_wcB)
+- [Docker](https://docs.docker.com/)
+- [nginx](https://www.nginx.com/resources/wiki/?_bt=541137080527&_bk=&_bm=b&_bn=g&_bg=125748574545&gclid=Cj0KCQjwwNWKBhDAARIsAJ8Hkhdv_mAcxYhY0igOUv0zG5yhXtD0VsffwNY1Cj0uu9mrSSaeeq5y3JcaAip4EALw_wcB)
+- [React](https://reactjs.org/docs/getting-started.html)
