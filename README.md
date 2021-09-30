@@ -1,5 +1,4 @@
-# pricing-tool-2
-
+# react template
 
 ## Introduction
 
