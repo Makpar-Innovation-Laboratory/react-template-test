@@ -1,0 +1,9 @@
+# clear docker cache and remove untagged images
+
+docker system prune -f
+
+DANGLERS=$(docker images --filter "dangling=true" -q)
+if [ "$DANGLERS" != "" ]
+then
+    docker rmi -f $DANGLERS
+fi
