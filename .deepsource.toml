@@ -1,0 +1,23 @@
+version = 1
+
+[[analyzers]]
+name = "shell"
+enabled = true
+
+[[analyzers]]
+name = "docker"
+enabled = true
+
+  [analyzers.meta]
+  dockerfile_paths = ["Dockerfile"]
+
+[[analyzers]]
+name = "javascript"
+enabled = true
+
+  [analyzers.meta]
+  plugins = ["react"]
+
+[[transformers]]
+name = "standardjs"
+enabled = true
