@@ -50,7 +50,7 @@ See comments inside of *bitbucket-pipelines.yml* for more detailed information a
 
 ## Application Image
 
-This app is containerized through a multi-stage **Docker** image. It is first built on top of a **nodeJS** image and the artifacts copied over into an **nginx** image. To build the application image, you will need [Docker]() installed. Once that is done, you can build the image from project root directory with the following command,
+The app can be containerized through a multi-stage **Docker** image. It is first built on top of a **nodeJS** image and the artifacts copied over into an **nginx** image. To build the application image, you will need [Docker]() installed. Once that is done, you can build the image from project root directory with the following command,
 
 `docker build --tag dockerized-react:latest .`
 
