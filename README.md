@@ -2,7 +2,15 @@
 
 ## Introduction
 
-This is a template for a containerized **React** application that is deployed onto an nginx server. There is also a pipeline template in the */devop/* folder for a **BitBucket** pipeline that is preconfigured to deploy the **React** app to S3 instead of a container-based deployment. The pipeline *yml* needs copied into the root of the project and the pipeline initialized through **BitBucket**'s UI. See [Pipeline](#pipeline) and [/devops/bitbucket-pipelines.yml](/devops/bitbucket-pipelines.yml) for more information about the CI/CD pipeline.
+This is a template for a **React** application. There are two ways to deploy it.
+
+1. Into a *nginx* container.
+
+A *Dockerfile* in the project root builds the application inside of a **NodeJs** image and then copies the artifacts into a **nginx** container. 
+
+2. Into an S3 bucket.
+
+There is also a pipeline template in the */devop/* folder for a **BitBucket** pipeline that is preconfigured to deploy the **React** app to an S3 bucket configured to statically serve a website. The pipeline *yml* needs copied into the root of the project and the pipeline initialized through **BitBucket**'s UI. See [Pipeline](#pipeline) and [/devops/bitbucket-pipelines.yml](/devops/bitbucket-pipelines.yml) for more information about the CI/CD pipeline.
 
 ## Quickstart
 
@@ -65,6 +73,15 @@ Note, the default port for nginx is *80*, so the following command will map the 
 > `<none>     <none>    7ceefa83d499   4 minutes ago   1.19GB`
 
 The second image is the **nodeJS** image where the application artifacts were built. Notice how much larger it is in comparison to the other image; this is due to all of the dependencies that needed to be installed in the environment before the application could actually be built (i.e. everything in */pricing-tool-frontend/package.json*). The other image is the **nginx** image that has had the **React** webpacks copied over into one of its data directories. No dependencies have to be installed in the **nginx** image. This has security implications; namely, there is less surface area (in terms of libraries and dependencies that might have vulnerabilities in their codebase) exposed to a potential attack.
+
+
+## Deploying the Application
+
+The **S3** bucket this repo is hooked into typically sits behind a **CloudFront** distribution. Any time a new deployment goes through, the **CF** cache will need invalidated before the changes appear. To invalidate the cache, copy the *.sample.env* environment file to a new *.env* file and add the ID of the **CloudFront** distribution to the **CLOUDFRONT_DISTRIBUTION_ID** environment file and then execute the script,
+
+```
+./scripts/invalidate-cache
+```
 
 ---
 

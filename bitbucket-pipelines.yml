@@ -59,7 +59,6 @@ definitions:
           enabled: false
         script:
           - ENV="${BITBUCKET_BRANCH,,}"
-          - echo $ENV
           - pipe: atlassian/aws-s3-deploy:0.4.4
             variables:
               AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
