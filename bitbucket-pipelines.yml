@@ -32,7 +32,7 @@ image: node:10.15.3
 
 definitions: 
   caches:
-    dependencies: pricing-tool-frontend/node_modules
+    dependencies: frontend/node_modules
   steps:
     - step: &install
         name: install node dependencies
