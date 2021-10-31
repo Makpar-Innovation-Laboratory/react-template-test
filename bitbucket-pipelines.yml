@@ -58,7 +58,7 @@ definitions:
         clone:
           enabled: false
         script:
-          - export ENV="${BITBUCKET_BRANCH,,}""
+          - export ENV="${BITBUCKET_BRANCH,,}"
           - pipe: atlassian/aws-s3-deploy:0.4.4
             variables:
               AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
