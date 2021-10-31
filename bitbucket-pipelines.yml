@@ -11,8 +11,6 @@
 #           - development
 #           - master
 #     These bucket folders correspond to the different "environments" for the application. The idea is the pipeline workflow will kick off each time a commit is made or pull request merged into one of the environment branches on BitBucket. The names of the environment branches correspond to the names of the S3 folders where the artifacts will live. This YAML is pre-configured for branches with those specific names, but that can easily be changed if you want different environment names, by amending `pipelines.branches` to suit your particular setup.
-#       .. todos:: cloud formation template for S3 bucket
-#       .. todos:: aws cli command to provision S3 bucket
 # 2. Setup an AWS Account for BitBucket
 #     BitBucket needs an AWS account with LIMITED access to the S3 bucket just created. Create an IAM user with the policy given in the *aws/policies/pipeline.json* AWS policy file. Note, the putObject, getObject, deleteObject policies defined in this file operate on resources INSIDE of the bucket, whereas listBucket policy operate on the ENTIRE bucket (that's why they have to be separated in different statements in the JSON). Make sure you give the user Programmatic Access through the CLI; BitBucket connects to AWS using the CLI. This will give you an ACCESS_KEY_ID and a SECRET_ACCESS_KEY. Save these, as BitBucket will need them in order to access the S3 bucket created in step 1.
 # 3. Copy YAML into Project.
@@ -59,12 +57,13 @@ definitions:
         clone:
           enabled: false
         script:
+          - export ENV="${BITBUCKET_BRANCH,,}""
           - pipe: atlassian/aws-s3-deploy:0.4.4
             variables:
               AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
               AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
               AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
-              S3_BUCKET: CCC-FrontendStack-${BITBUCKET_BRANCH}-deployment
+              S3_BUCKET: ccc-frontend-${ENV}-deployment
               LOCAL_PATH: 'frontend/build'
 
 pipelines:
