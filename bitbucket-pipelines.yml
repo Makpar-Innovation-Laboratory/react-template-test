@@ -32,19 +32,20 @@ image: node:10.15.3
 
 definitions: 
   caches:
-    dependencies: frontend/node_modules
+    node_deps: frontend/node_modules
+    
   steps:
     - step: &install
         name: install node dependencies
         caches: 
-          - dependencies
+          - node_deps
         script: 
           - cd frontend
           - npm install
     - step: &build
         name: build node application
         caches: 
-          - dependencies
+          - node_deps
         script:
           - cd frontend
           - npm run build
@@ -72,7 +73,7 @@ pipelines:
       - step: 
           name: lint source code
           caches:
-            - dependencies
+            - node_deps
           script:
             - cd frontend
             - npm install
