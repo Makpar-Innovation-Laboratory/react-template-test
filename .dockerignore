@@ -1,0 +1,4 @@
+/pricing-tool-frontend/node_modules/*
+/pricing-tool-frontend/build/*
+/pricing-tool-frontend/.eslintrc.yml
+/aws/*

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+SCRIPT_NAME="dns-stack"
+SCRIPT_DES=$''
+PROJECT_DIR=$SCRIPT_DIR/..
+source $PROJECT_DIR/.env
+
+# NOTE: make sure to copy .sample.env into a new .env file and set the 
+#   CLOUDFRONT_DISTRIBUTION_ID to the cache you want to invalidate.
+
+aws cloudfront create-invalidation \
+        --distribution-id $CLOUDFRONT_DISTRIBUTION_ID \
+        --paths "/*"
