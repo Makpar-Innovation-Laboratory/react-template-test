@@ -56,7 +56,7 @@ definitions:
         name: deploy node artifacts
         trigger: automatic
         clone:
-          enabled: false
+          enabled: true
         script:
           - pipe: atlassian/aws-s3-deploy:0.4.4
             variables:
