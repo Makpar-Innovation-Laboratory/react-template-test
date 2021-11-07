@@ -1,10 +1,14 @@
 #!/bin/bash
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-SCRIPT_NAME="dns-stack"
-SCRIPT_DES=$''
+SCRIPT_NAME="invalidate-cache"
+SCRIPT_DES=$'Invalidate the CloudFront cache. Use after deploying to S3 bucket for latest changes to show up.'
 PROJECT_DIR=$SCRIPT_DIR/..
-source $PROJECT_DIR/.env
+if [ -f $PROJECT_dIR/.env ]
+then
+        source $PROJECT_DIR/.env
+fi
+# else executing in the pipeline
 
 # NOTE: make sure to copy .sample.env into a new .env file and set the 
 #   CLOUDFRONT_DISTRIBUTION_ID to the cache you want to invalidate.
