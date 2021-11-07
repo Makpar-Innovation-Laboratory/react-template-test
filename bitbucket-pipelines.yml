@@ -90,7 +90,7 @@ definitions:
             fi
           - export FRONTEND_HOST_URL=https://${SUBDOMAIN}${BRANCH,,}.${DOMAIN}
           - chmod +x ./configure
-          - chmod 777 /opt/atlassian/pipelines/agent/build/drivers/linux/chromedriver
+          - chmod 777 /opt/atlassian/pipelines/agent/build/test-harness/drivers/linux/chromedriver
           - ./configure
           - mkdir tmp
           # return true so pipeline doesn't fail on test failures
