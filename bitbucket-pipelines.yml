@@ -65,7 +65,7 @@ definitions:
               AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
               S3_BUCKET: $DEPLOYMENT_BUCKET
               LOCAL_PATH: 'frontend/build'
-          - ./scripts/invalidate-cache
+          - bash ./scripts/invalidate-cache
 
 pipelines:
   # Repository Wide Workflows: Tests, Scans and Static Code Analysis
