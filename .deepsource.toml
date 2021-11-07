@@ -19,7 +19,7 @@ enabled = true
   plugins = ["react"]
 
 [[analyzers]]
-name="test-coverage"
+name = "test-coverage"
 enabled = true
 
 [[transformers]]
