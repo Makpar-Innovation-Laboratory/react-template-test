@@ -72,7 +72,7 @@ definitions:
           - bash ./scripts/invalidate-cache
 
     - step: &test
-        name: Test the live API
+        name: Test the live Web Application
         trigger: automatic
         clone: 
           enabled: true
