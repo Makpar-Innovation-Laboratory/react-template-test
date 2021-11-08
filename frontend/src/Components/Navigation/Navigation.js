@@ -12,7 +12,7 @@ export default function Navigation () {
       </div>
 
       <div className='nav-items d-flex justify-content-start align-items-center'>
-        <a>
+        {/* <a> */}
           <div
             className='nav-item color-primary'
             id={location.pathname == '/' ? 'active' : ''}
@@ -21,7 +21,7 @@ export default function Navigation () {
               <h5 className='color-primary'>Home</h5>
             </Link>
           </div>
-        </a>
+        {/* </a> */}
       </div>
 
       <div className='px-5'>

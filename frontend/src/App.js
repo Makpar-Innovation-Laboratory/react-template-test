@@ -3,6 +3,7 @@ import './App.css'
 
 import Navigation from './Components/Navigation/Navigation'
 import Home from './Components/Home/Home'
+import Login from './Components/Login/Login'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
@@ -13,7 +14,7 @@ function App () {
   function updatePage (input) {
     setPage(input)
   }
-
+ const j = "Justin"
   return (
     <Context.Provider
       value={{
@@ -26,6 +27,7 @@ function App () {
             <Route path='/'>
               <div className='main-wrapper d-flex'>
                 <Navigation />
+                <Login texts={j}/>
                 <Home />
               </div>
             </Route>
