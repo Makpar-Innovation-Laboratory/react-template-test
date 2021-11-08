@@ -13,14 +13,14 @@ export default function Navigation () {
 
       <div className='nav-items d-flex justify-content-start align-items-center'>
         {/* <a> */}
-          <div
-            className='nav-item color-primary'
-            id={location.pathname == '/' ? 'active' : ''}
-          >
-            <Link to='/' className='color-primary'>
-              <h5 className='color-primary'>Home</h5>
-            </Link>
-          </div>
+        <div
+          className='nav-item color-primary'
+          id={location.pathname == '/' ? 'active' : ''}
+        >
+          <Link to='/' className='color-primary'>
+            <h5 className='color-primary'>Home</h5>
+          </Link>
+        </div>
         {/* </a> */}
       </div>
 

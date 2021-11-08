@@ -71,7 +71,7 @@ definitions:
           # clear CloudFront cache after successful S3 deployment
           - bash ./scripts/invalidate-cache
 
-    - step: &test
+    - step: &bdd-tests
         name: Test the live Web Application
         trigger: automatic
         clone: 
@@ -121,25 +121,25 @@ pipelines:
       - step:
           <<: *deploy
           deployment: Production
-      - step: *test
+      - step: *bdd-tests
     Test: 
       - step: *install
       - step: *build
       - step: 
           <<: *deploy
           deployment: Test
-      - step: *test
+      - step: *bdd-tests
     Staging:
       - step: *install
       - step: *build
       - step:
           <<: *deploy
           deployment: Staging
-      - step: *test
+      - step: *bdd-tests
     Dev:
       - step: *install
       - step: *build
       - step: 
           <<: *deploy
           deployment: Development
-      - step: *test
+      - step: *bdd-tests
