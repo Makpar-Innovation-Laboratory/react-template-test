@@ -34,19 +34,13 @@ definitions:
     node-deps: frontend/node_modules
 
   steps:
-    - step: &install
-        name: install node dependencies
-        caches: 
-          - node-deps
-        script: 
-          - cd frontend
-          - npm install
     - step: &build
         name: build node application
         caches: 
           - node-deps
         script:
           - cd frontend
+          - npm install
           - npm run build
         artifacts:
           - frontend/build/**
@@ -116,28 +110,24 @@ pipelines:
   # Branch Specific Workflows: Dependency Installation, Application Build, Deployments
   branches:
     Prod:
-      - step: *install
       - step: *build
       - step:
           <<: *deploy
           deployment: Production
       - step: *bdd-tests
     Test: 
-      - step: *install
       - step: *build
       - step: 
           <<: *deploy
           deployment: Test
       - step: *bdd-tests
     Staging:
-      - step: *install
       - step: *build
       - step:
           <<: *deploy
           deployment: Staging
       - step: *bdd-tests
     Dev:
-      - step: *install
       - step: *build
       - step: 
           <<: *deploy
