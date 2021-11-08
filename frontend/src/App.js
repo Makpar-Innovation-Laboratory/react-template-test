@@ -14,7 +14,7 @@ function App () {
   function updatePage (input) {
     setPage(input)
   }
- const j = "Justin"
+  const j = 'Justin'
   return (
     <Context.Provider
       value={{
@@ -27,7 +27,7 @@ function App () {
             <Route path='/'>
               <div className='main-wrapper d-flex'>
                 <Navigation />
-                <Login texts={j}/>
+                <Login texts={j} />
                 <Home />
               </div>
             </Route>
