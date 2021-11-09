@@ -4,13 +4,11 @@
 #
 # ## SETUP
 # 1. Create an S3 Bucket
-#     Provision an S3 bucket. Give it the following folder structure,
-#       - DEPLOYMENT_BUCKET_NAME_GOES_HERE
-#         - environments
-#           - test
-#           - development
-#           - master
-#     These bucket folders correspond to the different "environments" for the application. The idea is the pipeline workflow will kick off each time a commit is made or pull request merged into one of the environment branches on BitBucket. The names of the environment branches correspond to the names of the S3 folders where the artifacts will live. This YAML is pre-configured for branches with those specific names, but that can easily be changed if you want different environment names, by amending `pipelines.branches` to suit your particular setup.
+#     Provision an S3 bucket for each environment. Give it the following folder structure,
+#         - Dev
+#         - Staging
+#         - Test
+#         - Prod
 # 2. Setup an AWS Account for BitBucket
 #     BitBucket needs an AWS account with LIMITED access to the S3 bucket just created. Create an IAM user with the policy given in the *aws/policies/pipeline.json* AWS policy file. Note, the putObject, getObject, deleteObject policies defined in this file operate on resources INSIDE of the bucket, whereas listBucket policy operate on the ENTIRE bucket (that's why they have to be separated in different statements in the JSON). Make sure you give the user Programmatic Access through the CLI; BitBucket connects to AWS using the CLI. This will give you an ACCESS_KEY_ID and a SECRET_ACCESS_KEY. Save these, as BitBucket will need them in order to access the S3 bucket created in step 1.
 # 3. Copy YAML into Project.
@@ -18,7 +16,7 @@
 # 4. Create Pipeline.
 #     Create pipeline for your BitBucket repository through the BitBucket website UI. Underneath the repository, there should be a *Pipelines* option that allows you to create a new pipeline. It should auto-detect the configuration.yaml. 
 # 5. Configure Environment.
-#     Configure your deployment environment variables. These are variables that get feed into the pipeline while it is building the application. Since it is deploying to S3, it needs to have access to our S3 bucket. If you go to `Repository Settings > Deployments`, you will see a list of environments BitBucket provisions by default, `Production`, `Staging`, `Development` and `Test`. This YAML is configured to use the `Production`, `Development` and `Test` environments (the value from `pipelines.branches.BRANCH_NAME.steps.deploy.deployment` that is injected into the `definitions.steps.deploy` script for each workflow). You will need four environment variables per enviroment: **AWS_SECRET_ACCESS_KEY**, **AWS_ACCESS_KEY_ID**, **AWS_DEFAULT_REGION** and **BUCKET_PATH**. The **BUCKET_PATH** variable should be set equal to the full path of the bucket folder for that enviroment, i.e. for the test environment, **BUCKET_PATH** should equal `DEPLOYMENT_BUCKET_NAME_GOES_HERE/environments/test`.
+#     Configure your deployment environment variables. These are variables that get feed into the pipeline while it is building the application. Since it is deploying to S3, it needs to have access to our S3 bucket. If you go to `Repository Settings > Deployments`, you will see a list of environments BitBucket provisions by default, `Production`, `Staging`, `Development` and `Test`. This YAML is configured to use the `Production`, `Development` and `Test` environments (the value from `pipelines.branches.BRANCH_NAME.steps.deploy.deployment` that is injected into the `definitions.steps.deploy` script for each workflow). You will need four environment variables per enviroment: **AWS_SECRET_ACCESS_KEY**, **AWS_ACCESS_KEY_ID**, **AWS_DEFAULT_REGION** and **DEPLOYMENT_BUCKET*. The **DEPLOYMENT_BUCKLET** variable should be set equal to the name of the S3 bucket for that environment..
 # 6. Tailor To Your Project.
 #     You will need to adjust the scripts for your specific project. For example, the &install step cd's into the folder containing the package.json before installing the Node dependencies. Tailor for your specific application.
 #       .. todos:: it might be possible to configure the SRC folder through an environment variable in the deployment environment, so that no configuration of this YML will be required to integrate it with another React project.
@@ -28,26 +26,17 @@
 #   * For more information on the `atlassian/aws-s3-deploy` image used to deploy, see the source repository's [README](https://bitbucket.org/atlassian/aws-s3-deploy/src/master/README.md)
 #   * The only areas of this YAML that are particular to the project are mentioned in the `Setup Step 6` and the **LOCAL_PATH** variable that informs the BitBucket S3 script where the build artifacts are located (relative to the version control repository). It should be possible to generalize this even further, so that this file contains no information at all about the particular project. All information is contained in the deployment environment variables configured in `Setup Step 5`.
 
-image: node:10.15.3
+# Custom image hosted on public ECR with common build dependencies pre-installed. see [here](https://bitbucket.org/Makpar/docker-images) for more information.
+image: public.ecr.aws/r9z1o2o3/pipeline-builder:latest
 
 definitions: 
-  caches:
-    node-deps: frontend/node_modules
 
   steps:
-    - step: &install
-        name: install node dependencies
-        caches: 
-          - node-deps
-        script: 
-          - cd frontend
-          - npm install
     - step: &build
         name: build node application
-        caches: 
-          - node-deps
         script:
           - cd frontend
+          - npm install
           - npm run build
         artifacts:
           - frontend/build/**
@@ -56,7 +45,7 @@ definitions:
         name: deploy node artifacts
         trigger: automatic
         clone:
-          enabled: false
+          enabled: true
         script:
           - pipe: atlassian/aws-s3-deploy:0.4.4
             variables:
@@ -65,15 +54,46 @@ definitions:
               AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
               S3_BUCKET: $DEPLOYMENT_BUCKET
               LOCAL_PATH: 'frontend/build'
-          - ./scripts/invalidate-cache
+          - export AWS_ACCESS_KEY_ID && export AWS_SECRET_ACCESS_KEY && export AWS_ACCOUNT_ID && export AWS_DEFAULT_REGION
+          # clear CloudFront cache after successful S3 deployment
+          - bash ./scripts/invalidate-cache
+
+    - step: &bdd-tests
+        name: Test the live Web Application
+        trigger: automatic
+        clone: 
+          enabled: true
+        script:
+          # wait for lambdas to finish updating
+          - git clone git@bitbucket.org:Makpar/test-harness.git
+          - cd test-harness/python
+          - sleep 10s
+          - |
+            if [ "${BITBUCKET_BRANCH}" == "Prod" ] 
+            then
+                export BRANCH=""
+            else
+              export BRANCH="-${BITBUCKET_BRANCH}"
+            fi
+          - export FRONTEND_HOST_URL=https://${SUBDOMAIN}${BRANCH,,}.${DOMAIN}
+          - chmod +x ./configure
+          - chmod 777 /opt/atlassian/pipelines/agent/build/test-harness/drivers/linux/chromedriver
+          - ./configure
+          - mkdir tmp
+          # return true so pipeline doesn't fail on test failures
+          - coverage run --source="." -m behave -t "@Web" --no-skipped --summary --junit --junit-directory ./tmp || true
+          - coverage xml
+          # upload test coverage to DeepSource
+          - cd ../..
+          - export DEEPSOURCE_DSN
+          - deepsource report --analyzer test-coverage --key python --value-file ./test-harness/python/coverage.xml
+
 
 pipelines:
   # Repository Wide Workflows: Tests, Scans and Static Code Analysis
   default:
       - step: 
           name: lint source code
-          caches:
-            - node-deps
           script:
             - cd frontend
             - npm install
@@ -81,26 +101,26 @@ pipelines:
   # Branch Specific Workflows: Dependency Installation, Application Build, Deployments
   branches:
     Prod:
-      - step: *install
       - step: *build
       - step:
           <<: *deploy
           deployment: Production
+      - step: *bdd-tests
     Test: 
-      - step: *install
       - step: *build
       - step: 
           <<: *deploy
           deployment: Test
+      - step: *bdd-tests
     Staging:
-      - step: *install
       - step: *build
       - step:
           <<: *deploy
           deployment: Staging
+      - step: *bdd-tests
     Dev:
-      - step: *install
       - step: *build
       - step: 
           <<: *deploy
           deployment: Development
+      - step: *bdd-tests

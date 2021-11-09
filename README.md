@@ -1,16 +1,11 @@
-# react template
+# cloudfront-s3
 
-## Introduction
+## Sandbox Environment Urls
+- Dev: [https://laboratory-dev.makpar-innovation.com](https://laboratory-dev.makpar-innovation.com)
 
-This is a template for a **React** application. There are two ways to deploy it.
+This repository connects to the **Cloudfront** and **s3** components of the Innovation Lab sandbox environment. Currently, it is setup for a **React** application. A **BitBucket** CI/CD pipeline is configured to deploy the **React** app to an **S3** bucket which in turn is served through the **Cloudfront** distribution
 
-1. Into a *nginx* container.
-
-A *Dockerfile* in the project root builds the application inside of a **NodeJs** image and then copies the artifacts into a **nginx** container. 
-
-2. Into an S3 bucket.
-
-There is also a pipeline template in the */devop/* folder for a **BitBucket** pipeline that is preconfigured to deploy the **React** app to an S3 bucket configured to statically serve a website. The pipeline *yml* needs copied into the root of the project and the pipeline initialized through **BitBucket**'s UI. See [Pipeline](#pipeline) and [/devops/bitbucket-pipelines.yml](/devops/bitbucket-pipelines.yml) for more information about the CI/CD pipeline.
+See [Pipeline section](#pipeline) below and [/devops/bitbucket-pipelines.yml](/devops/bitbucket-pipelines.yml) for more information about the CI/CD pipeline.
 
 ## Quickstart
 

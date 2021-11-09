@@ -18,6 +18,6 @@ enabled = true
   [analyzers.meta]
   plugins = ["react"]
 
-[[transformers]]
-name = "standardjs"
+[[analyzers]]
+name = "test-coverage"
 enabled = true

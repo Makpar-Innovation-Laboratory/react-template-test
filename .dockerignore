@@ -2,3 +2,4 @@
 /pricing-tool-frontend/build/*
 /pricing-tool-frontend/.eslintrc.yml
 /aws/*
+*.env

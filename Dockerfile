@@ -1,7 +1,7 @@
 # Build React application on top of a Node image
 FROM node:latest AS application_build
 
-COPY /pricing-tool-frontend/ /home/app/
+COPY /frontend/ /home/app/
 WORKDIR /home/app/
 RUN npm install && npm run build
 
