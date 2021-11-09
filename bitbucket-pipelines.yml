@@ -84,7 +84,6 @@ definitions:
           - coverage run --source="." -m behave -t "@Web" --no-skipped --summary --junit --junit-directory ./tmp || true
           - coverage xml
           # upload test coverage to DeepSource
-          - cd ../..
           - export DEEPSOURCE_DSN
           - deepsource report --analyzer test-coverage --key python --value-file ./test-harness/python/coverage.xml
           - coverage html
