@@ -1,9 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
+import Auth from '../../Utility/Auth'
+import {Context} from '../../App'
+import {useNavigate} from 'react-router-dom'
 
-export default function Login (props) {
+export default function Login () {
+  const navigate = useNavigate()
+  const context = useContext(Context)
   const handleOnSubmit = (e) => {
     e.preventDefault()
 
@@ -16,13 +21,16 @@ export default function Login (props) {
         }
       })
       .then((res) => {
-        console.log('Success: ', res.data)
+        // console.log('Success: ', res.data)
+        Auth.authenticateUser(res.data.AuthenticationResult.IdToken)
+        context.setAuth(true)
+        navigate('/')
       })
   }
-
+  
   return (
     <div className='container w-25'>
-      <Form onSubmit={handleOnSubmit}>
+      <Form onSubmit={handleOnSubmit} >
         <Form.Group className='mb-3' controlId='formBasicEmail'>
           <Form.Label>Username</Form.Label>
           <Form.Control type='text' placeholder='Enter Username' name='username' />
@@ -36,7 +44,7 @@ export default function Login (props) {
         <Form.Group className='mb-3' controlId='formBasicCheckbox'>
           <Form.Check type='checkbox' label='Check me out' />
         </Form.Group>
-        <Button variant='primary' type='submit'>
+        <Button variant='primary' type='submit' >
           Submit
         </Button>
       </Form>
