@@ -3,11 +3,7 @@ import './App.css'
 import Navigation from './Components/Navigation/Navigation'
 import Home from './Components/Home/Home'
 import Login from './Components/Login/Login'
-<<<<<<< HEAD
 import { Routes, Route, Navigate } from 'react-router-dom'
-=======
-import { Routes, Route, Navigate} from 'react-router-dom'
->>>>>>> feature/login
 import Auth from './Utility/Auth'
 export const Context = React.createContext()
 
@@ -46,15 +42,11 @@ export default function App () {
   function updatePage (input) {
     setPage(input)
   }
-<<<<<<< HEAD
   /**
    * description goes here
    * @returns {}
    */
 
-=======
-  
->>>>>>> feature/login
   return (
       <Context.Provider
         value={{
