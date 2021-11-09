@@ -1,7 +1,7 @@
 # cloudfront-s3
 
 ## Sandbox Environment Urls
-- Dev: https://laboratory-dev.makpar-innovation.com
+- Dev: [https://laboratory-dev.makpar-innovation.com](https://laboratory-dev.makpar-innovation.com)
 
 This repository connects to the **Cloudfront** and **s3** components of the Innovation Lab sandbox environment. Currently, it is setup for a **React** application. A **BitBucket** CI/CD pipeline is configured to deploy the **React** app to an **S3** bucket which in turn is served through the **Cloudfront** distribution
 

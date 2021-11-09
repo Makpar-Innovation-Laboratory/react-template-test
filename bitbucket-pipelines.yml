@@ -30,23 +30,13 @@
 image: public.ecr.aws/r9z1o2o3/pipeline-builder:latest
 
 definitions: 
-  caches:
-    node-deps: frontend/node_modules
 
   steps:
-    - step: &install
-        name: install node dependencies
-        caches: 
-          - node-deps
-        script: 
-          - cd frontend
-          - npm install
     - step: &build
         name: build node application
-        caches: 
-          - node-deps
         script:
           - cd frontend
+          - npm install
           - npm run build
         artifacts:
           - frontend/build/**
@@ -64,14 +54,11 @@ definitions:
               AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
               S3_BUCKET: $DEPLOYMENT_BUCKET
               LOCAL_PATH: 'frontend/build'
-          - export AWS_ACCESS_KEY_ID
-          - export AWS_SECRET_ACCESS_KEY
-          - export AWS_ACCOUNT_ID
-          - export AWS_DEFAULT_REGION
+          - export AWS_ACCESS_KEY_ID && export AWS_SECRET_ACCESS_KEY && export AWS_ACCOUNT_ID && export AWS_DEFAULT_REGION
           # clear CloudFront cache after successful S3 deployment
           - bash ./scripts/invalidate-cache
 
-    - step: &test
+    - step: &bdd-tests
         name: Test the live Web Application
         trigger: automatic
         clone: 
@@ -80,7 +67,7 @@ definitions:
           # wait for lambdas to finish updating
           - git clone git@bitbucket.org:Makpar/test-harness.git
           - cd test-harness/python
-          - sleep 15s
+          - sleep 10s
           - |
             if [ "${BITBUCKET_BRANCH}" == "Prod" ] 
             then
@@ -107,8 +94,6 @@ pipelines:
   default:
       - step: 
           name: lint source code
-          caches:
-            - node-deps
           script:
             - cd frontend
             - npm install
@@ -116,30 +101,26 @@ pipelines:
   # Branch Specific Workflows: Dependency Installation, Application Build, Deployments
   branches:
     Prod:
-      - step: *install
       - step: *build
       - step:
           <<: *deploy
           deployment: Production
-      - step: *test
+      - step: *bdd-tests
     Test: 
-      - step: *install
       - step: *build
       - step: 
           <<: *deploy
           deployment: Test
-      - step: *test
+      - step: *bdd-tests
     Staging:
-      - step: *install
       - step: *build
       - step:
           <<: *deploy
           deployment: Staging
-      - step: *test
+      - step: *bdd-tests
     Dev:
-      - step: *install
       - step: *build
       - step: 
           <<: *deploy
           deployment: Development
-      - step: *test
+      - step: *bdd-tests
