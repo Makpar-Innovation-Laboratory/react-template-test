@@ -85,7 +85,7 @@ definitions:
           - coverage xml
           # upload test coverage to DeepSource
           - export DEEPSOURCE_DSN
-          - deepsource report --analyzer test-coverage --key python --value-file ./test-harness/python/coverage.xml
+          - deepsource report --analyzer test-coverage --key python --value-file coverage.xml
           - coverage html
           # upload test coverage to Makpar Bitbucket.io Website (hosted through Bitbucket repo)
           - git clone https://chinchalinchin:${BITBUCKET_APP_PASSWORD}@bitbucket.org/Makpar/makpar.bitbucket.io.git
