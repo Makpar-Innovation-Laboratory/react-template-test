@@ -30,14 +30,10 @@
 image: public.ecr.aws/r9z1o2o3/pipeline-builder:latest
 
 definitions: 
-  caches:
-    node-deps: frontend/node_modules
 
   steps:
     - step: &build
         name: build node application
-        caches: 
-          - node-deps
         script:
           - cd frontend
           - npm install
@@ -101,8 +97,6 @@ pipelines:
   default:
       - step: 
           name: lint source code
-          caches:
-            - node-deps
           script:
             - cd frontend
             - npm install
