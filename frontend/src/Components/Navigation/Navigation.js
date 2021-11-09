@@ -4,10 +4,24 @@ import { Link, useLocation } from 'react-router-dom'
 import Auth from '../../Utility/Auth'
 import {Context} from '../../App'
 import {useNavigate} from 'react-router-dom'
+
+/**
+ * @component
+ * 
+ * @description
+ * description goes here
+ * @returns 
+ */
 export default function Navigation () {
   const context = useContext(Context)
   const location = useLocation()
   const navigate = useNavigate()
+
+  /**
+   * @description
+   * description goes here
+   * @param {*} e 
+   */
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('test')

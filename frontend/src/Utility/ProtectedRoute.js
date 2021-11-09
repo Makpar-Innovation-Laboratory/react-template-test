@@ -1,4 +1,14 @@
+/**
+ * @component
+ * 
+ * @property {object} 
+ */
+
 class ProtectedRoute extends Component {
+    /**
+     * 
+     * @returns 
+     */
     render() {
       const { component: Component, ...props } = this.props
   

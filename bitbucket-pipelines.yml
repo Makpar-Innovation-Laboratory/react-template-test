@@ -87,6 +87,50 @@ definitions:
           - cd ../..
           - export DEEPSOURCE_DSN
           - deepsource report --analyzer test-coverage --key python --value-file ./test-harness/python/coverage.xml
+          - coverage html
+          # upload test coverage to Makpar Bitbucket.io Website (hosted through Bitbucket repo)
+          - git clone https://chinchalinchin:${BITBUCKET_APP_PASSWORD}@bitbucket.org/Makpar/makpar.bitbucket.io.git
+          - |
+            if [ -d ./makpar.bitbucket.io/test-coverage/sandbox/cloudfront-s3/${BITBUCKET_BRANCH,,} ]
+            then
+              rm -r ./makpar.bitbucket.io/test-coverage/sandbox/cloudfront-s3/${BITBUCKET_BRANCH,,}/*
+            else
+              mkdir -p ./makpar.bitbucket.io/test-coverage/sandbox/cloudfront-s3/${BITBUCKET_BRANCH,,}
+            fi
+          - cp -ap ./htmlcov/. ./makpar.bitbucket.io/test-coverage/sandbox/cloudfront-s3/${BITBUCKET_BRANCH,,}
+          - cd makpar.bitbucket.io
+          - git add .
+          - git config --global user.email "sandbox-${BITBUCKET_BRANCH,,}-pipeline@no-reply.makpar.com"
+          - git config --global user.name "sandbox-${BITBUCKET_BRANCH,,}"
+          # catch failures taht result from no *new* coverage reporst being generated
+          - git commit -m "$(date) Sandbox Pipeline Unit Test Result For Gateway-Lambdas" || true
+          - git push --set-upstream origin master || true
+
+    - step: &generate-documentation
+        name: Generate documentation from docstrings
+        trigger: automatic
+        clone:
+          enabled: true
+        script:
+          - cd frontend
+          - npm install
+          - npm run docs
+          - git clone https://chinchalinchin:${BITBUCKET_APP_PASSWORD}@bitbucket.org/Makpar/makpar.bitbucket.io.git
+          - |
+            if [ -d ./makpar.bitbucket.io/docs/sandbox/cloudfront-s3/${BITBUCKET_BRANCH,,} ]
+            then
+              rm -r ./makpar.bitbucket.io/docs/sandbox/cloudfront-s3/${BITBUCKET_BRANCH,,}/*
+            else
+              mkdir -p ./makpar.bitbucket.io/docs/sandbox/cloudfront-s3/${BITBUCKET_BRANCH,,}
+            fi
+          - cp -ap ./docs/. ./makpar.bitbucket.io/docs/sandbox/cloudfront-s3/${BITBUCKET_BRANCH,,}
+          - cd makpar.bitbucket.io
+          - git add .
+          - git config --global user.email "sandbox-${BITBUCKET_BRANCH,,}-pipeline@no-reply.makpar.com"
+          - git config --global user.name "sandbox-${BITBUCKET_BRANCH,,}"
+          # catch failures that result from no *new* documentation coverage being generated
+          - git commit -m "$(date) Sandbox Pipeline Documentation Generation For Cloudfront-S3" || true
+          - git push --set-upstream origin master || true
 
 
 pipelines:
@@ -98,6 +142,9 @@ pipelines:
             - cd frontend
             - npm install
             - npx eslint --quiet --no-error-on-unmatched-pattern ./src/**
+      - step:
+          <<: *build
+
   # Branch Specific Workflows: Dependency Installation, Application Build, Deployments
   branches:
     Prod:

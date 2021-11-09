@@ -1,6 +1,15 @@
 import React from 'react'
 
+/**
+ * @component
+ * @description
+ * description goes here
+ * @returns {} 
+ */
 export default function Home () {
+  /**
+   * 
+   */
   return (
     <div className='d-flex flex-column align-items-center' style={{ width: '100%' }}>
       <h2 className='mt-3'>Home</h2>

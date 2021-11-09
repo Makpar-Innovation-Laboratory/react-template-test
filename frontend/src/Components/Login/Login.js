@@ -6,9 +6,21 @@ import Auth from '../../Utility/Auth'
 import {Context} from '../../App'
 import {useNavigate} from 'react-router-dom'
 
+/**
+ * @component
+ * @description
+ * description goes here
+ * @returns {}
+ */
 export default function Login () {
   const navigate = useNavigate()
   const context = useContext(Context)
+
+  /**
+   * @description
+   * 
+   * @param {*} e 
+   */
   const handleOnSubmit = (e) => {
     e.preventDefault()
 

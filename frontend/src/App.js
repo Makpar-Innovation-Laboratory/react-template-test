@@ -8,9 +8,23 @@ import Auth from './Utility/Auth'
 
 export const Context = React.createContext()
 
+/**
+ * @component
+ * 
+ * @property {}
+ * 
+ * @description
+ * description goes here
+ * 
+ * @returns {}
+ */
 export default function App () {
   const [page, setPage] = useState('Home')
   const [isAuth, setIsAuth] = useState(() => checkAuth())
+  /**
+   * description goes here
+   * @returns {boolean} 
+   */
   function checkAuth() {
     if (Auth.isUserAuthenticated()) {
       return true;
@@ -18,9 +32,18 @@ export default function App () {
       return false;
     }
   }
+
+  /**
+   * description goes here
+   * @param {string} input 
+   */
   function updatePage (input) {
     setPage(input)
   }
+  /**
+   * description goes here
+   * @returns {}
+   */
   function Dashboard() {
     if (isAuth != true){
         return <Redirect to="/Login" />
