@@ -67,7 +67,6 @@ definitions:
           # wait for lambdas to finish updating
           - git clone git@bitbucket.org:Makpar/test-harness.git
           - cd test-harness/python
-          - sleep 10s
           - |
             if [ "${BITBUCKET_BRANCH}" == "Prod" ] 
             then
