@@ -3,10 +3,15 @@ import './App.css'
 import Navigation from './Components/Navigation/Navigation'
 import Home from './Components/Home/Home'
 import Login from './Components/Login/Login'
-import { Routes, Route, Redirect } from 'react-router-dom'
+import { Routes, Route, Navigate} from 'react-router-dom'
 import Auth from './Utility/Auth'
 
 export const Context = React.createContext()
+
+export function Dashboard() {
+  if (Auth.isUserAuthenticated()){ return <Home />} 
+  else { return <Navigate to="/Login"></Navigate> }
+}
 
 export default function App () {
   const [page, setPage] = useState('Home')
@@ -21,13 +26,7 @@ export default function App () {
   function updatePage (input) {
     setPage(input)
   }
-  function Dashboard() {
-    if (isAuth != true){
-        return <Redirect to="/Login" />
-    } else {
-      return <Home />
-    }
-  }
+  
   return (
       <Context.Provider
         value={{
