@@ -3,10 +3,14 @@ import './App.css'
 import Navigation from './Components/Navigation/Navigation'
 import Home from './Components/Home/Home'
 import Login from './Components/Login/Login'
-import { Routes, Route, Redirect } from 'react-router-dom'
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import Auth from './Utility/Auth'
-
 export const Context = React.createContext()
+
+export function Dashboard() {
+  if (Auth.isUserAuthenticated()){ return <Home />} 
+  else { return <Navigate to="/Login"></Navigate> }
+}
 
 /**
  * @component
@@ -21,16 +25,14 @@ export const Context = React.createContext()
 export default function App () {
   const [page, setPage] = useState('Home')
   const [isAuth, setIsAuth] = useState(() => checkAuth())
+  
   /**
    * description goes here
    * @returns {boolean} 
    */
   function checkAuth() {
-    if (Auth.isUserAuthenticated()) {
-      return true;
-    } else {
-      return false;
-    }
+    if (Auth.isUserAuthenticated()) { return true; } 
+    else { return false; }
   }
 
   /**
@@ -44,13 +46,7 @@ export default function App () {
    * description goes here
    * @returns {}
    */
-  function Dashboard() {
-    if (isAuth != true){
-        return <Redirect to="/Login" />
-    } else {
-      return <Home />
-    }
-  }
+
   return (
       <Context.Provider
         value={{
@@ -66,7 +62,7 @@ export default function App () {
             <Routes>
               <Route path='/Login' element={<Login/>}/>
               {/* <Route path='/' element={() => (isAuth ? <Home /> : <Redirect to="/Login" />)} />   */}
-              <Route path='/' element={<Dashboard/>} />
+              <Route path='/' element={(<Dashboard/>)} />
             </Routes>
           </div>
         {/* </Router> */}
