@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, forwardRef } from "react";
 import MaterialTable from "material-table";
-import { forwardRef } from 'react';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
@@ -17,6 +16,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import LocPicker from '../CountryCityState/locationpicker'
+import DatePicker from "react-datepicker";
 
 // import {Context} from '../../App'
 
@@ -24,7 +24,8 @@ import LocPicker from '../CountryCityState/locationpicker'
 export default function Table(props) {
     // const context = useContext(Context)
     const [dest, setDest] = useState()
-
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date())
     const renderLocationPicker = (params) => {
         return (
             <div>
@@ -32,9 +33,20 @@ export default function Table(props) {
             </div>
         )
     }
-
+    const renderStartDatePicker = (params) => {
+        
+        return (
+            <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+        );
+    }
+    const renderEndDatePicker = (params) => {
+        
+        return (
+            <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
+        );
+    }
     const tableIcons = {
-        Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+        Add: forwardRef((props, ref) => <AddBox {...props} ref={ref}/>),
         Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
         Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
         Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
@@ -55,20 +67,43 @@ export default function Table(props) {
     const [columns, setColumns] = useState([
         {
             title: "Origin",
-            field: "",
+            field: "origin",
             render: renderLocationPicker,
             disableClickEventBubbling: true,
             editable:true
         },
-        { title: "Destination", field: "destination" },
-        { title: "Start Date", field: "start_date" },
-        { title: "End Date", field: "end_date" },
+        {
+            title: "Destination",
+            field: "destination",
+            render: renderLocationPicker,
+            disableClickEventBubbling: true,
+            editable:true
+        },
+        {
+            title: "Start Date",
+            field: "start_date",
+            render: renderStartDatePicker,
+            disableClickEventBubbling: true,
+            editable:true
+        },
+        {
+            title: "End Date",
+            field: "end_date",
+            render: renderEndDatePicker,
+            disableClickEventBubbling: true,
+            editable:true
+        },
+        {
+            title: "Per-diem",
+            field: "perdiem",
+        },
     ])
     const [tableData, setTableData] = useState([{
         origin: "value",
         destination: "value",
         start_date: "value",
         end_date: "value",
+        perdiem: 100
     },
     ])
     // useEffect(() => {
@@ -97,6 +132,16 @@ export default function Table(props) {
                     
                     // search: true
                 }}
+                actions={[
+                    {
+                      icon: AddBox,
+                      tooltip: "my tooltip",
+                      position: "toolbar",
+                      onClick: () => {
+                        console.log("clicked");
+                      }
+                    }
+                ]}
             />
         </div>
     );
