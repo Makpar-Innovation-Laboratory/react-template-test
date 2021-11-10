@@ -3,10 +3,10 @@ import { useFormik } from "formik";
 import Select from "react-select";
 import { Country, State, City }  from 'country-state-city';
 
-export default function LocPicker() {
+export default function LocPicker(props) {
     const addressFromik = useFormik({
         initialValues: {
-          country: "India",
+          country: "United States",
           state: null,
           city: null
         },
@@ -67,7 +67,7 @@ export default function LocPicker() {
               value={values.city}
               onChange={(value) => setFieldValue("city", value)}
             />
-            <button type="submit">Submit</button>
+            {/* <button type="submit">Submit</button> */}
             {/* <p>{JSON.stringify(csc.get)}</p> */}
           </form>
         </div>

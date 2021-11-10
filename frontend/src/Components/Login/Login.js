@@ -46,15 +46,11 @@ export default function Login () {
         <Form.Group className='mb-3' controlId='formBasicEmail'>
           <Form.Label>Username</Form.Label>
           <Form.Control type='text' placeholder='Enter Username' name='username' />
-          <Form.Text className='text-muted'>just work</Form.Text>
         </Form.Group>
 
         <Form.Group className='mb-3' controlId='formBasicPassword'>
           <Form.Label>Password</Form.Label>
           <Form.Control type='password' placeholder='Password' name='password' />
-        </Form.Group>
-        <Form.Group className='mb-3' controlId='formBasicCheckbox'>
-          <Form.Check type='checkbox' label='Check me out' />
         </Form.Group>
         <Button variant='primary' type='submit' >
           Submit
