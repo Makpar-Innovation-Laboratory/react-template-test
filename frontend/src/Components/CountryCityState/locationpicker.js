@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import Select from "react-select";
 import { Country, State, City }  from 'country-state-city';
 
-export default function LocPicker(props) {
+export default function LocPicker() {
     const addressFromik = useFormik({
         initialValues: {
           country: "United States",

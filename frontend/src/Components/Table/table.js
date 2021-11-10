@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState, forwardRef, useEffect } from "react";
 import MaterialTable from "material-table";
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -23,14 +23,9 @@ import DatePicker from "react-datepicker";
 
 export default function Table(props) {
     // const context = useContext(Context)
-    const [dest, setDest] = useState()
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date())
     const renderLocationPicker = (params) => {
         return (
-            <div>
-                <LocPicker />
-            </div>
+            <LocPicker />
         )
     }
     const renderStartDatePicker = (params) => {
@@ -45,6 +40,53 @@ export default function Table(props) {
             <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
         );
     }
+    const [tableData, setTableData] = useState([
+        {
+            origin: "value",
+            destination: "value",
+            start_date: "value",
+            end_date: "value",
+            perdiem: 100
+        }],)
+    const [gridData, setGridData] = useState(tableData)
+    const [dest, setDest] = useState()
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date())
+    const [columns, setColumns] = useState([
+        {
+            title: "Origin",
+            field: "origin",
+            // render: renderLocationPicker,
+            disableClickEventBubbling: true,
+            // editable:true
+        },
+        {
+            title: "Destination",
+            field: "destination",
+            // render: renderLocationPicker,
+            disableClickEventBubbling: true,
+            // editable:true
+        },
+        {
+            title: "Start Date",
+            field: "start_date",
+            // render: renderStartDatePicker,
+            disableClickEventBubbling: true,
+            // editable:true
+        },
+        {
+            title: "End Date",
+            field: "end_date",
+            // render: renderEndDatePicker,
+            disableClickEventBubbling: true,
+            // editable:true
+        },
+        {
+            title: "Per-diem",
+            field: "perdiem",
+        },
+    ])
+    
     const tableIcons = {
         Add: forwardRef((props, ref) => <AddBox {...props} ref={ref}/>),
         Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -64,48 +106,41 @@ export default function Table(props) {
         ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
         ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
     };
-    const [columns, setColumns] = useState([
-        {
-            title: "Origin",
-            field: "origin",
-            render: renderLocationPicker,
-            disableClickEventBubbling: true,
-            editable:true
-        },
-        {
-            title: "Destination",
-            field: "destination",
-            render: renderLocationPicker,
-            disableClickEventBubbling: true,
-            editable:true
-        },
-        {
-            title: "Start Date",
-            field: "start_date",
-            render: renderStartDatePicker,
-            disableClickEventBubbling: true,
-            editable:true
-        },
-        {
-            title: "End Date",
-            field: "end_date",
-            render: renderEndDatePicker,
-            disableClickEventBubbling: true,
-            editable:true
-        },
-        {
-            title: "Per-diem",
-            field: "perdiem",
-        },
-    ])
-    const [tableData, setTableData] = useState([{
-        origin: "value",
-        destination: "value",
-        start_date: "value",
-        end_date: "value",
-        perdiem: 100
-    },
-    ])
+    useEffect(() => {
+        
+        setColumns(columns);
+    }, [gridData, columns]);
+    
+    const onRowAdd = newData =>
+        new Promise((resolve, reject) => {
+          setcolumns([]);
+          const { data } = gridData;
+         
+          data.push(newData);
+          setGridData({ ...gridData, data });
+          console.log(gridData)
+        });
+    
+    const onRowDelete = oldData =>
+        new Promise((resolve, reject) => {
+          setcolumns([]);
+          const { data } = gridData;
+          const index = data.indexOf(oldData);
+          data.splice(index, 1);
+          setGridData({ ...gridData, data});
+        });
+    
+    const onRowUpdate = (newData, oldData) =>
+        new Promise((resolve, reject) => {
+          setcolumns([]);
+          const { data } = gridData;
+          const index = data.indexOf(oldData);
+          data[index] = newData;
+          setGridData({ ...gridData, data });
+        });
+    
+    const { data } = gridData;
+    
     // useEffect(() => {
     //     if (props.mydata != "false") {
     //         setTableData(context.data);
@@ -117,7 +152,7 @@ export default function Table(props) {
         <div style={{ width: "95%" }}>
             <MaterialTable
                 columns={columns}
-                data={tableData}
+                data={data}
                 title=""
                 icons={tableIcons}
                 options={{
@@ -132,16 +167,23 @@ export default function Table(props) {
                     
                     // search: true
                 }}
-                actions={[
-                    {
-                      icon: AddBox,
-                      tooltip: "my tooltip",
-                      position: "toolbar",
-                      onClick: () => {
-                        console.log("clicked");
-                      }
-                    }
-                ]}
+                editable={{
+                    isEditable: rowData => true,
+                    isDeletable: rowData => true,
+                    onRowAdd: onRowAdd,
+                    onRowUpdate: onRowUpdate,
+                    onRowDelete: onRowDelete
+                }}
+                // actions={[
+                //     {
+                //       icon: AddBox,
+                //       tooltip: "my tooltip",
+                //       position: "toolbar",
+                //       onClick: () => {
+                //         console.log("clicked");
+                //       }
+                //     }
+                // ]}
             />
         </div>
     );

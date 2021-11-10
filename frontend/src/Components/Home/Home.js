@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 // import { DateRangePicker } from 'react-date-range';
-// import LocPicker from '../CountryCityState/locationpicker'
+import LocPicker from '../CountryCityState/locationpicker'
 import DatePicker from "react-datepicker";
 import Table from '../Table/table'
 import Auth from '../../Utility/Auth'
@@ -44,16 +44,18 @@ export default function Home () {
   return (
     <div className='d-flex flex-column align-items-center' style={{ width: '100%' }}>
       <h2 className='mt-3'>Your Itinerary</h2>
+      
       {/* <button type="button" onClick={(e) => handleSubmit()}>Submit</button> */}
-      <div className='d-flex justify-content-start' >
+      <div className='d-flex justify-content-start' style={{ width: '90%'}}>
           <h3> Trip Name </h3>
           <DatePicker
             selected={startDate}
             onChange={onChange}
             startDate={startDate}
             endDate={endDate}
-            selectsRange
-            inline
+            selectsRange={true}
+            withPortal
+            isClearable={true}
           />
       </div>
       <Table />
