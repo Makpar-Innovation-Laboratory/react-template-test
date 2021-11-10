@@ -18,6 +18,7 @@ export default function Home () {
    */
   const [startDate, setStartDate] = useState(new Date("2021/11/10"));
   const [endDate, setEndDate] = useState(new Date("2021/11/10"));
+  
   const onChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
@@ -37,6 +38,7 @@ export default function Home () {
           .then(res => {
               console.log(res.data)
               // context.updateData(res.data.results)
+              // setReturn(res.data.results)
           }).catch(error => {
           console.log(error.message)
       })     
@@ -45,7 +47,7 @@ export default function Home () {
     <div className='d-flex flex-column align-items-center' style={{ width: '100%' }}>
       <h2 className='mt-3'>Your Itinerary</h2>
       
-      {/* <button type="button" onClick={(e) => handleSubmit()}>Submit</button> */}
+    
       <div className='d-flex justify-content-start' style={{ width: '90%'}}>
           <h3> Trip Name </h3>
           <DatePicker
@@ -59,6 +61,7 @@ export default function Home () {
           />
       </div>
       <Table />
+      <button type="button" onClick={(e) => handleSubmit()}>Submit</button>
     </div>
   )
 }

@@ -17,7 +17,6 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import LocPicker from '../CountryCityState/locationpicker'
 import DatePicker from "react-datepicker";
-
 // import {Context} from '../../App'
 
 
