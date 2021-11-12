@@ -60,8 +60,9 @@ export default function Home() {
           style={{ width: "400px" }}
           value={searchTerm}
           onChange={handleChange}
+          id="Search-Bar"
         />
-        <button className="btn btn-round-primary mt-3" type="button" onClick={handleSubmit}>Search</button>
+        <button className="btn btn-round-primary mt-3" id="Search-Button" type="button" onClick={handleSubmit}>Search</button>
       </div>
 
       <div
