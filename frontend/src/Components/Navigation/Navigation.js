@@ -51,7 +51,7 @@ export default function Navigation () {
 
       <div className='px-5'>
         <a className=' color-primary'>
-          <button type="submit" onClick={handleSubmit} >Logout</button>
+          <button className="btn color-primary" type="submit" onClick={handleSubmit} >Logout</button>
         </a>
       </div>
     </div>
