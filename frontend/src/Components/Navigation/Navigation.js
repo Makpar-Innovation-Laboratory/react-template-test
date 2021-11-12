@@ -31,7 +31,7 @@ export default function Navigation () {
   }
 
   return (
-    <div className='nav-container background-light d-flex align-items-center py-4'>
+    <div className='nav-container bg-white d-flex align-items-center py-4'>
       <div className='nav-header px-5'>
         <h1 className='color-primary'>MAKPAR</h1>
       </div>
@@ -43,16 +43,16 @@ export default function Navigation () {
             id={location.pathname === '/' ? 'active' : ''}
           >
             <Link to='/' className='color-primary'>
-              <h5 className='color-primary'>Home</h5>
+              <h5 className='color-primary' id="Home-Button">Home</h5>
             </Link>
           </div>
         {/* </a> */}
       </div>
 
       <div className='px-5'>
-        <a className=' color-primary'>
-          <button type="submit" onClick={handleSubmit} >Logout</button>
-        </a>
+        {/* <a className=' color-primary'>
+          <button className="btn color-primary" type="submit" onClick={handleSubmit} >Logout</button>
+        </a> */}
       </div>
     </div>
 

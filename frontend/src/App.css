@@ -334,7 +334,15 @@ p {
 .row:hover {
   background: #F9F9F9;
 }
-
+/* tr {
+  padding: 0 13px 0 13px !important;
+} */
+th {
+  padding: 13px 0 13px 12px !important;
+}
+td {
+  padding: 12px 0 12px 12px !important;
+}
 
 /*  Loading Animation */
 .loader {
@@ -384,4 +392,8 @@ input:focus, select:focus, *:focus, *:after {
 
 select {
   color: var(--dark-grey) !important;
+}
+
+#error {
+  display: none;
 }

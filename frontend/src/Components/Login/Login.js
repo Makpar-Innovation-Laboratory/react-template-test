@@ -42,6 +42,9 @@ export default function Login () {
   
   return (
     <div className='container w-25'>
+      <div className="d-flex justify-content-center mt-5">
+        <h3 className="color-primary">Login</h3>
+      </div>
       <Form onSubmit={handleOnSubmit} >
         <Form.Group className='mb-3' controlId='formBasicEmail'>
           <Form.Label>Username</Form.Label>
@@ -52,8 +55,8 @@ export default function Login () {
           <Form.Label>Password</Form.Label>
           <Form.Control type='password' placeholder='Password' name='password' />
         </Form.Group>
-        <Button variant='primary' type='submit' >
-          Submit
+        <Button variant='primary' type='submit' title="Login button">
+          Login
         </Button>
       </Form>
     </div>

@@ -1,0 +1,72 @@
+import React, { useContext } from "react";
+import { Context } from "../../App";
+
+export default function ArtistInfo(props) {
+  const context = useContext(Context);
+
+  return (
+    <div
+      className="d-flex flex-column align-items-center"
+      style={{ width: "100%" }}
+    >
+      <div className="d-flex flex-column align-items-center py-4">
+        <h4 className="color-primary">
+            {props.artist.display_name}
+            </h4>
+        <p className="mt-2">
+          <b>Nationality: </b> 
+          {props.artist.nationality}
+        </p>
+        <p className="mt-1">
+          <b>Birth/Death Date: </b> 
+          {props.artist.display_date}
+        </p>
+        <p className="mt-1 mx-5" style={{ textAlign: "center" }}>
+          <b>Biography: </b> 
+          {props.artist.bio}
+        </p>
+      </div>
+      <div
+        className="d-flex flex-column align-items-center"
+        style={{ width: "90%" }}
+      >
+        <h4 className="color-dark mb-2">Artworks</h4>
+
+        <div className="mb-3" style={{ width: "100%" }}>
+          <table id="artworks" style={{ width: "100%" }}>
+            <thead>
+              <tr className="background-dark color-white">
+                <th>Title</th>
+                <th>Classification</th>
+                <th>Display Date</th>
+                <th>Medium</th>
+                <th>Region</th>
+                <th>Dimensions</th>
+              </tr>
+            </thead>
+
+            <tbody className="color-dark">
+              {props.artist.works.length > 0 ? (
+                props.artist.works.map((data, key) => {
+                  return (
+                    <tr className="border-top" key={key}>
+                      <td>{data.title ? data.title : "n/a"}</td>
+                      <td>{data.classification ? data.classification : "n/a"}</td>
+                      {/* <td>{(data.displayDate).startsWith("ca.", 0) ? "test" : data.displayDate }</td> */}
+                      <td>{String(data.displayDate).startsWith("ca.", 0) ? data.displayDate.substring(3) : data.displayDate  }</td>
+                      <td>{data.medium ? data.medium : "n/a"}</td>
+                      <td>{data.region ? data.region : "n/a"}</td>
+                      <td>{data.dimensions ? data.dimensions : "n/a"}</td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <div className="text-center">No data found</div>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}
