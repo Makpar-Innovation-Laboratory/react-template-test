@@ -50,12 +50,13 @@ export default function ArtistInfo(props) {
                 props.artist.works.map((data, key) => {
                   return (
                     <tr className="border-top" key={key}>
-                      <td>{data.title}</td>
-                      <td>{data.classification}</td>
-                      <td>{data.displayDate}</td>
-                      <td>{data.medium}</td>
-                      <td>Region 5</td>
-                      <td>{data.dimensions}</td>
+                      <td>{data.title ? data.title : "n/a"}</td>
+                      <td>{data.classification ? data.classification : "n/a"}</td>
+                      {/* <td>{(data.displayDate).startsWith("ca.", 0) ? "test" : data.displayDate }</td> */}
+                      <td>{String(data.displayDate).startsWith("ca.", 0) ? data.displayDate.substring(3) : data.displayDate  }</td>
+                      <td>{data.medium ? data.medium : "n/a"}</td>
+                      <td>{data.region ? data.region : "n/a"}</td>
+                      <td>{data.dimensions ? data.dimensions : "n/a"}</td>
                     </tr>
                   );
                 })
