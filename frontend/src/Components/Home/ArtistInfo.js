@@ -3,7 +3,6 @@ import { Context } from "../../App";
 
 export default function ArtistInfo(props) {
   const context = useContext(Context);
-  console.log(context.data.results[0]);
 
   return (
     <div
@@ -22,8 +21,8 @@ export default function ArtistInfo(props) {
           <b>Birth/Death Date: </b> 
           {props.artist.display_date}
         </p>
-        <p className="mt-1" style={{ textAlign: "center" }}>
-          <b>Bio: </b> 
+        <p className="mt-1 mx-5" style={{ textAlign: "center" }}>
+          <b>Biography: </b> 
           {props.artist.bio}
         </p>
       </div>
@@ -31,7 +30,7 @@ export default function ArtistInfo(props) {
         className="d-flex flex-column align-items-center"
         style={{ width: "90%" }}
       >
-        <h4 className="color-dark mb-4">Artworks</h4>
+        <h4 className="color-dark mb-2">Artworks</h4>
 
         <div className="mb-3" style={{ width: "100%" }}>
           <table id="artworks" style={{ width: "100%" }}>
