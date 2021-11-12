@@ -22,7 +22,7 @@ export default function Home() {
   function handleSubmit() {
     // let token = Auth.getToken();
 
-    let postString = "https://api-ccc-dev.makpar-innovation.com/search";
+    let postString = "https://api-ccc.makpar-innovation.com/search";
     // let authStr = "Bearer " + String(token);
     // console.log(authStr)
     const options = axios
