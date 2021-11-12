@@ -2,7 +2,7 @@ import React from 'react';
 // import { Context } from "../../App";
 import { Link, useLocation } from "react-router-dom";
 
-export default function Navigation() {
+export default function Header() {
     const location = useLocation();
 
     return (
