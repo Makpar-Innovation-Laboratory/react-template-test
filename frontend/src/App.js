@@ -1,105 +1,93 @@
-import React, { useState } from 'react'
-import './App.css'
-import Navigation from './Components/Navigation/Navigation'
-import Home from './Components/Home/Home'
-import Login from './Components/Login/Login'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import Auth from './Utility/Auth'
-export const Context = React.createContext()
+import React, { useState } from "react";
+import "./App.css";
+import Navigation from "./Components/Navigation/Navigation";
+import Home from "./Components/Home/Home";
+import Login from "./Components/Login/Login";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Auth from "./Utility/Auth";
+export const Context = React.createContext();
 
 // export function Dashboard() {
-//   if (Auth.isUserAuthenticated()){ return <Home />} 
+//   if (Auth.isUserAuthenticated()){ return <Home />}
 //   else { return <Navigate to="/Login"></Navigate> }
 // }
 
 /**
  * @component
- * 
+ *
  * @property {}
- * 
+ *
  * @description
  * description goes here
- * 
+ *
  * @returns {}
  */
-export default function App () {
-  const [page, setPage] = useState('Home')
-  const [data, setData] = useState({"artist": {
-        "bio": "Spanish painter, sculptor, printmaker, ceramicist and theatre designer who spent most of his adult life in France. Regarded as one of the most influential artists of the 20th century, he is known for co-founding the Cubist movement, the invention of constructed sculpture,[8][9] the co-invention of collage, and for the wide variety of styles that he helped develop and explore. Among his most famous works are the proto-Cubist Les Demoiselles d'Avignon (1907), and Guernica (1937), a dramatic portrayal of the bombing of Guernica by German and Italian air forces during the Spanish Civil War.",
-        "nationality": "spanish",
-        "birth_death_date": "25 October 1881 – 8 April 1973",
-        "works": [
-            {
-                "title": "something old",
-                "classification": "something borrowed",
-                "display_date":"25 September 1887",
-                "medium": "oil",
-                "dimensions": "22x5"
-            },
-            {
-                "title": "double double",
-                "credit": "toil and trouble",
-                "classification": "something wicked",
-                "dimensions": "this way comes"
-            }
-      ],},"John Doe": {
-        "bio": "Spanish painter, sculptor, printmaker, ceramicist and theatre designer who spent most of his adult life in France. Regarded as one of the most influential artists of the 20th century, he is known for co-founding the Cubist movement, the invention of constructed sculpture,[8][9] the co-invention of collage, and for the wide variety of styles that he helped develop and explore. Among his most famous works are the proto-Cubist Les Demoiselles d'Avignon (1907), and Guernica (1937), a dramatic portrayal of the bombing of Guernica by German and Italian air forces during the Spanish Civil War.",
-        "nationality": "spanish",
-        "birth_death_date": "25 October 1881 – 8 April 1973",
-        "works": [
-            {
-                "title": "something old",
-                "classification": "something borrowed",
-                "display_date":"25 September 1887",
-                "medium": "oil",
-                "dimensions": "22x5"
-            },
-            {
-                "title": "double double",
-                "credit": "toil and trouble",
-                "classification": "something wicked",
-                "dimensions": "this way comes"
-            }
-          ]},"John Doe":{
-            "bio": "Spanish painter, sculptor, printmaker, ceramicist and theatre designer who spent most of his adult life in France. Regarded as one of the most influential artists of the 20th century, he is known for co-founding the Cubist movement, the invention of constructed sculpture,[8][9] the co-invention of collage, and for the wide variety of styles that he helped develop and explore. Among his most famous works are the proto-Cubist Les Demoiselles d'Avignon (1907), and Guernica (1937), a dramatic portrayal of the bombing of Guernica by German and Italian air forces during the Spanish Civil War.",
-            "nationality": "spanish",
-            "birth_death_date": "25 October 1881 – 8 April 1973",
-            "works": [
-                {
-                    "title": "something old",
-                    "classification": "something borrowed",
-                    "display_date":"25 September 1887",
-                    "medium": "oil",
-                    "dimensions": "22x5"
-                },
-                {
-                    "title": "double double",
-                    "credit": "toil and trouble",
-                    "classification": "something wicked",
-                    "dimensions": "this way comes"
-                }
-              ]},
-  })
+export default function App() {
+  const [page, setPage] = useState("Home");
+  const [data, setData] = useState({
+    results: [
+      {
+        display_name: "John Doe",
+        bio: "a cool dude",
+        nationality: "spanish",
+        display_date: "01/01/1980 - 01/01/2016",
+        works: [
+          {
+            artist: "Alexander Calder",
+            objectNumber: "AA25",
+            artistId: 5616,
+            medium: "steel",
+            title: "Flamingo",
+            creditLine:
+              "Commissioned through the Art in Architecture Program\r\nFine Arts Collection\r\nU.S. General Services Administration",
+            id: 23671,
+            primaryImage:
+              "/AA25\\Calder Flamingo photo Carol Highsmith 2007.jpg",
+            classification: "sculpture",
+            displayDate: "1974",
+            region: "Region 5",
+            dimensions: "53 x 60 x 24 ft. (1615.4 x 1828.7 x 731.5 cm)",
+          },
+          {
+            artist: "Alexander Calder",
+            objectNumber: "AA25",
+            artistId: 5616,
+            medium: "steel",
+            title: "Flamingo",
+            creditLine:
+              "Commissioned through the Art in Architecture Program\r\nFine Arts Collection\r\nU.S. General Services Administration",
+            id: 23672,
+            primaryImage:
+              "/AA25\\Calder Flamingo photo Carol Highsmith 2007.jpg",
+            classification: "sculpture",
+            displayDate: "1974",
+            region: "Region 5",
+            dimensions: "53 x 60 x 24 ft. (1615.4 x 1828.7 x 731.5 cm)",
+          },
+        ],
+      },
+    ],
+  });
   // const [isAuth, setIsAuth] = useState(() => checkAuth())
-  
+
   /**
    * description goes here
-   * @returns {boolean} 
+   * @returns {boolean}
    */
   // function checkAuth() {
-  //   if (Auth.isUserAuthenticated()) { return true; } 
+  //   if (Auth.isUserAuthenticated()) { return true; }
   //   else { return false; }
   // }
 
   /**
    * description goes here
-   * @param {string} input 
+   * @param {string} input
    */
-  function updatePage (input) {
-    setPage(input)
+  function updatePage(input) {
+    setPage(input);
   }
   function updateData(inputs) {
-    setData(inputs)
+    setData(inputs);
   }
   /**
    * description goes here
@@ -107,28 +95,26 @@ export default function App () {
    */
 
   return (
-      <Context.Provider
-        value={{
-          page: page, 
-          updatePage,
-          data: data,
-          updateData,
-          // isAuth: isAuth,
-          setAuth: (bool) => setIsAuth(bool),
-        }}
-      >
-        {/* <Router> */}
-          <Navigation />
-          <div className='App'>
-            <Routes>
-              {/* <Route path='/Login' element={<Login/>}/> */}
-              {/* <Route path='/' element={() => (isAuth ? <Home /> : <Redirect to="/Login" />)} />   */}
-              <Route path='/' element={<Home />} />
-            </Routes>
-          </div>
-        {/* </Router> */}
-      </Context.Provider>
-    )
+    <Context.Provider
+      value={{
+        page: page,
+        updatePage,
+        data,
+        updateData,
+        // isAuth: isAuth,
+        setAuth: (bool) => setIsAuth(bool),
+      }}
+    >
+      {/* <Router> */}
+      <Navigation />
+      <div className="App">
+        <Routes>
+          {/* <Route path='/Login' element={<Login/>}/> */}
+          {/* <Route path='/' element={() => (isAuth ? <Home /> : <Redirect to="/Login" />)} />   */}
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </div>
+      {/* </Router> */}
+    </Context.Provider>
+  );
 }
-
-
