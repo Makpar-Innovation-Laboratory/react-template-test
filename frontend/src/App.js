@@ -66,6 +66,46 @@ export default function App() {
           },
         ],
       },
+      {
+        display_name: "John Doe 2",
+        bio: "a cool dude",
+        nationality: "spanish",
+        display_date: "01/01/1980 - 01/01/2016",
+        works: [
+          {
+            artist: "Alexander Calder",
+            objectNumber: "AA25",
+            artistId: 5616,
+            medium: "steel",
+            title: "Flamingo",
+            creditLine:
+              "Commissioned through the Art in Architecture Program\r\nFine Arts Collection\r\nU.S. General Services Administration",
+            id: 23671,
+            primaryImage:
+              "/AA25\\Calder Flamingo photo Carol Highsmith 2007.jpg",
+            classification: "sculpture",
+            displayDate: "1974",
+            region: "Region 5",
+            dimensions: "53 x 60 x 24 ft. (1615.4 x 1828.7 x 731.5 cm)",
+          },
+          {
+            artist: "Alexander Calder",
+            objectNumber: "AA25",
+            artistId: 5616,
+            medium: "steel",
+            title: "Flamingo",
+            creditLine:
+              "Commissioned through the Art in Architecture Program\r\nFine Arts Collection\r\nU.S. General Services Administration",
+            id: 23672,
+            primaryImage:
+              "/AA25\\Calder Flamingo photo Carol Highsmith 2007.jpg",
+            classification: "sculpture",
+            displayDate: "1974",
+            region: "Region 5",
+            dimensions: "53 x 60 x 24 ft. (1615.4 x 1828.7 x 731.5 cm)",
+          },
+        ],
+      }
     ],
   });
   // const [isAuth, setIsAuth] = useState(() => checkAuth())

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../../App";
 
-export default function ArtistInfo() {
+export default function ArtistInfo(props) {
   const context = useContext(Context);
   console.log(context.data.results[0]);
 
@@ -12,19 +12,19 @@ export default function ArtistInfo() {
     >
       <div className="d-flex flex-column align-items-center py-4">
         <h4 className="color-primary">
-            {context.data.results[0].display_name}
+            {props.artist.display_name}
             </h4>
         <p className="mt-2">
           <b>Nationality: </b> 
-          {context.data.results[0].nationality}
+          {props.artist.nationality}
         </p>
         <p className="mt-1">
           <b>Birth/Death Date: </b> 
-          {context.data.results[0].display_date}
+          {props.artist.display_date}
         </p>
         <p className="mt-1" style={{ textAlign: "center" }}>
           <b>Bio: </b> 
-          {context.data.results[0].bio}
+          {props.artist.bio}
         </p>
       </div>
       <div
@@ -47,8 +47,8 @@ export default function ArtistInfo() {
             </thead>
 
             <tbody className="color-dark">
-              {context.data.results[0].works.length > 0 ? (
-                context.data.results[0].works.map((data, key) => {
+              {props.artist.works.length > 0 ? (
+                props.artist.works.map((data, key) => {
                   return (
                     <tr className="border-top" key={key}>
                       <td>{data.title}</td>

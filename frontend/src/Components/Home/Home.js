@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Auth from "../../Utility/Auth";
 import axios from "axios";
 import ArtistInfo from "./ArtistInfo";
+import { Context } from "../../App";
 /**
  * @component
  * @description
@@ -9,22 +10,24 @@ import ArtistInfo from "./ArtistInfo";
  * @returns {}
  */
 export default function Home() {
-  const [searchTerm, setSearchTerm] = useState('')
+  const context = useContext(Context);
+
+  const [searchTerm, setSearchTerm] = useState("");
   /**
    *
    */
-   const handleChange = event => {
+  const handleChange = (event) => {
     setSearchTerm(event.target.value);
-    console.log(searchTerm)
+    console.log(searchTerm);
   };
   function handleSubmit() {
     // let token = Auth.getToken();
 
-    let postString =
-      "https://api-ccc-dev.makpar-innovation.com/mock-data";
+    let postString = "https://api-ccc-dev.makpar-innovation.com/mock-data";
     // let authStr = "Bearer " + String(token);
     // console.log(authStr)
-    const options = axios.post(
+    const options = axios
+      .post(
         postString,
         {},
         {
@@ -63,15 +66,28 @@ export default function Home() {
           onChange={handleChange}
           id="Search-Bar"
         />
-        <button className="btn btn-round-primary mt-3" id="Search-Button" type="button" onClick={handleSubmit}>Search</button>
+        <button
+          className="btn btn-round-primary mt-3"
+          id="Search-Button"
+          type="button"
+          onClick={handleSubmit}
+        >
+          Search
+        </button>
       </div>
 
-      <div
-        className="d-flex flex-column align-items-center bg-white mt-4"
-        style={{ width: "70%", minHeight: "40vh" }}
-      >
-        <ArtistInfo />
-      </div>
+      {context.data.results.length > 0
+        ? context.data.results.map((artist) => {
+            return (
+              <div
+                className="d-flex flex-column align-items-center bg-white mt-4"
+                style={{ width: "70%", minHeight: "40vh" }}
+              >
+                <ArtistInfo artist={artist} />
+              </div>
+            );
+          })
+        : ""}
     </div>
   );
 }
