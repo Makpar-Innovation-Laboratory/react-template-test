@@ -82,7 +82,7 @@ export default function Home() {
         context.data.results.map((artist, key) => {
           return (
             <div
-              className="d-flex flex-column align-items-center bg-white mt-4"
+              className="d-flex flex-column align-items-center bg-white mt-4 mb-5"
               style={{ width: "70%", minHeight: "40vh" }}
               key={key}
             >

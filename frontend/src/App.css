@@ -394,3 +394,6 @@ select {
   color: var(--dark-grey) !important;
 }
 
+#error {
+  display: none;
+}
