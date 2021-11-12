@@ -18,18 +18,19 @@ export default function Home() {
    */
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
-    console.log(searchTerm);
   };
   function handleSubmit() {
     // let token = Auth.getToken();
 
-    let postString = "https://api-ccc-dev.makpar-innovation.com/mock-data";
+    let postString = "https://api-ccc-dev.makpar-innovation.com/search";
     // let authStr = "Bearer " + String(token);
     // console.log(authStr)
     const options = axios
       .post(
         postString,
-        {},
+        {
+          artist_name: searchTerm,
+        },
         {
           // headers: {
           //   Authorization: authStr,
@@ -38,7 +39,7 @@ export default function Home() {
       )
       .then((res) => {
         console.log(res.data);
-        // context.updateData(res.data.results)
+        context.updateData(res.data);
         // setReturn(res.data.results)
       })
       .catch((error) => {
@@ -65,6 +66,7 @@ export default function Home() {
           value={searchTerm}
           onChange={handleChange}
           id="Search-Bar"
+          autoComplete="off"
         />
         <button
           className="btn btn-round-primary mt-3"
@@ -76,18 +78,26 @@ export default function Home() {
         </button>
       </div>
 
-      {context.data.results.length > 0
-        ? context.data.results.map((artist) => {
-            return (
-              <div
-                className="d-flex flex-column align-items-center bg-white mt-4"
-                style={{ width: "70%", minHeight: "40vh" }}
-              >
-                <ArtistInfo artist={artist} />
-              </div>
-            );
-          })
-        : ""}
+      {context.data.results.length > 0 ? (
+        context.data.results.map((artist, key) => {
+          return (
+            <div
+              className="d-flex flex-column align-items-center bg-white mt-4"
+              style={{ width: "70%", minHeight: "40vh" }}
+              key={key}
+            >
+              <ArtistInfo artist={artist} />
+            </div>
+          );
+        })
+      ) : (
+        <div
+          className="d-flex flex-column align-items-center justify-content-center bg-white mt-4"
+          style={{ width: "70%", minHeight: "40vh" }}
+        >
+          <p>No artist found</p>
+        </div>
+      )}
     </div>
   );
 }
