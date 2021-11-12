@@ -97,21 +97,24 @@ export default function Home() {
           </table>
         </div>
         <div className="d-flex flex-column align-items-center py-4">
-          <h4 className="color-primary">Artworks</h4>
+          <h4 className="color-primary mb-4">Artworks</h4>
 
           <div
-            className="border d-flex flex-column align-items-center"
-            style={{ width: "350px", height: "350px" }}
+            className="border d-flex flex-column align-items-center justify-content-between "
+            style={{ width: "350px", height: "330px" }}
           >
-            <h5 className="mt-3">Title of Artwork</h5>
-            <div className="d-flex justify-content-between" style={{width: "70%"}}>
-              <p>Classification: </p>
-              <p>placeholder</p>
+            <h5 className="mt-2">Title of Artwork</h5>
+            <div
+              className="d-flex flex-column align-items-center mb-2"
+              style={{ width: "70%" }}
+            >
+              <p>Classification: placeholder</p>
+              <p className="mt-1">Display Date: 01/01/2021</p>
             </div>
-            <div className="d-flex justify-content-between" style={{width: "70%"}}>
-              <p>Display Date:</p>
-              <p>01/01/2021</p>
-            </div>
+            <div
+              className="background-dark"
+              style={{ width: "100%", minHeight: "220px" }}
+            ></div>
           </div>
         </div>
       </div>
