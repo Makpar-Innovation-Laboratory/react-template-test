@@ -24,6 +24,7 @@ export const Context = React.createContext()
  */
 export default function App () {
   const [page, setPage] = useState('Home')
+  const [data, setData] = useState([])
   // const [isAuth, setIsAuth] = useState(() => checkAuth())
   
   /**
@@ -42,6 +43,9 @@ export default function App () {
   function updatePage (input) {
     setPage(input)
   }
+  function updateData(inputs) {
+    setData(inputs)
+  }
   /**
    * description goes here
    * @returns {}
@@ -52,6 +56,8 @@ export default function App () {
         value={{
           page: page, 
           updatePage,
+          data: data,
+          updateData,
           // isAuth: isAuth,
           setAuth: (bool) => setIsAuth(bool),
         }}

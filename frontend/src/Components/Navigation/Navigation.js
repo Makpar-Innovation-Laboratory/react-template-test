@@ -43,16 +43,16 @@ export default function Navigation () {
             id={location.pathname === '/' ? 'active' : ''}
           >
             <Link to='/' className='color-primary'>
-              <h5 className='color-primary'>Home</h5>
+              <h5 className='color-primary' id="Home-Button">Home</h5>
             </Link>
           </div>
         {/* </a> */}
       </div>
 
       <div className='px-5'>
-        <a className=' color-primary'>
+        {/* <a className=' color-primary'>
           <button className="btn color-primary" type="submit" onClick={handleSubmit} >Logout</button>
-        </a>
+        </a> */}
       </div>
     </div>
 
