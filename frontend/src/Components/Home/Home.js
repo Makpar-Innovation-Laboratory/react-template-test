@@ -66,8 +66,8 @@ export default function Home() {
           <h4 className="color-primary">Artist Info</h4>
 
           {/* <p>Enter an artist name to see info</p> */}
-          <table className="mt-4" id="customers" style={{ minWidth: "700px" }}>
-            <tr
+          <div className="mt-4" id="customers" style={{ minWidth: "700px" }}>
+            <div
               className="d-flex flex-row justify-content-between border-top px-5 py-2"
               id="table-body"
             >
@@ -75,8 +75,8 @@ export default function Home() {
                 <b>Name:</b>
               </p>
               <p className="text-right">John Doe</p>
-            </tr>
-            <tr
+            </div>
+            <div
               className="d-flex flex-row justify-content-between border-top px-5 py-2"
               id="table-body"
             >
@@ -84,8 +84,8 @@ export default function Home() {
                 <b>Birth/Death Dates:</b>
               </p>
               <p className="text-right">01/01/1970 - 01/01/2016</p>
-            </tr>
-            <tr
+            </div>
+            <div
               className="d-flex flex-row justify-content-between border-top px-5 py-2"
               id="table-body"
             >
@@ -93,8 +93,8 @@ export default function Home() {
                 <b>Biographical Information:</b>
               </p>
               <p className="text-right">United States</p>
-            </tr>
-          </table>
+            </div>
+          </div>
         </div>
         <div className="d-flex flex-column align-items-center py-4">
           <h4 className="color-primary mb-4">Artworks</h4>
