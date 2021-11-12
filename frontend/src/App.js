@@ -60,7 +60,7 @@ export default function App () {
           <Navigation />
           <div className='App'>
             <Routes>
-              <Route path='/Login' element={<Login/>}/>
+              {/* <Route path='/Login' element={<Login/>}/> */}
               {/* <Route path='/' element={() => (isAuth ? <Home /> : <Redirect to="/Login" />)} />   */}
               <Route path='/' element={<Home />} />
             </Routes>

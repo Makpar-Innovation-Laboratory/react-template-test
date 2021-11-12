@@ -31,7 +31,7 @@ export default function Navigation () {
   }
 
   return (
-    <div className='nav-container background-light d-flex align-items-center py-4'>
+    <div className='nav-container bg-white d-flex align-items-center py-4'>
       <div className='nav-header px-5'>
         <h1 className='color-primary'>MAKPAR</h1>
       </div>

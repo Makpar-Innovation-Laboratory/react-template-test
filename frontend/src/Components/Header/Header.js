@@ -8,7 +8,7 @@ export default function Header() {
     return (
         <div className="d-flex flex-column">
             {/* Main header */}
-            <div className="nav-container background-light d-flex justify-content-between align-items-center py-4">
+            <div className="nav-container bg-white d-flex justify-content-between align-items-center py-4">
                 <div className="nav-header px-5">
                     <h1 className="color-dark">LOGO</h1>
                 </div>
