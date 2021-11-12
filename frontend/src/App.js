@@ -7,11 +7,10 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Auth from './Utility/Auth'
 export const Context = React.createContext()
 
-
-export function Dashboard() {
-  if (Auth.isUserAuthenticated()){ return <Home />} 
-  else { return <Navigate to="/Login"></Navigate> }
-}
+// export function Dashboard() {
+//   if (Auth.isUserAuthenticated()){ return <Home />} 
+//   else { return <Navigate to="/Login"></Navigate> }
+// }
 
 /**
  * @component
@@ -25,16 +24,16 @@ export function Dashboard() {
  */
 export default function App () {
   const [page, setPage] = useState('Home')
-  const [isAuth, setIsAuth] = useState(() => checkAuth())
+  // const [isAuth, setIsAuth] = useState(() => checkAuth())
   
   /**
    * description goes here
    * @returns {boolean} 
    */
-  function checkAuth() {
-    if (Auth.isUserAuthenticated()) { return true; } 
-    else { return false; }
-  }
+  // function checkAuth() {
+  //   if (Auth.isUserAuthenticated()) { return true; } 
+  //   else { return false; }
+  // }
 
   /**
    * description goes here
@@ -53,7 +52,7 @@ export default function App () {
         value={{
           page: page, 
           updatePage,
-          isAuth: isAuth,
+          // isAuth: isAuth,
           setAuth: (bool) => setIsAuth(bool),
         }}
       >
@@ -61,9 +60,9 @@ export default function App () {
           <Navigation />
           <div className='App'>
             <Routes>
-              <Route path='/Login' element={<Login/>}/>
+              {/* <Route path='/Login' element={<Login/>}/> */}
               {/* <Route path='/' element={() => (isAuth ? <Home /> : <Redirect to="/Login" />)} />   */}
-              <Route path='/' element={(<Dashboard/>)} />
+              <Route path='/' element={<Home />} />
             </Routes>
           </div>
         {/* </Router> */}
