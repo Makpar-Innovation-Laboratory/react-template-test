@@ -8,24 +8,28 @@ import axios from "axios";
  * @returns {}
  */
 export default function Home() {
+  const [searchTerm, setSearchTerm] = useState('')
   /**
    *
    */
+   const handleChange = event => {
+    setSearchTerm(event.target.value);
+    console.log(searchTerm)
+  };
   function handleSubmit() {
-    let token = Auth.getToken();
+    // let token = Auth.getToken();
 
     let postString =
-      "https://api-perdiem-staging.makpar-innovation.com/per-diem/";
-    let authStr = "Bearer " + String(token);
+      "https://api-ccc-dev.makpar-innovation.com/mock-data";
+    // let authStr = "Bearer " + String(token);
     // console.log(authStr)
-    const options = axios
-      .post(
+    const options = axios.post(
         postString,
         {},
         {
-          headers: {
-            Authorization: authStr,
-          },
+          // headers: {
+          //   Authorization: authStr,
+          // },
         }
       )
       .then((res) => {
@@ -54,8 +58,10 @@ export default function Home() {
           className="mt-3"
           placeholder="Search"
           style={{ width: "400px" }}
+          value={searchTerm}
+          onChange={handleChange}
         />
-        <button className="btn btn-round-primary mt-3">Search</button>
+        <button className="btn btn-round-primary mt-3" type="button" onClick={handleSubmit}>Search</button>
       </div>
 
       <div
