@@ -7,9 +7,9 @@ phases:
       - npm install
       - npm run build
       - |
-        if [ "$BRANCH" != prod ]
+        if [ "${BRANCH,,}" != prod ]
         then
-          ENV="${BRANCH}-"
+          ENV="${BRANCH,,}-"
         else
           ENV=""
         fi
