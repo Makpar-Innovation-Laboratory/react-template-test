@@ -6,7 +6,14 @@ phases:
       - cd frontend
       - npm install
       - npm run build
-      - aws s3 cp ./build/. s3://comet-frontend-dev-deployment --recursive
+      - |
+        if [ "$BRANCH" != prod ]
+        then
+          ENV="${BRANCH}-"
+        else
+          ENV=""
+        fi
+      - aws s3 cp ./build/. s3://${APPLICATION}-frontend-${ENV}deployment --recursive
       
 artifacts:
   files:
