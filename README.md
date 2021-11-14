@@ -1,5 +1,9 @@
 # cloudfront-s3
 
+## Code Quality
+-[![DeepSource](https://deepsource.io/bb/Makpar/cloudfront-s3.svg/?label=active+issues&show_trend=true&token=K6IlUR_AWGNauy_vSziOROwZ)](https://deepsource.io/bb/Makpar/cloudfront-s3/?ref=repository-badge)
+[![DeepSource](https://deepsource.io/bb/Makpar/cloudfront-s3.svg/?label=resolved+issues&show_trend=true&token=K6IlUR_AWGNauy_vSziOROwZ)](https://deepsource.io/bb/Makpar/cloudfront-s3/?ref=repository-badge)
+
 ## Sandbox Environment Urls
 - Dev: [https://laboratory-dev.makpar-innovation.com](https://laboratory-dev.makpar-innovation.com)
 
