@@ -12,6 +12,8 @@ phases:
   
   pre_build:
     commands:
+      # TODO: Unit Tests
+      #   generate coverage.xml and point SonarQube to it.
       # Sonar Qube
       - |
         sonar-scanner \
@@ -19,6 +21,7 @@ phases:
           -Dsonar.sources=. \
           -Dsonar.host.url=http://$SONAR_URL:9000 \
           -Dsonar.login=$SONAR_TOKEN
+      # -Dsonar.coverageReportPaths=./coverage.xml
 
   build:
     commands:
