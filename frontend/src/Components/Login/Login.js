@@ -48,14 +48,14 @@ export default function Login () {
       <Form onSubmit={handleOnSubmit} >
         <Form.Group className='mb-3' controlId='formBasicEmail'>
           <Form.Label>Username</Form.Label>
-          <Form.Control type='text' placeholder='Enter Username' name='username' />
+          <Form.Control type='text' placeholder='Enter Username' name='username' data-testid='username' />
         </Form.Group>
 
         <Form.Group className='mb-3' controlId='formBasicPassword'>
           <Form.Label>Password</Form.Label>
-          <Form.Control type='password' placeholder='Password' name='password' />
+          <Form.Control type='password' placeholder='Password' name='password' data-testid='password'/>
         </Form.Group>
-        <Button variant='primary' type='submit' title="Login button">
+        <Button variant='primary' type='submit' title="Login button" data-testid='button'>
           Login
         </Button>
       </Form>
