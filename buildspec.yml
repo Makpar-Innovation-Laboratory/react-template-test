@@ -20,10 +20,10 @@ phases:
           -Dsonar.projectKey=innolab-frontend \
           -Dsonar.sources=. \
           -Dsonar.host.url=http://$SONAR_URL:9000 \
-          -Dsonar.login=$SONAR_TOKEN
+          -Dsonar.login=$SONAR_TOKEN \
           -Dsonar.log.level=DEBUG \
-          -Dsonar.sources=$(pwd)/lambdas \
-          -Dsonar.sourceEncoding=UTF-8 \
+          -Dsonar.sources=$(pwd)/frontend/src \
+          -Dsonar.sourceEncoding=UTF-8
       # -Dsonar.coverageReportPaths=path/to/coverage.xml
 
       # see: https://docs.sonarqube.org/latest/analysis/coverage/
