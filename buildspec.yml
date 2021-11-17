@@ -5,6 +5,7 @@ phases:
     runtime:
       nodejs: 16.x
     commands:
+
       
       # Download sonar scanner
       - curl https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip -o "sonar_scanner.zip"
