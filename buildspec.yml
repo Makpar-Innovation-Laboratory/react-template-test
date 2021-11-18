@@ -2,7 +2,7 @@ version: 0.2
 
 phases:
   install:
-    runtime:
+    runtime-versions:
       nodejs: 16.x
       python: 3.9
     commands:
