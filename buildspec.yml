@@ -26,12 +26,12 @@ phases:
       # SonarQube Static Code Analysis
       - |
         sonar-scanner \
-          -Dsonar.projectKey=innolab-frontend \
+          -Dsonar.projectKey=${APPLICATION}-frontend \
           -Dsonar.sources=. \
           -Dsonar.host.url=http://$SONAR_URL:9000 \
           -Dsonar.login=$SONAR_TOKEN \
           -Dsonar.log.level=DEBUG \
-          -Dsonar.sources=$(pwd)/frontend/src \
+          -Dsonar.sources=$(pwd)/src \
           -Dsonar.sourceEncoding=UTF-8
       # -Dsonar.coverageReportPaths=path/to/coverage.xml
       # see: https://docs.sonarqube.org/latest/analysis/coverage/
@@ -39,7 +39,6 @@ phases:
       
   build:
     commands:
-      - cd frontend
       - npm run build
       - |
         if [ "${BRANCH}" != prod ]
