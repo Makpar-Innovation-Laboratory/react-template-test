@@ -1,11 +1,23 @@
 version: 0.2
 
 phases:
-  build:
+  install:
+    runtime-versions:
+      nodejs: 16.x
+      python: 3.9
     commands:
-      - echo "$SHELL"
       - cd frontend
       - npm install
+      - |
+        pip install behave==1.2.6 \
+                    behave-html-formatter==0.9.8 \
+                    requests==2.26.0 \
+                    selenium==4.0.0 \
+                    git-remote-codecommit==1.15.1
+      
+  build:
+    commands:
+      - cd frontend
       - npm run build
       - |
         if [ "${BRANCH}" != prod ]
@@ -15,7 +27,44 @@ phases:
           ENV=""
         fi
       - aws s3 cp ./build/. s3://${APPLICATION}-frontend-${ENV}deployment --recursive
-      
+  
+  post_build:
+    commands:
+      # BDD Tests
+      - |
+        bash -c '
+          git clone codecommit://${APPLICATION}-test-harness
+          cd ${APPLICATION}-test-harness/python
+          if [ "${BRANCH}" == "prod" ] 
+          then
+              export ENV=""
+          else
+            export ENV="-${BRANCH}"
+          fi
+          export FRONTEND_HOST_URL=https://${SUBDOMAIN}${ENV}.${DOMAIN}
+          chmod +x ./configure && ./configure
+          behave -t "@Web" \
+                --no-skipped \
+                --summary \
+                --outfile behave-report-frontend.html \
+                --format behave_html_formatter:HTMLFormatter \
+                  || true
+          aws s3 cp ./behave-report-frontend.html \
+                    s3://${APPLICATION}-coverage${ENV}/test-coverage/bdd/behave-report-frontend.html
+        '
+      # TODO: Generate docs
+      # Invalidate Frontend & Coverage Distribution Cache
+      - |
+        aws cloudfront create-invalidation \
+            --distribution-id $COVERAGE_DISTRIBUTION_ID \
+            --paths "/*"
+        aws cloudfront create-invalidation \
+              --distribution-id $FRONTEND_DISTRIBUTION_ID \
+              --paths "/*"
 artifacts:
   files:
     - frontend/build/**
+
+cache:
+  path:
+    - frontend/node_modules
