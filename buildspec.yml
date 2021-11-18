@@ -4,19 +4,26 @@ phases:
   install:
     runtime:
       nodejs: 16.x
+      python: 3.9
     commands:
-
-      
+      - cd frontend
+      - npm install
+      - |
+        pip install behave==1.2.6 \
+                    behave-html-formatter==0.9.8 \
+                    requests==2.26.0 \
+                    selenium==4.0.0 \
+                    git-remote-codecommit==1.15.1
       # Download sonar scanner
-      - curl https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip -o "sonar_scanner.zip"
-      - unzip sonar_scanner.zip > /dev/null 2>&1
-      - export PATH=$(pwd)/sonar-scanner-4.6.2.2472-linux/bin/:$PATH
+      - |
+        curl https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip \
+            -o "sonar_scanner.zip"
+        unzip sonar_scanner.zip > /dev/null 2>&1
+        export PATH=$(pwd)/sonar-scanner-4.6.2.2472-linux/bin/:$PATH
   
   pre_build:
     commands:
-      # TODO: Unit Tests
-      #   generate coverage.xml and point SonarQube to it.
-      # Sonar Qube
+      # SonarQube Static Code Analysis
       - |
         sonar-scanner \
           -Dsonar.projectKey=innolab-frontend \
@@ -27,13 +34,12 @@ phases:
           -Dsonar.sources=$(pwd)/frontend/src \
           -Dsonar.sourceEncoding=UTF-8
       # -Dsonar.coverageReportPaths=path/to/coverage.xml
-
       # see: https://docs.sonarqube.org/latest/analysis/coverage/
 
+      
   build:
     commands:
       - cd frontend
-      - npm install
       - npm run build
       - |
         if [ "${BRANCH}" != prod ]
@@ -43,7 +49,44 @@ phases:
           ENV=""
         fi
       - aws s3 cp ./build/. s3://${APPLICATION}-frontend-${ENV}deployment --recursive
-      
+  
+  post_build:
+    commands:
+      # BDD Tests
+      - |
+        bash -c '
+          git clone codecommit://${APPLICATION}-test-harness
+          cd ${APPLICATION}-test-harness/python
+          if [ "${BRANCH}" == "prod" ] 
+          then
+              export ENV=""
+          else
+            export ENV="-${BRANCH}"
+          fi
+          export FRONTEND_HOST_URL=https://${SUBDOMAIN}${ENV}.${DOMAIN}
+          chmod +x ./configure && ./configure
+          behave -t "@Web" \
+                --no-skipped \
+                --summary \
+                --outfile behave-report-frontend.html \
+                --format behave_html_formatter:HTMLFormatter \
+                  || true
+          aws s3 cp ./behave-report-frontend.html \
+                    s3://${APPLICATION}-coverage${ENV}/test-coverage/bdd/behave-report-frontend.html
+        '
+      # TODO: Generate docs
+      # Invalidate Frontend & Coverage Distribution Cache
+      - |
+        aws cloudfront create-invalidation \
+            --distribution-id $COVERAGE_DISTRIBUTION_ID \
+            --paths "/*"
+        aws cloudfront create-invalidation \
+              --distribution-id $FRONTEND_DISTRIBUTION_ID \
+              --paths "/*"
 artifacts:
   files:
     - frontend/build/**
+
+cache:
+  path:
+    - frontend/node_modules
