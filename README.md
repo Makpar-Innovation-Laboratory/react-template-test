@@ -1,13 +1,20 @@
-# cloudfront-s3
+# InnoLab Frontend - React Application
 
-## Code Quality
--[![DeepSource](https://deepsource.io/bb/Makpar/cloudfront-s3.svg/?label=active+issues&show_trend=true&token=K6IlUR_AWGNauy_vSziOROwZ)](https://deepsource.io/bb/Makpar/cloudfront-s3/?ref=repository-badge)
-[![DeepSource](https://deepsource.io/bb/Makpar/cloudfront-s3.svg/?label=resolved+issues&show_trend=true&token=K6IlUR_AWGNauy_vSziOROwZ)](https://deepsource.io/bb/Makpar/cloudfront-s3/?ref=repository-badge)
+
+## Package Table of Contents
+- [App.js](/App.js.html)
+- [Components/Home.js](/Components_Home_Home.js.html)
+- [Components/Login.js](/Components_Login_Login.js.html)
+- [Components/Navigation.js](/Components_Navigation_Navigation.js.html)
+- [Utility/Auth.js](/Utility_Auth.js.html)
 
 ## Sandbox Environment Urls
-- Dev: [https://laboratory-dev.makpar-innovation.com](https://laboratory-dev.makpar-innovation.com)
+- Dev
+    - Application: [https://innolab-dev.makpar-innovation.net](https://innolab-dev.makpar-innovation.net)
+    - Coverage: [https://innolab-coverage-dev.makpar-innovation.net](https://innolab-coverage-dev.makpar-innovation.net)
+    - SonarQube: [http://innolab-sonar.makpar-innovation.net](https://innolab-sonar.makpar-innovation.net)
 
-This repository connects to the **Cloudfront** and **s3** components of the Innovation Lab sandbox environment. Currently, it is setup for a **React** application. A **BitBucket** CI/CD pipeline is configured to deploy the **React** app to an **S3** bucket which in turn is served through the **Cloudfront** distribution
+This repository connects to the **Cloudfront** and **s3** components of the Innovation Lab sandbox environment. Currently, it is setup for a **React** application. An **AWS CodePipeline** CI/CD pipeline is configured to deploy the **React** app to an **S3** bucket which in turn is served through the **Cloudfront** distribution
 
 See [Pipeline section](#pipeline) below and [/devops/bitbucket-pipelines.yml](/devops/bitbucket-pipelines.yml) for more information about the CI/CD pipeline.
 
@@ -33,17 +40,9 @@ npm run build
 
 ## Pipeline
 
-This repository can be easily hooked into a **BitBucket** pipeline on four environment branches, `Prod`, `Test`, `Staging` and `Dev`, using the *yml* file in the */devops/* directory. Copy that file into the project root and create the pipeline through the UI. It is recommended these branches are setup to require pull requests to be opened and approved before merges are allowed; In addition, the pipeline has been configured to run static code analysis on every branch, so it is also recommended merges require the condition of "atleast 1 successful build" in the branch permissions section of the Repository settings; this will enforce new code to meet standards before it is merged. 
+This repository is hooked into an **AWS CodePipeline** pipeline on three environment branches, `Prod`,  `Staging` and `Dev`, using the *buildspec.yml* file in the root directory. 
 
-When new changes are merged into these branches, the pipeline will kick off. The pipeline will spin up a **Node** container and build the application on BitBucket's cloud servers. The *devops/bitbuckets-pipelines.yml* contains all the configuration to build a **React** app and deploy to an **S3** bucket, however you will still need to do a little bit of setup on the AWS side.
-
-You will need to set up a dummy user on AWS with access to the S3 bucket. The necessary policy permissions are included in *devops/aws/policies/pipelines.json*. The user credentials and bucket name will need added to the **BitBucket** deployment environment; the deployment environment is a set of variables that get injected into the pipeline while the application is building on **BitBucket**'s cloud servers.
-
-See comments inside of *bitbucket-pipelines.yml* for more detailed information and a step-by-step process on setting up the pipeline.
-
-
----
-**Potential Gotcha**: The pipeline caches */frontend/node_modules* so it doesn't have to re-install the frontend dependencies everytime the pipeline runs. If you happen to install a new dependency, the next time you run your code through the pipeline, you will need to clear the cache. **TODO**: could potentially check the checksum of *package.json* and use [bitbucket's clear cache script](https://bitbucket.org/atlassian/bitbucket-clear-cache/src/master/) to scrub the pipeline cache anytime it detects a new dependency.
+When new changes are merged into the environment branches, the pipeline will kick off. The pipeline will spin up a **Node** container and build the application within **CodeBuil**. The *buildspec.yml* contains all the configuration to build a **React** app and deploy to an **S3** bucket, however you will still need to do a little bit of setup on the AWS side.
 
 ---
 
@@ -83,9 +82,3 @@ The **S3** bucket this repo is hooked into typically sits behind a **CloudFront*
 ```
 
 ---
-
-## Documentation
-- [BitBucket Pipelines](https://docs.launchdarkly.com/integrations/bitbucket-pipelines?utm_source=google&utm_medium=cpc&obility_id=126914704714&utm_campaign=&utm_term=&utm_content=529046860681&_bm=b&_bn=g&gclid=Cj0KCQjwwNWKBhDAARIsAJ8HkheO3YpyjRBKc4TSNovlTNxCZWwC32kWPv17SOG7zGceZenBf-Vb0-0aAvAbEALw_wcB)
-- [Docker](https://docs.docker.com/)
-- [nginx](https://www.nginx.com/resources/wiki/?_bt=541137080527&_bk=&_bm=b&_bn=g&_bg=125748574545&gclid=Cj0KCQjwwNWKBhDAARIsAJ8Hkhdv_mAcxYhY0igOUv0zG5yhXtD0VsffwNY1Cj0uu9mrSSaeeq5y3JcaAip4EALw_wcB)
-- [React](https://reactjs.org/docs/getting-started.html)
