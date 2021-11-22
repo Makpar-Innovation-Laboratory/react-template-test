@@ -2,11 +2,11 @@
 
 
 ## Package Table of Contents
-- [App.js](/App.js.html)
-- [Components/Home.js](/Components_Home_Home.js.html)
-- [Components/Login.js](/Components_Login_Login.js.html)
-- [Components/Navigation.js](/Components_Navigation_Navigation.js.html)
-- [Utility/Auth.js](/Utility_Auth.js.html)
+- [App.js](/docs/react/App.js.html)
+- [Components/Home.js](/docs/react/Components_Home_Home.js.html)
+- [Components/Login.js](/docs/react/Components_Login_Login.js.html)
+- [Components/Navigation.js](/docs/react/Components_Navigation_Navigation.js.html)
+- [Utility/Auth.js](/docs/react/Utility_Auth.js.html)
 
 ## Sandbox Environment Urls
 - Dev
