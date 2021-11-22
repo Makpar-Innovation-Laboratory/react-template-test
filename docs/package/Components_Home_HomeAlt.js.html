@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Components/Home/HomeAlt.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Components/Home/HomeAlt.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>export default function Home() {
+    const [searchTerm, setSearchTerm] = useState('')
+    const context = useContext(Context)
+    /**
+     *
+     */
+     const handleChange = event => {
+      setSearchTerm(event.target.value);
+      console.log(searchTerm)
+    };
+    function handleSubmit() {
+      // let token = Auth.getToken();
+  
+      let postString =
+        "https://api-ccc-dev.makpar-innovation.com/mock-data";
+      // let authStr = "Bearer " + String(token);
+      // console.log(authStr)
+      const options = axios.post(
+          postString,
+          {},
+          {
+            // headers: {
+            //   Authorization: authStr,
+            // },
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          context.updateData(res.data.results)
+          // setReturn(res.data.results)
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }
+  
+    return (
+      &lt;div
+        className="d-flex flex-column align-items-center background-light "
+        style={{ width: "100%", minHeight: "95vh" }}
+      >
+        &lt;h2 className="mt-3">Artist Search&lt;/h2>
+  
+        &lt;div
+          className="d-flex flex-column align-items-center bg-white py-3"
+          style={{ width: "70%", minHeight: "150px" }}
+        >
+          &lt;label className="color-dark">Enter Artist Name&lt;/label>
+          &lt;input
+            className="mt-3"
+            placeholder="Search"
+            style={{ width: "400px" }}
+            value={searchTerm}
+            onChange={handleChange}
+          />
+          &lt;button className="btn btn-round-primary mt-3" type="button" onClick={handleSubmit}>Search&lt;/button>
+        &lt;/div>
+  
+        &lt;div
+          className="d-flex flex-column align-items-center bg-white mt-4"
+          style={{ width: "70%", minHeight: "40vh" }}
+        >
+          &lt;div className="d-flex flex-column align-items-center py-4">
+            &lt;h4 className="color-primary">Artist Info&lt;/h4>
+  
+            {/* &lt;p>Enter an artist name to see info&lt;/p> */}
+            &lt;div className="mt-4" id="customers" style={{ minWidth: "700px" }}>
+              &lt;div
+                className="d-flex flex-row justify-content-between border-top px-5 py-2"
+                id="table-body"
+              >
+                &lt;p>
+                  &lt;b>Name:&lt;/b>
+                &lt;/p>
+                &lt;p className="text-right">John Doe&lt;/p>
+              &lt;/div>
+              &lt;div
+                className="d-flex flex-row justify-content-between border-top px-5 py-2"
+                id="table-body"
+              >
+                &lt;p>
+                  &lt;b>Birth/Death Dates:&lt;/b>
+                &lt;/p>
+                &lt;p className="text-right">01/01/1970 - 01/01/2016&lt;/p>
+              &lt;/div>
+              &lt;div
+                className="d-flex flex-row justify-content-between border-top px-5 py-2"
+                id="table-body"
+              >
+                &lt;p>
+                  &lt;b>Biographical Information:&lt;/b>
+                &lt;/p>
+                &lt;p className="text-right">United States&lt;/p>
+              &lt;/div>
+            &lt;/div>
+          &lt;/div>
+          &lt;div className="d-flex flex-column align-items-center py-4">
+            &lt;h4 className="color-primary mb-4">Artworks&lt;/h4>
+  
+            &lt;div
+              className="border d-flex flex-column align-items-center justify-content-between "
+              style={{ width: "350px", height: "330px" }}
+            >
+              &lt;h5 className="mt-2">Title of Artwork&lt;/h5>
+              &lt;div
+                className="d-flex flex-column align-items-center mb-2"
+                style={{ width: "70%" }}
+              >
+                &lt;p>Classification: placeholder&lt;/p>
+                &lt;p className="mt-1">Display Date: 01/01/2021&lt;/p>
+              &lt;/div>
+              &lt;div
+                className="background-dark"
+                style={{ width: "100%", minHeight: "220px" }}
+              >&lt;/div>
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
+      &lt;/div>
+    );
+  }</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Mon Nov 22 2021 12:06:41 GMT-0500 (Eastern Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

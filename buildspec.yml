@@ -56,7 +56,6 @@ phases:
       
   build:
     commands:
-      - npm run build
       - |
         if [ "${BRANCH}" != prod ]
         then
@@ -64,7 +63,10 @@ phases:
         else
           ENV=""
         fi
-      - aws s3 cp ./build/. s3://${APPLICATION}-frontend-${ENV}deployment --recursive
+        npm run build
+        aws s3 cp ./build/. \
+          s3://${APPLICATION}-frontend-${ENV}deployment \
+            --recursive
   
   post_build:
     commands:
@@ -90,7 +92,21 @@ phases:
           aws s3 cp ./behave-report-frontend.html \
                     s3://${APPLICATION}-coverage${ENV}/test-coverage/bdd/behave-report-frontend.html
         '
-      # TODO: Generate docs
+      # Generate documentation
+      - |
+        bash -c '
+          if [ "${BRANCH}" == "prod" ] 
+          then
+              export ENV=""
+          else
+            export ENV="-${BRANCH}"
+          fi
+          npm run docs
+          aws s3 cp ../docs/package/. \
+                  s3://${APPLICATION}-coverage${ENV}/docs/react \
+                  --recursive
+        '
+
       # Invalidate Frontend & Coverage Distribution Cache
       - |
         aws cloudfront create-invalidation \

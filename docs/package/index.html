@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>cloudfront-s3</h1>
+<h2>Code Quality</h2>
+<p>-<a href="https://deepsource.io/bb/Makpar/cloudfront-s3/?ref=repository-badge"><img src="https://deepsource.io/bb/Makpar/cloudfront-s3.svg/?label=active+issues&amp;show_trend=true&amp;token=K6IlUR_AWGNauy_vSziOROwZ" alt="DeepSource"></a>
+<a href="https://deepsource.io/bb/Makpar/cloudfront-s3/?ref=repository-badge"><img src="https://deepsource.io/bb/Makpar/cloudfront-s3.svg/?label=resolved+issues&amp;show_trend=true&amp;token=K6IlUR_AWGNauy_vSziOROwZ" alt="DeepSource"></a></p>
+<h2>Sandbox Environment Urls</h2>
+<ul>
+<li>Dev: <a href="https://laboratory-dev.makpar-innovation.com">https://laboratory-dev.makpar-innovation.com</a></li>
+</ul>
+<p>This repository connects to the <strong>Cloudfront</strong> and <strong>s3</strong> components of the Innovation Lab sandbox environment. Currently, it is setup for a <strong>React</strong> application. A <strong>BitBucket</strong> CI/CD pipeline is configured to deploy the <strong>React</strong> app to an <strong>S3</strong> bucket which in turn is served through the <strong>Cloudfront</strong> distribution</p>
+<p>See <a href="#pipeline">Pipeline section</a> below and <a href="/devops/bitbucket-pipelines.yml">/devops/bitbucket-pipelines.yml</a> for more information about the CI/CD pipeline.</p>
+<h2>Quickstart</h2>
+<h3>local</h3>
+<p>Setup the application on your local computer,</p>
+<pre class="prettyprint source"><code>cd frontend
+npm install
+npm start
+</code></pre>
+<h3>production</h3>
+<pre class="prettyprint source"><code>cd frontend
+npm install
+npm run build
+</code></pre>
+<h2>Pipeline</h2>
+<p>This repository can be easily hooked into a <strong>BitBucket</strong> pipeline on four environment branches, <code>Prod</code>, <code>Test</code>, <code>Staging</code> and <code>Dev</code>, using the <em>yml</em> file in the <em>/devops/</em> directory. Copy that file into the project root and create the pipeline through the UI. It is recommended these branches are setup to require pull requests to be opened and approved before merges are allowed; In addition, the pipeline has been configured to run static code analysis on every branch, so it is also recommended merges require the condition of &quot;atleast 1 successful build&quot; in the branch permissions section of the Repository settings; this will enforce new code to meet standards before it is merged.</p>
+<p>When new changes are merged into these branches, the pipeline will kick off. The pipeline will spin up a <strong>Node</strong> container and build the application on BitBucket's cloud servers. The <em>devops/bitbuckets-pipelines.yml</em> contains all the configuration to build a <strong>React</strong> app and deploy to an <strong>S3</strong> bucket, however you will still need to do a little bit of setup on the AWS side.</p>
+<p>You will need to set up a dummy user on AWS with access to the S3 bucket. The necessary policy permissions are included in <em>devops/aws/policies/pipelines.json</em>. The user credentials and bucket name will need added to the <strong>BitBucket</strong> deployment environment; the deployment environment is a set of variables that get injected into the pipeline while the application is building on <strong>BitBucket</strong>'s cloud servers.</p>
+<p>See comments inside of <em>bitbucket-pipelines.yml</em> for more detailed information and a step-by-step process on setting up the pipeline.</p>
+<hr>
+<p><strong>Potential Gotcha</strong>: The pipeline caches <em>/frontend/node_modules</em> so it doesn't have to re-install the frontend dependencies everytime the pipeline runs. If you happen to install a new dependency, the next time you run your code through the pipeline, you will need to clear the cache. <strong>TODO</strong>: could potentially check the checksum of <em>package.json</em> and use <a href="https://bitbucket.org/atlassian/bitbucket-clear-cache/src/master/">bitbucket's clear cache script</a> to scrub the pipeline cache anytime it detects a new dependency.</p>
+<hr>
+<h2>Application Image</h2>
+<p>The app can be containerized through a multi-stage <strong>Docker</strong> image. It is first built on top of a <strong>nodeJS</strong> image and the artifacts copied over into an <strong>nginx</strong> image. To build the application image, you will need <a href="">Docker</a> installed. Once that is done, you can build the image from project root directory with the following command,</p>
+<p><code>docker build --tag dockerized-react:latest .</code></p>
+<p>After the build, you will see the image in your local repository,</p>
+<p><code>docker images</code></p>
+<p>You can spin up a container from this image with the following command,</p>
+<p><code>docker run --publish &lt;local-port&gt;:&lt;container-port&gt; dockerized-react:latest</code></p>
+<p>Note, the default port for nginx is <em>80</em>, so the following command will map the local port <em>8000</em> to the container port,</p>
+<p><code>docker run --publish 80:8000 dockerized-react:latest</code></p>
+<hr>
+<p><strong>Note</strong>: The multi-stage Docker build ensures we have the bare minimum in the actual image. Note after you run the <code>docker build</code> command, there are two images in your local image repository,</p>
+<blockquote>
+<p><code>dockerized-react   latest    eb47e873aa4b   4 minutes ago   134MB</code><br>
+<code>&lt;none&gt;     &lt;none&gt;    7ceefa83d499   4 minutes ago   1.19GB</code></p>
+</blockquote>
+<p>The second image is the <strong>nodeJS</strong> image where the application artifacts were built. Notice how much larger it is in comparison to the other image; this is due to all of the dependencies that needed to be installed in the environment before the application could actually be built (i.e. everything in <em>/pricing-tool-frontend/package.json</em>). The other image is the <strong>nginx</strong> image that has had the <strong>React</strong> webpacks copied over into one of its data directories. No dependencies have to be installed in the <strong>nginx</strong> image. This has security implications; namely, there is less surface area (in terms of libraries and dependencies that might have vulnerabilities in their codebase) exposed to a potential attack.</p>
+<h2>Deploying the Application</h2>
+<p>The <strong>S3</strong> bucket this repo is hooked into typically sits behind a <strong>CloudFront</strong> distribution. Any time a new deployment goes through, the <strong>CF</strong> cache will need invalidated before the changes appear. To invalidate the cache, copy the <em>.sample.env</em> environment file to a new <em>.env</em> file and add the ID of the <strong>CloudFront</strong> distribution to the <strong>CLOUDFRONT_DISTRIBUTION_ID</strong> environment file and then execute the script,</p>
+<pre class="prettyprint source"><code>./scripts/invalidate-cache
+</code></pre>
+<hr>
+<h2>Documentation</h2>
+<ul>
+<li><a href="https://docs.launchdarkly.com/integrations/bitbucket-pipelines?utm_source=google&amp;utm_medium=cpc&amp;obility_id=126914704714&amp;utm_campaign=&amp;utm_term=&amp;utm_content=529046860681&amp;_bm=b&amp;_bn=g&amp;gclid=Cj0KCQjwwNWKBhDAARIsAJ8HkheO3YpyjRBKc4TSNovlTNxCZWwC32kWPv17SOG7zGceZenBf-Vb0-0aAvAbEALw_wcB">BitBucket Pipelines</a></li>
+<li><a href="https://docs.docker.com/">Docker</a></li>
+<li><a href="https://www.nginx.com/resources/wiki/?_bt=541137080527&amp;_bk=&amp;_bm=b&amp;_bn=g&amp;_bg=125748574545&amp;gclid=Cj0KCQjwwNWKBhDAARIsAJ8Hkhdv_mAcxYhY0igOUv0zG5yhXtD0VsffwNY1Cj0uu9mrSSaeeq5y3JcaAip4EALw_wcB">nginx</a></li>
+<li><a href="https://reactjs.org/docs/getting-started.html">React</a></li>
+</ul></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Mon Nov 22 2021 12:06:41 GMT-0500 (Eastern Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
