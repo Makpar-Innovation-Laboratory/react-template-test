@@ -24,7 +24,7 @@ See [Pipeline section](#pipeline) below and [/devops/bitbucket-pipelines.yml](/d
 
 Setup the application on your local computer,
 
-```
+```shell
 cd frontend
 npm install
 npm start
@@ -32,7 +32,7 @@ npm start
 
 ### production
 
-```
+```shell
 cd frontend
 npm install
 npm run build
@@ -50,19 +50,27 @@ When new changes are merged into the environment branches, the pipeline will kic
 
 The app can be containerized through a multi-stage **Docker** image. It is first built on top of a **nodeJS** image and the artifacts copied over into an **nginx** image. To build the application image, you will need [Docker]() installed. Once that is done, you can build the image from project root directory with the following command,
 
-`docker build --tag dockerized-react:latest .`
+```shell
+docker build --tag innolab-react:latest .
+```
 
 After the build, you will see the image in your local repository,
 
-`docker images`
+```shell
+docker images
+```
 
 You can spin up a container from this image with the following command,
 
-`docker run --publish <local-port>:<container-port> dockerized-react:latest`
+```shell
+docker run --publish <local-port>:<container-port> dockerized-react:latest
+```
 
 Note, the default port for nginx is *80*, so the following command will map the local port *8000* to the container port,
 
-`docker run --publish 80:8000 dockerized-react:latest`
+```shell
+docker run --publish 80:8000 dockerized-react:latest
+```
 
 ---
 **Note**: The multi-stage Docker build ensures we have the bare minimum in the actual image. Note after you run the `docker build` command, there are two images in your local image repository, 
@@ -77,7 +85,7 @@ The second image is the **nodeJS** image where the application artifacts were bu
 
 The **S3** bucket this repo is hooked into typically sits behind a **CloudFront** distribution. Any time a new deployment goes through, the **CF** cache will need invalidated before the changes appear. To invalidate the cache, copy the *.sample.env* environment file to a new *.env* file and add the ID of the **CloudFront** distribution to the **CLOUDFRONT_DISTRIBUTION_ID** environment file and then execute the script,
 
-```
+```shell
 ./scripts/invalidate-cache
 ```
 
