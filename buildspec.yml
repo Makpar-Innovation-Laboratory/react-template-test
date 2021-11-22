@@ -23,6 +23,23 @@ phases:
   
   pre_build:
     commands:
+      # Lint Source Code
+      - |
+        bash -c '
+          if [ "${BRANCH}" == "prod" ] 
+          then
+              export ENV=""
+          else
+            export ENV="-${BRANCH}"
+          fi
+          npx eslint --quiet \
+           --no-error-on-unmatched-pattern ./src/** \
+           --output-file ../docs/linting/index.html \
+           --format html \
+           || true
+          aws s3 cp ../docs/linting/index.html \
+                  s3://${APPLICATION}-coverage${ENV}/linting/react/index.html
+        '
       # SonarQube Static Code Analysis
       - |
         sonar-scanner \
