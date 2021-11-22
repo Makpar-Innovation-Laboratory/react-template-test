@@ -8,9 +8,8 @@ import {useNavigate} from 'react-router-dom'
 /**
  * @component
  * 
- * @description
- * description goes here
- * @returns 
+ * @description description goes here
+ * @returns {}
  */
 export default function Navigation () {
   const context = useContext(Context)
@@ -18,9 +17,8 @@ export default function Navigation () {
   const navigate = useNavigate()
 
   /**
-   * @description
-   * description goes here
-   * @param {*} e 
+   * @description description goes here
+   * @param {*} e - explanation of variable e goes here
    */
   const handleSubmit = (e) => {
     e.preventDefault()

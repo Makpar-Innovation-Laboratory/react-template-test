@@ -8,8 +8,7 @@ import {useNavigate} from 'react-router-dom'
 
 /**
  * @component
- * @description
- * description goes here
+ * @description description goes here
  * @returns {}
  */
 export default function Login () {
@@ -17,9 +16,9 @@ export default function Login () {
   const context = useContext(Context)
 
   /**
-   * @description
+   * @description function for handling API authentication 
    * 
-   * @param {*} e 
+   * @param {*} e  - form submission containing username/password combo for authentication
    */
   const handleOnSubmit = (e) => {
     e.preventDefault()
@@ -27,7 +26,7 @@ export default function Login () {
     const data = { username: e.target[0].value, password: e.target[1].value }
     console.log('We submitted! : ')
     axios
-      .post('https://api-laboratory-dev.makpar-innovation.com/token', data, {
+      .post('https://api-innolab-dev.makpar-innovation.com/token', data, {
         headers: {
           'content-type': 'application/json'
         }

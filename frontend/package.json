@@ -26,9 +26,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "docs": "jsdoc -c jsdoc.conf.json"
+    "docs": "jsdoc -c jsdoc.conf.json && cp -ap ./docs/. ../docs/package/ && rm -rf ./docs"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +52,7 @@
     "eslint": "^7.32.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-react": "^7.26.0",
-    "jest": "^26.6.0"
+    "jest": "^26.6.0",
+    "jsdoc": "^3.6.7"
   }
 }
