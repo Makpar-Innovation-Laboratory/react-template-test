@@ -26,7 +26,7 @@ export default function Login () {
     const data = { username: e.target[0].value, password: e.target[1].value }
     console.log('We submitted! : ')
     axios
-      .post('https://api-innolab-dev.makpar-innovation.com/token', data, {
+      .post('https://api-innolab-dev.makpar-innovation.net/token', data, {
         headers: {
           'content-type': 'application/json'
         }

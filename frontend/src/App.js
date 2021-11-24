@@ -25,7 +25,7 @@ export function Dashboard() {
 export default function App() {
   const [page, setPage] = useState("Home");
   const [data, setData] = useState({results: []});
-
+  const [isAuth, setIsAuth] = useState(false)
 
   /**
    * description goes here
@@ -58,7 +58,7 @@ export default function App() {
         updatePage,
         data,
         updateData,
-        // isAuth: isAuth,
+        isAuth: isAuth,
         setAuth: (bool) => setIsAuth(bool),
       }}
     >

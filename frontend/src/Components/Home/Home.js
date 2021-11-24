@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
-import Auth from "../../Utility/Auth";
-import axios from "axios";
-import ArtistInfo from "./ArtistInfo";
+// import Auth from "../../Utility/Auth";
+// import axios from "axios";
+// import ArtistInfo from "./ArtistInfo";
+import NameForm from '../Form/Form'
+import Table from '../Table/Table'
 import { Context } from "../../App";
 /**
  * @component
@@ -11,50 +13,55 @@ import { Context } from "../../App";
  */
 export default function Home() {
   const context = useContext(Context);
+  let theadData = ["Name", "Dates", "Destination"]
+  // const [searchTerm, setSearchTerm] = useState("");
+  // /**
+  //  *
+  //  */
+  // const handleChange = (event) => {
+  //   setSearchTerm(event.target.value);
+  // };
+  // function handleSubmit() {
+  //   // let token = Auth.getToken();
 
-  const [searchTerm, setSearchTerm] = useState("");
-  /**
-   *
-   */
-  const handleChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-  function handleSubmit() {
-    // let token = Auth.getToken();
+  //   let postString = "https://api-ccc.makpar-innovation.com/search";
+  //   // let authStr = "Bearer " + String(token);
+  //   // console.log(authStr)
+  //   const options = axios
+  //     .post(
+  //       postString,
+  //       {
+  //         artist_name: searchTerm,
+  //       },
+  //       {
+  //         // headers: {
+  //         //   Authorization: authStr,
+  //         // },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       context.updateData(res.data);
+  //       // setReturn(res.data.results)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.message);
+  //     });
+  // }
+  const handleClick = (e) => {
 
-    let postString = "https://api-ccc.makpar-innovation.com/search";
-    // let authStr = "Bearer " + String(token);
-    // console.log(authStr)
-    const options = axios
-      .post(
-        postString,
-        {
-          artist_name: searchTerm,
-        },
-        {
-          // headers: {
-          //   Authorization: authStr,
-          // },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        context.updateData(res.data);
-        // setReturn(res.data.results)
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
   }
-
   return (
     <div
       className="d-flex flex-column align-items-center background-light "
       style={{ width: "100%", minHeight: "95vh" }}
     >
-      <h2 className="mt-3">Artist Search</h2>
+      <h2 className="mt-3">Welcome</h2>
 
-      <div
+      <NameForm />
+      <Table theadData={theadData} tbodyData={context.data.results}/>
+      <button type="button" onclick={handleClick} />
+      {/* <div
         className="d-flex flex-column align-items-center bg-white py-3"
         style={{ width: "70%", minHeight: "150px" }}
       >
@@ -76,9 +83,9 @@ export default function Home() {
         >
           Search
         </button>
-      </div>
+      </div> */}
 
-      {context.data.results.length > 0 ? (
+      {/* {context.data.results.length > 0 ? (
         context.data.results.map((artist, key) => {
           return (
             <div
@@ -97,7 +104,7 @@ export default function Home() {
         >
           <p>No artist found</p>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
