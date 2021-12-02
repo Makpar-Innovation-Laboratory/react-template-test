@@ -408,3 +408,78 @@ form {
   max-width: 500px;
   padding: 30px 50px;
 }
+
+textarea {
+  font-family: var(--font-family);
+  border: none;
+  resize: none;
+}
+
+textarea::placeholder {
+  color: var(--gray);
+}
+
+.comment-box {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 400px;
+  margin: 50px auto;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  padding: 14px;
+  transition: min-height var(--transition);
+  max-height: 46px;
+}
+
+.comment-box.modified {
+  max-height: unset;
+}
+.comment-field {
+  color: var(--black);
+  transition: transform var(--transition);
+  font-size: 18px;
+  width: 100%;
+  outline: none;
+  padding: 0;
+  min-height: 60px;
+  transform: translateY(-32px);
+  line-height: 1;
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  align-self: flex-end;
+  justify-content: flex-end;
+  margin-top: 50px;
+  opacity: 0;
+  transition: opacity var(--transition) 0.2s;
+}
+
+.comment-box.expanded .actions {
+  opacity: 1;
+}
+
+.comment-box.expanded .header {
+  transform: translateY(10px);
+  opacity: 1;
+  visibility: visible;
+}
+
+.comment-box.expanded .comment-field {
+  transform: translateY(40px);
+}
+
+.actions button {
+  margin-left: 6px;
+  font-size: 14px;
+  padding: 12px;
+  border: none;
+  line-height: 1;
+}
+
+.actions .cancel {
+  background: none;
+}
