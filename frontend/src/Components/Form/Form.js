@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
 import DatePicker from "react-multi-date-picker"
 import DatePanel from "react-multi-date-picker/plugins/date_panel"
-
+import Auth from '../../Utility/Auth'
 import Select from 'react-select'
-
-
+import axios from 'axios'
+import {Context} from '../../App'
 
 export default function NameForm() {
   const today = new Date()
   const tomorrow = new Date()
-
+  const context = useContext(Context)
   tomorrow.setDate(tomorrow.getDate() + 1)
   const [name, setName] = useState("");
   const [dateRange, setDateRange] = useState([today, tomorrow])
   const [destination, setDestination] = useState("")
   const [reason, setReason] = useState("")
   const [flag, setFlag] = useState("false")
+  const [radSelect, setRadSelect] = useState("false")
+  
   let postArr
   const options = [
     { value: 'Virginia', label: 'Virginia' },
@@ -23,24 +25,40 @@ export default function NameForm() {
     { value: 'Vermont', label: 'Vermont' }
   ]
   function onValueChange(event) {
-    setFlag(event.target.value);
+    if (event.target.value == 'true'){
+      setFlag(true)
+    } else{
+      setFlag(false)
+    }
+    setRadSelect(event.target.value)
   }
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    let jsn = {
+      name: name,
+      start_date: String(dateRange[0].toISOString().split('T')[0]),
+      end_date: String(dateRange[1].toISOString().split('T')[0]),
+      flag:flag,
+      reason:reason,
+      destination:destination
+      
+    }
     let token = Auth.getToken();
     let postString = "https://api-innolab-dev.makpar-innovation.net/gamma";
     let authStr = "Bearer " + String(token);
     // console.log(authStr)
+    console.log(jsn)
     const options = axios
       .post(
         postString,
         {
           name: name,
-          start_date:dateRange[0],
-          end_date: dateRange[1],
-          destination:destination,
+          start_date: String(dateRange[0].toISOString().split('T')[0]),
+          end_date: String(dateRange[1].toISOString().split('T')[0]),
           flag:flag,
-          reason:reason
+          reason:reason,
+          destination:destination
+          
         },
         {
           headers: {
@@ -49,9 +67,9 @@ export default function NameForm() {
         }
       )
       .then((res) => {
-        console.log(res.data);
-        // context.updateData(res.data);
-        // setReturn(res.data.results)
+        console.log('success:', res)
+        // context.updateData({results: res.data['Time Series (Daily)']});
+        // context.updateTableVis(true)
       })
       .catch((error) => {
         console.log(error.message);
@@ -87,7 +105,7 @@ export default function NameForm() {
             <input
               type="radio"
               value="true"
-              checked={flag === "true"}
+              checked={radSelect === "true"}
               onChange={onValueChange}
             />
             True
@@ -98,7 +116,7 @@ export default function NameForm() {
             <input
               type="radio"
               value="false"
-              checked={flag === "false"}
+              checked={radSelect === "false"}
               onChange={onValueChange}
             />
             False

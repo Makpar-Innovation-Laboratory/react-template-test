@@ -26,6 +26,7 @@ export default function App() {
   const [page, setPage] = useState("Home");
   const [data, setData] = useState({results: []});
   const [isAuth, setIsAuth] = useState(false)
+  const [showTable, setShowTable] = useState(false)
 
   /**
    * description goes here
@@ -46,6 +47,9 @@ export default function App() {
   function updateData(inputs) {
     setData(inputs);
   }
+  function updateTableVis(input) {
+    setShowTable(input)
+  }
   /**
    * description goes here
    * @returns {}
@@ -58,6 +62,8 @@ export default function App() {
         updatePage,
         data,
         updateData,
+        showTable,
+        updateTableVis,
         isAuth: isAuth,
         setAuth: (bool) => setIsAuth(bool),
       }}

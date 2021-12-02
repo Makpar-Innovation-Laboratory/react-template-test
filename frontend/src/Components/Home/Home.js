@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-// import Auth from "../../Utility/Auth";
-// import axios from "axios";
+import Auth from "../../Utility/Auth";
+import axios from "axios";
 // import ArtistInfo from "./ArtistInfo";
 import NameForm from '../Form/Form'
 import Table from '../Table/Table'
@@ -13,7 +13,7 @@ import { Context } from "../../App";
  */
 export default function Home() {
   const context = useContext(Context);
-  let theadData = ["Name", "Dates", "Destination"]
+  let theadData = ["name","start", "end", "flag", "reason", "destination"]
   // const [searchTerm, setSearchTerm] = useState("");
   // /**
   //  *
@@ -49,7 +49,28 @@ export default function Home() {
   //     });
   // }
   const handleClick = (e) => {
-
+    let token = Auth.getToken();
+    let getString = "https://api-innolab-dev.makpar-innovation.net/gamma";
+    let authStr = "Bearer " + String(token);
+    // console.log(authStr)
+    const options = axios
+      .get(
+        getString,
+        {
+          headers: {
+            Authorization: authStr,
+          },
+        }
+      )
+      .then((res) => {
+        // console.log('success:', res)
+        // context.updateData({results: res.data['Time Series (Daily)']});
+        context.updateData(res.data)
+        context.updateTableVis(true)
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   }
   return (
     <div
@@ -60,7 +81,7 @@ export default function Home() {
 
       <NameForm />
       <Table theadData={theadData} tbodyData={context.data.results}/>
-      <button type="button" onclick={handleClick} />
+      <button type="button" onClick={handleClick} />
       {/* <div
         className="d-flex flex-column align-items-center bg-white py-3"
         style={{ width: "70%", minHeight: "150px" }}
