@@ -5,6 +5,7 @@ import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Auth from "./Utility/Auth";
+import SignupForm from './Components/Login/Signup'
 export const Context = React.createContext();
 
 export function Dashboard() {
@@ -73,6 +74,7 @@ export default function App() {
       <div className="App">
         <Routes>
           <Route path='/Login' element={<Login/>}/>
+          <Route path='/Signup' element={<SignupForm/>}/>
           {/* <Route path='/' element={() => (isAuth ? <Home /> : <Redirect to="/Login" />)} />   */}
           <Route path="/" element={<Dashboard />} />
         </Routes>

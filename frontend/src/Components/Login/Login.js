@@ -23,20 +23,21 @@ export default function Login () {
   const handleOnSubmit = (e) => {
     e.preventDefault()
     
-    const data = { username: e.target[0].value, password: e.target[1].value }
-    console.log('We submitted! : ')
-    axios
-      .post('https://api-innolab-dev.makpar-innovation.net/token', data, {
-        headers: {
-          'content-type': 'application/json'
-        }
-      })
-      .then((res) => {
-        // console.log('Success: ', res.data)
-        Auth.authenticateUser(res.data.AuthenticationResult.IdToken)
-        context.setAuth(true)
-        navigate('/')
-      })
+    const data = { username: e.target[0].value, password: e.target[1].value, dev: e.target[3].value }
+    console.log(data)
+    // console.log('We submitted! : ')
+    // axios
+    //   .post('https://api-innolab-dev.makpar-innovation.net/token', data, {
+    //     headers: {
+    //       'content-type': 'application/json'
+    //     }
+    //   })
+    //   .then((res) => {
+    //     // console.log('Success: ', res.data)
+    //     Auth.authenticateUser(res.data.AuthenticationResult.IdToken)
+    //     context.setAuth(true)
+    //     navigate('/')
+    //   })
   }
   
   return (
@@ -54,10 +55,18 @@ export default function Login () {
           <Form.Label>Password</Form.Label>
           <Form.Control type='password' placeholder='Password' name='password' data-testid='password'/>
         </Form.Group>
+
+        <Form.Check 
+          type='checkbox'
+          name='developer-checkbox'
+        />
+
         <Button variant='primary' type='submit' title="Login button" data-testid='button' id='button'>
           Login
         </Button>
+        <a href="/Signup" >Don't have an account?</a>
       </Form>
+      
     </div>
   )
 }
