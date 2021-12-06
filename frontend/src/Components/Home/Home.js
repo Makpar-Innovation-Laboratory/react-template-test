@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
 import Auth from "../../Utility/Auth";
-import axios from "axios";
+// import axios from "axios";
 // import ArtistInfo from "./ArtistInfo";
-import NameForm from '../Form/Form'
-import Table from '../Table/Table'
+// import NameForm from '../Form/Form'
+// import Table from '../Table/Table'
 import { Context } from "../../App";
-import CommentBox from "../Comments/CommentBox";
+import Posts from '../NewsFeed/Post'
 /**
  * @component
  * @description
@@ -46,7 +46,7 @@ export default function Home() {
       style={{ width: "100%", minHeight: "95vh" }}
     >
       <h2 className="mt-3">Welcome</h2>
-      <CommentBox/>
+      <Posts/>
       {/* <NameForm />
       <Table theadData={theadData} tbodyData={context.data.results}/> */}
       {/* <button type="button" onClick={handleClick} /> */}

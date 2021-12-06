@@ -25,19 +25,19 @@ export default function Login () {
     
     const data = { username: e.target[0].value, password: e.target[1].value, dev: e.target[3].value }
     console.log(data)
-    // console.log('We submitted! : ')
-    // axios
-    //   .post('https://api-innolab-dev.makpar-innovation.net/token', data, {
-    //     headers: {
-    //       'content-type': 'application/json'
-    //     }
-    //   })
-    //   .then((res) => {
-    //     // console.log('Success: ', res.data)
-    //     Auth.authenticateUser(res.data.AuthenticationResult.IdToken)
-    //     context.setAuth(true)
-    //     navigate('/')
-    //   })
+    console.log('We submitted! : ')
+    axios
+      .post('https://api-innolab-dev.makpar-innovation.net/token', data, {
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+      .then((res) => {
+        // console.log('Success: ', res.data)
+        Auth.authenticateUser(res.data.AuthenticationResult.IdToken)
+        context.setAuth(true)
+        navigate('/')
+      })
   }
   
   return (
@@ -66,7 +66,6 @@ export default function Login () {
         </Button>
         <a href="/Signup" >Don't have an account?</a>
       </Form>
-      
     </div>
   )
 }

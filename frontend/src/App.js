@@ -42,6 +42,13 @@ export default function App() {
    * description goes here
    * @param {string} input
    */
+  const handleSetPosts = (posts) => {
+    console.log(posts)
+  }
+
+  const handleRemovePosts = () => {
+    console.log('removed')
+  }
   function updatePage(input) {
     setPage(input);
   }
@@ -67,6 +74,9 @@ export default function App() {
         updateTableVis,
         isAuth: isAuth,
         setAuth: (bool) => setIsAuth(bool),
+        handleAddPosts: (posts) => handleSetPosts(posts),
+        handleRemovePosts: () => handleRemovePosts(),
+        
       }}
     >
       {/* <Router> */}
