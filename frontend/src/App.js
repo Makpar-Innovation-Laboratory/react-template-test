@@ -6,6 +6,7 @@ import Login from "./Components/Login/Login";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Auth from "./Utility/Auth";
 import SignupForm from './Components/Login/Signup'
+import AddPost from './Components/NewsFeed/AddPost'
 export const Context = React.createContext();
 
 export function Dashboard() {
@@ -28,7 +29,8 @@ export default function App() {
   const [data, setData] = useState({results: []});
   const [isAuth, setIsAuth] = useState(false)
   const [showTable, setShowTable] = useState(false)
-
+  const [username, setUsername] = useState("")
+  const [userid, setUserid] = useState("")
   /**
    * description goes here
    * @returns {boolean}
@@ -55,6 +57,12 @@ export default function App() {
   function updateData(inputs) {
     setData(inputs);
   }
+  function updateUser(input) {
+    setUsername(input)
+  }
+  function updateUserid(input) {
+    setUserid(input)
+  }
   function updateTableVis(input) {
     setShowTable(input)
   }
@@ -67,6 +75,10 @@ export default function App() {
     <Context.Provider
       value={{
         page: page,
+        username: username,
+        updateUser: updateUser,
+        userid: userid,
+        updateUserid:updateUserid, 
         updatePage,
         data,
         updateData,
@@ -85,6 +97,7 @@ export default function App() {
         <Routes>
           <Route path='/Login' element={<Login/>}/>
           <Route path='/Signup' element={<SignupForm/>}/>
+          <Route path='/Addpost' element={<AddPost/>}/>
           {/* <Route path='/' element={() => (isAuth ? <Home /> : <Redirect to="/Login" />)} />   */}
           <Route path="/" element={<Dashboard />} />
         </Routes>

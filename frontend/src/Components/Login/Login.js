@@ -36,6 +36,8 @@ export default function Login () {
         // console.log('Success: ', res.data)
         Auth.authenticateUser(res.data.AuthenticationResult.IdToken)
         context.setAuth(true)
+        context.updateUser(e.target[0].value)
+        context.updateUserid(123)
         navigate('/')
       })
   }

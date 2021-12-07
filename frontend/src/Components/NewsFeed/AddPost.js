@@ -2,15 +2,15 @@ import React, { useContext} from 'react';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import {Context} from '../../App'
-
+import {useNavigate} from 'react-router-dom'
 
 const AddPost = () => {
   const context = useContext(Context)
-
+  const navigate = useNavigate()
   const handleSubmit = (event) => {
     event.preventDefault()
-    const user_id = context.dbProfileState[0].uid
-    const username = context.dbProfileState[0].username
+    const user_id = context.username
+    const username = context.userid
     const data = {
       title: event.target.title.value,
       body: event.target.body.value,
@@ -35,14 +35,14 @@ const AddPost = () => {
             id='body'
             label='Body'
             multiline
-            rowsMax='4'
+            maxRows='4'
             margin="normal"
             />
            <br />
            <button type='submit'> Submit </button>
            </form>
         <br />
-        <button onClick={}> Cancel </button>
+        <button onClick={()=> navigate('/Addpost')}> Cancel </button>
       </div>
   )}
 

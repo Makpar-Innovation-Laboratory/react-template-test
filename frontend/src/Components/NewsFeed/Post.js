@@ -8,7 +8,7 @@ import Context from '../../App'
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-
+import CommentBox from './Comments/CommentBox'
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -205,7 +205,7 @@ const Posts = (props) => {
                     </Button>
                 </Link>
                 } */}
-                <Link to="/addpost">
+                <Link to="/Addpost">
                     <Button variant="contained" color="primary">
                     Add Post
                     </Button>
@@ -254,7 +254,8 @@ const Posts = (props) => {
                     )}
                 <button onClick={() => page_change(stateLocal.currentPage + 1)}> Next </button>
                 <button onClick={() => page_change(stateLocal.max_page)}> Last </button>
-                </div>
+                <CommentBox />
+            </div>
         </div>
         </div>
     )
