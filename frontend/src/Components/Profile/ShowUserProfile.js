@@ -13,19 +13,19 @@ const ShowUser = (props) => {
   const [userPosts, setPosts ] = useState([])
 
   useEffect(() => {
-    const username = props.location.state.post.post.author
-    axios.get('/api/get/otheruserprofilefromdb', {params: {username: username}} )
-      .then(res =>  setProfile({...res.data} ))
-      .catch(function (error) {
-          console.log(error);
-        })
-     axios.get('/api/get/otheruserposts', {params: {username: username}} )
-       .then(res =>  setPosts([...res.data]))
-       .catch(function (error) {
-           console.log(error);
-         })
+    // const username = props.location.state.post.post.author
+    // axios.get('/api/get/otheruserprofilefromdb', {params: {username: username}} )
+    //   .then(res =>  setProfile({...res.data} ))
+    //   .catch(function (error) {
+    //       console.log(error);
+    //     })
+    //  axios.get('/api/get/otheruserposts', {params: {username: username}} )
+    //    .then(res =>  setPosts([...res.data]))
+    //    .catch(function (error) {
+    //        console.log(error);
+    //      })
       window.scrollTo({top: 0, left: 0})
-    }, [props.location.state.post.post.author] )
+    }, [] )
 
 
   const RenderProfile = (props) => (

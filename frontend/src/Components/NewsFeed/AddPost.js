@@ -11,8 +11,11 @@ const AddPost = () => {
     event.preventDefault()
     const user_id = context.username
     const username = context.userid
+    const submitted = today.toUTCString()
     const data = {
       title: event.target.title.value,
+      submitted: submitted,
+      subject: event.target.subject.value,
       body: event.target.body.value,
       username: username,
       uid: user_id
@@ -22,28 +25,34 @@ const AddPost = () => {
   }
 
 
-    return(
-      <div>
-        <form onSubmit={handleSubmit}>
-          <TextField
-            id='title'
-            label='Title'
-            margin='normal'
-            />
-          <br />
-          <TextField
-            id='body'
-            label='Body'
-            multiline
-            maxRows='4'
-            margin="normal"
-            />
-           <br />
-           <button type='submit'> Submit </button>
-           </form>
+  return(
+    <div>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          id='title'
+          label='Title'
+          margin='normal'
+          />
         <br />
-        <button onClick={()=> navigate('/Addpost')}> Cancel </button>
-      </div>
+        <TextField
+          id='subject'
+          label='subject'
+          margin='normal'
+          />
+        <br />
+        <TextField
+          id='body'
+          label='Body'
+          multiline
+          maxRows='200'
+          margin="normal"
+          />
+        <br />
+          <button type='submit'> Submit </button>
+      </form>
+      <br />
+      <button onClick={()=> navigate('/Addpost')}> Cancel </button>
+    </div>
   )}
 
 

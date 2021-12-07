@@ -1,7 +1,7 @@
 import React from "react";
-import Comment from "./Comment";
+// import Comment from "./Comment";
 
-export default function CommentList(props) {
+export default function ReplyList(props) {
   return (
     <div className="commentList">
       <h5 className="text-muted mb-4">

@@ -1,11 +1,18 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import Auth from '../../Utility/Auth'
 import {Context} from '../../App'
 import {useNavigate} from 'react-router-dom'
+import PacmanLoader from "react-spinners/PacmanLoader";
+import { css } from "@emotion/react";
 
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: blue;
+`;
 /**
  * @component
  * @description description goes here
@@ -14,7 +21,7 @@ import {useNavigate} from 'react-router-dom'
 export default function Login () {
   const navigate = useNavigate()
   const context = useContext(Context)
-
+  const [loading, setLoading] = useState(false)
   /**
    * @description function for handling API authentication 
    * 
@@ -22,7 +29,7 @@ export default function Login () {
    */
   const handleOnSubmit = (e) => {
     e.preventDefault()
-    
+    setLoading(true)
     const data = { username: e.target[0].value, password: e.target[1].value, dev: e.target[3].value }
     console.log(data)
     console.log('We submitted! : ')
@@ -38,6 +45,7 @@ export default function Login () {
         context.setAuth(true)
         context.updateUser(e.target[0].value)
         context.updateUserid(123)
+        setLoading(false)
         navigate('/')
       })
   }
@@ -63,11 +71,17 @@ export default function Login () {
           name='developer-checkbox'
         />
 
-        <Button variant='primary' type='submit' title="Login button" data-testid='button' id='button'>
-          Login
-        </Button>
-        <a href="/Signup" >Don't have an account?</a>
-      </Form>
+        {loading === false?(
+          <Button variant='primary' type='submit' title="Login button" data-testid='button' id='button'>
+            Login
+          </Button>):(
+            <PacmanLoader color="#0000ff" loading={true} size={20} css={override}/>
+          )}
+        {loading === false?(
+          <a href="/Signup" >Don't have an account?</a>):(
+            <h3>loading</h3>
+          )} 
+        </Form>
     </div>
   )
 }
