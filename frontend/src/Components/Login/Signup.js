@@ -7,8 +7,17 @@ function SignUpForm () {
     
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        const data = { username: e.target[0].value, password: e.target[1].value, dev: e.target[3].value }
-        console.log(data)
+        const data = { email: e.target[0].value, username: e.target[1].value, dev: e.target[3].value }
+        axios
+        .post('api-innolab-dev.makpar-innovation.net/register', data, {
+            headers: {
+            'content-type': 'application/json'
+            }
+        })
+        .then((res) => {
+            console.log('Success: ', res.data)
+            navigate('/')
+        })
     }
     
     return (
@@ -27,8 +36,14 @@ function SignUpForm () {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type='password' placeholder='Password' name='password' data-testid='password'/>
                 </Form.Group>
+                <Form.Group>
+                    <Form.Check 
+                        type='checkbox'
+                        name='developer-checkbox'
+                    />
+                </Form.Group>
                 <Button variant='primary' type='submit' title="Login button" data-testid='button' id='button'>
-                Sign Up
+                    Sign Up
                 </Button>
             </Form>
             <a href="/Login" >Already Have an account?</a>

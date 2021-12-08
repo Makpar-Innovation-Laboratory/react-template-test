@@ -23,6 +23,7 @@
     "react-select": "^5.2.1",
     "react-spinners": "^0.11.0",
     "react-test-renderer": "^17.0.2",
+    "react-tsparticles": "^1.37.5",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

@@ -190,7 +190,11 @@ const Posts = (props) => {
 
 
     return(
-        <div>
+        <div
+            className="d-flex flex-column align-items-center background-light "
+            style={{ width: "100%", minHeight: "95vh" }}
+        >
+        <h2 className="mt-3">Post Archive</h2>
         <div style={{opacity: stateLocal.opacity, transition: 'opacity 2s ease'}}>
         <br />
             {/* { Auth.isUserAuthenticated()

@@ -40,16 +40,14 @@ export default function CommentBox() {
             minHeight: isExpanded ? outerHeight.current : INITIAL_HEIGHT
             }}
         >
-            <div className="header"> ... </div>
-
-            <label htmlFor="comment">What are your thoughts?</label>
+            <label htmlFor="comment">Comments...?</label>
             <textarea
                 ref={textRef}
                 onClick={onExpand}
                 onFocus={onExpand}
                 onChange={onChange}
                 className="comment-field"
-                placeholder="What are your thoughts?"
+                placeholder=""
                 value={commentValue}
                 name="comment"
                 id="comment"

@@ -7,11 +7,15 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Auth from "./Utility/Auth";
 import SignupForm from './Components/Login/Signup'
 import AddPost from './Components/NewsFeed/AddPost'
+import Posts from './Components/NewsFeed/Post'
+import Footer from './Components/Home/Footer'
+import Profile from './Components/Profile/UserProfile'
 export const Context = React.createContext();
 
 export function Dashboard() {
-  if (Auth.isUserAuthenticated()){ return <Home />}
-  else { return <Navigate to="/Login"></Navigate> }
+  // if (Auth.isUserAuthenticated()){ return <Home />}
+  // else { return <Navigate to="/Login"></Navigate> }
+  return <Home />
 }
 
 /**
@@ -98,10 +102,13 @@ export default function App() {
           <Route path='/Login' element={<Login/>}/>
           <Route path='/Signup' element={<SignupForm/>}/>
           <Route path='/Addpost' element={<AddPost/>}/>
+          <Route path='/PostArchive' element={<Posts/>}/>
+          <Route path='/Profiles' element={<Profile/>}/>
           {/* <Route path='/' element={() => (isAuth ? <Home /> : <Redirect to="/Login" />)} />   */}
           <Route path="/" element={<Dashboard />} />
         </Routes>
       </div>
+      <Footer />
       {/* </Router> */}
     </Context.Provider>
   );

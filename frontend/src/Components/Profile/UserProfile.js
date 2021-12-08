@@ -1,10 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
-import Context from '../utils/context';
-
+import Context from '../../App.js';
 import { Link } from 'react-router-dom';
-import history from '../utils/history';
-import axios from 'axios';
-
+// import axios from 'axios';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -25,10 +22,10 @@ const Profile = () => {
                                           })
 
   useEffect(() => {
-    const user_id = context.dbProfileState[0].uid
-    axios.get('/api/get/userposts', {params: { user_id: user_id}})
-      .then((res) => setState({...stateLocal, posts: [...res.data] }))
-      .catch((err) => console.log(err))
+    // const user_id = context.dbProfileState[0].uid
+    // axios.get('/api/get/userposts', {params: { user_id: user_id}})
+    //   .then((res) => setState({...stateLocal, posts: [...res.data] }))
+    //   .catch((err) => console.log(err))
   })
 
   const handleClickOpen = (pid) => {
@@ -40,19 +37,19 @@ const Profile = () => {
   }
 
   const DeletePost = () => {
-    const post_id = stateLocal.post_id
-    axios.delete('api/delete/postcomments', {data: { post_id: post_id }} )
-      .then(() => axios.delete('/api/delete/post', {data: { post_id: post_id }} )
-          .then(res => console.log(res) ) )
-      .catch(err => console.log(err))
-      .then(() => handleClickClose())
-      .then(() => setTimeout(() => history.replace('/'), 700 ) )
+    // const post_id = stateLocal.post_id
+    // axios.delete('api/delete/postcomments', {data: { post_id: post_id }} )
+    //   .then(() => axios.delete('/api/delete/post', {data: { post_id: post_id }} )
+    //       .then(res => console.log(res) ) )
+    //   .catch(err => console.log(err))
+    //   .then(() => handleClickClose())
+    //   .then(() => setTimeout(() => history.replace('/'), 700 ) )
   }
 
   const RenderProfile = (props) => {
     return(
       <div>
-        <h1>{props.profile.profile.nickname}</h1>
+        {/* <h1>{props.profile.profile.nickname}</h1>
         <br />
         <img src={props.profile.profile.picture} alt="" />
         <br />
@@ -62,7 +59,7 @@ const Profile = () => {
         <br />
         <h6> Email Verified: </h6>
         {props.profile.profile.email_verified ? <p>Yes</p> : <p>No</p> }
-        <br />
+        <br /> */}
       </div>
 
      )
@@ -104,12 +101,12 @@ const Profile = () => {
       return(
           <div>
             <div>
-            <Link to={{pathname:"/showmessages/" + context.dbProfileState[0].uid }}>
+            {/* <Link to={{pathname:"/showmessages/" + context.dbProfileState[0].uid }}>
              <Button variant="contained" color="primary" type="submit">
                Show Messages
               </Button>
-            </Link>
-            <RenderProfile profile={context.profileState} />
+            </Link> */}
+            {/* <RenderProfile profile={context.profileState} /> */}
             </div>
             <div>
               {stateLocal.posts

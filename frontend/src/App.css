@@ -139,6 +139,18 @@ p {
   color: var(--primary-color);
 }
 
+.box {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.8);
+  margin: auto auto;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /* Navigation */
 .nav-container {
   margin: 0;
@@ -184,6 +196,18 @@ p {
 }
 #active-white {
   border-bottom: 3px solid var(--white);
+}
+
+/* Footer Primary */
+
+.footer{
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgb(235, 195, 64);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 
 /* Card Primary */

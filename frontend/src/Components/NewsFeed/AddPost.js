@@ -8,6 +8,7 @@ const AddPost = () => {
   const context = useContext(Context)
   const navigate = useNavigate()
   const handleSubmit = (event) => {
+    let today = new Date()
     event.preventDefault()
     const user_id = context.username
     const username = context.userid
@@ -22,11 +23,16 @@ const AddPost = () => {
     }
     // add axios call here for api gateway
     console.log(data)
+    navigate('/PostArchive')
   }
 
 
   return(
-    <div>
+    <div
+      className="d-flex flex-column align-items-center background-light "
+      style={{ width: "100%", minHeight: "95vh" , margin:"10px 0"}}
+    >
+      <h2 className="mt-3">Add Post</h2>
       <form onSubmit={handleSubmit}>
         <TextField
           id='title'

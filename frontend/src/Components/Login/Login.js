@@ -7,7 +7,8 @@ import {Context} from '../../App'
 import {useNavigate} from 'react-router-dom'
 import PacmanLoader from "react-spinners/PacmanLoader";
 import { css } from "@emotion/react";
-
+import Particles from 'react-tsparticles'
+import particlesConfig from '../../Utility/particles_config.json'
 const override = css`
   display: block;
   margin: 0 auto;
@@ -52,36 +53,33 @@ export default function Login () {
   
   return (
     <div className='container w-25'>
-      <div className="d-flex justify-content-center mt-5">
-        <h3 className="color-primary" data-testid='title'>Login</h3>
-      </div>
-      <Form onSubmit={handleOnSubmit} data-testid='LoginForm'>
-        <Form.Group className='mb-3' data-testid='formBasicEmail'>
-          <Form.Label>Username</Form.Label>
-          <Form.Control type='text' placeholder='Enter Username' name='username' data-testid='username' id='username'/>
-        </Form.Group>
+      <Particles options={particlesConfig} id="tsparticles"/>
+      <main className="box">
+        <Form onSubmit={handleOnSubmit} data-testid='LoginForm'>
+          <div className="d-flex justify-content-center mt-5">
+            <h3 className="color-primary" data-testid='title'>Login</h3>
+          </div>
+          <Form.Group className='mb-3' data-testid='formBasicEmail'>
+            <Form.Label>Username</Form.Label>
+            <Form.Control type='text' placeholder='Enter Username' name='username' data-testid='username' id='username'/>
+          </Form.Group>
 
-        <Form.Group className='mb-3' controlId='formBasicPassword'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control type='password' placeholder='Password' name='password' data-testid='password'/>
-        </Form.Group>
-
-        <Form.Check 
-          type='checkbox'
-          name='developer-checkbox'
-        />
-
-        {loading === false?(
-          <Button variant='primary' type='submit' title="Login button" data-testid='button' id='button'>
-            Login
-          </Button>):(
-            <PacmanLoader color="#0000ff" loading={true} size={20} css={override}/>
-          )}
-        {loading === false?(
-          <a href="/Signup" >Don't have an account?</a>):(
-            <h3>loading</h3>
-          )} 
-        </Form>
+          <Form.Group className='mb-3' controlId='formBasicPassword'>
+            <Form.Label>Password</Form.Label>
+            <Form.Control type='password' placeholder='Password' name='password' data-testid='password'/>
+          </Form.Group>
+          {loading === false?(
+            <Button variant='primary' type='submit' title="Login button" data-testid='button' id='button'>
+              Login
+            </Button>):(
+              <PacmanLoader color="#0000ff" loading={true} size={20} css={override}/>
+            )}
+          {loading === false?(
+            <a href="/Signup" >Don't have an account?</a>):(
+              <h3>loading</h3>
+            )} 
+          </Form>
+        </main>
     </div>
   )
 }

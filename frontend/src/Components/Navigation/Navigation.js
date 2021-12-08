@@ -43,6 +43,23 @@ export default function Navigation () {
             <Link to='/' className='color-primary'>
               <h5 className='color-primary' id="Home-Button">Home</h5>
             </Link>
+            
+          </div>
+          <div
+            className='nav-item color-primary'
+            id={location.pathname === '/' ? 'active' : ''}
+          >
+            <Link to='/PostArchive' className='color-primary'>
+              <h5 className='color-primary' id="PostList-Button">Post Archive</h5>
+            </Link>
+          </div>
+          <div
+            className='nav-item color-primary'
+            id={location.pathname === '/' ? 'active' : ''}
+          >
+            <Link to='/Profiles' className='color-primary'>
+              <h5 className='color-primary' id="ProfileList-Button">User Profiles</h5>
+            </Link>
           </div>
         {/* </a> */}
       </div>
