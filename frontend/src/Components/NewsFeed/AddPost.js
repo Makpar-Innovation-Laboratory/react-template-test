@@ -3,27 +3,42 @@ import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import {Context} from '../../App'
 import {useNavigate} from 'react-router-dom'
-
+import Auth from '../../Utility/Auth'
 const AddPost = () => {
   const context = useContext(Context)
   const navigate = useNavigate()
   const handleSubmit = (event) => {
     let today = new Date()
     event.preventDefault()
-    const user_id = context.username
-    const username = context.userid
-    const submitted = today.toUTCString()
+    const username = context.username
+    // const user_id = context.userid
+    let curr_date = today.getDate();
+    let curr_month = today.getMonth();
+    let curr_year = today.getFullYear();
+    const submitted = String(curr_year + "-" + curr_month + "-" + curr_date)
     const data = {
       title: event.target.title.value,
       submitted: submitted,
       subject: event.target.subject.value,
-      body: event.target.body.value,
-      username: username,
-      uid: user_id
+      content: event.target.body.value,
+      user_email: username,
     }
-    // add axios call here for api gateway
-    console.log(data)
-    navigate('/PostArchive')
+    let token = Auth.getToken();
+    let authStr = "Bearer " + String(token);
+    console.log('submitted', data)
+    axios
+      .post('https://api-innolab-dev.makpar-innovation.net/news', data, {
+        headers: {
+          Authorization: authStr,
+        }
+      })
+      .then((res) => {
+        // console.log('Success: ', res.data)
+        console.log(res.data)
+        navigate('/PostArchive')
+        
+      })
+    
   }
 
 
@@ -57,7 +72,7 @@ const AddPost = () => {
           <button type='submit'> Submit </button>
       </form>
       <br />
-      <button onClick={()=> navigate('/Addpost')}> Cancel </button>
+      <button onClick={()=> navigate('/PostArchive')}> Cancel </button>
     </div>
   )}
 

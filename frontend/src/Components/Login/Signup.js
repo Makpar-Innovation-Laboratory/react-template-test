@@ -1,22 +1,23 @@
 import React, {useState} from "react";
-
+import axios from 'axios'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-
+import {useNavigate} from 'react-router-dom'
 function SignUpForm () {
-    
+    const navigate = useNavigate()
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        const data = { email: e.target[0].value, username: e.target[1].value, dev: e.target[3].value }
+        const data = { email: e.target[0].value, username: e.target[1].value}
+        console.log('submitted', data)
         axios
-        .post('api-innolab-dev.makpar-innovation.net/register', data, {
+        .post('https://api-innolab-dev.makpar-innovation.net/register', data, {
             headers: {
             'content-type': 'application/json'
             }
         })
         .then((res) => {
             console.log('Success: ', res.data)
-            navigate('/')
+            navigate('/Login')
         })
     }
     
@@ -28,13 +29,13 @@ function SignUpForm () {
         <div>
             <Form onSubmit={handleOnSubmit} data-testid='LoginForm'>
                 <Form.Group className='mb-3' data-testid='formBasicEmail'>
-                <Form.Label>Username</Form.Label>
-                <Form.Control type='text' placeholder='Enter Username' name='username' data-testid='username' id='username'/>
+                <Form.Label>Email</Form.Label>
+                <Form.Control type='text' placeholder='Enter Email' name='email' data-testid='email' id='email'/>
                 </Form.Group>
 
                 <Form.Group className='mb-3' controlId='formBasicPassword'>
-                <Form.Label>Password</Form.Label>
-                <Form.Control type='password' placeholder='Password' name='password' data-testid='password'/>
+                <Form.Label>Username</Form.Label>
+                <Form.Control type='text' placeholder='username' name='username' data-testid='username'/>
                 </Form.Group>
                 <Form.Group>
                     <Form.Check 

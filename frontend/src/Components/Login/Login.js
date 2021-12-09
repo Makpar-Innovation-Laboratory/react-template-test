@@ -31,7 +31,7 @@ export default function Login () {
   const handleOnSubmit = (e) => {
     e.preventDefault()
     setLoading(true)
-    const data = { username: e.target[0].value, password: e.target[1].value, dev: e.target[3].value }
+    const data = { username: e.target[0].value, password: e.target[1].value}
     console.log(data)
     console.log('We submitted! : ')
     axios
