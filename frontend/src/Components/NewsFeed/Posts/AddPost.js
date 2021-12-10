@@ -1,9 +1,9 @@
 import React, { useContext} from 'react';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
-import {Context} from '../../App'
+import {Context} from '../../../App'
 import {useNavigate} from 'react-router-dom'
-import Auth from '../../Utility/Auth'
+import Auth from '../../../Utility/Auth'
 const AddPost = () => {
   const context = useContext(Context)
   const navigate = useNavigate()
@@ -35,6 +35,14 @@ const AddPost = () => {
       .then((res) => {
         // console.log('Success: ', res.data)
         console.log(res.data)
+        axios.get('https://api-innolab-dev.makpar-innovation.net/news/', 
+        {
+            headers: {
+                Authorization: authStr,
+            },
+        } )
+        .then(res => setAllPosts(res.data.results) )
+        .catch((err) => console.log(err))
         navigate('/PostArchive')
         
       })

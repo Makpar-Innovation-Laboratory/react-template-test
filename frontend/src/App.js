@@ -5,16 +5,17 @@ import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Auth from "./Utility/Auth";
-import SignupForm from './Components/Login/Signup'
-import AddPost from './Components/NewsFeed/AddPost'
-import Posts from './Components/NewsFeed/Post'
-import Footer from './Components/Home/Footer'
-import Profile from './Components/Profile/UserProfile'
+import SignupForm from './Components/Login/Signup';
+import AddPost from './Components/NewsFeed/Posts/AddPost';
+import Footer from './Components/Home/Footer';
+import Profile from './Components/Profile/UserProfile';
+import DisplayAllPosts from './Components/NewsFeed/Posts/DisplayAllPosts'
+import DisplaySinglePost from './Components/NewsFeed/Posts/DisplaySinglePost'
 export const Context = React.createContext();
 
 export function Dashboard() {
-  // if (Auth.isUserAuthenticated()){ return <Home />}
-  // else { return <Navigate to="/Login"></Navigate> }
+  if (Auth.isUserAuthenticated()){ return <Home />}
+  else { return <Navigate to="/Login"></Navigate> }
   return <Home />
 }
 
@@ -35,6 +36,8 @@ export default function App() {
   const [showTable, setShowTable] = useState(false)
   const [username, setUsername] = useState("")
   const [userid, setUserid] = useState("")
+  const [posts, setPosts] = useState()
+  const [singlePost, setSinglePost] = useState("")
   /**
    * description goes here
    * @returns {boolean}
@@ -48,12 +51,14 @@ export default function App() {
    * description goes here
    * @param {string} input
    */
-  const handleSetPosts = (posts) => {
-    console.log(posts)
+  function handleSetPosts(posts){
+    setPosts(posts)
   }
-
-  const handleRemovePosts = () => {
+  function handleRemovePosts() {
     console.log('removed')
+  }
+  function displaySinglePost(input) {
+    setSinglePost(input)
   }
   function updatePage(input) {
     setPage(input);
@@ -90,6 +95,9 @@ export default function App() {
         updateTableVis,
         isAuth: isAuth,
         setAuth: (bool) => setIsAuth(bool),
+        postsState: posts,
+        singlePost:singlePost,
+        displaySinglePost:displaySinglePost,
         handleAddPosts: (posts) => handleSetPosts(posts),
         handleRemovePosts: () => handleRemovePosts(),
         
@@ -102,7 +110,8 @@ export default function App() {
           <Route path='/Login' element={<Login/>}/>
           <Route path='/Signup' element={<SignupForm/>}/>
           <Route path='/Addpost' element={<AddPost/>}/>
-          <Route path='/PostArchive' element={<Posts/>}/>
+          <Route path='/PostArchive' element={<DisplayAllPosts/>}/>
+          <Route path='/Post' element={<DisplaySinglePost/>}/>
           <Route path='/Profiles' element={<Profile/>}/>
           {/* <Route path='/' element={() => (isAuth ? <Home /> : <Redirect to="/Login" />)} />   */}
           <Route path="/" element={<Dashboard />} />
