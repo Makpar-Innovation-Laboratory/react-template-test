@@ -69,7 +69,7 @@ phases:
       - |
         git clone codecommit://${APPLICATION}-test-harness
         cd ${APPLICATION}-test-harness/python
-        export FRONTEND_HOST_URL=https://${SUBDOMAIN}${ENV}.${DOMAIN}
+        export FRONTEND_HOST_URL=https://${APPLICATION}${ENV}.${DOMAIN}
         chmod +x ./configure && ./configure
         behave -t "@Web" \
               --no-skipped \
