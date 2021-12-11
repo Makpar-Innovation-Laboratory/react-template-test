@@ -6,8 +6,15 @@ phases:
       nodejs: latest
       python: 3.9
     commands:
-      - cd frontend
-      - npm install
+      # initialize environment
+      - |
+        if [ "${BRANCH}" != prod ]
+        then
+          ENV="${BRANCH}-"
+        else
+          ENV=""
+        fi
+      - cd frontend && npm install
       - |
         pip install behave==1.2.6 \
                     behave-html-formatter==0.9.8 \
@@ -25,29 +32,23 @@ phases:
     commands:
       # Lint Source Code
       - |
-        bash -c '
-          if [ "${BRANCH}" == "prod" ] 
-          then
-              export ENV=""
-          else
-            export ENV="-${BRANCH}"
-          fi
-          npx eslint --quiet \
-           --no-error-on-unmatched-pattern ./src/** \
-           --output-file ../docs/linting/index.html \
-           --format html \
-           || true
-          aws s3 cp ../docs/linting/index.html \
-                  s3://${APPLICATION}-coverage${ENV}/linting/react/index.html
-        '
+        npx eslint --quiet \
+          --no-error-on-unmatched-pattern ./src/** \
+          --output-file ../docs/linting/index.html \
+          --format html \
+          || true
+        aws s3 cp ../docs/linting/index.html \
+                s3://${APPLICATION}-coverage${ENV}/linting/react/index.html
+      
       # SonarQube Static Code Analysis
       - |
         sonar-scanner \
           -Dsonar.projectKey=${APPLICATION}-frontend \
-          -Dsonar.sources=. \
+          -Dsonar.sources=./src/ \
           -Dsonar.host.url=http://$SONAR_URL:9000 \
           -Dsonar.login=$SONAR_TOKEN \
           -Dsonar.log.level=DEBUG \
+          -Dsonar.exclusions=**/*.json,**/*.css,**/*.test.js,**/*.svg \
           -Dsonar.sources=$(pwd)/src \
           -Dsonar.sourceEncoding=UTF-8
       # -Dsonar.coverageReportPaths=path/to/coverage.xml
@@ -57,12 +58,6 @@ phases:
   build:
     commands:
       - |
-        if [ "${BRANCH}" != prod ]
-        then
-          ENV="${BRANCH}-"
-        else
-          ENV=""
-        fi
         npm run build
         aws s3 cp ./build/. \
           s3://${APPLICATION}-frontend-${ENV}deployment \
@@ -72,40 +67,25 @@ phases:
     commands:
       # BDD Tests
       - |
-        bash -c '
-          git clone codecommit://${APPLICATION}-test-harness
-          cd ${APPLICATION}-test-harness/python
-          if [ "${BRANCH}" == "prod" ] 
-          then
-              export ENV=""
-          else
-            export ENV="-${BRANCH}"
-          fi
-          export FRONTEND_HOST_URL=https://${SUBDOMAIN}${ENV}.${DOMAIN}
-          chmod +x ./configure && ./configure
-          behave -t "@Web" \
-                --no-skipped \
-                --summary \
-                --outfile behave-report-frontend.html \
-                --format behave_html_formatter:HTMLFormatter \
-                  || true
-          aws s3 cp ./behave-report-frontend.html \
-                    s3://${APPLICATION}-coverage${ENV}/test-coverage/bdd/behave-report-frontend.html
-        '
+        git clone codecommit://${APPLICATION}-test-harness
+        cd ${APPLICATION}-test-harness/python
+        export FRONTEND_HOST_URL=https://${SUBDOMAIN}${ENV}.${DOMAIN}
+        chmod +x ./configure && ./configure
+        behave -t "@Web" \
+              --no-skipped \
+              --summary \
+              --outfile behave-report-frontend.html \
+              --format behave_html_formatter:HTMLFormatter \
+                || true
+        aws s3 cp ./behave-report-frontend.html \
+                  s3://${APPLICATION}-coverage${ENV}/test-coverage/bdd/behave-report-frontend.html
       # Generate documentation
       - |
-        bash -c '
-          if [ "${BRANCH}" == "prod" ] 
-          then
-              export ENV=""
-          else
-            export ENV="-${BRANCH}"
-          fi
-          npm run docs
-          aws s3 cp ../docs/package/. \
-                  s3://${APPLICATION}-coverage${ENV}/docs/react \
-                  --recursive
-        '
+        npm run docs
+        aws s3 cp ../docs/package/. \
+                s3://${APPLICATION}-coverage${ENV}/docs/react \
+                --recursive
+        
 
       # Invalidate Frontend & Coverage Distribution Cache
       - |
