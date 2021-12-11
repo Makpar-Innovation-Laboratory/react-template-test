@@ -10,9 +10,9 @@ phases:
       - |
         if [ "${BRANCH}" != prod ]
         then
-          ENV="${BRANCH}-"
+          export ENV="-${BRANCH}"
         else
-          ENV=""
+          export ENV=""
         fi
       - cd frontend && npm install
       - |
@@ -60,7 +60,7 @@ phases:
       - |
         npm run build
         aws s3 cp ./build/. \
-          s3://${APPLICATION}-frontend-${ENV}deployment \
+          s3://${APPLICATION}-frontend${ENV}-deployment \
             --recursive
   
   post_build:
