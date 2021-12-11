@@ -79,6 +79,7 @@ phases:
                 || true
         aws s3 cp ./behave-report-frontend.html \
                   s3://${APPLICATION}-coverage${ENV}/test-coverage/bdd/behave-report-frontend.html
+        cd ../..
       # Generate documentation
       - |
         npm run docs
