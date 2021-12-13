@@ -16,7 +16,6 @@ export const Context = React.createContext();
 export function Dashboard() {
   if (Auth.isUserAuthenticated()){ return <Home />}
   else { return <Navigate to="/Login"></Navigate> }
-  return <Home />
 }
 
 /**
@@ -105,7 +104,7 @@ export default function App() {
     >
       {/* <Router> */}
       <Navigation />
-      <div className="App">
+      <div className="App" id="app-root">
         <Routes>
           <Route path='/Login' element={<Login/>}/>
           <Route path='/Signup' element={<SignupForm/>}/>
