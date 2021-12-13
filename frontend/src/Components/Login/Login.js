@@ -55,7 +55,7 @@ export default function Login () {
     <div className='container w-25'>
       <Particles options={particlesConfig} id="tsparticles"/>
       <main className="box">
-        <Form onSubmit={handleOnSubmit} id='loginForm'>
+        <Form onSubmit={handleOnSubmit}>
           <div className="d-flex justify-content-center mt-5">
             <h3 className="color-primary" data-testid='title'>Login</h3>
           </div>

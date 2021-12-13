@@ -61,6 +61,14 @@ export default function Navigation () {
               <h5 className='color-primary' id="ProfileList-Button">User Profiles</h5>
             </Link>
           </div>
+          <div
+            className='nav-item color-primary'
+            id={location.pathname === '/' ? 'active' : ''}
+          >
+            <Link to='/Docs' className='color-primary'>
+              <h5 className='color-primary' id="ProfileList-Button">Documentation</h5>
+            </Link>
+          </div>
         {/* </a> */}
       </div>
 

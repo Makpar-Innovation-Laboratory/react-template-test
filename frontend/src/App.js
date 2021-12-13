@@ -1,16 +1,20 @@
-import React, { useState } from "react";
 import "./App.css";
+
+import React, { useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+
+import Auth from "./Utility/Auth";
 import Navigation from "./Components/Navigation/Navigation";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
-import { Routes, Route, Navigate } from "react-router-dom";
-import Auth from "./Utility/Auth";
+import Docs from "./Components/Docs/Docs"
 import SignupForm from './Components/Login/Signup';
 import AddPost from './Components/NewsFeed/Posts/AddPost';
 import Footer from './Components/Home/Footer';
 import Profile from './Components/Profile/UserProfile';
 import DisplayAllPosts from './Components/NewsFeed/Posts/DisplayAllPosts'
 import DisplaySinglePost from './Components/NewsFeed/Posts/DisplaySinglePost'
+
 export const Context = React.createContext();
 
 export function Dashboard() {
@@ -112,6 +116,7 @@ export default function App() {
           <Route path='/PostArchive' element={<DisplayAllPosts/>}/>
           <Route path='/Post' element={<DisplaySinglePost/>}/>
           <Route path='/Profiles' element={<Profile/>}/>
+          <Route path="/Docs" element={<Docs/>} />
           {/* <Route path='/' element={() => (isAuth ? <Home /> : <Redirect to="/Login" />)} />   */}
           <Route path="/" element={<Dashboard />} />
         </Routes>
