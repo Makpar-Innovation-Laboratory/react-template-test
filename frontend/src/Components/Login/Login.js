@@ -55,11 +55,11 @@ export default function Login () {
     <div className='container w-25'>
       <Particles options={particlesConfig} id="tsparticles"/>
       <main className="box">
-        <Form onSubmit={handleOnSubmit} data-testid='LoginForm'>
+        <Form onSubmit={handleOnSubmit} id='loginForm'>
           <div className="d-flex justify-content-center mt-5">
             <h3 className="color-primary" data-testid='title'>Login</h3>
           </div>
-          <Form.Group className='mb-3' data-testid='formBasicEmail'>
+          <Form.Group className='mb-3' controlId='formBasicEmail'>
             <Form.Label>Username</Form.Label>
             <Form.Control type='text' placeholder='Enter Username' name='username' data-testid='username' id='username'/>
           </Form.Group>
