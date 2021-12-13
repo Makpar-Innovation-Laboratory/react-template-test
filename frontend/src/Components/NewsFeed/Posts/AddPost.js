@@ -1,9 +1,10 @@
 import React, { useContext} from 'react';
 import axios from 'axios';
-import TextField from '@material-ui/core/TextField';
+import {Form, Button, ButtonToolbar} from 'react-bootstrap'
 import {Context} from '../../../App'
 import {useNavigate} from 'react-router-dom'
 import Auth from '../../../Utility/Auth'
+import MyEditor from '../RichText/RichTextEditor'
 const AddPost = () => {
   const context = useContext(Context)
   const navigate = useNavigate()
@@ -56,31 +57,28 @@ const AddPost = () => {
       style={{ width: "100%", minHeight: "95vh" , margin:"10px 0"}}
     >
       <h2 className="mt-3">Add Post</h2>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          id='title'
-          label='Title'
-          margin='normal'
-          />
-        <br />
-        <TextField
-          id='subject'
-          label='subject'
-          margin='normal'
-          />
-        <br />
-        <TextField
-          id='body'
-          label='Body'
-          multiline
-          maxRows='200'
-          margin="normal"
-          />
-        <br />
-          <button type='submit'> Submit </button>
-      </form>
+      <Form onSubmit={handleSubmit} data-testid='AddPostForm'>
+        <Form.Group controlId="formTitle">
+            <Form.Label>Title</Form.Label>
+            <Form.Control type="text" placeholder="Enter Title" />
+        </Form.Group>
+        <Form.Group controlId="formSubject">
+            <Form.Label>Subject</Form.Label>
+            <Form.Control type="text" placeholder="Enter Subject" />
+        </Form.Group>
+        <Form.Group controlId="formContent">
+            <Form.Label>Body</Form.Label>
+            <Form.Control type="textarea" placeholder="" rows="20" />
+        </Form.Group>
+        <br/>
+        <MyEditor/>
+        <br/>
+        <ButtonToolbar>
+          <Button type='submit' variant='primary'> Submit </Button>
+          <Button onClick={()=> navigate('/PostArchive')}> Cancel </Button>
+        </ButtonToolbar>
+      </Form>
       <br />
-      <button onClick={()=> navigate('/PostArchive')}> Cancel </button>
     </div>
   )}
 

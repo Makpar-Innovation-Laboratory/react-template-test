@@ -106,6 +106,13 @@ const DisplayAllPosts = () => {
         ) : (
         <div><h1>All Posts</h1>
           <section className="all-post">
+          <section className="button-wrapper">
+            <Link to="/Addpost">
+              <Button variant="contained" color="primary">
+                Add Post
+              </Button>
+            </Link>
+          </section>
           {allPosts.map(eachPost => {
             return (
             <Post
@@ -120,13 +127,7 @@ const DisplayAllPosts = () => {
             />
           );
         })}
-      <section className="button-wrapper">
-        <Link to="/Addpost">
-          <Button variant="contained" color="primary">
-            Add Post
-          </Button>
-        </Link>
-      </section>
+      
         </section>
         
         </div>
