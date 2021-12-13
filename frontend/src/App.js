@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import "./App.css";
 import Navigation from "./Components/Navigation/Navigation";
 import Home from "./Components/Home/Home";
-import Login from "./Components/Login/Login";
+// import Login from "./Components/Login/Login";
+import MaterialLogin from "./Components/Login/MaterialLogin"
 import { Routes, Route, Navigate } from "react-router-dom";
 import Auth from "./Utility/Auth";
-import SignupForm from './Components/Login/Signup';
+// import SignupForm from './Components/Login/Signup';
+import MaterialSignup from './Components/Login/MaterialSignup';
 import AddPost from './Components/NewsFeed/Posts/AddPost';
 import Footer from './Components/Home/Footer';
 import Profile from './Components/Profile/UserProfile';
 import DisplayAllPosts from './Components/NewsFeed/Posts/DisplayAllPosts'
 import DisplaySinglePost from './Components/NewsFeed/Posts/DisplaySinglePost'
 import MissionStatement from './Components/Mission/MissionStatement'
+
 export const Context = React.createContext();
 
 export function Dashboard() {
@@ -108,8 +111,8 @@ export default function App() {
       <Navigation />
       <div className="App">
         <Routes>
-          <Route path='/Login' element={<Login/>}/>
-          <Route path='/Signup' element={<SignupForm/>}/>
+          <Route path='/Login' element={<MaterialLogin/>}/>
+          <Route path='/Signup' element={<MaterialSignup/>}/>
           <Route path='/Mission' element={<MissionStatement/>}/>
           <Route path='/Addpost' element={<AddPost/>}/>
           <Route path='/PostArchive' element={<DisplayAllPosts/>}/>
