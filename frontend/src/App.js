@@ -11,6 +11,7 @@ import Footer from './Components/Home/Footer';
 import Profile from './Components/Profile/UserProfile';
 import DisplayAllPosts from './Components/NewsFeed/Posts/DisplayAllPosts'
 import DisplaySinglePost from './Components/NewsFeed/Posts/DisplaySinglePost'
+import MissionStatement from './Components/Mission/MissionStatement'
 export const Context = React.createContext();
 
 export function Dashboard() {
@@ -109,6 +110,7 @@ export default function App() {
         <Routes>
           <Route path='/Login' element={<Login/>}/>
           <Route path='/Signup' element={<SignupForm/>}/>
+          <Route path='/Mission' element={<MissionStatement/>}/>
           <Route path='/Addpost' element={<AddPost/>}/>
           <Route path='/PostArchive' element={<DisplayAllPosts/>}/>
           <Route path='/Post' element={<DisplaySinglePost/>}/>

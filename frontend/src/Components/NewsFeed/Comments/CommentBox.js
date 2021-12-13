@@ -3,7 +3,7 @@ import cn from "classnames";
 import useDynamicHeightField from "./useDynamicHeightField";
 const INITIAL_HEIGHT = 46;
 
-export default function CommentBox() {
+export default function CommentBox(props) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [commentValue, setCommentValue] = useState("");
     const outerHeight = useRef(INITIAL_HEIGHT);
@@ -22,9 +22,11 @@ export default function CommentBox() {
     const onClose = () => {
         setCommentValue("");
         setIsExpanded(false);
+        props.setReplyToggle(false)
     };
     const onSubmit = (e) => {
         e.preventDefault();
+        props.setReplyToggle(false)
         console.log('send the form data somewhere')
     }
     return(
