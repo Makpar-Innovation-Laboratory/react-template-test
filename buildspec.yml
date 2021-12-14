@@ -43,7 +43,7 @@ phases:
       # SonarQube Static Code Analysis
       - |
         sonar-scanner \
-          -Dsonar.projectKey=${APPLICATION}-frontend \
+          -Dsonar.projectKey=${APPLICATION}-frontend${ENV} \
           -Dsonar.sources=./src/ \
           -Dsonar.host.url=http://$SONAR_URL:9000 \
           -Dsonar.login=$SONAR_TOKEN \
