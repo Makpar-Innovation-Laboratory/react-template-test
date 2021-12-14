@@ -13,7 +13,7 @@ import MaterialSignup from './Components/Login/MaterialSignup';
 import MaterialAddPost from './Components/NewsFeed/Posts/MaterialAddPost';
 // import Footer from './Components/Home/Footer';
 import Profile from './Components/Profile/UserProfile';
-import DisplayAllPosts from './Components/NewsFeed/Posts/DisplayAllPosts'
+// import DisplayAllPosts from './Components/NewsFeed/Posts/DisplayAllPosts'
 import MaterialAllPosts from './Components/NewsFeed/Posts/MaterialAllPosts'
 import DisplaySinglePost from './Components/NewsFeed/Posts/DisplaySinglePost'
 import MissionStatement from './Components/Mission/MissionStatement'
