@@ -16,6 +16,7 @@ import Profile from './Components/Profile/UserProfile';
 import MaterialAllPosts from './Components/NewsFeed/Posts/MaterialAllPosts'
 import DisplaySinglePost from './Components/NewsFeed/Posts/DisplaySinglePost'
 import MissionStatement from './Components/Mission/MissionStatement'
+import Docs from './Components/Docs/Docs'
 
 export const Context = React.createContext();
 
