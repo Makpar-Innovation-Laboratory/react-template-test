@@ -1,4 +1,6 @@
+import React, {useState} from 'react'
 import "./App.css";
+import Docs from './Components/Docs/Docs'
 // import Navigation from "./Components/Navigation/Navigation";
 import MaterialNavigation from './Components/Navigation/MaterialNavigation'
 import Home from "./Components/Home/Home";
