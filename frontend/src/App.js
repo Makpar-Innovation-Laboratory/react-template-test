@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "./App.css";
 // import Navigation from "./Components/Navigation/Navigation";
 import MaterialNavigation from './Components/Navigation/MaterialNavigation'
@@ -23,7 +22,6 @@ export const Context = React.createContext();
 export function Dashboard() {
   if (Auth.isUserAuthenticated()){ return <Home />}
   else { return <Navigate to="/Login"></Navigate> }
-  return <Home />
 }
 
 /**
@@ -124,6 +122,7 @@ export default function App() {
           <Route path='/PostArchive' element={<MaterialAllPosts/>}/>
           <Route path='/Post' element={<DisplaySinglePost/>}/>
           <Route path='/Profiles' element={<Profile/>}/>
+          <Route path="/Docs" element={<Docs/>} />
           {/* <Route path='/' element={() => (isAuth ? <Home /> : <Redirect to="/Login" />)} />   */}
           <Route path="/" element={<Dashboard />} />
         </Routes>
