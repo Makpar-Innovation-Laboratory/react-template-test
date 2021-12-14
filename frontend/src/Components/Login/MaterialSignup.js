@@ -37,10 +37,9 @@ export default function MaterialSignUp() {
     const context = useContext(Context)
     const handleSubmit = (event) => {
         event.preventDefault();
+        setLoading(true)
         const formdata = new FormData(event.currentTarget);
         const data = { email: formdata.get('email'), username: formdata.get('password') }
-        // eslint-disable-next-line no-console
-
         axios
             .post('https://api-innolab-dev.makpar-innovation.net/register', data, {
                 headers: {

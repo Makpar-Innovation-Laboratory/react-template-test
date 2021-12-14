@@ -1,15 +1,16 @@
-import React, {useState, useRef} from "react";
-import {EditorState } from "draft-js";
+import React, { useState, useContext } from "react";
+import { EditorState } from "draft-js";
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { convertToHTML } from 'draft-convert';
 import DOMPurify from 'dompurify';
-
+import { Context } from '../../../App'
 export default function MyEditor() {
+  const context = useContext(Context)
   const [editorState, setEditorState] = React.useState(() =>
     EditorState.createEmpty()
   );
-  const  [convertedContent, setConvertedContent] = useState(null);
+  const [convertedContent, setConvertedContent] = useState(null);
   const handleEditorChange = (state) => {
     setEditorState(state);
     convertContentToHTML();
@@ -17,16 +18,18 @@ export default function MyEditor() {
   const convertContentToHTML = () => {
     let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
     setConvertedContent(currentContentAsHTML);
+    console.log('marking')
+    context.handleSetMarkdown(createMarkup(convertedContent))
   }
   const createMarkup = (html) => {
-    return  {
+    return {
       __html: DOMPurify.sanitize(html)
     }
   }
-//   const editor = React.useRef(null);
-//   function focusEditor() {
-//     editor.current.focus();
-//   }
+  //   const editor = React.useRef(null);
+  //   function focusEditor() {
+  //     editor.current.focus();
+  //   }
 
   return (
     <div

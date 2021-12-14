@@ -1,16 +1,6 @@
-import React, {useContext} from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+import React, {useContext, useState} from 'react';
+import {Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Typography, Container} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
@@ -32,15 +22,14 @@ import {Context} from '../../App'
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function MaterialLogin() {
   const navigate = useNavigate()
   const context = useContext(Context)
+  const [loading, setLoading] = useState(false)
   const handleSubmit = (event) => {
     event.preventDefault();
     const formdata = new FormData(event.currentTarget);
     const data = { username: formdata.get('email'), password: formdata.get('password')}
-    // eslint-disable-next-line no-console
-   
     axios
       .post('https://api-innolab-dev.makpar-innovation.net/token', data, {
         headers: {
@@ -53,7 +42,7 @@ export default function SignIn() {
         context.setAuth(true)
         context.updateUser(formdata.get('email'))
         // context.updateUserid(123)
-        // setLoading(false)
+        setLoading(false)
         navigate('/')
       })
   };

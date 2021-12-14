@@ -22,7 +22,6 @@ export default function Navigation () {
    */
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('test')
     Auth.deauthenticateUser()
     context.setAuth(false)
     navigate('/Login')

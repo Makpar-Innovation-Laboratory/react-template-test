@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
-import Navigation from "./Components/Navigation/Navigation";
+// import Navigation from "./Components/Navigation/Navigation";
+import MaterialNavigation from './Components/Navigation/MaterialNavigation'
 import Home from "./Components/Home/Home";
 // import Login from "./Components/Login/Login";
 import MaterialLogin from "./Components/Login/MaterialLogin"
@@ -8,10 +9,12 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Auth from "./Utility/Auth";
 // import SignupForm from './Components/Login/Signup';
 import MaterialSignup from './Components/Login/MaterialSignup';
-import AddPost from './Components/NewsFeed/Posts/AddPost';
-import Footer from './Components/Home/Footer';
+// import AddPost from './Components/NewsFeed/Posts/AddPost';
+import MaterialAddPost from './Components/NewsFeed/Posts/MaterialAddPost';
+// import Footer from './Components/Home/Footer';
 import Profile from './Components/Profile/UserProfile';
 import DisplayAllPosts from './Components/NewsFeed/Posts/DisplayAllPosts'
+import MaterialAllPosts from './Components/NewsFeed/Posts/MaterialAllPosts'
 import DisplaySinglePost from './Components/NewsFeed/Posts/DisplaySinglePost'
 import MissionStatement from './Components/Mission/MissionStatement'
 
@@ -34,7 +37,7 @@ export function Dashboard() {
  * @returns {}
  */
 export default function App() {
-  const [page, setPage] = useState("Home");
+  
   const [data, setData] = useState({results: []});
   const [isAuth, setIsAuth] = useState(false)
   const [showTable, setShowTable] = useState(false)
@@ -42,6 +45,7 @@ export default function App() {
   const [userid, setUserid] = useState("")
   const [posts, setPosts] = useState()
   const [singlePost, setSinglePost] = useState("")
+  const [markDown, setMarkdown] = useState()
   /**
    * description goes here
    * @returns {boolean}
@@ -64,8 +68,8 @@ export default function App() {
   function displaySinglePost(input) {
     setSinglePost(input)
   }
-  function updatePage(input) {
-    setPage(input);
+  function handleSetMarkdown(input){
+    setMarkdown(input)
   }
   function updateData(inputs) {
     setData(inputs);
@@ -87,12 +91,13 @@ export default function App() {
   return (
     <Context.Provider
       value={{
-        page: page,
+        
         username: username,
         updateUser: updateUser,
         userid: userid,
         updateUserid:updateUserid, 
-        updatePage,
+        markDown: markDown,
+        handleSetMarkdown: handleSetMarkdown,
         data,
         updateData,
         showTable,
@@ -108,21 +113,22 @@ export default function App() {
       }}
     >
       {/* <Router> */}
-      <Navigation />
+      {/* <Navigation /> */}
+      <MaterialNavigation/>
       <div className="App">
         <Routes>
           <Route path='/Login' element={<MaterialLogin/>}/>
           <Route path='/Signup' element={<MaterialSignup/>}/>
           <Route path='/Mission' element={<MissionStatement/>}/>
-          <Route path='/Addpost' element={<AddPost/>}/>
-          <Route path='/PostArchive' element={<DisplayAllPosts/>}/>
+          <Route path='/Addpost' element={<MaterialAddPost/>}/>
+          <Route path='/PostArchive' element={<MaterialAllPosts/>}/>
           <Route path='/Post' element={<DisplaySinglePost/>}/>
           <Route path='/Profiles' element={<Profile/>}/>
           {/* <Route path='/' element={() => (isAuth ? <Home /> : <Redirect to="/Login" />)} />   */}
           <Route path="/" element={<Dashboard />} />
         </Routes>
       </div>
-      <Footer />
+      {/* <Footer /> */}
       {/* </Router> */}
     </Context.Provider>
   );

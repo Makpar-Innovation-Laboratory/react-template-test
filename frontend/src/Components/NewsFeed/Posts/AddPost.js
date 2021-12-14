@@ -68,7 +68,7 @@ const AddPost = () => {
         </Form.Group>
         <Form.Group controlId="formContent">
             <Form.Label>Body</Form.Label>
-            <Form.Control type="textarea" placeholder="" rows="20" />
+            <Form.Control type="textareaautosize" placeholder="" rows="20" />
         </Form.Group>
         <br/>
         <MyEditor/>
