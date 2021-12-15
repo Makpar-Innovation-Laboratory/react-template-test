@@ -3,14 +3,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppComponent } from './app.component';
+import { NgxWebstorageModule } from 'ngx-webstorage';
+
 import { AppRoutingModule } from './app-routing.module'; 
+import { AppComponent } from './app.component';
+import { LoginComponent } from './components/login/login.component'; 
+import { HomeComponent } from './components/home/home.component';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { LoginComponent } from './components/login/login.component'; 
-import { NgxWebstorageModule } from 'ngx-webstorage';
-import { HomeComponent } from './components/home/home.component';
+import { MatIconModule } from '@angular/material/icon'; 
+
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { HomeComponent } from './components/home/home.component';
 
     // MATERIAL IMPORTS
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

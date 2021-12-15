@@ -2,7 +2,35 @@
     <mat-card>
         <mat-card-title>Login</mat-card-title>
         <mat-card-content>
-            login form goes here
+            <div class="vertical-flex">
+
+                <mat-form-field id="username-field" class="margin-center">
+                    <mat-label>Username</mat-label>
+                    <input id="username-input" matInput type="text" 
+                            [(ngModel)]="username" (keydown.enter)="validate($event)">
+                    <button id="username-clear" type="button" *ngIf="username" 
+                            matSuffix mat-icon-button aria-label="Clear" 
+                        (click)="username=''">
+                    <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+    
+                <mat-form-field id="password-field" class="margin-center">
+                    <mat-label>Password</mat-label>
+                    <input id="password-input" matInput [type]="hide ? 'password' : 'text'" 
+                            [(ngModel)]="password" (keydown.enter)="validate($event)">
+                    <button id="password-clear" type="button" *ngIf="password" 
+                        matSuffix mat-icon-button aria-label="Clear" 
+                        (click)="password=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <button type="button" id="password-hide" mat-icon-button matSuffix 
+                        (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                
+            </div>
         </mat-card-content>
         <mat-card-actions>
             <button mat-button color="primary">Primary</button>
