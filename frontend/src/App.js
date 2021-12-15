@@ -1,24 +1,19 @@
 import React, {useState} from 'react'
+import { Routes, Route, Navigate } from "react-router-dom";
+
 import "./App.css";
 import Docs from './Components/Docs/Docs'
-// import Navigation from "./Components/Navigation/Navigation";
 import MaterialNavigation from './Components/Navigation/MaterialNavigation'
 import Home from "./Components/Home/Home";
-// import Login from "./Components/Login/Login";
 import MaterialLogin from "./Components/Login/MaterialLogin"
-import { Routes, Route, Navigate } from "react-router-dom";
-import Auth from "./Utility/Auth";
-// import SignupForm from './Components/Login/Signup';
 import MaterialSignup from './Components/Login/MaterialSignup';
-// import AddPost from './Components/NewsFeed/Posts/AddPost';
 import MaterialAddPost from './Components/NewsFeed/Posts/MaterialAddPost';
-// import Footer from './Components/Home/Footer';
 import Profile from './Components/Profile/UserProfile';
-// import DisplayAllPosts from './Components/NewsFeed/Posts/DisplayAllPosts'
 import MaterialAllPosts from './Components/NewsFeed/Posts/MaterialAllPosts'
 import DisplaySinglePost from './Components/NewsFeed/Posts/DisplaySinglePost'
 import MissionStatement from './Components/Mission/MissionStatement'
-import Docs from './Components/Docs/Docs'
+import Auth from "./Utility/Auth";
+
 
 export const Context = React.createContext();
 
@@ -47,6 +42,7 @@ export default function App() {
   const [posts, setPosts] = useState()
   const [singlePost, setSinglePost] = useState("")
   const [markDown, setMarkdown] = useState()
+  
   /**
    * description goes here
    * @returns {boolean}
@@ -106,7 +102,7 @@ export default function App() {
         isAuth: isAuth,
         setAuth: (bool) => setIsAuth(bool),
         postsState: posts,
-        singlePost:singlePost,
+        singlePost: singlePost,
         displaySinglePost:displaySinglePost,
         handleAddPosts: (posts) => handleSetPosts(posts),
         handleRemovePosts: () => handleRemovePosts(),

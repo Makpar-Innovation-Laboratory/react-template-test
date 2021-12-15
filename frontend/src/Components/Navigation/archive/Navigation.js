@@ -1,8 +1,8 @@
 import React, {useContext} from 'react'
 // import { Context } from "../../App";
 import { Link, useLocation } from 'react-router-dom'
-import Auth from '../../Utility/Auth'
-import {Context} from '../../App'
+import Auth from '../../../Utility/Auth'
+import {Context} from '../../../App'
 import {useNavigate} from 'react-router-dom'
 
 /**

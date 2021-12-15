@@ -1,10 +1,11 @@
 import React, { useContext} from 'react';
 import axios from 'axios';
 import {Form, Button, ButtonToolbar} from 'react-bootstrap'
-import {Context} from '../../../App'
+import {Context} from '../../../../App'
 import {useNavigate} from 'react-router-dom'
-import Auth from '../../../Utility/Auth'
-import MyEditor from '../RichText/RichTextEditor'
+import Auth from '../../../../Utility/Auth'
+import MyEditor from '../../RichText/RichTextEditor'
+
 const AddPost = () => {
   const context = useContext(Context)
   const navigate = useNavigate()

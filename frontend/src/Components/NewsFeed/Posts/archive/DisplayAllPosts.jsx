@@ -1,8 +1,8 @@
 import React, { useState, useRef, useContext, useEffect } from "react";
-import Post from "./Post";
+import Post from "../Post";
 import ModifyPost from "./ModifyPost"
-import {Context} from '../../../App'
-import Auth from '../../../Utility/Auth'
+import {Context} from '../../../../App'
+import Auth from '../../../../Utility/Auth'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';

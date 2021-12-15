@@ -3,6 +3,7 @@ import {Context} from '../../../App'
 import {useNavigate} from 'react-router-dom'
 import Auth from '../../../Utility/Auth'
 import axios from 'axios'
+
 const Post = ({ title, content, submitted, subject, editPost, id, deletePost }) => {
   const context = useContext(Context)
   const navigate = useNavigate()

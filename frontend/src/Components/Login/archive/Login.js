@@ -2,18 +2,10 @@ import React, {useContext, useState} from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
-import Auth from '../../Utility/Auth'
-import {Context} from '../../App'
+import Auth from '../../../Utility/Auth'
+import {Context} from '../../../App'
 import {useNavigate} from 'react-router-dom'
-import PacmanLoader from "react-spinners/PacmanLoader";
-import { css } from "@emotion/react";
-import Particles from 'react-tsparticles'
-import particlesConfig from '../../Utility/particles_config.json'
-const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: blue;
-`;
+
 /**
  * @component
  * @description description goes here
