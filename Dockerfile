@@ -27,8 +27,7 @@ RUN apt-get update -y && apt-get install -y curl moreutils && \
 COPY --chown=makpar:admin --from=angular /home/build/ /home/build/
 COPY --chown=makpar:admin /conf/nginx.conf /etc/nginx/nginx.conf
 COPY --chown=makpar:admin /conf/mime.types /etc/nginx/mime.types
-COPY --chown=makpar:admin /scripts/entrypoint.sh /home/scripts/entrypoint.sh
-COPY --chown=makpar:admin /scripts/util/logging.sh /home/scripts/util/logging.sh
+COPY --chown=makpar:admin /scripts/docker/entrypoint.sh /home/scripts/entrypoint.sh
 
 # PERMISSION CONFIGURATOIN
 RUN chown -R makpar:admin /home/build/ /var/cache/nginx/ /var/run/ /var/log/nginx/ && \ 
