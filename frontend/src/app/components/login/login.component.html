@@ -1,6 +1,6 @@
 <div class="login-container" 
      id="login-page">
-    <mat-card id="login-card" class="login-card">
+    <mat-card id="login-card" class="login-card mat-elevation-z8">
 
         <mat-card-title id="login-card-title">Login</mat-card-title>
 
@@ -16,13 +16,12 @@
                             type="text" 
                             [(ngModel)]="username" 
                             (keydown.enter)="validate()">
-                    <button id="username-clear" 
+                    <button matSuffix mat-icon-button 
+                            id="username-clear" 
                             type="button" 
-                            *ngIf="username" 
-                            matSuffix 
-                            mat-icon-button 
                             aria-label="Clear" 
-                        (click)="username=''">
+                            *ngIf="username"
+                            (click)="username=''">
                     <mat-icon>close</mat-icon>
                     </button>
                 </mat-form-field>
