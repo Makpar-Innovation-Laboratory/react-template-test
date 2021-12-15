@@ -3,6 +3,7 @@
 
 // APP MODULE THEMES
 @use './app/components/login/login.theme' as login;
+@use './app/components/home/home.theme' as home;
 
 @import '~@angular/material/theming';
 
@@ -48,9 +49,9 @@ $makpar-accent: mat-palette($accent-palette);
 $makpar-warn: mat-palette($warn-palette);
 
 $makpar-theme: mat-dark-theme(
-  $makpar-primary,
-  $makpar-accent,
-  $makpar-warn
+    $makpar-primary,
+    $makpar-accent,
+    $makpar-warn
 );
 
 $makpar-light-theme: mat-light-theme(
@@ -61,3 +62,4 @@ $makpar-light-theme: mat-light-theme(
 
 @include angular-material-theme($makpar-theme);
 @include login.theme($makpar-theme);
+@include home.theme($makpar-theme);

@@ -1,6 +1,6 @@
 <div class="login-container" 
      id="login-page">
-    <mat-card id="login-card">
+    <mat-card id="login-card" class="login-card">
         <mat-card-title id="login-card-title">Login</mat-card-title>
         <mat-card-content id="login-card-content">
             <div class="vertical-flex"
@@ -54,10 +54,14 @@
         <mat-card-actions>
             <div class="center-flex">
                 <div class="vertical-flex"> 
-                    <button type="button" mat-raised-button class="login-button" 
-                        (click)="login()" [disabled]="!username && !password">Login</button>
+                    <button mat-raised-button
+                            id="login-button"
+                            class="login-button mat-elevation-z5" 
+                            type="button"  
+                            (click)="login()" 
+                            [disabled]="!username && !password">Login</button>
                 
-                    <a class="pad-top-quarter margin-micro-left" routerLink="/register">Register</a>
+                    <a id="register-link" class="register-link" routerLink="/register">Register</a>
                 </div>
             </div>
         </mat-card-actions>
