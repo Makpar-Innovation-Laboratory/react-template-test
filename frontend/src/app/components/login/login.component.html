@@ -1,7 +1,9 @@
 <div class="login-container" 
      id="login-page">
     <mat-card id="login-card" class="login-card">
+
         <mat-card-title id="login-card-title">Login</mat-card-title>
+
         <mat-card-content id="login-card-content">
             <div class="vertical-flex"
                     id="login-form-container">
@@ -13,7 +15,7 @@
                             id="username-input" 
                             type="text" 
                             [(ngModel)]="username" 
-                            (keydown.enter)="validate($event)">
+                            (keydown.enter)="validate()">
                     <button id="username-clear" 
                             type="button" 
                             *ngIf="username" 
@@ -32,7 +34,7 @@
                             id="password-input" 
                             [type]="hide ? 'password' : 'text'" 
                             [(ngModel)]="password" 
-                            (keydown.enter)="validate($event)">
+                            (keydown.enter)="validate()">
                     <button matSuffix mat-icon-button
                             id="password-clear" 
                             type="button" *ngIf="password" 
@@ -51,7 +53,8 @@
 
             </div>
         </mat-card-content>
-        <mat-card-actions>
+
+        <mat-card-actions id="login-card-actions">
             <div class="center-flex">
                 <div class="vertical-flex"> 
                     <button mat-raised-button
@@ -65,6 +68,12 @@
                 </div>
             </div>
         </mat-card-actions>
+
+        <mat-card-footer id="login-card-footer">
+            <mat-progress-bar id="login-card-progress-bar"
+                                *ngIf="loading" 
+                                mode="indeterminate"></mat-progress-bar>
+          </mat-card-footer>
     </mat-card>
 
 </div>

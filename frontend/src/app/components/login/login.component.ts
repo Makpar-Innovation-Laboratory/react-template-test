@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   public loginError : boolean = false;
   public hide : boolean = true;
+  public loading : boolean = false;
   
   constructor(private auth: AuthService, private router: Router) { }
 
@@ -22,15 +23,14 @@ export class LoginComponent implements OnInit {
   }
 
   public login() : void{
-    this.auth.login(this.username, this.password).subscribe( (data)=>{
+    this.loading = true;
+    this.auth.login(this.username, this.password).subscribe((data)=>{
       if(!data){ this.loginError = true; }
-      else{
-        this.router.navigateByUrl('/home')
-      }
+      else{ this.router.navigateByUrl('/home'); }
     });
   }
 
-  public validate(event: any){
+  public validate(){
     if(this.username && this.password){ this.login(); }
   }
 

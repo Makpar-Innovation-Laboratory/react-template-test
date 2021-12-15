@@ -6,18 +6,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
 
-import { AppRoutingModule } from './app-routing.module'; 
-import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component'; 
-import { HomeComponent } from './components/home/home.component';
-
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule }  from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon'; 
 import { MatInputModule } from '@angular/material/input'; 
-import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { MatProgressBarModule } from '@angular/material/progress-bar'; 
 
+import { AppRoutingModule } from './app-routing.module'; 
+import { AppComponent } from './app.component';
+import { LoginComponent } from './components/login/login.component'; 
+import { HomeComponent } from './components/home/home.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 
 @NgModule({
@@ -40,7 +40,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressBarModule
   ],
   providers: [
     { 
