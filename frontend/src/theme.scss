@@ -11,12 +11,14 @@
 $primary-palette: (
     50: #e4f1fa, 100: #bcdbf3, 200: #95c4eb, 300: #6fade1, 
     400: #569ddc, 500: #428dd6, 600: #3c80c9, 700: #346eb7,
-    800: #2d5ea5, 900: #224185
+    800: #2d5ea5, 900: #224185,
     contrast: (
         50 : #000000, 100 : #000000, 200 : #000000, 300 : #000000,
         400 : #ffffff, 500 : #ffffff, 600 : #ffffff, 700 : #ffffff,
         800 : #ffffff, 900 : #ffffff, A100 : #000000, A200 : #000000,
-        A400 : #ffffff, A700 : #ffffff ));
+        A400 : #ffffff, A700 : #ffffff )
+);
+
 $accent-palette: (
     50: #ece7f5, 100: #d0c5e6, 200: #b19fd6,
     300: #9378c5, 400: #7c5bb9, 500: #6540ad,
@@ -28,6 +30,7 @@ $accent-palette: (
         800 : #ffffff, 900 : #ffffff, A100 : #000000, A200 : #000000,
         A400 : #ffffff, A700 : #ffffff )
 );
+
 $warn-palette:(
     50: #fde5e9, 100: #f9bdc7, 200: #f593a3,
     300: #ef6a80, 400: #e85066, 500: #e23d4f,

@@ -1,22 +1,40 @@
-# Build React application on top of a Node image
-FROM node:latest AS application_build
+# ANGULAR BUILD
+FROM node:latest as angular
+ENV NODE_VERSION=14
+ENV ANGULAR_VERSION=11
 
-COPY /frontend/ /home/app/
-WORKDIR /home/app/
-RUN npm install && npm run build
+# DEPENDENCIES
+RUN apt-get update -y && apt-get install -y curl moreutils && \ 
+    npm install -g @angular/cli@${ANGULAR_VERSION} \
+    && mkdir /home/build/ && mkdir /home/frontend/
 
+COPY /frontend/ /home/frontend/
+WORKDIR /home/frontend/
+
+# --prod: Configured to output /home/build/
+RUN ng build --prod --output-hashing none
+
+# PRODUCTION SERVER
 FROM nginx:latest
 
-# See NOTE below
-# COPY /scripts/docker/entrypoint.sh /home/entrypoint.sh
-WORKDIR /usr/share/nginx/html
-RUN rm -rf ./*
+# DEPENDENCIES && CONFIGURATION
+RUN apt-get update -y && apt-get install -y curl moreutils && \
+    useradd -ms /bin/bash makpar && groupadd admin && \
+    usermod -a -G admin makpar  && mkdir /home/build/ && \
+    mkdir /home/frontend/ && mkdir /home/scripts
 
-# Copy artifacts from Node build into nginx image
-COPY --from=application_build /home/app/build/ .
+# COPY ARTIFACTS, CONFIGURATION AND SHELL SCRIPTS INTO IMAGE
+COPY --chown=makpar:admin --from=angular /home/build/ /home/build/
+COPY --chown=makpar:admin /conf/nginx.conf /etc/nginx/nginx.conf
+COPY --chown=makpar:admin /conf/mime.types /etc/nginx/mime.types
+COPY --chown=makpar:admin /scripts/entrypoint.sh /home/scripts/entrypoint.sh
+COPY --chown=makpar:admin /scripts/util/logging.sh /home/scripts/util/logging.sh
 
-# Start nginx in the foreground
-ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
+# PERMISSION CONFIGURATOIN
+RUN chown -R makpar:admin /home/build/ /var/cache/nginx/ /var/run/ /var/log/nginx/ && \ 
+    chmod -R 770 /home/build/
 
-# NOTE: If the process managing the container needs more specific configuration than is provided in the Docker image, then perform it in the entrypoint script. This script is executed as the container spins up, so if you need to execute a task within the containerized environment (not the image build environment), those instructions would go in the entrypoint.
-# ENTRYPOINT [ "/home/entrypoint.sh"]
+# ENTRYPOINT CONFIGURATION
+EXPOSE 8080
+USER makpar
+ENTRYPOINT [ "bash", "/home/scripts/entrypoint.sh" ]
