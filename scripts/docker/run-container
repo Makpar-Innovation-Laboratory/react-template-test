@@ -1,13 +1,12 @@
 #!/bin/bash
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-SCRIPT_NAME='build-image'
+SCRIPT_NAME='run-container'
 nl=$'\n'
 tab='     '
 SCRIPT_DES="Options: ${nl}${tab}--help/-h : Print This Help Message ${nl}\
-${tab}--proxy : Configure nginx deployment server with upstream proxy"
+${tab}--detached: Start Container In Background"
 PROJECT_DIR="$SCRIPT_DIR/../.."
-CONF_DIR="$PROJECT_DIR/conf"
 ENV_DIR="$PROJECT_DIR/env"
 source $ENV_DIR/.env
 
@@ -22,10 +21,10 @@ function help(){
 while [[ $# -gt 0 ]]; do
     key="$1"
     case $key in
-        --proxy)
-            PROXY="true"
+        --detached)
+            DETACHED="true"
             shift
-            ;;  
+            ;;
         --help)
             help "$SCRIPT_DES" "$SCRIPT_NAME"
             exit 0
@@ -37,15 +36,19 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-
-if [ "${PROXY,,}" == "true" ]
+if [ "${DETACHED}" == "true" ]
 then
-    log "Configuring \e[3m$CONTAINER_NAME\e[0m With Upstream Server at \e[3m$PROXY_HOST:$PROXY_PORT\e[0m" $SCRIPT_NAME
-    cp "$CONF_DIR/nginx.proxy.conf" "$CONF_DIR/nginx.conf"
+    log "Starting Up Container \e[3m$CONTAINER_NAME\e[0m In Detached Mode" $SCRIPT_NAME
+    docker run --detached \ 
+                --name $CONTAINER_NAME \ 
+                --publish $NGINX_PORT:$NGINX_PORT \ 
+                --env-file $ENV_DIR/.env \ 
+                $IMAGE_NAME:$IMAGE_TAG
 else
-    log "Configuring \e[3m$CONTAINER_NAME\e[0m In Standalone Mode" $SCRIPT_NAME
-    cp "$CONF_DIR/nginx.standalone.conf" "$CONF_DIR/nginx.conf"
-fi
 
-log "Building \e[3m$IMAGE_NAME:$IMAGE_TAG\e[0m Image" $SCRIPT_NAME
-docker build -t $IMAGE_NAME:$IMAGE_TAG $ROOT_DIR
+    log "Starting Up Container \e[3m$CONTAINER_NAME\e[0m In Foreground" $SCRIPT_NAME
+    docker run --name $CONTAINER_NAME \ 
+                --publish $NGINX_PORT:$NGINX_PORT \ 
+                --env-file $ENV_DIR/.env \ 
+                $IMAGE_NAME:$IMAGE_TAG
+fi
