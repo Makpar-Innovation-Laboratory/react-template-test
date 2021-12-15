@@ -1,18 +1,4 @@
-# InnoLab Frontend - React Application
-
-
-## Package Table of Contents
-- [App.js](/docs/react/App.js.html)
-- [Components/Home.js](/docs/react/Components_Home_Home.js.html)
-- [Components/Login.js](/docs/react/Components_Login_Login.js.html)
-- [Components/Navigation.js](/docs/react/Components_Navigation_Navigation.js.html)
-- [Utility/Auth.js](/docs/react/Utility_Auth.js.html)
-
-## Sandbox Environment Urls
-- Dev
-    - Application: [https://innolab-dev.makpar-innovation.net](https://innolab-dev.makpar-innovation.net)
-    - Coverage: [https://innolab-coverage-dev.makpar-innovation.net](https://innolab-coverage-dev.makpar-innovation.net)
-    - SonarQube: [http://innolab-sonar.makpar-innovation.net](https://innolab-sonar.makpar-innovation.net)
+# InnoLab Frontend
 
 This repository connects to the **Cloudfront** and **s3** components of the Innovation Lab sandbox environment. Currently, it is setup for a **React** application. An **AWS CodePipeline** CI/CD pipeline is configured to deploy the **React** app to an **S3** bucket which in turn is served through the **Cloudfront** distribution
 
