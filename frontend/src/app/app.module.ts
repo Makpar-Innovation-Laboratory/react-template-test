@@ -9,13 +9,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './components/login/login.component'; 
+import { NgxWebstorageModule } from 'ngx-webstorage';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
+    NgxWebstorageModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
