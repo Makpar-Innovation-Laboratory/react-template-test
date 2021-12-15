@@ -1,5 +1,10 @@
 .login-container{
     display: flex; flex-direction: column; justify-content: center;
-    margin-left: 35%; margin-right: 35%;
-    height: 100%;
+    margin-left: 35%; margin-right: 35%; height: 100%;
+}
+.login-button{
+    /*TODO*/
+}
+.register-link{
+    padding-top: 25%; margin-left: 5%; 
 }

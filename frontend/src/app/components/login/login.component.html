@@ -52,7 +52,14 @@
             </div>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-button color="primary">Primary</button>
+            <div class="center-flex">
+                <div class="vertical-flex"> 
+                    <button type="button" mat-raised-button class="login-button" 
+                        (click)="login()" [disabled]="!username && !password">Login</button>
+                
+                    <a class="pad-top-quarter margin-micro-left" routerLink="/register">Register</a>
+                </div>
+            </div>
         </mat-card-actions>
     </mat-card>
 

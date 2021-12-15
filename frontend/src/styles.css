@@ -2,7 +2,19 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /*containers*/
-.vertical-flex{ display: flex; flex-direction: column; }
-
+.vertical-flex{ 
+    display: flex; flex-direction: column; }
+.center-flex {  
+    display: flex; justify-content: center; 
+    align-items: center; 
+}
+.line-flex{ 
+    display: flex; flex-wrap: nowrap; 
+    align-items:flex-end; 
+}
+.vertical-flex{ 
+    display: flex; flex-direction: column; 
+    align-items: center; justify-content: center;
+}
 /*formatting*/
 .margin-center{ margin: auto; }
