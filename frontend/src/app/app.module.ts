@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { NgxWebstorageModule } from 'ngx-webstorage';
+import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
 
 import { AppRoutingModule } from './app-routing.module'; 
 import { AppComponent } from './app.component';
@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule }  from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon'; 
 import { MatInputModule } from '@angular/material/input'; 
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 
 
@@ -41,7 +42,16 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useFactory: function(session: SessionStorageService) {
+        return new AuthInterceptor(session);
+      },
+      multi: true,
+      deps: [SessionStorageService] 
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

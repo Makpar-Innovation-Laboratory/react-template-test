@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { SessionStorageService } from 'ngx-webstorage';
 
 const NON_AUTHED_ENDPOINTS=[
-  "token", "verify", "register"
+  "token", "register"
 ]
 
 /** Inject With Credentials into the request */
@@ -29,7 +29,6 @@ export class AuthInterceptor implements HttpInterceptor {
       if (this.needsAuthed(req)){
         req = req.clone({
           setHeaders: { 'Authorization': `Bearer ${this.session.retrieve('token')}`, },
-          withCredentials:true
         });
       }
       return next.handle(req);

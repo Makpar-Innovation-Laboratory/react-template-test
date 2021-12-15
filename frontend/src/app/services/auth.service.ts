@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { SessionStorageService } from 'ngx-webstorage';
 import { Token } from '../models/token';
 import { HostService } from './host.service';
@@ -22,7 +22,7 @@ export class AuthService {
     this.session.store('token', token.AuthenticationResult.IdToken); 
   }
 
-  private clearToken(token: Token): void{
+  private clearToken(): void{
     this.session.clear('token')
   }
 
@@ -36,10 +36,22 @@ export class AuthService {
         }),
         catchError((err: HttpErrorResponse)=> {
           this.loggedIn = false;
-          console.log(err);
           return throwError('login error')
         })
       )
   }
   
+  public verify(): Observable<boolean>{
+    let path : string = `${this.host.getHost()}/verify`
+      return this.http.get<Object>(path).pipe(
+        map( __=> {  
+          this.loggedIn = true;
+          return true; 
+        }),
+        catchError( __=> { 
+          this.clearToken();
+          return of(false);
+        })
+      )
+  }
 }
