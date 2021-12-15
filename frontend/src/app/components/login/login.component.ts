@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,29 +10,33 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  public username: string = "";
-  public password: string = "";
+  public loginFormGroup: FormGroup;
 
   public loginError : boolean = false;
   public hide : boolean = true;
   public loading : boolean = false;
   
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router,
+              private formBuilder : FormBuilder) {
+    this.loginFormGroup = this.formBuilder.group({
+      email: this.formBuilder.control('', [Validators.required, Validators.email]),
+      password: this.formBuilder.control('', [Validators.required])
+    })
+  }
 
   ngOnInit(): void {
-
   }
 
   public login() : void{
-    this.loading = true;
-    this.auth.login(this.username, this.password).subscribe((data)=>{
-      if(!data){ this.loginError = true; }
-      else{ this.router.navigateByUrl('/home'); }
-    });
-  }
-
-  public validate(){
-    if(this.username && this.password){ this.login(); }
+    if(this.loginFormGroup.valid){this.loading = true;
+      this.auth.login(this.loginFormGroup.controls['email'].value, 
+                        this.loginFormGroup.controls['password'].value).subscribe((data)=>{
+        if(!data){ this.loginError = true; }
+        else{ this.router.navigateByUrl('/home'); }
+      });
+    }
+    else{ this.loginFormGroup.markAsDirty() }
+    
   }
 
 }

@@ -8,48 +8,63 @@
             <div class="vertical-flex"
                     id="login-form-container">
 
-                <mat-form-field id="username-field" 
-                                class="margin-center">
-                    <mat-label>Username</mat-label>
-                    <input matInput 
-                            id="username-input" 
-                            type="text" 
-                            [(ngModel)]="username" 
-                            (keydown.enter)="validate()">
-                    <button matSuffix mat-icon-button 
-                            id="username-clear" 
-                            type="button" 
-                            aria-label="Clear" 
-                            *ngIf="username"
-                            (click)="username=''">
-                    <mat-icon>close</mat-icon>
-                    </button>
-                </mat-form-field>
-    
-                <mat-form-field id="password-field" 
-                                class="margin-center">
-                    <mat-label>Password</mat-label>
-                    <input matInput 
-                            id="password-input" 
-                            [type]="hide ? 'password' : 'text'" 
-                            [(ngModel)]="password" 
-                            (keydown.enter)="validate()">
-                    <button matSuffix mat-icon-button
-                            id="password-clear" 
-                            type="button" *ngIf="password" 
-                            aria-label="Clear" 
-                        (click)="password=''">
-                        <mat-icon>close</mat-icon>
-                    </button>
-                    <button mat-icon-button matSuffix 
-                            type="button" id="password-hide" 
-                            (click)="hide = !hide" 
-                            [attr.aria-label]="'Hide password'" 
-                            [attr.aria-pressed]="hide">
-                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                </mat-form-field>
+                <form [formGroup]="loginFormGroup" (ngSubmit)="login()">
 
+                    <mat-form-field id="email-form-field"
+                                 
+                                class="login-form-field">
+                        <mat-label>Email</mat-label>
+                        <input matInput 
+                                id="email-input" 
+                                type="text" 
+                                formControlName="email"
+                                (keydown.enter)="login()">
+                        <button matSuffix mat-icon-button 
+                                id="email-clear" 
+                                type="button" 
+                                aria-label="Clear" 
+                                *ngIf="this.loginFormGroup.controls.email.value"
+                                (click)="this.loginFormGroup.controls.email.setValue('')">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        <mat-error *ngIf="loginFormGroup.controls.email.hasError('email') && !loginFormGroup.controls.email.hasError('required')">
+                            Please enter a valid email
+                        </mat-error>
+                        <mat-error *ngIf="!loginFormGroup.controls.email.hasError('email') && loginFormGroup.controls.email.hasError('required')">
+                            This field is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field id="password-form-field" 
+                                    class="login-form-field">
+                        <mat-label>Password</mat-label>
+                        <input matInput 
+                                id="password-input" 
+                                formControlName="password"
+                                autocomplete="current-password"
+                                [type]="hide ? 'password' : 'text'" 
+                                (keydown.enter)="login()">
+                        <button matSuffix mat-icon-button
+                                id="password-clear" 
+                                type="button" 
+                                *ngIf="this.loginFormGroup.controls['password'].value" 
+                                aria-label="Clear" 
+                            (click)="this.loginFormGroup.controls['password'].setValue('')">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        <button mat-icon-button matSuffix 
+                                type="button" id="password-hide" 
+                                (click)="hide = !hide" 
+                                [attr.aria-label]="'Hide password'" 
+                                [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="loginFormGroup.controls.password.hasError('required')">
+                            This field is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                </form>
             </div>
         </mat-card-content>
 
@@ -61,9 +76,11 @@
                             class="login-button mat-elevation-z5" 
                             type="button"  
                             (click)="login()" 
-                            [disabled]="!username && !password">Login</button>
+                            [disabled]="loginFormGroup.invalid">Login</button>
                 
-                    <a id="register-link" class="register-link" routerLink="/register">Register</a>
+                    <a id="register-link" 
+                        class="register-link"
+                        routerLink="/register">Register</a>
                 </div>
             </div>
         </mat-card-actions>

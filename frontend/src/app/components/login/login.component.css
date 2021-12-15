@@ -1,6 +1,15 @@
+mat-form-field{
+    display: flex;
+}
+
 .login-container{
-    display: flex; flex-direction: column; justify-content: center;
+    display: flex; flex-direction: column; 
+    justify-content: center;
     height: 100%; width: 100%;
+}
+.login-container .login-form-field{
+    flex: 1;
+
 }
 .login-card{
     margin-right: 35%; margin-left: 35%;
