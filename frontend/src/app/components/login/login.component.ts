@@ -11,10 +11,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
 
   public loginFormGroup: FormGroup;
-
-  public loginError : boolean = false;
-  public hide : boolean = true;
-  public loading : boolean = false;
+  public hidePassword: boolean = true;
+  public loading: boolean = false;
   
   constructor(private auth: AuthService, private router: Router,
               private formBuilder : FormBuilder) {
@@ -24,15 +22,13 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   public login() : void{
     if(this.loginFormGroup.valid){this.loading = true;
       this.auth.login(this.loginFormGroup.controls['email'].value, 
                         this.loginFormGroup.controls['password'].value).subscribe((data)=>{
-        if(!data){ this.loginError = true; }
-        else{ this.router.navigateByUrl('/home'); }
+        if(data){ this.router.navigateByUrl('/home'); }
       });
     }
     else{ this.loginFormGroup.markAsDirty() }

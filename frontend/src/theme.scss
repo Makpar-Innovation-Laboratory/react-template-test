@@ -2,6 +2,7 @@
 @use 'sass:map';
 
 // APP MODULE THEMES
+@use './app/app.theme' as app;
 @use './app/components/login/login.theme' as login;
 @use './app/components/home/home.theme' as home;
 
@@ -61,5 +62,6 @@ $makpar-light-theme: mat-light-theme(
 );
 
 @include angular-material-theme($makpar-theme);
+@include app.theme($makpar-theme);
 @include login.theme($makpar-theme);
 @include home.theme($makpar-theme);

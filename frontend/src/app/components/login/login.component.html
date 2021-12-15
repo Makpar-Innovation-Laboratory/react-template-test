@@ -11,8 +11,8 @@
                 <form [formGroup]="loginFormGroup" (ngSubmit)="login()">
 
                     <mat-form-field id="email-form-field"
-                                 
-                                class="login-form-field">
+                                    class="login-form-field"
+                                    color="accent">
                         <mat-label>Email</mat-label>
                         <input matInput 
                                 id="email-input" 
@@ -25,7 +25,8 @@
                                 aria-label="Clear" 
                                 *ngIf="this.loginFormGroup.controls.email.value"
                                 (click)="this.loginFormGroup.controls.email.setValue('')">
-                            <mat-icon>close</mat-icon>
+                            <mat-icon id="email-clear-icon"
+                                        color="primary">close</mat-icon>
                         </button>
                         <mat-error *ngIf="loginFormGroup.controls.email.hasError('email') && !loginFormGroup.controls.email.hasError('required')">
                             Please enter a valid email
@@ -36,13 +37,14 @@
                     </mat-form-field>
     
                     <mat-form-field id="password-form-field" 
-                                    class="login-form-field">
-                        <mat-label>Password</mat-label>
+                                    class="login-form-field"
+                                    color="accent">
+                        <mat-label color="warn">Password</mat-label>
                         <input matInput 
                                 id="password-input" 
                                 formControlName="password"
                                 autocomplete="current-password"
-                                [type]="hide ? 'password' : 'text'" 
+                                [type]="hidePassword ? 'password' : 'text'" 
                                 (keydown.enter)="login()">
                         <button matSuffix mat-icon-button
                                 id="password-clear" 
@@ -50,14 +52,15 @@
                                 *ngIf="this.loginFormGroup.controls['password'].value" 
                                 aria-label="Clear" 
                             (click)="this.loginFormGroup.controls['password'].setValue('')">
-                            <mat-icon>close</mat-icon>
+                            <mat-icon id="password-clear-icon"
+                                        color="primary">close</mat-icon>
                         </button>
                         <button mat-icon-button matSuffix 
                                 type="button" id="password-hide" 
-                                (click)="hide = !hide" 
+                                (click)="hidePassword = !hidePassword" 
                                 [attr.aria-label]="'Hide password'" 
-                                [attr.aria-pressed]="hide">
-                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                [attr.aria-pressed]="hidePassword">
+                            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                         <mat-error *ngIf="loginFormGroup.controls.password.hasError('required')">
                             This field is <strong>required</strong>
