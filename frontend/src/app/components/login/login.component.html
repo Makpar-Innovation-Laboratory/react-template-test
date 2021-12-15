@@ -1,35 +1,54 @@
-<div class="login-container" id="login-page">
-    <mat-card>
-        <mat-card-title>Login</mat-card-title>
-        <mat-card-content>
-            <div class="vertical-flex">
+<div class="login-container" 
+     id="login-page">
+    <mat-card id="login-card">
+        <mat-card-title id="login-card-title">Login</mat-card-title>
+        <mat-card-content id="login-card-content">
+            <div class="vertical-flex"
+                    id="login-form-container">
 
-                <mat-form-field id="username-field" class="margin-center">
+                <mat-form-field id="username-field" 
+                                class="margin-center">
                     <mat-label>Username</mat-label>
-                    <input id="username-input" matInput type="text" 
-                            [(ngModel)]="username" (keydown.enter)="validate($event)">
-                    <button id="username-clear" type="button" *ngIf="username" 
-                            matSuffix mat-icon-button aria-label="Clear" 
+                    <input matInput 
+                            id="username-input" 
+                            type="text" 
+                            [(ngModel)]="username" 
+                            (keydown.enter)="validate($event)">
+                    <button id="username-clear" 
+                            type="button" 
+                            *ngIf="username" 
+                            matSuffix 
+                            mat-icon-button 
+                            aria-label="Clear" 
                         (click)="username=''">
                     <mat-icon>close</mat-icon>
                     </button>
                 </mat-form-field>
     
-                <mat-form-field id="password-field" class="margin-center">
+                <mat-form-field id="password-field" 
+                                class="margin-center">
                     <mat-label>Password</mat-label>
-                    <input id="password-input" matInput [type]="hide ? 'password' : 'text'" 
-                            [(ngModel)]="password" (keydown.enter)="validate($event)">
-                    <button id="password-clear" type="button" *ngIf="password" 
-                        matSuffix mat-icon-button aria-label="Clear" 
+                    <input matInput 
+                            id="password-input" 
+                            [type]="hide ? 'password' : 'text'" 
+                            [(ngModel)]="password" 
+                            (keydown.enter)="validate($event)">
+                    <button matSuffix mat-icon-button
+                            id="password-clear" 
+                            type="button" *ngIf="password" 
+                            aria-label="Clear" 
                         (click)="password=''">
                         <mat-icon>close</mat-icon>
                     </button>
-                    <button type="button" id="password-hide" mat-icon-button matSuffix 
-                        (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <button mat-icon-button matSuffix 
+                            type="button" id="password-hide" 
+                            (click)="hide = !hide" 
+                            [attr.aria-label]="'Hide password'" 
+                            [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                 </mat-form-field>
-                
+
             </div>
         </mat-card-content>
         <mat-card-actions>

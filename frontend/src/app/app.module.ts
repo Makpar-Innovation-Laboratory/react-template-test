@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxWebstorageModule } from 'ngx-webstorage';
 
@@ -12,7 +13,10 @@ import { HomeComponent } from './components/home/home.component';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule }  from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon'; 
+import { MatInputModule } from '@angular/material/input'; 
+
 
 
 @NgModule({
@@ -27,11 +31,15 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
 
     // MATERIAL IMPORTS
     MatCardModule,
     MatButtonModule,
-    MatIconModule
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
