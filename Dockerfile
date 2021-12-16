@@ -1,7 +1,6 @@
 # ANGULAR BUILD
-FROM node:latest as angular
-ENV NODE_VERSION=14
-ENV ANGULAR_VERSION=11
+FROM node:16 as angular
+ENV ANGULAR_VERSION=12
 
 # DEPENDENCIES
 RUN apt-get update -y && apt-get install -y curl moreutils && \ 

@@ -48,4 +48,4 @@ else
 fi
 
 log "Building \e[3m$IMAGE_NAME:$IMAGE_TAG\e[0m Image" $SCRIPT_NAME
-docker build -t $IMAGE_NAME:$IMAGE_TAG $ROOT_DIR
+docker build -t $IMAGE_NAME:$IMAGE_TAG $PROJECT_DIR

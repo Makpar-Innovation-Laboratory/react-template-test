@@ -40,15 +40,15 @@ if [ "${DETACHED}" == "true" ]
 then
     log "Starting Up Container \e[3m$CONTAINER_NAME\e[0m In Detached Mode" $SCRIPT_NAME
     docker run --detached \ 
-                --name $CONTAINER_NAME \ 
-                --publish $NGINX_PORT:$NGINX_PORT \ 
-                --env-file $ENV_DIR/.env \ 
+                --name $CONTAINER_NAME \
+                --publish $NGINX_PORT:$NGINX_PORT \
+                --env-file $ENV_DIR/.env \
                 $IMAGE_NAME:$IMAGE_TAG
 else
 
     log "Starting Up Container \e[3m$CONTAINER_NAME\e[0m In Foreground" $SCRIPT_NAME
-    docker run --name $CONTAINER_NAME \ 
-                --publish $NGINX_PORT:$NGINX_PORT \ 
-                --env-file $ENV_DIR/.env \ 
+    docker run --name $CONTAINER_NAME \
+                --publish $NGINX_PORT:$NGINX_PORT \
+                --env-file $ENV_DIR/.env \
                 $IMAGE_NAME:$IMAGE_TAG
 fi
