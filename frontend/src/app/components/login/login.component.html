@@ -78,12 +78,14 @@
                     <button mat-raised-button
                             id="login-button"
                             class="login-button mat-elevation-z5" 
-                            type="button"  
+                            type="button"
+                            matTooltip="Gain access to the Innovation Lab!" 
                             (click)="login()" 
                             [disabled]="loginFormGroup.invalid">Login</button>
                 
                     <a id="register-link" 
                         class="register-link"
+                        matTooltip="Register for a new Innovation Lab account!"
                         routerLink="/register">Register</a>
                 </div>
             </div>
