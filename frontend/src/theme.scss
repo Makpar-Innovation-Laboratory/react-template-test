@@ -86,22 +86,25 @@ $triadic-alt-palette: (
 
 
 $makpar-primary: mat-palette($primary-palette);
-$makpar-accent: mat-palette($analogous-alt-palette);
-$makpar-warn: mat-palette($triadic-alt-palette);
+$makpar-accent: mat-palette($analogous-palette);
+$makpar-alt-accent: mat-palette($analogous-alt-palette);
+$makpar-warn: mat-palette($triadic-palette);
+$makpar-alt-warn: mat-palette($triadic-alt-palette);
 
+
+$makpar-alt-theme: mat-dark-theme(
+    $makpar-primary,
+    $makpar-alt-accent,
+    $makpar-alt-warn
+);
 $makpar-theme: mat-dark-theme(
     $makpar-primary,
     $makpar-accent,
-    $makpar-warn
+    $makpar-warn,
 );
 
-$makpar-light-theme: mat-light-theme(
-    $makpar-primary,
-    $makpar-accent,
-    $makpar-warn
-);
 
-@include angular-material-theme($makpar-theme);
-@include app.theme($makpar-theme);
-@include login.theme($makpar-theme);
-@include home.theme($makpar-theme);
+@include angular-material-theme($makpar-alt-theme);
+@include app.theme($makpar-alt-theme);
+@include login.theme($makpar-alt-theme);
+@include home.theme($makpar-alt-theme);

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class HostService {
   // TODO: parameterize host based on environment.ts file, i.e.
   //        change host to dev, staging or prod based on environment.
   public getHost(){
-    return 'https://api-innolab-dev.makpar-innovation.net'
+    console.log(`this is the host: ${environment.host}`)
+    return environment.host
   }
 }

@@ -4,7 +4,6 @@ SCRIPT_NAME='entrypoint'
 nl=$'\n'
 SCRIPT_DES="Entrypoint script for the Docker container"
 
-
 function log(){
     echo -e "\e[92m$(date +"%r")\e[0m: \e[4;32m$SCRIPT_NAME\e[0m : >> $1"
 }
