@@ -4,14 +4,15 @@ ENV ANGULAR_VERSION=12
 
 # DEPENDENCIES
 RUN apt-get update -y && apt-get install -y curl moreutils && \ 
-    npm install -g @angular/cli@${ANGULAR_VERSION} \
-    && mkdir /home/build/ && mkdir /home/frontend/
+    npm install -g @angular/cli@${ANGULAR_VERSION} && \
+    mkdir /home/build/ && mkdir /home/frontend/
 
 COPY /frontend/ /home/frontend/
 WORKDIR /home/frontend/
 
 # --prod: Configured to output /home/build/
-RUN ng build --prod --output-hashing none
+RUN npm install && \
+    ng build --prod --output-hashing none
 
 # PRODUCTION SERVER
 FROM nginx:latest
