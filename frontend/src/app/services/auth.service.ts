@@ -28,9 +28,9 @@ export class AuthService {
 
   public login(username: string, password: string): Observable<Token>{
     let body = { username: username, password: password }
-      let path : string= `${this.host.getHost()}/token/`
+      let path : string= `${this.host.getHost()}/defaults/token`
       return this.http.post<Token>(path, body).pipe(
-        tap((data)=> { 
+        tap((data: Token)=> { 
           this.loggedIn = true;
           this.storeToken(data);
         }),
@@ -42,13 +42,13 @@ export class AuthService {
   }
   
   public verify(): Observable<boolean>{
-    let path : string = `${this.host.getHost()}/verify`
+    let path : string = `${this.host.getHost()}/defaults/verify`
       return this.http.get<Object>(path).pipe(
-        map( __=> {  
+        map((__:any)=> {  
           this.loggedIn = true;
           return true; 
         }),
-        catchError( __=> { 
+        catchError((__: any)=> { 
           this.clearToken();
           return of(false);
         })
