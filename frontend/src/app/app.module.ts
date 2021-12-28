@@ -3,6 +3,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
 
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
 
@@ -14,19 +15,38 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar'; 
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { MatTooltipModule } from '@angular/material/tooltip'; 
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatSidenavModule} from '@angular/material/sidenav'
+import { MatListModule } from '@angular/material/list'
+import { MatGridListModule } from '@angular/material/grid-list'
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { AppRoutingModule } from './app-routing.module'; 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component'; 
 import { HomeComponent } from './components/home/home.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { AdminComponent } from './components/admin/admin.component';
+import { AddBlogComponent } from './components/admin/add-blog/add-blog.component';
+import { AllBlogsComponent } from './components/admin/all-blogs/all-blogs.component';
+import { UpdateBlogComponent } from './components/admin/update-blog/update-blog.component';
+import { AlertDialogBodyComponent } from './components/alert-dialog-body/alert-dialog-body.component';
+import { TagComponent } from './components/tag/tag.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    AdminComponent,
+    AddBlogComponent,
+    AllBlogsComponent,
+    UpdateBlogComponent,
+    AlertDialogBodyComponent,
+    TagComponent
   ],
   imports: [
     NgxWebstorageModule.forRoot(),
@@ -36,8 +56,13 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    RichTextEditorAllModule,
 
     // MATERIAL IMPORTS
+    MatSidenavModule,
+    MatChipsModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
     MatCardModule,
     MatButtonModule,
     MatFormFieldModule,
@@ -46,7 +71,9 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     MatProgressBarModule,
     MatToolbarModule,
     MatTooltipModule,
-    
+    MatGridListModule,
+    MatListModule,
+    MatAutocompleteModule,
   ],
   providers: [
     { 
