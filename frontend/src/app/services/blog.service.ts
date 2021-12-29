@@ -8,8 +8,8 @@ import { HostService } from './host.service';
   providedIn: 'root'
 })
 export class BlogService {
-  private add_blog_url:string = 'http://localhost:5000/add_blog';
-  private get_all_blogs_url:string = `${this.host.getHost()}/news`
+  private add_blog_url:string = `${this.host.getHost()}/news/`;
+  private get_all_blogs_url:string = `${this.host.getHost()}/news`;
   private get_single_blog_url:string = 'https://api-innolab-dev.makpar-innovation.net/news/';
   private delete_blog_url:string = 'http://localhost:5000/delete_blog/';
   private update_blog_url:string = 'http://localhost:5000/update_blog/';
@@ -20,8 +20,8 @@ export class BlogService {
 
   constructor(private http:HttpClient, private host: HostService) { }
 
-  add_blog(blog_props:Object){
-    return this.http.post(this.add_blog_url,blog_props);
+  public add_blog(blog_props:Object):Observable<Token>{
+    return this.http.post<Token>(this.add_blog_url,blog_props);
   }
 
   public get_all_blogs():Observable<Token>{

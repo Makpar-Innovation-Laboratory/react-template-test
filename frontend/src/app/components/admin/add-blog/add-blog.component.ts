@@ -5,6 +5,7 @@ import { TagComponent } from './../../tag/tag.component';
 import { Component, OnInit,ViewChild } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogBodyComponent } from './../../dialog-body/dialog-body.component';
+import {formatDate} from '@angular/common'
 
 @Component({
   selector: 'app-add-blog',
@@ -14,7 +15,7 @@ import { DialogBodyComponent } from './../../dialog-body/dialog-body.component';
 export class AddBlogComponent implements OnInit {
   selectedFile!: File;
   preview_image:any;
-  tags!: [];
+  subject!: [];
   title!: string;
   content!: string;
   blog_id!: string;
@@ -26,7 +27,7 @@ export class AddBlogComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    this.tags = this.childReference.tags;
+    this.subject = this.childReference.tags;
   }
 
   processFile(imageInput:any){
@@ -72,18 +73,24 @@ export class AddBlogComponent implements OnInit {
   async submit_blog(){
       this.show_spinner = true;
       // const image_data = await this.image_service.upload_image(this.selectedFile).toPromise();
-      
-      
+      let subArr: never[] = []
+      this.subject.map((element)=>{
+        subArr.push(element["name"])
+      })
+
+      // console.log(subArr.toString())
       let blog = {
+        submitted:formatDate(new Date(), 'yyyy-MM-dd', 'en'),
         title: this.title,
-        content: this.content,
+        content: String(this.content),
         // feature_image:image_data["data"].link,
-        tags:[]
+        // subject:[]
+        subject:subArr.toString()
       }
 
-      this.tags.map((element)=>{
-        blog.tags.push(element["name"])
-      });
+      // this.subject.map((element)=>{
+      //   blog.subject.push(element["name"])
+      // });
 
       this.blog_service.add_blog(blog).subscribe((response:any)=>{
         this.blog_id = response.id;
@@ -92,7 +99,7 @@ export class AddBlogComponent implements OnInit {
         this.title = "";
         this.content = "";
         this.preview_image = "";
-        this.tags = []; 
+        this.subject = [];
       });
 
     }

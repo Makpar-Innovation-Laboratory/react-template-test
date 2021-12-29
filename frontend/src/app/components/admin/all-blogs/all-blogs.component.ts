@@ -30,7 +30,9 @@ export class AllBlogsComponent implements OnInit {
   }
   
   load_all_blogs(){
+    console.log('fetching blogs')
     this.blog_service.get_all_blogs().subscribe((response:any)=>{
+      console.log(response)
       response.results.forEach((element:any) => {
         this.blogs.push(element);
       });
