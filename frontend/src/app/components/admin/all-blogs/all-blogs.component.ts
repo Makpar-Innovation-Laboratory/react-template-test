@@ -67,7 +67,7 @@ export class AllBlogsComponent implements OnInit {
     });
   }
 
-
+  
 
   delete_single_blog(blog_id:string){
     console.log('try delete', blog_id)

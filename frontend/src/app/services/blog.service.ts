@@ -33,7 +33,8 @@ export class BlogService {
   }
 
   public get_single_blog(blog_id:string):Observable<Token>{
-    return this.http.get<Token>(this.get_single_blog_url + blog_id);
+    let url = this.get_single_blog_url + blog_id
+    return this.http.get<Token>(url);
   }
 
   update_blog(blog_props: Object, blog_id:string){

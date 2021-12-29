@@ -41,7 +41,7 @@ export class UpdateBlogComponent implements OnInit {
 
   ngOnInit() {
       this.active_route.params.subscribe((response)=>{
-      this.blog_id = response['news_id'];
+      this.blog_id = response['id'];
       this.get_blog_info();
       });
       
@@ -89,10 +89,11 @@ export class UpdateBlogComponent implements OnInit {
 
   get_blog_info(){
     this.blog_service.get_single_blog(this.blog_id).subscribe((response:any)=>{
-      this.blog_props.title = response.single_blog.title;
-      this.blog_props.content = response.single_blog.content;
-      this.blog_props.feature_image = response.single_blog.feature_image;
-      response.single_blog.tags.forEach((element:any) => {
+      console.log(response['results'][0]['subject'])
+      this.blog_props.title = response['results'][0]['title']
+      this.blog_props.content = response['results'][0]['content']
+      // this.blog_props.feature_image = response.results.single_blog.feature_image;
+      response['results'][0]['subject'].forEach((element:any) => {
         this.blog_props.tags.push(element);
       });
     });
@@ -115,7 +116,7 @@ export class UpdateBlogComponent implements OnInit {
       // feature_image:image_link,
     }
 
-    this.blog_service.update_blog(blog,this.blog_id).subscribe((response:any)=>{
+    this.blog_service.update_blog(blog.content,this.blog_id).subscribe((response:any)=>{
       this.blog_id = response.blog_id;
       this.show_spinner = false;
       this.open_alert_dialog(`Blog with the id: ${this.blog_id} has been updated`);

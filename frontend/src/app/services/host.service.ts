@@ -11,7 +11,6 @@ export class HostService {
   // TODO: parameterize host based on environment.ts file, i.e.
   //        change host to dev, staging or prod based on environment.
   public getHost(){
-    console.log(`this is the host: ${environment.host}`)
     return environment.host
   }
 }
