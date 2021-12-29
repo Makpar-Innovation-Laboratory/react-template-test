@@ -6,6 +6,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { SessionStorageService } from 'ngx-webstorage';
 import { Token } from '../models/token';
 import { HostService } from './host.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,20 @@ export class AuthService {
   }
 
   public login(username: string, password: string): Observable<Token>{
-    let body = { username: username, password: password }
+    if(environment.mock){
+      return of({
+        ChallengeParameters: {},
+        AuthenticationResult:{
+          AccessToken: 'faketoken',
+          ExpiresIn: 0,  
+          TokenType: 'rsa',
+          RefreshToken: 'faketoken',
+          IdToken: 'faketoken'
+        }
+      })
+    }
+    else{
+      let body = { username: username, password: password }
       let path : string= `${this.host.getHost()}/defaults/token`
       return this.http.post<Token>(path, body).pipe(
         tap((data: Token)=> { 
@@ -39,10 +53,15 @@ export class AuthService {
           return throwError('login error')
         })
       )
+    }
   }
   
   public verify(): Observable<boolean>{
-    let path : string = `${this.host.getHost()}/defaults/verify`
+    if(environment.mock){
+      return of(true)
+    }
+    else{
+      let path : string = `${this.host.getHost()}/defaults/verify`
       return this.http.get<Object>(path).pipe(
         map((__:any)=> {  
           this.loggedIn = true;
@@ -53,5 +72,7 @@ export class AuthService {
           return of(false);
         })
       )
+    }
   }
+  
 }

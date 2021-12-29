@@ -4,6 +4,7 @@
 
 export const environment = {
   host: 'localhost:8000',
+  mock: true,
   production: false
 };
 
