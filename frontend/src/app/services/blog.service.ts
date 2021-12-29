@@ -37,11 +37,12 @@ export class BlogService {
     return this.http.get<Token>(url);
   }
 
-  update_blog(blog_props: Object, blog_id:string){
-    return this.http.put(this.update_blog_url + blog_id, blog_props);
+  public update_blog(blog_props: Object, blog_id:string){
+    let url = this.update_blog_url + blog_id
+    return this.http.put(url, blog_props);
   }
 
-  delete_blog(id:string){
+  public delete_blog(id:string){
     return this.http.delete(this.delete_blog_url + id);
   }
 }

@@ -4,8 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
-
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
+import { sanitizeHtmlPipe } from './sanitize-html.pipe';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -34,6 +34,7 @@ import { AllBlogsComponent } from './components/admin/all-blogs/all-blogs.compon
 import { UpdateBlogComponent } from './components/admin/update-blog/update-blog.component';
 import { AlertDialogBodyComponent } from './components/alert-dialog-body/alert-dialog-body.component';
 import { TagComponent } from './components/tag/tag.component';
+import { ViewBlogComponent } from './components/view-blog/view-blog.component';
 
 
 @NgModule({
@@ -46,7 +47,9 @@ import { TagComponent } from './components/tag/tag.component';
     AllBlogsComponent,
     UpdateBlogComponent,
     AlertDialogBodyComponent,
-    TagComponent
+    TagComponent,
+    ViewBlogComponent,
+    sanitizeHtmlPipe
   ],
   imports: [
     NgxWebstorageModule.forRoot(),

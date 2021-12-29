@@ -7,18 +7,20 @@ import { AdminComponent } from './components/admin/admin.component'
 import { AllBlogsComponent } from './components/admin/all-blogs/all-blogs.component';
 import { AddBlogComponent } from './components/admin/add-blog/add-blog.component';
 import { UpdateBlogComponent } from './components/admin/update-blog/update-blog.component';
+import { ViewBlogComponent } from './components/view-blog/view-blog.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'home', canActivate: [ AuthGuard ], component: HomeComponent},
-  {path:'admin', component:AdminComponent,
+  { path:'admin', canActivate: [ AuthGuard ], component:AdminComponent,
     children:[
       {path:'all-blogs', component:AllBlogsComponent},
       {path:'add-blog', component:AddBlogComponent},
       {path:'update-blog/:id',component:UpdateBlogComponent}
     ]
   },
+  {path:'blog/:id', canActivate: [AuthGuard], component:ViewBlogComponent}
 ];
 
 @NgModule({
