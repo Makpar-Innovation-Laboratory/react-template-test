@@ -27,19 +27,21 @@ export class AuthService {
     this.session.clear('token')
   }
 
-  public login(username: string, password: string): Observable<Token>{
-    if(environment.mock){
-      return of({
-        ChallengeParameters: {},
-        AuthenticationResult:{
-          AccessToken: 'faketoken',
-          ExpiresIn: 0,  
-          TokenType: 'rsa',
-          RefreshToken: 'faketoken',
-          IdToken: 'faketoken'
-        }
-      })
+  private getFakeToken(): Token{
+    return {
+      ChallengeParameters: {},
+      AuthenticationResult:{
+        AccessToken: 'faketoken',
+        ExpiresIn: 0,  
+        TokenType: 'rsa',
+        RefreshToken: 'faketoken',
+        IdToken: 'faketoken'
+      }
     }
+  }
+
+  public login(username: string, password: string): Observable<Token>{
+    if(environment.mock){ return of(this.getFakeToken()) }
     else{
       let body = { username: username, password: password }
       let path : string= `${this.host.getHost()}/defaults/token`
