@@ -10,9 +10,13 @@ import { HostService } from './host.service';
 export class BlogService {
   private add_blog_url:string = `${this.host.getHost()}/news/`;
   private get_all_blogs_url:string = `${this.host.getHost()}/news`;
-  private get_single_blog_url:string = 'https://api-innolab-dev.makpar-innovation.net/news/';
-  private delete_blog_url:string = 'http://localhost:5000/delete_blog/';
-  private update_blog_url:string = 'http://localhost:5000/update_blog/';
+  private get_single_blog_url:string = `${this.host.getHost()}/news/post/`;
+  private delete_blog_url:string = `${this.host.getHost()}/news/post/`;
+  private update_blog_url:string = `${this.host.getHost()}/news/post/`;
+  private add_comment_url:string = `${this.host.getHost()}/news/post-comment`;
+  private delete_comment_url:string = `${this.host.getHost()}/news/comment/`;
+  private update_comment_url:string = `${this.host.getHost()}/news/comment/`;
+  private get_rssfeed_url:string = `${this.host.getHost()}/news/rss-feed`;
   // token = localStorage.getItem('token');
   // authStr = 'Bearer ' + String(this.token)
   // headers = new HttpHeaders()

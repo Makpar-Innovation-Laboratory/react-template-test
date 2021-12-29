@@ -7,7 +7,9 @@ import { MatDialog } from '@angular/material/dialog';
 interface Blog{
   title:string,
   content:string,
+  news_id:string,
   feature_image:string,
+  submitted:string,
   tags: []
 }
 
@@ -68,6 +70,7 @@ export class AllBlogsComponent implements OnInit {
 
 
   delete_single_blog(blog_id:string){
+    console.log('try delete', blog_id)
     this.show_spinner = true;
     this.blog_service.delete_blog(blog_id).subscribe((response)=>{
       if(response){

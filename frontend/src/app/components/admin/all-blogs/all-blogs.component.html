@@ -4,14 +4,12 @@
             <img [src]="blog.feature_image" alt="Cover-image">
         </div>
         <div class="blog-container-details">
-            <h3>{{blog.title}}</h3>
+            <h3>{{blog.title}}: {{blog.submitted}}</h3>
         </div>
         <div class="blog-container-actions">    
             <button mat-raised-button id="edit-action" >Edit</button>
-            <button mat-raised-button id="delete-action" >Delete</button>
+            <button mat-raised-button id="delete-action" (click)="delete_single_blog(blog.news_id)" >Delete</button>
         </div>
-        
-        
     </div>
 </div>
 
