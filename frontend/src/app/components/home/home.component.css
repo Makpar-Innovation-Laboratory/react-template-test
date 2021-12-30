@@ -28,6 +28,9 @@
     list-style-type: none;
     /* font-size: 1.6rem; */
 }
+ul h5 {
+    margin-bottom: 0.5rem;
+}
 .selected li {
     font-weight: bold;
 }
