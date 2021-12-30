@@ -1,2 +1,25 @@
+<div class="app-container">
+  <div style="width: 100vw">
+    <mat-toolbar id="toolbar-container" class="toolbar-container">
+      <img
+        id="logo-image"
+        src="/assets/makpar_logo_white_vector.svg"
+        height="34"
+      />
 
-<router-outlet></router-outlet>
+      <div class="nav-items">
+        <a mat-button routerLink='/home'>HOME</a>
+        <a mat-button routerLink='/mission'>MISSION</a>
+        <a mat-button routerLink='/team'>TEAM</a>
+        <a mat-button routerLink='/home'>PROJECTS</a>
+        <a mat-button routerLink='/home'>POSTS ARCHIVE</a>
+        <a mat-button routerLink='/home'>ADMIN DASHBOARD</a>
+        <!-- <div class="mat-subheading-1">HOME</div> -->
+      </div>
+    </mat-toolbar>
+  </div>
+
+  <div class="component-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+
+.team-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.team-header {
+    width: 90%;
+}
+.team-header h5 {
+    margin-bottom: 0.5rem;
+    font-weight: normal;
+}
+.team-header-border {
+    height: 0.7rem;
+    width: 6rem;
+    border-top: 2px solid #FFFFFF;
+}
