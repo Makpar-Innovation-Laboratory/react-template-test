@@ -18,7 +18,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {MatSidenavModule} from '@angular/material/sidenav'
+import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
 import { MatGridListModule } from '@angular/material/grid-list'
 import { MatAutocompleteModule } from '@angular/material/autocomplete';

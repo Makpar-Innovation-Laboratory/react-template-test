@@ -17,10 +17,6 @@ export class BlogService {
   private delete_comment_url:string = `${this.host.getHost()}/news/comment/`;
   private update_comment_url:string = `${this.host.getHost()}/news/comment/`;
   private get_rssfeed_url:string = `${this.host.getHost()}/news/rss-feed`;
-  // token = localStorage.getItem('token');
-  // authStr = 'Bearer ' + String(this.token)
-  // headers = new HttpHeaders()
-  //   .set('Authorization', this.authStr)
 
   constructor(private http:HttpClient, private host: HostService) { }
 
