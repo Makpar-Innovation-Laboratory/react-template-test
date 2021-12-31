@@ -68,7 +68,7 @@ phases:
         docker build -t ${APPLICATION}-frontend:${BRANCH^} .
         docker tag ${APPLICATION}-frontend:${BRANCH^} \
             $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
-        docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
+        docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-lambda-${COMPONENT}:${BRANCH^}
   
   post_build:
     commands:
@@ -91,7 +91,7 @@ phases:
       - |
         npx typedoc
         aws s3 cp ../docs/package/. \
-                s3://${APPLICATION}-coverage${ENV}/frontend/ \
+                s3://${APPLICATION}-coverage${ENV}/angular/ \
                 --recursive
         
 
