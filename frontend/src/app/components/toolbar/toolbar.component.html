@@ -4,6 +4,7 @@
             class="menu-container">
         <button mat-icon-button
                 id="menu-button"
+                [matTooltip]="menuTooltip"
                 (click)="emitClick()">
             <mat-icon id="menu-icon">menu</mat-icon>
         </button>

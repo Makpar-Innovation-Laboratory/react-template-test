@@ -27,7 +27,8 @@
   
     <div id="main-container" 
         class="main-container"> 
-        <app-toolbar id="admin-toolbar"
+        <app-toolbar id="admin-toolbar" 
+                    menuTooltip="Admin Console Actions"
                     (menuClick)="this.drawer.toggle()"></app-toolbar>
         <router-outlet></router-outlet>
     </div>

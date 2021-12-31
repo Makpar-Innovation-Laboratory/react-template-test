@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { HostService } from './host.service';
 import { Blog, BlogPostResponse, BlogResponse } from '../models/blog';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,9 @@ import { Blog, BlogPostResponse, BlogResponse } from '../models/blog';
 export class BlogService {
 
 
+  private mock_blogs: BlogResponse = {
+      results: []
+  }
   /**
    * 
    * @param http HTTPClient for service calls
@@ -25,14 +29,20 @@ export class BlogService {
    */
   public postBlog(blog: Blog): Observable<BlogPostResponse>{
     // NOTE: posts must end in trailing slash
-    return this.http.post<BlogPostResponse>(`${this.host.getHost()}/news/`, blog)
+    if(environment.mock){
+      this.mock_blogs.results.push(blog);
+      return of({ id: this.mock_blogs.results.length, message: 'Blog Saved'})
+    }
+    else return this.http.post<BlogPostResponse>(`${this.host.getHost()}/news/`, blog)
   }
   
   public getBlog(id: number): Observable<BlogResponse>{
-    return this.http.get<BlogResponse>(`${this.host.getHost()}/news/post/${id}`)
+    if(environment.mock) return of({ results: [this.mock_blogs.results[id-1]] })
+    else return this.http.get<BlogResponse>(`${this.host.getHost()}/news/post/${id}`)
   }
 
   public getBlogs(): Observable<BlogResponse>{
-    return this.http.get<BlogResponse>(`${this.host.getHost()}/news`)
+    if(environment.mock) return of(this.mock_blogs)
+    else return this.http.get<BlogResponse>(`${this.host.getHost()}/news`)
   }
 }

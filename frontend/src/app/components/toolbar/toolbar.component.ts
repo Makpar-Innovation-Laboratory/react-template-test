@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 /** 
    * # ToolbarComponent
@@ -15,7 +15,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class ToolbarComponent {
 
-  @Output() public menuClick : EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() 
+  public menuClick : EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @Input()
+  public menuTooltip !: string;
 
   /**
    * Constructs an instance of {@link ToolbarComponent}

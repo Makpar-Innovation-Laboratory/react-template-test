@@ -4,7 +4,7 @@ export const EditorConfig: AngularEditorConfig = {
     editable: true,
       spellcheck: true,
       height: 'auto',
-      minHeight: '0',
+      minHeight: '50%',
       maxHeight: 'auto',
       width: 'auto',
       minWidth: '0',
