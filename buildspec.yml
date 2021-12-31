@@ -94,7 +94,7 @@ phases:
                    ${APPLICATION}-frontend:${BRANCH^}
         git clone codecommit://${APPLICATION}-test-harness
         cd ${APPLICATION}-test-harness/python
-        export FRONTEND_HOST_URL=https://localhost:8080
+        export FRONTEND_HOST_URL="http://localhost:8080"
         chmod +x ./configure && ./configure web
         behave -t "@Web" \
               --no-skipped \
