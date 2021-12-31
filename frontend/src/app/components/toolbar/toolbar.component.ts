@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 /** ToolbarComponent
    * Hook into menu clicks using the output from this component's event emitter,
@@ -9,13 +9,10 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css']
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent {
   @Output() public menuClick : EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   public emitClick(): void{ this.menuClick.emit(true); }
 
