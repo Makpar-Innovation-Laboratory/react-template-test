@@ -1,22 +1,19 @@
-<div class="wrapper">
-    <div class="nav-container">
-        <div class="nav-container-heading">
-            <h2>Dashboard</h2>
-        </div>
-        <div class="nav-container-links">
-            <button mat-raised-button 
+<mat-drawer-container autosize>
+    <mat-drawer #drawer mode="side">
+        <div class="action-container">
+            <button mat-icon-button 
                     color="primary"
                     routerLink='/admin/add-blog'
                     matTooltip="Add Blog">
                 <mat-icon>add</mat-icon>
             </button>
-            <button mat-raised-button 
+            <button mat-icon-button 
                     color="primary"
                     routerLink='/admin/all-blogs'
                     matTooltip="Blog Archive">
                 <mat-icon>archive</mat-icon>
             </button>
-            <button mat-raised-button
+            <button mat-icon-button
                     color="warn"
                     id="signout-button" 
                     matTooltip="Sign Out"
@@ -24,8 +21,11 @@
                 <mat-icon>close</mat-icon>
             </button>
         </div>
-    </div>
+    </mat-drawer>
+  
     <div class="main-container"> 
+        <app-toolbar (menuClick)="this.drawer.toggle()"></app-toolbar>
         <router-outlet></router-outlet>
     </div>
-</div>
+</mat-drawer-container>
+  

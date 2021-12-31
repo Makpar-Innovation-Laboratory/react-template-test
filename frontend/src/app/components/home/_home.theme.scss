@@ -10,10 +10,6 @@
     .home-container{
       background-color: map-get($primary-palette, 300);
     }
-    .toolbar-container, .logo-container{
-      background-color: map-get($primary-palette, 700);
-    }
-
 }
 
 @mixin theme($theme) {

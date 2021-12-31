@@ -7,6 +7,7 @@
 @use './app/components/home/home.theme' as home;
 @use './app/components/admin/admin.theme' as admin;
 @use './app/components/dialog-body/dialog-body.theme' as dialog_body;
+@use './app/components/toolbar/toolbar.theme' as toolbar;
 
 @import '~@angular/material/theming';
 
@@ -112,3 +113,4 @@ $makpar-theme: mat-dark-theme(
 @include home.theme($makpar-alt-theme);
 @include admin.theme($makpar-alt-theme);
 @include dialog_body.theme($makpar-alt-theme);
+@include toolbar.theme($makpar-alt-theme);

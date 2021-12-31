@@ -35,6 +35,7 @@ import { UpdateBlogComponent } from './components/admin/update-blog/update-blog.
 import { AlertDialogBodyComponent } from './components/alert-dialog-body/alert-dialog-body.component';
 import { TagComponent } from './components/tag/tag.component';
 import { ViewBlogComponent } from './components/view-blog/view-blog.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { ViewBlogComponent } from './components/view-blog/view-blog.component';
     AlertDialogBodyComponent,
     TagComponent,
     ViewBlogComponent,
-    sanitizeHtmlPipe
+    sanitizeHtmlPipe,
+    ToolbarComponent
   ],
   imports: [
     NgxWebstorageModule.forRoot(),
