@@ -74,7 +74,7 @@ phases:
   
   post_build:
     commands:
-      # BDD Tests
+      # BDD Tests 
       - |
         docker run --publish 8000:8000 \
                    --name ${application}_backend \
