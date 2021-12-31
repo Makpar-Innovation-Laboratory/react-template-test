@@ -1,10 +1,22 @@
-
 <div id="app-container" 
         class="app-container">
     <app-toolbar id="app-toolbar"
+                    class="app-toolbar"
                     menuTooltip="Innovation Lab Menu"
                     (menuClick)="toggleMenu()"></app-toolbar>
+    
+    <div [@menu]="this.menuState"
+            id="expansion-menu" 
+            class="expansion-menu">
 
+        <button mat-button 
+                *ngFor="let appRoute of appRoutes"
+                id="route-link"
+                class="route-link"
+                color="accent"
+                [routerLink]="appRoute.route"
+                (click)="closeMenu()">{{ appRoute.title }}</button>
+
+    </div>
     <router-outlet></router-outlet>
-
 </div>

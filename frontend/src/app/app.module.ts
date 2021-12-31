@@ -3,6 +3,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ScrollingModule } from '@angular/cdk/scrolling'; 
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
@@ -68,6 +69,7 @@ import { SanitizePipe } from './pipes/sanitize.pipe';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    ScrollingModule,
 
     // ANGULAR MATERIAL
     MatSidenavModule,
@@ -86,6 +88,7 @@ import { SanitizePipe } from './pipes/sanitize.pipe';
     MatListModule,
     MatAutocompleteModule,
     MatSnackBarModule,
+    
 
     // OTHER
       // NGX WEBSTORAGE

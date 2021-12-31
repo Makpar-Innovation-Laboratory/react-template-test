@@ -16,3 +16,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .margin-center{ margin: auto; }
 .fill-width{ width: 100%; }
 .fill-height{ height: 100%; }
+
+.no-scroll{ 
+    overflow:hidden;
+}

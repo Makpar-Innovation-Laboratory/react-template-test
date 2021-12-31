@@ -24,6 +24,8 @@
   
 <div id="main-container" 
     class="main-container"> 
-    <router-outlet></router-outlet>
+    <cdk-virtual-scroll-viewport class="viewport" itemSize="0">
+        <router-outlet></router-outlet>
+    </cdk-virtual-scroll-viewport>
 </div>
   
