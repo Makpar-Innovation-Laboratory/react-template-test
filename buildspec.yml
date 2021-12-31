@@ -53,7 +53,7 @@ phases:
         sonar-scanner \
           -Dsonar.projectKey=${APPLICATION}-frontend${ENV} \
           -Dsonar.sources=./src/ \
-          -Dsonar.host.url=http://$SONAR_URL:9000 \
+          -Dsonar.host.url=http://$SONAR_URL \
           -Dsonar.login=$SONAR_TOKEN \
           -Dsonar.log.level=DEBUG \
           -Dsonar.exclusions=**/*.json,**/*.css,**/*.test.js,**/*.svg \
