@@ -38,6 +38,13 @@ import { ViewBlogComponent } from './components/view-blog/view-blog.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 
+/**
+ * # AppModule
+ * 
+ * ## Description
+ *  
+ *  Controls module imports and dependency injection for the Angular application. An {@link AuthInterceptor} is injected into the HTTP middleware so that all outgoing requests have a JWT Bearer token appended to their authorization header.
+ */
 @NgModule({
   declarations: [
     AppComponent,

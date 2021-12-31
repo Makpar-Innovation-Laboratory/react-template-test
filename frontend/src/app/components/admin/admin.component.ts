@@ -3,6 +3,18 @@ import { DialogBodyComponent } from './../dialog-body/dialog-body.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Component } from '@angular/core';
  
+/**
+ * # AdminComponent
+ * 
+ * ## Description
+ * 
+ *  
+ * ## Example Usage
+ * 
+ * ```html
+ * <app-admin></app-admin>
+ * ```
+ */
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -10,12 +22,21 @@ import { Component } from '@angular/core';
 })
 export class AdminComponent {
  
+  /**
+   * Constructs an instance of {@link AdminComponent}.
+   * @param dialog Reference to the {@link MatDialog} html component.
+   * @param auth_service Authentication service for logging out.
+   */
   constructor(private dialog:MatDialog,
               private auth_service:AuthService) { }
  
+  /**
+   * Displays a responsive {@link MatDialog} on screen.
+   * @param message message to be displayed by the dialog
+   */
   public open_dialog(message:string): void{
     const dialogRef = this.dialog.open(DialogBodyComponent,{
-      data:{ message }, width:'550px', height:'200px'
+      data:{ message }, width:'50%', height:'25%'
     });
     dialogRef.afterClosed().subscribe((confirm:boolean)=>{
       if(confirm){ this.auth_service.logout();}

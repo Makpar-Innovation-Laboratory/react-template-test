@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
-/** ToolbarComponent
+/** 
+   * # ToolbarComponent
+   * 
+   * ## Description
+   * 
    * Hook into menu clicks using the output from this component's event emitter,
    *        <app-toolbar (menuClick)="doSomething()"></app-toolbar>
    */
@@ -14,6 +18,9 @@ export class ToolbarComponent {
 
   constructor() { }
 
+  /**
+   * @event boolean signal to parent component menu button has been clicked
+   */
   public emitClick(): void{ this.menuClick.emit(true); }
 
 }
