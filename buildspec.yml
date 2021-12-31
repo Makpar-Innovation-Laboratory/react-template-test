@@ -52,7 +52,7 @@ phases:
       - |
         sonar-scanner \
           -Dsonar.projectKey=${APPLICATION}-frontend${ENV} \
-          -Dsonar.sources=./src/ \
+          -Dsonar.sources=./frontend/src/ \
           -Dsonar.host.url=http://$SONAR_URL \
           -Dsonar.login=$SONAR_TOKEN \
           -Dsonar.log.level=DEBUG \
@@ -108,6 +108,7 @@ phases:
         cd ../..
       # Generate documentation
       - |
+        cd frontend
         npx typedoc
         aws s3 cp ../docs/package/. \
                 s3://${APPLICATION}-coverage${ENV}/frontend/ \
