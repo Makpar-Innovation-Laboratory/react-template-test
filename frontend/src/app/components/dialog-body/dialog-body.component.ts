@@ -11,13 +11,11 @@ export class DialogBodyComponent{
   message!: string;
   constructor(public dialogRef: MatDialogRef<DialogBodyComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-      if(data){
-        this.message = this.data.message;
-      }
+      this.message = this.data.message;
   }
   
-  onConfirmClick(){
-    this.dialogRef.close(true);
+  public onClick(confirm: boolean): void{
+    this.dialogRef.close(confirm);
   }
 
 

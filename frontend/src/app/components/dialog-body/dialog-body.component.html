@@ -3,6 +3,10 @@
 </div>
     
 <div mat-dialog-actions align="center">
-        <button mat-raised-button color="primary" (click)="onConfirmClick()">Yes</button>
-        <button mat-raised-button color="accent" mat-dialog-close>No</button>
+        <button mat-raised-button 
+                color="primary" 
+                (click)="onClick(true)">Yes</button>
+        <button mat-raised-button 
+                color="accent"  
+                (click)="onClick(false)">No</button>
 </div>

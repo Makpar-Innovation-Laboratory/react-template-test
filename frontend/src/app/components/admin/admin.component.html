@@ -4,9 +4,25 @@
             <h2>Dashboard</h2>
         </div>
         <div class="nav-container-links">
-            <button mat-raised-button routerLink='/admin/add-blog'><mat-icon>add</mat-icon>Add Blog</button>
-            <button mat-raised-button routerLink='/admin/all-blogs'><mat-icon>archive</mat-icon>All Blogs</button>
-            <button mat-raised-button id="signout-button" (click)="open_dialog('Are you sure you want to sign out?')">Sign Out</button>
+            <button mat-raised-button 
+                    color="primary"
+                    routerLink='/admin/add-blog'
+                    matTooltip="Add Blog">
+                <mat-icon>add</mat-icon>
+            </button>
+            <button mat-raised-button 
+                    color="primary"
+                    routerLink='/admin/all-blogs'
+                    matTooltip="Blog Archive">
+                <mat-icon>archive</mat-icon>
+            </button>
+            <button mat-raised-button
+                    color="warn"
+                    id="signout-button" 
+                    matTooltip="Sign Out"
+                    (click)="open_dialog('Are you sure you want to sign out?')">
+                <mat-icon>close</mat-icon>
+            </button>
         </div>
     </div>
     <div class="main-container"> 

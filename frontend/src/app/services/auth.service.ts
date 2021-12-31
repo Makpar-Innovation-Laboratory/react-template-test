@@ -59,9 +59,7 @@ export class AuthService {
   }
   
   public verify(): Observable<boolean>{
-    if(environment.mock){
-      return of(true)
-    }
+    if(environment.mock){ return of(true) }
     else{
       let path : string = `${this.host.getHost()}/defaults/verify`
       return this.http.get<Object>(path).pipe(
