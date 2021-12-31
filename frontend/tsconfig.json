@@ -31,6 +31,6 @@
     "entryPoints": ["src"],
     "entryPointStrategy": "expand",
     "exclude": "**/*+(index|.spec|.e2e).ts",
-    "out": "docs"
+    "out": "../docs/package"
   }
 }

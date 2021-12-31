@@ -9,7 +9,7 @@ If the application is transpiled into javascript webpacks directly, it can be de
 ## Quickstart
 
 ### Local
-To get the *innolab-frontend*
+To get the *innolab-frontend* up and running through a local development server on your machine, follow these steps:
 
 0. Clone the *innolab-frontend* repository and `cd` into it,
 

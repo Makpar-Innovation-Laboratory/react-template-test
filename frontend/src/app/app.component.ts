@@ -37,6 +37,7 @@ interface appRoute { route: string, title: string }
   ]
 })
 export class AppComponent {
+  public title: string = "Makpar Innovation Lab"
   public menuState : menuStates = menuStates.closed
   public appRoutes: appRoute[] = [
     { route: '', title: 'Home' },

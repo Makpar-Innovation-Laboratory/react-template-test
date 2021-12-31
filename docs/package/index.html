@@ -1,126 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>frontend</title><meta name="description" content="Documentation for frontend"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">frontend</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1> frontend</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#innolab-frontend" id="innolab-frontend" style="color: inherit; text-decoration: none;">
+  <h1>InnoLab Frontend</h1>
+</a>
+<p>The Innovation Lab repository, <em>innolab-frontend</em>, is a <a href="https://en.wikipedia.org/wiki/Single-page_application">Single-Page-Application</a> created in <a href="https://angular.io/">Angular</a> and <a href="https://material.angular.io/">Angular Material</a>. The application can be configured to deploy to two different sets of infrastructure.</p>
+<p>If the application is containerized through an <strong>nginx</strong> image, it can be deployed to an <strong>AWS ECS Fargate</strong> cluster. The <em>devops/buildspec.ecs.yml</em> and <em>devops/appspec.yml</em> contains the necessary steps for <strong>CodePipeline</strong> and <strong>CodeDeploy</strong> to build and deploy the container to the Innovation Lab cluster through a blue-green deployment.</p>
+<p>If the application is transpiled into javascript webpacks directly, it can be deployed to an <strong>AWS S3 bucket</strong> hooked into a <strong>CloudFront distribution</strong>. The workflow for this deployment has been captured in two different pipelines, both a <strong>CodePipeline</strong> and a <strong>Bitbucket</strong> pipeline. The <em>devops/buildspec.s3-cloudfront.yml</em> contains the necessary steps for a <strong>CodePipeline</strong> deployment. The <em>devops/bitbuckets-pipeline.s3-cloudfront.yml</em> contains the necessary steps for a <strong>Bitbucket</strong> deployment.</p>
 
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
+<a href="#quickstart" id="quickstart" style="color: inherit; text-decoration: none;">
+  <h2>Quickstart</h2>
+</a>
 
-<body>
-
-<div id="main">
-
-    <h1 class="page-title">Home</h1>
-
-    
-
-
-
-    
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-    <section>
-        <article><h1>cloudfront-s3</h1>
-<h2>Code Quality</h2>
-<p>-<a href="https://deepsource.io/bb/Makpar/cloudfront-s3/?ref=repository-badge"><img src="https://deepsource.io/bb/Makpar/cloudfront-s3.svg/?label=active+issues&amp;show_trend=true&amp;token=K6IlUR_AWGNauy_vSziOROwZ" alt="DeepSource"></a>
-<a href="https://deepsource.io/bb/Makpar/cloudfront-s3/?ref=repository-badge"><img src="https://deepsource.io/bb/Makpar/cloudfront-s3.svg/?label=resolved+issues&amp;show_trend=true&amp;token=K6IlUR_AWGNauy_vSziOROwZ" alt="DeepSource"></a></p>
-<h2>Sandbox Environment Urls</h2>
-<ul>
-<li>Dev: <a href="https://laboratory-dev.makpar-innovation.com">https://laboratory-dev.makpar-innovation.com</a></li>
-</ul>
-<p>This repository connects to the <strong>Cloudfront</strong> and <strong>s3</strong> components of the Innovation Lab sandbox environment. Currently, it is setup for a <strong>React</strong> application. A <strong>BitBucket</strong> CI/CD pipeline is configured to deploy the <strong>React</strong> app to an <strong>S3</strong> bucket which in turn is served through the <strong>Cloudfront</strong> distribution</p>
-<p>See <a href="#pipeline">Pipeline section</a> below and <a href="/devops/bitbucket-pipelines.yml">/devops/bitbucket-pipelines.yml</a> for more information about the CI/CD pipeline.</p>
-<h2>Quickstart</h2>
-<h3>local</h3>
-<p>Setup the application on your local computer,</p>
-<pre class="prettyprint source"><code>cd frontend
-npm install
-npm start
+<a href="#local" id="local" style="color: inherit; text-decoration: none;">
+  <h3>Local</h3>
+</a>
+<p>To get the <em>innolab-frontend</em></p>
+<ol start="0">
+<li>Clone the <em>innolab-frontend</em> repository and <code>cd</code> into it,</li>
+</ol>
+<pre><code class="language-shell"><span class="hl-0">git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/innolab-frontend</span><br/><span class="hl-1">cd</span><span class="hl-0"> innolab-frontend</span>
 </code></pre>
-<h3>production</h3>
-<pre class="prettyprint source"><code>cd frontend
-npm install
-npm run build
+<ol>
+<li>Install the <a href="https://nodejs.org/en/download/">NodeJS</a> dependencies in the <em>/frontend/package.json</em> through the Node package manager,</li>
+</ol>
+<pre><code class="language-shell"><span class="hl-1">cd</span><span class="hl-0"> frontend</span><br/><span class="hl-0">npm install</span>
 </code></pre>
-<h2>Pipeline</h2>
-<p>This repository can be easily hooked into a <strong>BitBucket</strong> pipeline on four environment branches, <code>Prod</code>, <code>Test</code>, <code>Staging</code> and <code>Dev</code>, using the <em>yml</em> file in the <em>/devops/</em> directory. Copy that file into the project root and create the pipeline through the UI. It is recommended these branches are setup to require pull requests to be opened and approved before merges are allowed; In addition, the pipeline has been configured to run static code analysis on every branch, so it is also recommended merges require the condition of &quot;atleast 1 successful build&quot; in the branch permissions section of the Repository settings; this will enforce new code to meet standards before it is merged.</p>
-<p>When new changes are merged into these branches, the pipeline will kick off. The pipeline will spin up a <strong>Node</strong> container and build the application on BitBucket's cloud servers. The <em>devops/bitbuckets-pipelines.yml</em> contains all the configuration to build a <strong>React</strong> app and deploy to an <strong>S3</strong> bucket, however you will still need to do a little bit of setup on the AWS side.</p>
-<p>You will need to set up a dummy user on AWS with access to the S3 bucket. The necessary policy permissions are included in <em>devops/aws/policies/pipelines.json</em>. The user credentials and bucket name will need added to the <strong>BitBucket</strong> deployment environment; the deployment environment is a set of variables that get injected into the pipeline while the application is building on <strong>BitBucket</strong>'s cloud servers.</p>
-<p>See comments inside of <em>bitbucket-pipelines.yml</em> for more detailed information and a step-by-step process on setting up the pipeline.</p>
-<hr>
-<p><strong>Potential Gotcha</strong>: The pipeline caches <em>/frontend/node_modules</em> so it doesn't have to re-install the frontend dependencies everytime the pipeline runs. If you happen to install a new dependency, the next time you run your code through the pipeline, you will need to clear the cache. <strong>TODO</strong>: could potentially check the checksum of <em>package.json</em> and use <a href="https://bitbucket.org/atlassian/bitbucket-clear-cache/src/master/">bitbucket's clear cache script</a> to scrub the pipeline cache anytime it detects a new dependency.</p>
-<hr>
-<h2>Application Image</h2>
-<p>The app can be containerized through a multi-stage <strong>Docker</strong> image. It is first built on top of a <strong>nodeJS</strong> image and the artifacts copied over into an <strong>nginx</strong> image. To build the application image, you will need <a href="">Docker</a> installed. Once that is done, you can build the image from project root directory with the following command,</p>
-<p><code>docker build --tag dockerized-react:latest .</code></p>
-<p>After the build, you will see the image in your local repository,</p>
-<p><code>docker images</code></p>
-<p>You can spin up a container from this image with the following command,</p>
-<p><code>docker run --publish &lt;local-port&gt;:&lt;container-port&gt; dockerized-react:latest</code></p>
-<p>Note, the default port for nginx is <em>80</em>, so the following command will map the local port <em>8000</em> to the container port,</p>
-<p><code>docker run --publish 80:8000 dockerized-react:latest</code></p>
-<hr>
-<p><strong>Note</strong>: The multi-stage Docker build ensures we have the bare minimum in the actual image. Note after you run the <code>docker build</code> command, there are two images in your local image repository,</p>
-<blockquote>
-<p><code>dockerized-react   latest    eb47e873aa4b   4 minutes ago   134MB</code><br>
-<code>&lt;none&gt;     &lt;none&gt;    7ceefa83d499   4 minutes ago   1.19GB</code></p>
-</blockquote>
-<p>The second image is the <strong>nodeJS</strong> image where the application artifacts were built. Notice how much larger it is in comparison to the other image; this is due to all of the dependencies that needed to be installed in the environment before the application could actually be built (i.e. everything in <em>/pricing-tool-frontend/package.json</em>). The other image is the <strong>nginx</strong> image that has had the <strong>React</strong> webpacks copied over into one of its data directories. No dependencies have to be installed in the <strong>nginx</strong> image. This has security implications; namely, there is less surface area (in terms of libraries and dependencies that might have vulnerabilities in their codebase) exposed to a potential attack.</p>
-<h2>Deploying the Application</h2>
-<p>The <strong>S3</strong> bucket this repo is hooked into typically sits behind a <strong>CloudFront</strong> distribution. Any time a new deployment goes through, the <strong>CF</strong> cache will need invalidated before the changes appear. To invalidate the cache, copy the <em>.sample.env</em> environment file to a new <em>.env</em> file and add the ID of the <strong>CloudFront</strong> distribution to the <strong>CLOUDFRONT_DISTRIBUTION_ID</strong> environment file and then execute the script,</p>
-<pre class="prettyprint source"><code>./scripts/invalidate-cache
+<ol start="3">
+<li>Adjust the <em>/frontend/src/environment/environment.ts</em> file. If you do not have the backend server running, set the <code>mock</code> attribute to <code>true</code> in order to spoof authentication and service calls,</li>
+</ol>
+<pre><code class="language-javascript"><span class="hl-2">export</span><span class="hl-0"> </span><span class="hl-3">const</span><span class="hl-0"> </span><span class="hl-4">environment</span><span class="hl-0"> = {</span><br/><span class="hl-0">  </span><span class="hl-5">host:</span><span class="hl-0"> </span><span class="hl-6">&#39;localhost:8000&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-5">mock:</span><span class="hl-0"> </span><span class="hl-3">true</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-5">production:</span><span class="hl-0"> </span><span class="hl-3">false</span><br/><span class="hl-0">};</span>
 </code></pre>
-<hr>
-<h2>Documentation</h2>
-<ul>
-<li><a href="https://docs.launchdarkly.com/integrations/bitbucket-pipelines?utm_source=google&amp;utm_medium=cpc&amp;obility_id=126914704714&amp;utm_campaign=&amp;utm_term=&amp;utm_content=529046860681&amp;_bm=b&amp;_bn=g&amp;gclid=Cj0KCQjwwNWKBhDAARIsAJ8HkheO3YpyjRBKc4TSNovlTNxCZWwC32kWPv17SOG7zGceZenBf-Vb0-0aAvAbEALw_wcB">BitBucket Pipelines</a></li>
-<li><a href="https://docs.docker.com/">Docker</a></li>
-<li><a href="https://www.nginx.com/resources/wiki/?_bt=541137080527&amp;_bk=&amp;_bm=b&amp;_bn=g&amp;_bg=125748574545&amp;gclid=Cj0KCQjwwNWKBhDAARIsAJ8Hkhdv_mAcxYhY0igOUv0zG5yhXtD0VsffwNY1Cj0uu9mrSSaeeq5y3JcaAip4EALw_wcB">nginx</a></li>
-<li><a href="https://reactjs.org/docs/getting-started.html">React</a></li>
-</ul></article>
-    </section>
+<p><strong>NOTE</strong>: If <code>mock==true</code>, then the <code>host</code> does not matter.</p>
+<ol start="4">
+<li>Start a local development server on <em>localhost:4200</em>,</li>
+</ol>
+<pre><code class="language-shell"><span class="hl-0">ng serve</span>
+</code></pre>
+<p><strong>NOTE</strong>: This command must be run from the same directory as the <em>package.json</em></p>
 
+<a href="#container" id="container" style="color: inherit; text-decoration: none;">
+  <h3>Container</h3>
+</a>
+<p>The app can be containerized through a multi-stage <a href="https://docs.docker.com/">Docker</a> image. It is first built on top of a <a href="https://nodejs.org/en/download/">NodeJS</a> image with the <code>ng build</code> command and the resulting artifacts copied over into an <a href="https://www.nginx.com/">nginx</a> image. </p>
+<p>If the backend container is also running, the <strong>nginx</strong> container can be configured to proxy requests made on the <em>/api</em> path to the backend container, i.e. service calls made by the Angular app go back to their origination point and the proxy handles interfacing with the backend endpoints. This implementation hides the backend from the end user and provides better security. </p>
+<p>The frontend container can also be configured to run by itself, without proxy serving requests on <em>/api</em>. In this case, the frontend service calls will not function unless they are pointed directly to the backend. It is <strong>not</strong> recommended to run the frontend application like this in production, but it is an easy way to test the frontend without running the full stack.</p>
+<p>Before the image for either case is built, the <em>env/.env</em> file must be configured. Copy the sample file into a new file and adjust the variables.</p>
+<pre><code class="language-shell"><span class="hl-0">cp ./env/.sample.env ./env/.env</span>
+</code></pre>
+<p>If running with an <strong>nginx</strong> proxy, the <strong>PROXY_HOST</strong> and <strong>PROXY_PORT</strong> variables should point to the address and port of the backend <em>container</em>. In other words, if the application is being run locally in a container through <code>docker-compose up</code>, <strong>PROXY_HOST</strong> should be set equal to the name of the backend service in the <code>docker-compose.yml</code>. Otherwise, point these variables to wherever the backend is running. If running in standalone mode, these variables can be ignored.</p>
+<p><strong>ROOT_DIR</strong> and <strong>NGINX_PORT</strong> should not need changed from their defaults.</p>
+<p><strong>Proxy Mode</strong></p>
+<pre><code class="language-shell"><span class="hl-0">./scripts/docker/build-image --proxy</span>
+</code></pre>
+<p><strong>Standalone Mode</strong></p>
+<pre><code class="language-shell"><span class="hl-0">./scripts/docker/build-image</span>
+</code></pre>
+<p>Once the image is build, it can be spun up directly through,</p>
+<pre><code class="language-shell"><span class="hl-0">./scripts/docker/run-container</span>
+</code></pre>
+<p>Or spun up with the rest of the application through the master <code>docker-compose.yml</code> file,</p>
+<pre><code class="language-shell"><span class="hl-7"># from the innolab-master repository</span><br/><span class="hl-0">docker-compose up</span>
+</code></pre>
+<p><strong>NOTE</strong>: If running through <code>docker-compose up</code>, ensure the image tag of the most recent build matches the image tag specified in the <code>docker-compose.yml</code>.</p>
 
+<a href="#html-editor" id="html-editor" style="color: inherit; text-decoration: none;">
+  <h2>HTML Editor</h2>
+</a>
+<p>The <strong>AdminComponent</strong> uses the <em>@kolkov/angular-editor</em> for editing HTML content. Refer to <a href="https://www.npmjs.com/package/@kolkov/angular-editor">documentation</a> for example usage.</p>
 
-
-
-
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Mon Nov 22 2021 12:06:41 GMT-0500 (Eastern Standard Time)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
-</body>
-</html>
+<a href="#generate-docs" id="generate-docs" style="color: inherit; text-decoration: none;">
+  <h2>Generate Docs</h2>
+</a>
+<p>From <em>/frontend/</em> directory,</p>
+<pre><code class="language-shell"><span class="hl-0">npx typedoc</span>
+</code></pre>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Modules</a></li><li class=" tsd-kind-module"><a href="modules/app_app_routing_module.html">app/app-<wbr/>routing.module</a></li><li class=" tsd-kind-module"><a href="modules/app_app_component.html">app/app.component</a></li><li class=" tsd-kind-module"><a href="modules/app_app_module.html">app/app.module</a></li><li class=" tsd-kind-module"><a href="modules/app_components_admin_admin_component.html">app/components/admin/admin.component</a></li><li class=" tsd-kind-module"><a href="modules/app_components_admin_archive_archive_component.html">app/components/admin/archive/archive.component</a></li><li class=" tsd-kind-module"><a href="modules/app_components_admin_editor_editor_component.html">app/components/admin/editor/editor.component</a></li><li class=" tsd-kind-module"><a href="modules/app_components_admin_editor_editor_config.html">app/components/admin/editor/editor.config</a></li><li class=" tsd-kind-module"><a href="modules/app_components_dialog_dialog_component.html">app/components/dialog/dialog.component</a></li><li class=" tsd-kind-module"><a href="modules/app_components_home_home_component.html">app/components/home/home.component</a></li><li class=" tsd-kind-module"><a href="modules/app_components_login_login_component.html">app/components/login/login.component</a></li><li class=" tsd-kind-module"><a href="modules/app_components_story_story_component.html">app/components/story/story.component</a></li><li class=" tsd-kind-module"><a href="modules/app_components_toolbar_toolbar_component.html">app/components/toolbar/toolbar.component</a></li><li class=" tsd-kind-module"><a href="modules/app_guards_auth_guard.html">app/guards/auth.guard</a></li><li class=" tsd-kind-module"><a href="modules/app_interceptors_auth_interceptor.html">app/interceptors/auth.interceptor</a></li><li class=" tsd-kind-module"><a href="modules/app_models_news.html">app/models/news</a></li><li class=" tsd-kind-module"><a href="modules/app_models_token.html">app/models/token</a></li><li class=" tsd-kind-module"><a href="modules/app_models_user.html">app/models/user</a></li><li class=" tsd-kind-module"><a href="modules/app_pipes_sanitize_pipe.html">app/pipes/sanitize.pipe</a></li><li class=" tsd-kind-module"><a href="modules/app_services_auth_service.html">app/services/auth.service</a></li><li class=" tsd-kind-module"><a href="modules/app_services_host_service.html">app/services/host.service</a></li><li class=" tsd-kind-module"><a href="modules/app_services_news_service.html">app/services/news.service</a></li><li class=" tsd-kind-module"><a href="modules/environments_environment.html">environments/environment</a></li><li class=" tsd-kind-module"><a href="modules/environments_environment_prod.html">environments/environment.prod</a></li><li class=" tsd-kind-module"><a href="modules/json_typing.html">json-<wbr/>typing</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
