@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
-import { sanitizeHtmlPipe } from './sanitize-html.pipe';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,7 +32,7 @@ import { ArchiveComponent } from './components/admin/archive/archive.component';
 import { ViewComponent } from './components/view/view.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-
+import { SanitizePipe } from './pipes/html.pipe';
 
 /**
  * # AppModule
@@ -44,6 +43,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
  */
 @NgModule({
   declarations: [
+    // COMPONENTS
     AppComponent,
     LoginComponent,
     HomeComponent,
@@ -52,11 +52,13 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     ArchiveComponent,
     DialogComponent,
     ViewComponent,
-    sanitizeHtmlPipe,
-    ToolbarComponent
+    ToolbarComponent,
+
+    // PIPES
+    SanitizePipe,
   ],
   imports: [
-    NgxWebstorageModule.forRoot(),
+    // ANGULAR CORE
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -64,7 +66,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     ReactiveFormsModule,
     FormsModule,
 
-    // MATERIAL IMPORTS
+    // ANGULAR MATERIAL
     MatSidenavModule,
     MatChipsModule,
     MatDialogModule,
@@ -80,6 +82,11 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MatGridListModule,
     MatListModule,
     MatAutocompleteModule,
+
+    // OTHER
+      // NGX WEBSTORAGE
+    NgxWebstorageModule.forRoot(),
+
   ],
   providers: [
     { 

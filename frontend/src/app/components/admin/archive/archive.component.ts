@@ -1,7 +1,6 @@
 
 import { BlogService } from '../../../services/blog.service';
 import { Component, OnInit, } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Blog, BlogResponse } from 'src/app/models/blog';
 
 @Component({
@@ -9,9 +8,6 @@ import { Blog, BlogResponse } from 'src/app/models/blog';
   templateUrl: './archive.component.html',
   styleUrls: ['./archive.component.css']
 })
-
-
-
 export class ArchiveComponent implements OnInit {
 
   public blogs : Blog[] = [];

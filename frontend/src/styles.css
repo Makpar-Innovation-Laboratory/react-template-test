@@ -12,10 +12,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     display: flex; flex-wrap: nowrap; 
     align-items:flex-end; 
 }
-.vertical-flex{ 
-    display: flex; flex-direction: column; 
-    align-items: center; justify-content: center;
-}
 /*formatting*/
 .margin-center{ margin: auto; }
 .fill-width{ width: 100%; }

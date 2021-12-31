@@ -12,8 +12,8 @@ import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path:'news/:id', component: ViewComponent },
   { path: 'home', canActivate: [ AuthGuard ], component: HomeComponent},
+  { path:'news/:id', canActivate: [ AuthGuard], component: ViewComponent },
   { path: 'admin' , canActivate: [ AuthGuard ], component: AdminComponent,
     // TODO: turn these into a lazy-loaded module
     children:[
