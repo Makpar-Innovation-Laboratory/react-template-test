@@ -1,10 +1,10 @@
-<div class="blog-container">
+<div class="news-container">
     <mat-card class="editor-container">
-        <mat-card-title>Blog Editor</mat-card-title>
+        <mat-card-title>News Feed Editor</mat-card-title>
         <mat-card-content>
-            <div class="add-blog-form-container"
-                    id="add-blog-form-container">
-                <form [formGroup]="blogFormGroup" 
+            <div class="add-news-form-container"
+                    id="add-news-form-container">
+                <form [formGroup]="newsFormGroup" 
                         (ngSubmit)="submit()">
                     <mat-form-field id="title-form-field"
                                     class="title-form-field"
@@ -18,12 +18,12 @@
                                 id="clear" 
                                 type="button" 
                                 aria-label="Clear" 
-                                *ngIf="this.blogFormGroup.controls.title.value"
-                                (click)="this.blogFormGroup.controls.title.setValue('')">
+                                *ngIf="this.newsFormGroup.controls.title.value"
+                                (click)="this.newsFormGroup.controls.title.setValue('')">
                             <mat-icon id="title-clear-icon"
                                         color="primary">close</mat-icon>
                         </button>
-                        <mat-error *ngIf="!blogFormGroup.controls.title.hasError('required')">
+                        <mat-error *ngIf="!newsFormGroup.controls.title.hasError('required')">
                             This field is <strong>required</strong>
                         </mat-error>
                     </mat-form-field>
@@ -41,31 +41,34 @@
                                 id="clear" 
                                 type="button" 
                                 aria-label="Clear" 
-                                *ngIf="this.blogFormGroup.controls.subject.value"
-                                (click)="this.blogFormGroup.controls.subject.setValue('')">
+                                *ngIf="this.newsFormGroup.controls.subject.value"
+                                (click)="this.newsFormGroup.controls.subject.setValue('')">
                             <mat-icon id="title-clear-icon"
                                         color="primary">close</mat-icon>
                         </button>
-                        <mat-error *ngIf="!blogFormGroup.controls.subject.hasError('required')">
+                        <mat-error *ngIf="!newsFormGroup.controls.subject.hasError('required')">
                             This field is <strong>required</strong>
                         </mat-error>
                     </mat-form-field>
+
+                  
+                    <angular-editor formControlName="content" 
+                                    [config]="editorConfig"></angular-editor>
 
                 </form>
             </div>
         </mat-card-content>
 
-        <mat-card-actions>
-            <div class="center-flex fill-width">
-                <div class="vertical-flex fill-width"> 
-                    <button mat-icon-button
-                            id="add-blog-button"
-                            class="add-blog-button"
-                            [disabled]="blogFormGroup.invalid">
-                        <mat-icon>add</mat-icon>
-                    </button>
-                </div>
-            </div>
+        <mat-card-actions align="end"> 
+            <button mat-icon-button
+                    id="add-news-button"
+                    class="add-news-button"
+                    color="accent"
+                    [disabled]="newsFormGroup.invalid"
+                    matTooltip="{{this.mode == 'new' ? 'Submit news story': 'Edit news story'}}"
+                    (click)="confirmSubmission()">
+                <mat-icon>add</mat-icon>
+            </button>
         </mat-card-actions>
     </mat-card>
 </div>

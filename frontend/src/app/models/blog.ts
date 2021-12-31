@@ -1,6 +1,6 @@
 export interface Blog{
     news_id: number | null,
-    submitted: Date | null,
+    submitted: string | null,
     subject: string | null,
     title: string | null,
     content: string | null,

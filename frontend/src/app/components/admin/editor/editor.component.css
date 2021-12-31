@@ -1,4 +1,4 @@
-.blog-container{
+.news-container{
     width: 100%; height: 70%;
     display: flex; flex-direction: row;
     justify-content: center;
@@ -7,15 +7,10 @@
     margin-top: 5%;
     width: 95%; height: 100%;
 }
-.add-blog-form-container{
+.add-news-form-container{
     width: 100%; height: 100%;
     display: flex; flex-direction: column; 
 }
 .title-form-field, .subject-form-field{
     width: 90%; 
-}
-
-.add-blog-button{
-    position:relative;
-    right: 5%;
 }

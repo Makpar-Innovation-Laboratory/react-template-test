@@ -3,6 +3,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
 
 import { MatCardModule } from '@angular/material/card';
@@ -20,6 +22,7 @@ import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
 import { MatGridListModule } from '@angular/material/grid-list'
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSnackBarModule } from '@angular/material/snack-bar'; 
 
 import { AppRoutingModule } from './app-routing.module'; 
 import { AppComponent } from './app.component';
@@ -82,10 +85,13 @@ import { SanitizePipe } from './pipes/html.pipe';
     MatGridListModule,
     MatListModule,
     MatAutocompleteModule,
+    MatSnackBarModule,
 
     // OTHER
       // NGX WEBSTORAGE
     NgxWebstorageModule.forRoot(),
+      // ANGULAR EDITOR
+    AngularEditorModule
 
   ],
   providers: [

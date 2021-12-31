@@ -24,7 +24,8 @@ export class BlogService {
    * @returns observable containing the blog response
    */
   public postBlog(blog: Blog): Observable<BlogPostResponse>{
-    return this.http.post<BlogPostResponse>(`${this.host.getHost()}/news`, blog)
+    // NOTE: posts must end in trailing slash
+    return this.http.post<BlogPostResponse>(`${this.host.getHost()}/news/`, blog)
   }
   
   public getBlog(id: number): Observable<BlogResponse>{

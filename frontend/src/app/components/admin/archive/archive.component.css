@@ -1,9 +1,10 @@
 .blogs-container{
     width: 100%;
-    display: flex; flex-direction: row;
+    display: flex; flex-direction: column;
     justify-content: center;
 }
 .blog-card{
+    margin-right: auto; margin-left: auto;
     margin-top: 1%;
     width: 85%;
 }
