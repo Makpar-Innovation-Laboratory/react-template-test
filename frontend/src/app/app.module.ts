@@ -32,7 +32,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AdminComponent } from './components/admin/admin.component';
 import { EditorComponent } from './components/admin/editor/editor.component';
 import { ArchiveComponent } from './components/admin/archive/archive.component';
-import { ViewComponent } from './components/view/view.component';
+import { StoryComponent } from './components/story/story.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SanitizePipe } from './pipes/html.pipe';
@@ -54,7 +54,7 @@ import { SanitizePipe } from './pipes/html.pipe';
     EditorComponent,
     ArchiveComponent,
     DialogComponent,
-    ViewComponent,
+    StoryComponent,
     ToolbarComponent,
 
     // PIPES

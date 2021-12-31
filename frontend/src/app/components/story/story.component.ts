@@ -4,11 +4,11 @@ import { Component, OnInit } from '@angular/core';
 import { News, NewsResponse } from 'src/app/models/news';
 
 @Component({
-  selector: 'app-view',
-  templateUrl: './view.component.html',
-  styleUrls: ['./view.component.css']
+  selector: 'app-story',
+  templateUrl: './story.component.html',
+  styleUrls: ['./story.component.css']
 })
-export class ViewComponent implements OnInit {
+export class StoryComponent implements OnInit {
   public newsId : number;
   public newsPost: News | undefined;
 
