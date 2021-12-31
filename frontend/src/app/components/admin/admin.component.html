@@ -2,18 +2,21 @@
     <mat-drawer #drawer mode="side">
         <div class="action-container">
             <button mat-icon-button 
+                    id="add-blog-button"
                     color="primary"
                     routerLink='/admin/add-blog'
                     matTooltip="Add Blog">
                 <mat-icon>add</mat-icon>
             </button>
             <button mat-icon-button 
+                    id="view-archive-button"
                     color="primary"
                     routerLink='/admin/all-blogs'
                     matTooltip="Blog Archive">
                 <mat-icon>archive</mat-icon>
             </button>
             <button mat-icon-button
+                    id="signout-button"
                     color="warn"
                     id="signout-button" 
                     matTooltip="Sign Out"
@@ -23,8 +26,10 @@
         </div>
     </mat-drawer>
   
-    <div class="main-container"> 
-        <app-toolbar (menuClick)="this.drawer.toggle()"></app-toolbar>
+    <div id="main-container" 
+        class="main-container"> 
+        <app-toolbar id="admin-toolbar"
+                    (menuClick)="this.drawer.toggle()"></app-toolbar>
         <router-outlet></router-outlet>
     </div>
 </mat-drawer-container>
