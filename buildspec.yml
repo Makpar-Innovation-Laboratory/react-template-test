@@ -77,7 +77,8 @@ phases:
     commands:
       # BDD Tests 
       - |
-        docker run --publish 8000:8000 \
+        bash -c '
+          docker run --publish 8000:8000 \
                    --name ${application}_backend \
                    --env COGNITO_USER_POOL=$POOL_ID \
                    --env COGNITO_AUDIENCE=$CLIENT_ID \
@@ -86,27 +87,28 @@ phases:
                    --env APP_PORT=8000 \
                    --detach \
                    ${APPLICATION}-backend:${BRANCH^}
-        docker run --publish 8080:8080 \
-                   --name ${application}_frontend \
-                   --env NGINX_PORT=8080 \
-                   --env ROOT_DIR=/home/build \
-                   --env PROXY_HOST=localhost \
-                   --env PROXY_PORT=8000 \
-                   --detach \
-                   ${APPLICATION}-frontend:${BRANCH^}
-        git clone codecommit://${APPLICATION}-test-harness
-        cd ${APPLICATION}-test-harness/python
-        export FRONTEND_HOST_URL="http://localhost:8080"
-        chmod +x ./configure && ./configure web
-        behave -t "@Web" \
-              --no-skipped \
-              --summary \
-              --outfile behave-report-frontend.html \
-              --format behave_html_formatter:HTMLFormatter \
-                || true
-        aws s3 cp ./behave-report-frontend.html \
-                  s3://${APPLICATION}-coverage${ENV}/test-coverage/bdd/behave-report-frontend.html
-        cd ../..
+          docker run --publish 8080:8080 \
+                    --name ${application}_frontend \
+                    --env NGINX_PORT=8080 \
+                    --env ROOT_DIR=/home/build \
+                    --env PROXY_HOST=localhost \
+                    --env PROXY_PORT=8000 \
+                    --detach \
+                    ${APPLICATION}-frontend:${BRANCH^}
+          git clone codecommit://${APPLICATION}-test-harness
+          cd ${APPLICATION}-test-harness/python
+          export FRONTEND_HOST_URL="http://localhost:8080"
+          chmod +x ./configure && ./configure web
+          behave -t "@Web" \
+                --no-skipped \
+                --summary \
+                --outfile behave-report-frontend.html \
+                --format behave_html_formatter:HTMLFormatter \
+                  || true
+          aws s3 cp ./behave-report-frontend.html \
+                    s3://${APPLICATION}-coverage${ENV}/test-coverage/bdd/behave-report-frontend.html
+          cd ../..
+        '
       # Generate documentation
       - |
         cd frontend
