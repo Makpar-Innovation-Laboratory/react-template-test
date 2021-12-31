@@ -52,12 +52,11 @@ phases:
       - |
         sonar-scanner \
           -Dsonar.projectKey=${APPLICATION}-frontend${ENV} \
-          -Dsonar.sources=./frontend/src/ \
           -Dsonar.host.url=http://$SONAR_URL \
           -Dsonar.login=$SONAR_TOKEN \
           -Dsonar.log.level=DEBUG \
+          -Dsonar.sources=$(pwd)/frontend/src/ \
           -Dsonar.exclusions=**/*.json,**/*.css,**/*.test.js,**/*.svg \
-          -Dsonar.sources=$(pwd)/src \
           -Dsonar.sourceEncoding=UTF-8
       # -Dsonar.coverageReportPaths=path/to/coverage.xml
       # see: https://docs.sonarqube.org/latest/analysis/coverage/
