@@ -28,7 +28,8 @@
                     id="delete-button"
                     color="warn"
                     matTooltip="Delete this story"
-                    (click)="deleteNews()">
+                    *ngIf="story.news_id"
+                    (click)="deleteNews(story.news_id)">
                 <mat-icon>delete_forever</mat-icon>
             </button>
         </mat-card-actions>

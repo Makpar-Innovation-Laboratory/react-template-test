@@ -29,6 +29,11 @@ export class ArchiveComponent implements OnInit {
   }
  
 
+  /**
+   * # Description
+   * Delete a news story from the Innovation Lab API
+   * @param id id of the {@link News} story to be deleted
+   */
   public deleteNews(id: number): void{
     this.news.deleteNews(id).subscribe((__: NewsPostResponse)=>{
       return 

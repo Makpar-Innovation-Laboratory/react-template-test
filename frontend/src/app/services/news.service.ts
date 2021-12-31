@@ -73,9 +73,9 @@ export class NewsService {
    * @param id id of the {@link News} story to update
    * @returns observable containing {@link NewsPostResponse}
    */
-  public updateNews(id: number): Observable<NewsPostResponse>{
+  public updateNews(id: number, news: News): Observable<NewsPostResponse>{
     // TODO: mock implementation
-    return this.http.delete<NewsPostResponse>(`${this.host.getHost()}/news/post/${id}`)
+    return this.http.put<NewsPostResponse>(`${this.host.getHost()}/news/post/${id}`, news)
   }
 
   /**

@@ -5,9 +5,10 @@
 @use './app/app.theme' as app;
 @use './app/components/login/login.theme' as login;
 @use './app/components/home/home.theme' as home;
-@use './app/components/admin/admin.theme' as admin;
 @use './app/components/dialog/dialog.theme' as dialog;
 @use './app/components/toolbar/toolbar.theme' as toolbar;
+@use './app/components/view/view.theme' as view;
+@use './app/components/admin/admin.theme' as admin;
 @use './app/components/admin/editor/editor.theme' as editor;
 @use './app/components/admin/archive/archive.theme' as archive;
 
@@ -113,6 +114,7 @@ $makpar-theme: mat-dark-theme(
 @include app.theme($makpar-alt-theme);
 @include login.theme($makpar-alt-theme);
 @include home.theme($makpar-alt-theme);
+@include view.theme($makpar-alt-theme);
 @include admin.theme($makpar-alt-theme);
 @include dialog.theme($makpar-alt-theme);
 @include toolbar.theme($makpar-alt-theme);

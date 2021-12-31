@@ -1,9 +1,11 @@
+import { SafeHtml } from "@angular/platform-browser";
+
 export interface News{
     news_id: number | null,
     submitted: string | null,
     subject: string | null,
     title: string | null,
-    content: string | null,
+    content: SafeHtml | null,
 }
 
 export interface NewsPostResponse{

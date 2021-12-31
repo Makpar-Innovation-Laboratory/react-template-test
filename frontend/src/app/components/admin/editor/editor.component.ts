@@ -8,10 +8,10 @@ import { ActivatedRoute } from '@angular/router';
 import { EditorConfig } from './editor.config';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DomSanitizer } from '@angular/platform-browser';
 
-enum modes{
-  edit='edit', new='new'
-}
+// NOTE: Define the editor modes through enum
+enum modes{ edit='edit', new='new' }
 
 /**
  * # EditorComponent
@@ -46,6 +46,7 @@ export class EditorComponent {
   constructor(private news: NewsService,
               private formBuilder : FormBuilder,
               private activatedRoute: ActivatedRoute,
+              private sanitizer: DomSanitizer,
               private snackBar: MatSnackBar,
               private dialog:MatDialog) { 
     this.newsFormGroup = this.formBuilder.group({
@@ -92,20 +93,35 @@ export class EditorComponent {
 
   /**
    * # Description
-   * Post the news story held in {@link newsFormGroup}. `FormGroup` must be valid or else submission will not occur.
+   * Post the news story held in {@link newsFormGroup}. `FormGroup` must be valid or else submission will not occur. If {@link mode}=='new', then a new submission will be made. If {@link mode}=='edit', then an existing submission determined by the path parameter passed in through {@link activatedRoute} will be updated.
    */
   public submit(): void {
     if(this.newsFormGroup.valid){
-      this.news.postNews({
-        news_id: null,
-        title: this.newsFormGroup.controls.title.value,
-        subject: this.newsFormGroup.controls.subject.value,
-        content: this.newsFormGroup.controls.content.value,
-        submitted: new Date().toISOString().slice(0, 10)
-      }).subscribe((__: NewsPostResponse)=>{
-        this.newsFormGroup.reset()
-        this.snackBar.open('News story submitted!', 'OK')
-      })
+      if(this.mode == modes.new){
+        let sanitized_content = this.sanitizer.bypassSecurityTrustHtml(this.newsFormGroup.controls.content.value)
+        this.news.postNews({
+          news_id: null,
+          title: this.newsFormGroup.controls.title.value,
+          subject: this.newsFormGroup.controls.subject.value,
+          content: this.sanitizer.bypassSecurityTrustHtml(this.newsFormGroup.controls.content.value),
+          submitted: new Date().toISOString().slice(0, 10)
+        }).subscribe((__: NewsPostResponse)=>{
+          this.newsFormGroup.reset()
+          this.snackBar.open('News story submitted!', 'OK')
+        })
+      }
+      else if(this.mode == modes.edit){
+        this.news.updateNews(this.activatedRoute.snapshot.params.id,{ 
+            news_id: null,
+            title: this.newsFormGroup.controls.title.value,
+            subject: this.newsFormGroup.controls.subject.value,
+            content: this.sanitizer.bypassSecurityTrustHtml(this.newsFormGroup.controls.content.value),
+            submitted: new Date().toISOString().slice(0, 10)
+          }).subscribe((__: NewsPostResponse)=>{
+            this.newsFormGroup.reset()
+            this.snackBar.open('News story updated!', 'OK')
+        })
+      }
     }
   }
 }
