@@ -71,6 +71,7 @@ export class EditorComponent {
       content: this.newsFormGroup.controls.content.value,
       submitted: new Date().toISOString().slice(0, 10)
     }).subscribe((__: BlogPostResponse)=>{
+      this.newsFormGroup.reset()
       this.snackBar.open('News story submitted!', 'OK')
     })
   }
