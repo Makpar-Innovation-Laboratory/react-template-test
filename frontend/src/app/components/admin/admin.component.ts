@@ -34,9 +34,10 @@ export class AdminComponent {
    * Displays a responsive {@link MatDialog} on screen.
    * @param message message to be displayed by the dialog
    */
-  public open_dialog(message:string): void{
+  public confirmLogout(message:string): void{
     const dialogRef = this.dialog.open(DialogBodyComponent,{
-      data:{ message }, width:'50%', height:'25%'
+      data:{ message }, 
+      width:'50%', height:'25%'
     });
     dialogRef.afterClosed().subscribe((confirm:boolean)=>{
       if(confirm){ this.auth_service.logout();}

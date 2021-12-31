@@ -16,5 +16,6 @@
 }
 
 .add-blog-button{
-    float: right;
+    position:relative;
+    right: 5%;
 }
