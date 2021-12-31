@@ -1,2 +1,10 @@
 
-<router-outlet></router-outlet>
+<div id="app-container" 
+        class="app-container">
+    <app-toolbar id="app-toolbar"
+                    menuTooltip="Innovation Lab Menu"
+                    (menuClick)="toggleMenu()"></app-toolbar>
+
+    <router-outlet></router-outlet>
+
+</div>

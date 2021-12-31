@@ -1,36 +1,29 @@
-<mat-drawer-container autosize>
-    <mat-drawer #drawer mode="side">
-        <div class="action-container">
-            <button mat-icon-button 
-                    id="add-blog-button"
-                    color="primary"
-                    routerLink='/admin/add'
-                    matTooltip="Add Blog">
-                <mat-icon>add</mat-icon>
-            </button>
-            <button mat-icon-button 
-                    id="view-archive-button"
-                    color="primary"
-                    routerLink='/admin/archive'
-                    matTooltip="Blog Archive">
-                <mat-icon>archive</mat-icon>
-            </button>
-            <button mat-icon-button
-                    id="signout-button"
-                    color="warn"
-                    matTooltip="Sign Out"
-                    (click)="confirmLogout('Are you sure you want to sign out?')">
-                <mat-icon>close</mat-icon>
-            </button>
-        </div>
-    </mat-drawer>
+<div class="action-container">
+    <button mat-icon-button 
+            id="add-blog-button"
+            color="primary"
+            routerLink='/admin/add'
+            matTooltip="Add Blog">
+        <mat-icon>add</mat-icon>
+    </button>
+    <button mat-icon-button 
+            id="view-archive-button"
+            color="primary"
+            routerLink='/admin/archive'
+            matTooltip="Blog Archive">
+        <mat-icon>archive</mat-icon>
+    </button>
+    <button mat-icon-button
+            id="signout-button"
+            color="warn"
+            matTooltip="Sign Out"
+            (click)="confirmLogout('Are you sure you want to sign out?')">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
   
-    <div id="main-container" 
-        class="main-container"> 
-        <app-toolbar id="admin-toolbar" 
-                    menuTooltip="Admin Console Actions"
-                    (menuClick)="this.drawer.toggle()"></app-toolbar>
-        <router-outlet></router-outlet>
-    </div>
-</mat-drawer-container>
+<div id="main-container" 
+    class="main-container"> 
+    <router-outlet></router-outlet>
+</div>
   

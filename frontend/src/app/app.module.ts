@@ -35,7 +35,7 @@ import { ArchiveComponent } from './components/admin/archive/archive.component';
 import { StoryComponent } from './components/story/story.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { SanitizePipe } from './pipes/html.pipe';
+import { SanitizePipe } from './pipes/sanitize.pipe';
 
 /**
  * # AppModule

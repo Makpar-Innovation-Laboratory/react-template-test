@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     if(this.loginFormGroup.valid){this.loading = true;
       this.auth.login(this.loginFormGroup.controls['email'].value, 
                         this.loginFormGroup.controls['password'].value).subscribe((data)=>{
-        if(data){ this.router.navigateByUrl('/home'); }
+        if(data){ this.router.navigateByUrl('/'); }
       });
     }
     else{ this.loginFormGroup.markAsDirty() }

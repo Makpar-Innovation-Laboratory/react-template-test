@@ -82,7 +82,7 @@ Once the image is build, it can be spun up directly through,
 
 Or spun up with the rest of the application through the master `docker-compose.yml` file,
 
-``` 
+```shell
 # from the innolab-master repository
 docker-compose up
 ```
@@ -91,4 +91,12 @@ docker-compose up
 
 ## HTML Editor
 
-The **AdminComponent** uses the *@kolkov/angular-editor* for editing HTML content. Refer to [documentation](https://www.npmjs.com/package/@kolkov/angular-editor) for usage instructions.
+The **AdminComponent** uses the *@kolkov/angular-editor* for editing HTML content. Refer to [documentation](https://www.npmjs.com/package/@kolkov/angular-editor) for example usage.
+
+## Generate Docs
+
+From */frontend/* directory,
+
+```shell
+npx typedoc
+```
