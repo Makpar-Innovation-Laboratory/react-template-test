@@ -36,7 +36,7 @@ export class AddBlogComponent {
 
   public submit(): void {
     this.blog.postBlog({
-      id: null,
+      news_id: null,
       title: this.blogFormGroup.controls.title.value,
       subject: this.blogFormGroup.controls.subject.value,
       content: this.blogFormGroup.controls.content.value,

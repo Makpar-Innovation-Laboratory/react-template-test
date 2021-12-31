@@ -2,6 +2,7 @@
 import { BlogService } from './../../../services/blog.service';
 import { Component, OnInit, } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Blog, BlogsResponse } from 'src/app/models/blog';
 
 @Component({
   selector: 'app-all-blogs',
@@ -13,11 +14,19 @@ import { MatDialog } from '@angular/material/dialog';
 
 export class AllBlogsComponent implements OnInit {
 
-  constructor(private blog_service: BlogService, 
-              private dialog: MatDialog) {}
+  public blogs : Blog[] = [];
+
+  constructor(private blogService: BlogService) {}
 
   ngOnInit() {
+    this.blogService.getBlogs().subscribe((theseBlogs: BlogsResponse)=>{
+      console.log(theseBlogs)
+      this.blogs = theseBlogs.results;
+    })
   }
  
+  public deleteBlog(): void{
+
+  }
 
 }

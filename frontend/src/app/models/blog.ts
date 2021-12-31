@@ -1,5 +1,5 @@
 export interface Blog{
-    id: number | null,
+    news_id: number | null,
     submitted: Date | null,
     subject: string | null,
     title: string | null,
@@ -11,8 +11,12 @@ export interface BlogResponse{
     message: string
 }
 
+export interface BlogsResponse{
+    results: Blog[]
+}
+
 export const NULL_BLOG :Blog = {
-    id: null, 
+    news_id: null, 
     submitted: null,
     subject: null,
     title: null,

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { HostService } from './host.service';
-import { Blog, BlogResponse } from '../models/blog';
+import { Blog, BlogResponse, BlogsResponse } from '../models/blog';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +28,10 @@ export class BlogService {
   }
   
   public getBlog(id: number): Observable<Blog>{
-    return this.http.get<Blog>(`${this.host.getHost()}/news/${id}`)
+    return this.http.get<Blog>(`${this.host.getHost()}/news/post/${id}`)
+  }
+
+  public getBlogs(): Observable<BlogsResponse>{
+    return this.http.get<BlogsResponse>(`${this.host.getHost()}/news`)
   }
 }

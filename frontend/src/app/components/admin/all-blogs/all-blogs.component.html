@@ -1,3 +1,42 @@
+<div id="blogs-container"
+        class="blogs-container"
+        *ngIf="blogs">
+    <mat-card id="blog-card"
+                class="blog-card"
+                *ngFor="let blog of blogs">
+        <mat-card-title>{{blog.title}}</mat-card-title>
+        <mat-card-subtitle>{{blog.submitted}}</mat-card-subtitle>
+        <mat-card-content>
+            preview goes here
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-icon-button
+                    id="view-button"
+                    color="accent"
+                    matTooltip="View this blog"
+                    [routerLink]="['/blog', blog.news_id]">
+                <mat-icon>details</mat-icon>
+            </button>
+            <button mat-icon-button
+                    id="edit-button"
+                    color="accent"
+                    matTooltip="Edit this blog"
+                    [routerLink]="['/admin/update-blog', blog.news_id]">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button
+                    id="delete-button"
+                    color="warn"
+                    matTooltip="Delete this blog"
+                    (click)="deleteBlog()">
+                <mat-icon>delete_forever</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+        
+
+</div>
+
 <!-- <div class="all-blogs-container">
     <div class="blog-container" *ngFor="let blog of blogs">
         <div class="blog-container-image">

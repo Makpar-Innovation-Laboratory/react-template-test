@@ -9,6 +9,7 @@
 @use './app/components/dialog/dialog.theme' as dialog;
 @use './app/components/toolbar/toolbar.theme' as toolbar;
 @use './app/components/admin/add-blog/add-blog.theme' as add_blog;
+@use './app/components/admin/all-blogs/all-blogs.theme' as all_blogs;
 
 @import '~@angular/material/theming';
 
@@ -116,3 +117,4 @@ $makpar-theme: mat-dark-theme(
 @include dialog.theme($makpar-alt-theme);
 @include toolbar.theme($makpar-alt-theme);
 @include add_blog.theme($makpar-alt-theme);
+@include all_blogs.theme($makpar-alt-theme)

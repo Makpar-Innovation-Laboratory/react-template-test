@@ -1,4 +1,4 @@
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { BlogService } from './../../services/blog.service';
 import { Component, OnInit } from '@angular/core';
 import { Blog } from 'src/app/models/blog';
@@ -13,8 +13,8 @@ export class ViewBlogComponent implements OnInit {
   public blog: Blog | null | undefined;
 
   constructor(private blogService :BlogService, 
-              private activatedRoute:ActivatedRouteSnapshot) { 
-    this.blog_id = parseInt(this.activatedRoute.url[0].path)
+              private activatedRoute:ActivatedRoute) { 
+    this.blog_id = this.activatedRoute.snapshot.params.id
   }
 
   ngOnInit() {
