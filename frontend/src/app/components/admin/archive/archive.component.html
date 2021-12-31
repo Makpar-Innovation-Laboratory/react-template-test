@@ -1,11 +1,11 @@
-<div id="blogs-container"
-        class="blogs-container"
-        *ngIf="blogs">
-    <mat-card id="blog-card"
-                class="blog-card"
-                *ngFor="let blog of blogs">
-        <mat-card-title>{{blog.title}}</mat-card-title>
-        <mat-card-subtitle>{{blog.submitted}}</mat-card-subtitle>
+<div id="news-container"
+        class="news-container"
+        *ngIf="feed">
+    <mat-card id="newsfeed-card"
+                class="newsfeed-card"
+                *ngFor="let story of feed">
+        <mat-card-title>{{ story.title }}</mat-card-title>
+        <mat-card-subtitle>{{ story.submitted }}</mat-card-subtitle>
         <mat-card-content>
             preview goes here
         </mat-card-content>
@@ -13,22 +13,22 @@
             <button mat-icon-button
                     id="view-button"
                     color="accent"
-                    matTooltip="View this blog"
-                    [routerLink]="['/news', blog.news_id]">
+                    matTooltip="View this story"
+                    [routerLink]="['/news', story.news_id]">
                 <mat-icon>details</mat-icon>
             </button>
             <button mat-icon-button
                     id="edit-button"
                     color="accent"
-                    matTooltip="Edit this blog"
-                    [routerLink]="['/admin/update', blog.news_id]">
+                    matTooltip="Edit this story"
+                    [routerLink]="['/admin/update', story.news_id]">
                 <mat-icon>edit</mat-icon>
             </button>
             <button mat-icon-button
                     id="delete-button"
                     color="warn"
-                    matTooltip="Delete this blog"
-                    (click)="deleteBlog()">
+                    matTooltip="Delete this story"
+                    (click)="deleteNews()">
                 <mat-icon>delete_forever</mat-icon>
             </button>
         </mat-card-actions>

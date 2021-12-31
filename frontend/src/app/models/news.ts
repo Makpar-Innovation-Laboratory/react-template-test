@@ -1,4 +1,4 @@
-export interface Blog{
+export interface News{
     news_id: number | null,
     submitted: string | null,
     subject: string | null,
@@ -6,16 +6,16 @@ export interface Blog{
     content: string | null,
 }
 
-export interface BlogPostResponse{
+export interface NewsPostResponse{
     id: number,
     message: string
 }
 
-export interface BlogResponse{
-    results: Blog[]
+export interface NewsResponse{
+    results: News[]
 }
 
-export const NULL_BLOG :Blog = {
+export const NULL_NEWS : News = {
     news_id: null, 
     submitted: null,
     subject: null,

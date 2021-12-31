@@ -23,6 +23,7 @@ import { Component } from '@angular/core';
 export class AdminComponent {
  
   /**
+   * ## Description
    * Constructs an instance of {@link AdminComponent}.
    * @param dialog Reference to the {@link MatDialog} html component.
    * @param auth_service Authentication service for logging out.
@@ -31,6 +32,7 @@ export class AdminComponent {
               private auth_service:AuthService) { }
  
   /**
+   * ## Description
    * Displays a responsive {@link MatDialog} on screen.
    * @param message message to be displayed by the dialog
    */

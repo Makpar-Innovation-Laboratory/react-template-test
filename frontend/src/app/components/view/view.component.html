@@ -1,8 +1,8 @@
 <div class="blog-details-container"
-    *ngIf="blog">
+    *ngIf="newsPost">
     <div class="blog-details-title-date">
-        <h3 id="title"> {{blog.title}} </h3> 
-        <h4 id="date"> {{blog.submitted}}</h4>
+        <h3 id="title"> {{ newsPost.title }} </h3> 
+        <h4 id="date"> {{ newsPost.submitted }}</h4>
     </div>
     <div class="blog-details-content">
         <!--<div [innerHTML]="blog.content | sanitizeHtml" ></div>-->

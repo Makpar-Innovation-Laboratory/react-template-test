@@ -1,7 +1,7 @@
 
-import { BlogService } from '../../../services/blog.service';
+import { NewsService } from '../../../services/news.service';
 import { Component, OnInit, } from '@angular/core';
-import { Blog, BlogResponse } from 'src/app/models/blog';
+import { News, NewsPostResponse, NewsResponse } from 'src/app/models/news';
 
 @Component({
   selector: 'app-archive',
@@ -10,18 +10,29 @@ import { Blog, BlogResponse } from 'src/app/models/blog';
 })
 export class ArchiveComponent implements OnInit {
 
-  public blogs : Blog[] = [];
+  public feed : News[] = [];
 
-  constructor(private blogService: BlogService) {}
+  /**
+   * ## Description
+   * Construct an instance of {@link ArchiveComponent}.
+   * @param news {@link NewsService} for making service calls to the Innovation Lab API
+   */
+  constructor(private news: NewsService) {}
 
-  ngOnInit() {
-    this.blogService.getBlogs().subscribe((theseBlogs: BlogResponse)=>{
-      this.blogs = theseBlogs.results;
+  /**
+   * Angular Initialization LifeCycle Hook
+   */
+  ngOnInit(): void{
+    this.news.getAllNews().subscribe((thisNews: NewsResponse)=>{
+      this.feed = thisNews.results;
     })
   }
  
-  public deleteBlog(): void{
 
+  public deleteNews(id: number): void{
+    this.news.deleteNews(id).subscribe((__: NewsPostResponse)=>{
+      return 
+    })
   }
 
 }

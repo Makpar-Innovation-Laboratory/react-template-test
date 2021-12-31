@@ -2,15 +2,11 @@
      id="login-page">
     <mat-card id="login-card" 
                 class="login-card mat-elevation-z8">
-
         <mat-card-title id="login-card-title">Innovation Lab Access</mat-card-title>
-
         <mat-card-content id="login-card-content">
-            <div class="vertical-flex"
-                    id="login-form-container">
-
+            <div id="login-form-container"
+                    class="login-form-container">
                 <form [formGroup]="loginFormGroup" (ngSubmit)="login()">
-
                     <mat-form-field id="email-form-field"
                                     class="login-form-field"
                                     color="accent">
@@ -36,7 +32,6 @@
                             This field is <strong>required</strong>
                         </mat-error>
                     </mat-form-field>
-    
                     <mat-form-field id="password-form-field" 
                                     class="login-form-field"
                                     color="accent">
@@ -71,7 +66,6 @@
                 </form>
             </div>
         </mat-card-content>
-
         <mat-card-actions id="login-card-actions">
             <div class="center-flex">
                 <div class="vertical-flex"> 
@@ -90,12 +84,10 @@
                 </div>
             </div>
         </mat-card-actions>
-
         <mat-card-footer id="login-card-footer">
             <mat-progress-bar id="login-card-progress-bar"
                                 *ngIf="loading" 
                                 mode="indeterminate"></mat-progress-bar>
           </mat-card-footer>
     </mat-card>
-
 </div>
