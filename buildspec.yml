@@ -65,11 +65,13 @@ phases:
   build:
     commands:
       - |
-        cp ./conf/nginx.proxy.conf ./conf/nginx.conf
-        docker build -t ${APPLICATION}-frontend:${BRANCH^} .
-        docker tag ${APPLICATION}-frontend:${BRANCH^} \
-            $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
-        docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
+        bash -c '
+          cp ./conf/nginx.proxy.conf ./conf/nginx.conf
+          docker build -t ${APPLICATION}-frontend:${BRANCH^} .
+          docker tag ${APPLICATION}-frontend:${BRANCH^} \
+              $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
+        '
   
   post_build:
     commands:
