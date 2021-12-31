@@ -86,7 +86,7 @@ phases:
                    --env APP_ENV=test \
                    --env APP_PORT=8000 \
                    --detach \
-                   ${APPLICATION}-backend:${BRANCH^}
+                   $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-backend:${BRANCH^}
           docker run --publish 8080:8080 \
                     --name ${application}_frontend \
                     --env NGINX_PORT=8080 \
@@ -94,7 +94,7 @@ phases:
                     --env PROXY_HOST=localhost \
                     --env PROXY_PORT=8000 \
                     --detach \
-                    ${APPLICATION}-frontend:${BRANCH^}
+                    $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
           git clone codecommit://${APPLICATION}-test-harness
           cd ${APPLICATION}-test-harness/python
           export FRONTEND_HOST_URL="http://localhost:8080"
@@ -106,7 +106,7 @@ phases:
                 --format behave_html_formatter:HTMLFormatter \
                   || true
           aws s3 cp ./behave-report-frontend.html \
-                    s3://${APPLICATION}-coverage${ENV}/test-coverage/bdd/behave-report-frontend.html
+                    s3://${APPLICATION}-coverage/test-coverage/bdd/behave-report-frontend.html
           cd ../..
         '
       # Generate documentation
@@ -114,7 +114,7 @@ phases:
         cd frontend
         npx typedoc
         aws s3 cp ../docs/package/. \
-                s3://${APPLICATION}-coverage${ENV}/frontend/ \
+                s3://${APPLICATION}-coverage/frontend/ \
                 --recursive
         
 
