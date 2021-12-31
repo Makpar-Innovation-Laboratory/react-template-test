@@ -1,9 +1,10 @@
 import { BlogService } from '../../../services/blog.service';
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Blog } from 'src/app/models/blog';
+import { BlogResponse } from 'src/app/models/blog';
 import { DialogComponent } from '../../dialog/dialog.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-editor',
@@ -14,14 +15,24 @@ export class EditorComponent {
   
   public blogFormGroup: FormGroup;
 
-  constructor(private blog: BlogService,
+  constructor(private blogService: BlogService,
               private formBuilder : FormBuilder,
-              private dialog:MatDialog) { 
+              private dialog:MatDialog, 
+              private activatedRoute: ActivatedRoute) { 
     this.blogFormGroup = this.formBuilder.group({
       title: this.formBuilder.control('', [Validators.required]),
       subject: this.formBuilder.control('', [Validators.required]),
       content: this.formBuilder.control('', [Validators.required])
     })
+
+    // if path is 'update', initialize form group with news data
+    if(this.activatedRoute.snapshot.url[0].path == 'update'){
+      this.blogService.getBlog(this.activatedRoute.snapshot.params.id).subscribe((blog: BlogResponse)=>{
+        this.blogFormGroup.controls.title.setValue(blog.results[0].title);
+        this.blogFormGroup.controls.subject.setValue(blog.results[0].subject);
+        this.blogFormGroup.controls.content.setValue(blog.results[0].content)
+      })
+    }
   }
 
   public confirmSubmission(message: string): void{
@@ -35,7 +46,7 @@ export class EditorComponent {
   }
 
   public submit(): void {
-    this.blog.postBlog({
+    this.blogService.postBlog({
       news_id: null,
       title: this.blogFormGroup.controls.title.value,
       subject: this.blogFormGroup.controls.subject.value,

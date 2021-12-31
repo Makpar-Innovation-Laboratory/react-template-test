@@ -2,7 +2,7 @@
 import { BlogService } from '../../../services/blog.service';
 import { Component, OnInit, } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Blog, BlogsResponse } from 'src/app/models/blog';
+import { Blog, BlogResponse } from 'src/app/models/blog';
 
 @Component({
   selector: 'app-archive',
@@ -19,8 +19,7 @@ export class ArchiveComponent implements OnInit {
   constructor(private blogService: BlogService) {}
 
   ngOnInit() {
-    this.blogService.getBlogs().subscribe((theseBlogs: BlogsResponse)=>{
-      console.log(theseBlogs)
+    this.blogService.getBlogs().subscribe((theseBlogs: BlogResponse)=>{
       this.blogs = theseBlogs.results;
     })
   }

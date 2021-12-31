@@ -6,12 +6,12 @@ export interface Blog{
     content: string | null,
 }
 
-export interface BlogResponse{
+export interface BlogPostResponse{
     id: number,
     message: string
 }
 
-export interface BlogsResponse{
+export interface BlogResponse{
     results: Blog[]
 }
 

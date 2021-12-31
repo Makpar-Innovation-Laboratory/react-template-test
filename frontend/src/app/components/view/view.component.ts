@@ -1,7 +1,7 @@
 import { ActivatedRoute} from '@angular/router';
 import { BlogService } from '../../services/blog.service';
 import { Component, OnInit } from '@angular/core';
-import { Blog } from 'src/app/models/blog';
+import { Blog, BlogResponse } from 'src/app/models/blog';
 
 @Component({
   selector: 'app-view',
@@ -18,8 +18,8 @@ export class ViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.blogService.getBlog(this.blog_id).subscribe((data: Blog)=>{
-      this.blog = data
+    this.blogService.getBlog(this.blog_id).subscribe((data: BlogResponse)=>{
+      this.blog = data.results[0]
     });
   }
 
