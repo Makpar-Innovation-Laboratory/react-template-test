@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit {
   public hidePassword: boolean = true;
   public loading: boolean = false;
   
-  constructor(private auth: AuthService, private router: Router,
+  constructor(private auth: AuthService, 
+              private router: Router,
               private formBuilder : FormBuilder) {
     this.loginFormGroup = this.formBuilder.group({
       email: this.formBuilder.control('', [Validators.required, Validators.email]),

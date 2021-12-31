@@ -3,7 +3,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
 import { sanitizeHtmlPipe } from './sanitize-html.pipe';
 
@@ -32,7 +31,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AddBlogComponent } from './components/admin/add-blog/add-blog.component';
 import { AllBlogsComponent } from './components/admin/all-blogs/all-blogs.component';
 import { UpdateBlogComponent } from './components/admin/update-blog/update-blog.component';
-import { AlertDialogBodyComponent } from './components/alert-dialog-body/alert-dialog-body.component';
+import { DialogBodyComponent } from './components/dialog/dialog.component';
 import { TagComponent } from './components/tag/tag.component';
 import { ViewBlogComponent } from './components/view-blog/view-blog.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
@@ -54,7 +53,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     AddBlogComponent,
     AllBlogsComponent,
     UpdateBlogComponent,
-    AlertDialogBodyComponent,
+    DialogBodyComponent,
     TagComponent,
     ViewBlogComponent,
     sanitizeHtmlPipe,
@@ -68,7 +67,6 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    RichTextEditorAllModule,
 
     // MATERIAL IMPORTS
     MatSidenavModule,

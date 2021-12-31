@@ -14,8 +14,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent {
+
   @Output() public menuClick : EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  /**
+   * Constructs an instance of {@link ToolbarComponent}
+   */
   constructor() { }
 
   /**

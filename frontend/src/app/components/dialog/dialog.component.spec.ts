@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AlertDialogBodyComponent } from './alert-dialog-body.component';
+import { DialogBodyComponent } from './dialog.component';
 
-describe('AlertDialogBodyComponent', () => {
-  let component: AlertDialogBodyComponent;
-  let fixture: ComponentFixture<AlertDialogBodyComponent>;
+describe('DialogBodyComponent', () => {
+  let component: DialogBodyComponent;
+  let fixture: ComponentFixture<DialogBodyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AlertDialogBodyComponent ]
+      declarations: [ DialogBodyComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AlertDialogBodyComponent);
+    fixture = TestBed.createComponent(DialogBodyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

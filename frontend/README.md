@@ -1,27 +1,49 @@
-# Frontend
+# InnoLab Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7.
+This repository connects to the **Cloudfront** and **s3** components of the Innovation Lab sandbox environment. Currently, it is setup for a **React** application. An **AWS CodePipeline** CI/CD pipeline is configured to deploy the **React** app to an **S3** bucket which in turn is served through the **Cloudfront** distribution
 
-## Development server
+See [Pipeline section](#pipeline) below and [/devops/bitbucket-pipelines.yml](/devops/bitbucket-pipelines.yml) for more information about the CI/CD pipeline.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Quickstart
 
-## Code scaffolding
+### local
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Setup the application on your local computer,
 
-## Build
+```shell
+cd frontend
+npm install
+ng serve
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+This will open a development server on *localhost:4200*
 
-## Running unit tests
+### production
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```shell
+cd frontend
+npm install
+ng build --aot --output-hashing none
+```
 
-## Running end-to-end tests
+## Application Image
+ 
+TODO
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Pipeline
 
-## Further help
+This repository is hooked into an **AWS CodePipeline** pipeline on three environment branches, `Prod`,  `Staging` and `Dev`, using the *buildspec.yml* file in the root directory. 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+When new changes are merged into the environment branches, the pipeline will kick off. The pipeline will spin up a **Node** container and build the application within **CodeBuild**. The *buildspec.yml* contains all the configuration to build a **React** app and deploy to an **S3** bucket, however you will still need to do a little bit of setup on the AWS side.
+
+
+
+## Deploying the Application
+
+The **S3** bucket this repo is hooked into typically sits behind a **CloudFront** distribution. Any time a new deployment goes through, the **CF** cache will need invalidated before the changes appear. To invalidate the cache, copy the *.sample.env* environment file to a new *.env* file and add the ID of the **CloudFront** distribution to the **CLOUDFRONT_DISTRIBUTION_ID** environment file and then execute the script,
+
+```shell
+./scripts/invalidate-cache
+```
+
+---

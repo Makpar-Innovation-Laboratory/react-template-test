@@ -1,5 +1,5 @@
 import { AuthService } from '../../services/auth.service';
-import { DialogBodyComponent } from './../dialog-body/dialog-body.component';
+import { DialogBodyComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Component } from '@angular/core';
  

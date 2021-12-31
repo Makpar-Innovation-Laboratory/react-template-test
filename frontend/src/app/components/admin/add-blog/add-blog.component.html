@@ -1,38 +1,69 @@
-<div class="add-blog-container">
-    <div class="add-blog-main-form">
-        <div class="add-blog-input-title">
-            <mat-form-field>
-                <input matInput type="text" [(ngModel)]="title" placeholder="Title of the blog">
-            </mat-form-field>
-        </div>
-        <div class="add-blog-input-content">
-            <ejs-richtexteditor [(value)]="content" height="auto" placeholder="Add Paragraph..."></ejs-richtexteditor>
-        </div>
-    </div>
-    <div class="add-blog-additional-form">
-        <div class="add-blog-additional-feature-image">
-            <h3>Feature Image</h3>
-            <input #imageInputs
-                type="file"
-                accept="image/*"
-                hidden
-                (change)="processFile(imageInputs)">
-            <img class="preview-image" [src]="preview_image" *ngIf="preview_image">
-            <button mat-raised-button color="primary" (click)="imageInputs.click()" >
-                {{preview_image ? 'Change Image': 'Upload Image'}}
-            </button>
-        </div>
-        <div class="add-blog-additional-tags">
-            <h3>Tags</h3>
-            <tag-component></tag-component>
-        </div>
-        <div class="add-blog-additional-actions">
-            <button mat-raised-button id="create-action" (click)="open_dialog('Are you sure you want to create the blog?')">Create</button>
-        </div>
-    </div>
+<div class="blog-container">
+    <mat-card class="editor-container">
+        <mat-card-title>Blog Editor</mat-card-title>
+        <mat-card-content>
+            <div class="add-blog-form-container"
+                    id="add-blog-form-container">
+                <form [formGroup]="blogFormGroup" (ngSubmit)="submit()">
+                    <mat-form-field id="title-form-field"
+                                    class="title-form-field"
+                                    color="accent">
+                        <mat-label>Title</mat-label>
+                        <input matInput 
+                                id="title-input" 
+                                type="text" 
+                                formControlName="title">
+                        <button matSuffix mat-icon-button 
+                                id="clear" 
+                                type="button" 
+                                aria-label="Clear" 
+                                *ngIf="this.blogFormGroup.controls.title.value"
+                                (click)="this.blogFormGroup.controls.title.setValue('')">
+                            <mat-icon id="title-clear-icon"
+                                        color="primary">close</mat-icon>
+                        </button>
+                        <mat-error *ngIf="!blogFormGroup.controls.title.hasError('required')">
+                            This field is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field id="subject-form-field"
+                                    class="subject-form-field"
+                                    color="accent">
+                        <mat-label>Subject</mat-label>
+                        <input matInput 
+                                id="subject-input" 
+                                type="text" 
+                                formControlName="subject">
+                        <button matSuffix 
+                                mat-icon-button 
+                                id="clear" 
+                                type="button" 
+                                aria-label="Clear" 
+                                *ngIf="this.blogFormGroup.controls.subject.value"
+                                (click)="this.blogFormGroup.controls.subject.setValue('')">
+                            <mat-icon id="title-clear-icon"
+                                        color="primary">close</mat-icon>
+                        </button>
+                        <mat-error *ngIf="!blogFormGroup.controls.subject.hasError('required')">
+                            This field is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                </form>
+            </div>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <div class="center-flex">
+                <div class="vertical-flex"> 
+                    <button mat-icon-button
+                            id="add-blog-button"
+                            [disabled]="blogFormGroup.invalid">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mat-card-actions>
+    </mat-card>
 </div>
-
-<mat-spinner *ngIf="show_spinner" class="progress-spinner" [diameter]="50" ></mat-spinner>
-
-
-
