@@ -25,7 +25,7 @@ export class EditorComponent {
       content: this.formBuilder.control('', [Validators.required])
     })
 
-    // if path is 'update', initialize form group with news data
+    // if url path is 'update/:id', initialize form group with news data from API
     if(this.activatedRoute.snapshot.url[0].path == 'update'){
       this.blogService.getBlog(this.activatedRoute.snapshot.params.id).subscribe((blog: BlogResponse)=>{
         this.blogFormGroup.controls.title.setValue(blog.results[0].title);
