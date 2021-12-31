@@ -9,19 +9,19 @@
         <mat-card-content>
             preview goes here
         </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions align="end">
             <button mat-icon-button
                     id="view-button"
                     color="accent"
                     matTooltip="View this blog"
-                    [routerLink]="['/blog', blog.news_id]">
+                    [routerLink]="['/news', blog.news_id]">
                 <mat-icon>details</mat-icon>
             </button>
             <button mat-icon-button
                     id="edit-button"
                     color="accent"
                     matTooltip="Edit this blog"
-                    [routerLink]="['/admin/update-blog', blog.news_id]">
+                    [routerLink]="['/admin/update', blog.news_id]">
                 <mat-icon>edit</mat-icon>
             </button>
             <button mat-icon-button
