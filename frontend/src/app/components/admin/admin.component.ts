@@ -1,5 +1,5 @@
 import { AuthService } from '../../services/auth.service';
-import { DialogBodyComponent } from '../dialog/dialog.component';
+import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Component } from '@angular/core';
  
@@ -35,7 +35,7 @@ export class AdminComponent {
    * @param message message to be displayed by the dialog
    */
   public confirmLogout(message:string): void{
-    const dialogRef = this.dialog.open(DialogBodyComponent,{
+    const dialogRef = this.dialog.open(DialogComponent,{
       data:{ message }, 
       width:'50%', height:'25%'
     });

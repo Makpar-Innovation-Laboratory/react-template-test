@@ -28,12 +28,10 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AdminComponent } from './components/admin/admin.component';
-import { AddBlogComponent } from './components/admin/add-blog/add-blog.component';
-import { AllBlogsComponent } from './components/admin/all-blogs/all-blogs.component';
-import { UpdateBlogComponent } from './components/admin/update-blog/update-blog.component';
-import { DialogBodyComponent } from './components/dialog/dialog.component';
-import { TagComponent } from './components/tag/tag.component';
-import { ViewBlogComponent } from './components/view-blog/view-blog.component';
+import { EditorComponent } from './components/admin/editor/editor.component';
+import { ArchiveComponent } from './components/admin/archive/archive.component';
+import { ViewComponent } from './components/view/view.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 
@@ -50,12 +48,10 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     LoginComponent,
     HomeComponent,
     AdminComponent,
-    AddBlogComponent,
-    AllBlogsComponent,
-    UpdateBlogComponent,
-    DialogBodyComponent,
-    TagComponent,
-    ViewBlogComponent,
+    EditorComponent,
+    ArchiveComponent,
+    DialogComponent,
+    ViewComponent,
     sanitizeHtmlPipe,
     ToolbarComponent
   ],

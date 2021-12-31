@@ -1,16 +1,16 @@
-import { BlogService } from './../../../services/blog.service';
+import { BlogService } from '../../../services/blog.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Blog } from 'src/app/models/blog';
-import { DialogBodyComponent } from '../../dialog/dialog.component';
+import { DialogComponent } from '../../dialog/dialog.component';
 
 @Component({
-  selector: 'app-add-blog',
-  templateUrl: './add-blog.component.html',
-  styleUrls: ['./add-blog.component.css']
+  selector: 'app-editor',
+  templateUrl: './editor.component.html',
+  styleUrls: ['./editor.component.css']
 })
-export class AddBlogComponent {
+export class EditorComponent {
   
   public blogFormGroup: FormGroup;
 
@@ -25,7 +25,7 @@ export class AddBlogComponent {
   }
 
   public confirmSubmission(message: string): void{
-    const dialogRef = this.dialog.open(DialogBodyComponent,{
+    const dialogRef = this.dialog.open(DialogComponent,{
       data:{ message }, 
       width:'50%', height:'25%'
     });

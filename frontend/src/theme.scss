@@ -8,8 +8,8 @@
 @use './app/components/admin/admin.theme' as admin;
 @use './app/components/dialog/dialog.theme' as dialog;
 @use './app/components/toolbar/toolbar.theme' as toolbar;
-@use './app/components/admin/add-blog/add-blog.theme' as add_blog;
-@use './app/components/admin/all-blogs/all-blogs.theme' as all_blogs;
+@use './app/components/admin/editor/editor.theme' as editor;
+@use './app/components/admin/archive/archive.theme' as archive;
 
 @import '~@angular/material/theming';
 
@@ -116,5 +116,5 @@ $makpar-theme: mat-dark-theme(
 @include admin.theme($makpar-alt-theme);
 @include dialog.theme($makpar-alt-theme);
 @include toolbar.theme($makpar-alt-theme);
-@include add_blog.theme($makpar-alt-theme);
-@include all_blogs.theme($makpar-alt-theme)
+@include editor.theme($makpar-alt-theme);
+@include archive.theme($makpar-alt-theme)

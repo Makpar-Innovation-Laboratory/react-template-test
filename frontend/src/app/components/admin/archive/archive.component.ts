@@ -1,18 +1,18 @@
 
-import { BlogService } from './../../../services/blog.service';
+import { BlogService } from '../../../services/blog.service';
 import { Component, OnInit, } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Blog, BlogsResponse } from 'src/app/models/blog';
 
 @Component({
-  selector: 'app-all-blogs',
-  templateUrl: './all-blogs.component.html',
-  styleUrls: ['./all-blogs.component.css']
+  selector: 'app-archive',
+  templateUrl: './archive.component.html',
+  styleUrls: ['./archive.component.css']
 })
 
 
 
-export class AllBlogsComponent implements OnInit {
+export class ArchiveComponent implements OnInit {
 
   public blogs : Blog[] = [];
 

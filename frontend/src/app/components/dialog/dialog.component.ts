@@ -6,10 +6,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.css']
 })
-export class DialogBodyComponent{
+export class DialogComponent{
 
   message!: string;
-  constructor(public dialogRef: MatDialogRef<DialogBodyComponent>,
+  constructor(public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.message = this.data.message;
   }

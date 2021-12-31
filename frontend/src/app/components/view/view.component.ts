@@ -1,14 +1,14 @@
 import { ActivatedRoute} from '@angular/router';
-import { BlogService } from './../../services/blog.service';
+import { BlogService } from '../../services/blog.service';
 import { Component, OnInit } from '@angular/core';
 import { Blog } from 'src/app/models/blog';
 
 @Component({
-  selector: 'app-view-blog',
-  templateUrl: './view-blog.component.html',
-  styleUrls: ['./view-blog.component.css']
+  selector: 'app-view',
+  templateUrl: './view.component.html',
+  styleUrls: ['./view.component.css']
 })
-export class ViewBlogComponent implements OnInit {
+export class ViewComponent implements OnInit {
   public blog_id : number;
   public blog: Blog | null | undefined;
 
