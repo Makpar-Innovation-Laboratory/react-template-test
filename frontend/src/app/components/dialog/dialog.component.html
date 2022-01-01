@@ -2,15 +2,28 @@
     <div mat-dialog-content align="center">
         <h2>{{message}}</h2>
     </div>
-        
-    <div class="dialog-button-container">
-        <button mat-raised-button 
-                color="primary" 
-                (click)="onClick(true)">Yes</button>
-        <button mat-raised-button 
-                color="warn"  
-                (click)="onClick(false)">No</button>
-    </div>
+    
+        <!-- 'YesOrNo' type implementation -->
+        <div class="dialog-button-container" *ngIf="this.type=='YesOrNo'">
+            <button mat-raised-button id="yes-button"
+                    color="primary" 
+                    (click)="onClick(true)">Yes</button>
+            <button mat-raised-button id="no-button"
+                    color="warn"  
+                    (click)="onClick(false)">No</button>
+        </div>
+        <!-- 'OK' type implementation-->
+        <div class="dialog-button-container" *ngIf="this.type=='OK'">
+            <button mat-raised-button id="ok-button"
+                    color="primary"
+                    (click)="onClick(true)">Ok</button>
+        </div>
+        <!-- 'RouteLink' type implementation-->
+        <div>
+            <button mat-button id="route-button"
+                    color="accent"
+                    [routerLink]="this.data.message"></button>
+        </div>
 
 </div>
 
