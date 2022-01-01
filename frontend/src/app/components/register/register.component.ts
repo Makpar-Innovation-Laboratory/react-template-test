@@ -1,8 +1,11 @@
 import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { ComponentConfig } from '../component.config';
+import { DialogComponent, dialogTypes } from '../dialog/dialog.component';
 
 /**
  * # RegisterComponent
@@ -18,6 +21,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterComponent {
 
+  public registerMsg: string = "Verify your email and then return to the login page"
   public registerFormGroup: FormGroup;
   public loading: boolean = false;
 
@@ -28,8 +32,8 @@ export class RegisterComponent {
    * @param router 
    * @param formBuilder 
    */
-  constructor(private auth: AuthService, 
-              private router: Router,
+  constructor(private auth: AuthService,
+              private dialog: MatDialog, 
               private formBuilder : FormBuilder) {
     this.registerFormGroup = this.formBuilder.group({
       username: this.formBuilder.control('', [Validators.required, Validators.maxLength(25)]),
@@ -63,7 +67,15 @@ export class RegisterComponent {
     if(this.registerFormGroup.valid){
       this.loading = true;
       this.auth.register(this.formToUser()).subscribe((registered : boolean)=>{
-
+        if(registered){
+          const dialogRef = this.dialog.open(DialogComponent,{
+            data:{ message: this.registerMsg, type: dialogTypes.RouteLink, route: 'login' }, 
+            width: ComponentConfig.dialogWidth, height: ComponentConfig.dialogHeight
+          });
+          dialogRef.afterClosed().subscribe((confirm: boolean)=>{
+            if(confirm){ this.auth.logout();}
+          })
+        }
       })
     }
 

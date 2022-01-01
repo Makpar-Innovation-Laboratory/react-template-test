@@ -22,6 +22,10 @@ export class AuthService {
               private host: HostService) { 
   }
 
+  private getToken(): Token{
+    return this.session.retrieve('token')
+  }
+
   private storeToken(token: Token): void{
     this.session.store('token', token.AuthenticationResult.IdToken); 
   }
@@ -44,7 +48,10 @@ export class AuthService {
   }
 
   public login(userlogin: UserLogin): Observable<Token>{
-    if(environment.mock){ return of(this.getFakeToken()) }
+    if(environment.mock){ 
+      this.storeToken(this.getFakeToken())
+      return of(this.getToken()) 
+    }
     else{
       return this.http.post<Token>(`${this.host.getHost()}/defaults/token`, userlogin).pipe(
         tap((data: Token)=> { 
@@ -75,7 +82,10 @@ export class AuthService {
   }
 
   public verify(): Observable<boolean>{
-    if(environment.mock){ return of(true); }
+    if(environment.mock){ 
+      if(this.getToken()) return of(true);
+      else return of(false);
+    }
     else{
       return this.http.get<Object>(`${this.host.getHost()}/defaults/verify`).pipe(
         map((__:any)=> {  

@@ -2,6 +2,7 @@ import { AuthService } from '../../services/auth.service';
 import { DialogComponent, dialogTypes } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Component } from '@angular/core';
+import { ComponentConfig } from '../component.config';
  
 /**
  * # AdminComponent
@@ -29,7 +30,7 @@ export class AdminComponent {
    * @param auth_service Authentication service for logging out.
    */
   constructor(private dialog: MatDialog,
-              private auth_service:AuthService) { }
+              private auth:AuthService) { }
  
   /**
    * ## Description
@@ -38,11 +39,11 @@ export class AdminComponent {
    */
   public confirmLogout(message:string): void{
     const dialogRef = this.dialog.open(DialogComponent,{
-      data:{ message, type: dialogTypes.YesOrNo}, 
-      width:'50%', height:'25%'
+      data:{ message: message, type: dialogTypes.YesOrNo, route: null}, 
+      width: ComponentConfig.dialogWidth, height: ComponentConfig.dialogHeight
     });
     dialogRef.afterClosed().subscribe((confirm: boolean)=>{
-      if(confirm){ this.auth_service.logout();}
+      if(confirm){ this.auth.logout();}
     })
   }
 }

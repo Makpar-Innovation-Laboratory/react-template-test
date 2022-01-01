@@ -40,6 +40,7 @@ export class DialogComponent{
 
   public message: string;
   public type: dialogTypes;
+  public route: string;
 
   /**
    * # Description
@@ -51,6 +52,7 @@ export class DialogComponent{
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.message = this.data.message;
       this.type = this.data.type;
+      this.route = this.data.route;
   }
   
   /**
