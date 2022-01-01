@@ -9,7 +9,4 @@ export class HomeComponent {
 
   constructor() { }
 
-  public toggleMenu(): void{
-
-  }
 }

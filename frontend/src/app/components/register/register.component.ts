@@ -21,7 +21,6 @@ import { DialogComponent, dialogTypes } from '../dialog/dialog.component';
 })
 export class RegisterComponent {
 
-  public registerMsg: string = "Verify your email and then return to the login page"
   public registerFormGroup: FormGroup;
   public loading: boolean = false;
 
@@ -69,7 +68,7 @@ export class RegisterComponent {
       this.auth.register(this.formToUser()).subscribe((registered : boolean)=>{
         if(registered){
           const dialogRef = this.dialog.open(DialogComponent,{
-            data:{ message: this.registerMsg, type: dialogTypes.RouteLink, route: 'login' }, 
+            data:{ message: ComponentConfig.registerMsg, type: dialogTypes.RouteLink, route: 'login' }, 
             width: ComponentConfig.dialogWidth, height: ComponentConfig.dialogHeight
           });
           dialogRef.afterClosed().subscribe((confirm: boolean)=>{
