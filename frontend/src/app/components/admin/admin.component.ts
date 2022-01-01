@@ -38,10 +38,10 @@ export class AdminComponent {
    */
   public confirmLogout(message:string): void{
     const dialogRef = this.dialog.open(DialogComponent,{
-      data:{ message }, 
+      data:{ message, type: 1}, 
       width:'50%', height:'25%'
     });
-    dialogRef.afterClosed().subscribe((confirm:boolean)=>{
+    dialogRef.afterClosed().subscribe((confirm: boolean)=>{
       if(confirm){ this.auth_service.logout();}
     })
   }

@@ -7,6 +7,7 @@ import { SessionStorageService } from 'ngx-webstorage';
 import { Token } from '../models/token';
 import { HostService } from './host.service';
 import { environment } from 'src/environments/environment';
+import { User, UserLogin } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,10 @@ export class AuthService {
 
   public loggedIn: boolean = false;
   
-  constructor(private http : HttpClient, private session: SessionStorageService,
-    private router: Router, private host: HostService) { 
+  constructor(private http : HttpClient, 
+              private session: SessionStorageService,
+              private router: Router, 
+              private host: HostService) { 
   }
 
   private storeToken(token: Token): void{
@@ -40,17 +43,15 @@ export class AuthService {
     }
   }
 
-  public login(username: string, password: string): Observable<Token>{
+  public login(userlogin: UserLogin): Observable<Token>{
     if(environment.mock){ return of(this.getFakeToken()) }
     else{
-      let body = { username: username, password: password }
-      let path : string= `${this.host.getHost()}/defaults/token`
-      return this.http.post<Token>(path, body).pipe(
+      return this.http.post<Token>(`${this.host.getHost()}/defaults/token`, userlogin).pipe(
         tap((data: Token)=> { 
           this.loggedIn = true;
           this.storeToken(data);
         }),
-        catchError((err: HttpErrorResponse)=> {
+        catchError((__:any)=> {
           this.loggedIn = false;
           return throwError('login error')
         })
@@ -58,11 +59,25 @@ export class AuthService {
     }
   }
   
-  public verify(): Observable<boolean>{
-    if(environment.mock){ return of(true) }
+  public register(user: User): Observable<boolean>{
+    if(environment.mock) { return of(true); }
     else{
-      let path : string = `${this.host.getHost()}/defaults/verify`
-      return this.http.get<Object>(path).pipe(
+
+      return this.http.post<Object>(`${this.host.getHost()}/defaults/register`, user).pipe(
+        map((__:any) =>{
+          return true;
+        }),
+        catchError((__:any)=>{
+          return of(false)
+        })
+      )
+    }
+  }
+
+  public verify(): Observable<boolean>{
+    if(environment.mock){ return of(true); }
+    else{
+      return this.http.get<Object>(`${this.host.getHost()}/defaults/verify`).pipe(
         map((__:any)=> {  
           this.loggedIn = true;
           return true; 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User, UserLogin } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
 /**
@@ -25,6 +26,7 @@ export class LoginComponent {
   public loading: boolean = false;
   
   /**
+   * # Description
    * 
    * @param auth 
    * @param router 
@@ -40,12 +42,25 @@ export class LoginComponent {
   }
 
   /**
-   * 
+   * # Description
+   * Converts {@link loginFormGroup} into an instance of {@link UserLogin}
+   * @returns {@link UserLogin} with the user credentials from the login form.
+   */
+  private formToUserLogin(): UserLogin{
+    return {
+      username: this.loginFormGroup.controls.email.value,
+      password: this.loginFormGroup.controls.password.value,
+    }
+  }
+
+  /**
+   * # Description
+   * @returns void 
    */
   public login() : void{
-    if(this.loginFormGroup.valid){this.loading = true;
-      this.auth.login(this.loginFormGroup.controls['email'].value, 
-                        this.loginFormGroup.controls['password'].value).subscribe((data)=>{
+    if(this.loginFormGroup.valid){
+      this.loading = true;
+      this.auth.login(this.formToUserLogin()).subscribe((data)=>{
         if(data){ this.router.navigateByUrl('/'); }
       });
     }

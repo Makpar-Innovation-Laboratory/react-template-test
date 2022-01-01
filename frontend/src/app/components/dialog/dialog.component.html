@@ -1,12 +1,16 @@
-<div mat-dialog-content align="center">
-    <h2>{{message}}</h2>
+<div class="dialog-container">
+    <div mat-dialog-content align="center">
+        <h2>{{message}}</h2>
+    </div>
+        
+    <div class="dialog-button-container">
+        <button mat-raised-button 
+                color="primary" 
+                (click)="onClick(true)">Yes</button>
+        <button mat-raised-button 
+                color="warn"  
+                (click)="onClick(false)">No</button>
+    </div>
+
 </div>
-    
-<div class="action-container">
-    <button mat-raised-button 
-            color="primary" 
-            (click)="onClick(true)">Yes</button>
-    <button mat-raised-button 
-            color="accent"  
-            (click)="onClick(false)">No</button>
-</div>
+
