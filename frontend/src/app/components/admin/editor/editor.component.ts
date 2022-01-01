@@ -48,7 +48,7 @@ export class EditorComponent {
               private activatedRoute: ActivatedRoute,
               private sanitizer: DomSanitizer,
               private snackBar: MatSnackBar,
-              private dialog:MatDialog) { 
+              private dialog: MatDialog) { 
     this.newsFormGroup = this.formBuilder.group({
       title: this.formBuilder.control('', [Validators.required]),
       subject: this.formBuilder.control('', [Validators.required]),
@@ -98,7 +98,6 @@ export class EditorComponent {
   public submit(): void {
     if(this.newsFormGroup.valid){
       if(this.mode == modes.new){
-        let sanitized_content = this.sanitizer.bypassSecurityTrustHtml(this.newsFormGroup.controls.content.value)
         this.news.postNews({
           news_id: null,
           title: this.newsFormGroup.controls.title.value,

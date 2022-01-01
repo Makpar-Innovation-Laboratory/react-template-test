@@ -3,6 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
+/**
+ * # RegisterComponent
+ * 
+ * ## Description
+ * 
+ * ## Example Usage
+ */
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -13,6 +20,13 @@ export class RegisterComponent {
   public registerFormGroup: FormGroup;
   public loading: boolean = false;
 
+  /**
+   * # Description
+   * Constructs an instance of {@link RegisterComponent}.
+   * @param auth 
+   * @param router 
+   * @param formBuilder 
+   */
   constructor(private auth: AuthService, 
               private router: Router,
               private formBuilder : FormBuilder) {
@@ -25,6 +39,10 @@ export class RegisterComponent {
     })
   }
 
+  /**
+   * # Description
+   * 
+   */
   public register(): void {
 
   }

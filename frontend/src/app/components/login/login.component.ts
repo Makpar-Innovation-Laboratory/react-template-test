@@ -3,6 +3,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
+/**
+ * # LoginComponent
+ * 
+ * ## Description
+ * 
+ * ## Example Usage
+ * 
+ * ```javascript
+ * ```
+ */
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,6 +24,12 @@ export class LoginComponent {
   public hidePassword: boolean = true;
   public loading: boolean = false;
   
+  /**
+   * 
+   * @param auth 
+   * @param router 
+   * @param formBuilder 
+   */
   constructor(private auth: AuthService, 
               private router: Router,
               private formBuilder : FormBuilder) {
@@ -23,6 +39,9 @@ export class LoginComponent {
     })
   }
 
+  /**
+   * 
+   */
   public login() : void{
     if(this.loginFormGroup.valid){this.loading = true;
       this.auth.login(this.loginFormGroup.controls['email'].value, 
