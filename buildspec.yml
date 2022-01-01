@@ -79,7 +79,7 @@ phases:
       - |
         bash -c '
           docker run --publish 8000:8000 \
-                   --name ${application}_backend \
+                   --name ${APPLICATION}_backend \
                    --env COGNITO_USER_POOL=$POOL_ID \
                    --env COGNITO_AUDIENCE=$CLIENT_ID \
                    --env COGNITO_AWS_REGION=$AWS_DEFAULT_REGION \
@@ -88,7 +88,7 @@ phases:
                    --detach \
                    $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-backend:${BRANCH^}
           docker run --publish 8080:8080 \
-                    --name ${application}_frontend \
+                    --name ${APPLICATION}_frontend \
                     --env NGINX_PORT=8080 \
                     --env ROOT_DIR=/home/build \
                     --env PROXY_HOST=localhost \
