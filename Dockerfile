@@ -1,10 +1,10 @@
 # ANGULAR BUILD
-FROM node:16 as angular
-ENV ANGULAR_VERSION=12
+FROM 894427396428.dkr.ecr.us-east-1.amazonaws.com/innolab-node:Dev as angular
 
 # DEPENDENCIES
 RUN apt-get update -y && \
-    apt-get install -y curl moreutils && \ 
+    apt-get install -y curl \
+                        moreutils && \ 
     npm install -g @angular/cli@${ANGULAR_VERSION} && \
     mkdir /home/build/ && \
     mkdir /home/frontend/
@@ -17,7 +17,7 @@ RUN npm install --force && \
     ng build --prod --output-hashing none
 
 # PRODUCTION SERVER
-FROM nginx:latest
+FROM 894427396428.dkr.ecr.us-east-1.amazonaws.com/innolab-nginx:Dev
 
 # DEPENDENCIES && CONFIGURATION
 RUN apt-get update -y && \
