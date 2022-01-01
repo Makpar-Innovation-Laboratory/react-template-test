@@ -8,6 +8,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
 
+import { MatCheckboxModule } from '@angular/material/checkbox'; 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule }  from '@angular/material/form-field';
@@ -65,38 +66,39 @@ import { RegisterComponent } from './components/register/register.component';
   ],
   imports: [
     // ANGULAR CORE
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
     ScrollingModule,
 
     // ANGULAR MATERIAL
-    MatSidenavModule,
-    MatChipsModule,
-    MatDialogModule,
-    MatProgressSpinnerModule,
-    MatCardModule,
+    MatAutocompleteModule,
     MatButtonModule,
+    MatCardModule,
+    MatChipsModule,
+    MatCheckboxModule,
+    MatDialogModule,
     MatFormFieldModule,
+    MatGridListModule,
     MatIconModule,
     MatInputModule,
+    MatListModule,
+    MatProgressSpinnerModule,
     MatProgressBarModule,
+    MatSidenavModule,
+    MatSnackBarModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatGridListModule,
-    MatListModule,
-    MatAutocompleteModule,
-    MatSnackBarModule,
-    
+  
 
     // OTHER
+          // ANGULAR EDITOR
+    AngularEditorModule,
       // NGX WEBSTORAGE
     NgxWebstorageModule.forRoot(),
-      // ANGULAR EDITOR
-    AngularEditorModule
 
   ],
   providers: [
