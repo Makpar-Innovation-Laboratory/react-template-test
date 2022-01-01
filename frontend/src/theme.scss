@@ -4,6 +4,7 @@
 // APP MODULE THEMES
 @use './app/app.theme' as app;
 @use './app/components/login/login.theme' as login;
+@use './app/components/register/register.theme' as register;
 @use './app/components/home/home.theme' as home;
 @use './app/components/dialog/dialog.theme' as dialog;
 @use './app/components/toolbar/toolbar.theme' as toolbar;
@@ -113,6 +114,7 @@ $makpar-theme: mat-dark-theme(
 @include angular-material-theme($makpar-alt-theme);
 @include app.theme($makpar-alt-theme);
 @include login.theme($makpar-alt-theme);
+@include register.theme($makpar-alt-theme);
 @include home.theme($makpar-alt-theme);
 @include story.theme($makpar-alt-theme);
 @include admin.theme($makpar-alt-theme);

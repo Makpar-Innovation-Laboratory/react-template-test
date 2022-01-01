@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   public loginFormGroup: FormGroup;
   public hidePassword: boolean = true;
@@ -22,8 +22,6 @@ export class LoginComponent implements OnInit {
       password: this.formBuilder.control('', [Validators.required])
     })
   }
-
-  ngOnInit(): void { }
 
   public login() : void{
     if(this.loginFormGroup.valid){this.loading = true;

@@ -48,4 +48,7 @@ else
 fi
 
 log "Building \e[3m$IMAGE_NAME:$IMAGE_TAG\e[0m Image" $SCRIPT_NAME
-docker build -t $IMAGE_NAME:$IMAGE_TAG $PROJECT_DIR
+docker build \
+        --build-arg ANGULAR_VERSION=$ANGULAR_VERSION \
+        --tag $IMAGE_NAME:$IMAGE_TAG \
+        $PROJECT_DIR

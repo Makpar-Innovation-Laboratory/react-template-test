@@ -1,62 +1,49 @@
-<div class="login-container" 
-     id="login-page">
-    <mat-card id="login-card" 
-                class="login-card mat-elevation-z8">
+<div id="login-container" class="login-container" >
+    <mat-card id="login-card" class="login-card mat-elevation-z8">
         <mat-card-title id="login-card-title">Innovation Lab Access</mat-card-title>
         <mat-card-content id="login-card-content">
-            <div id="login-form-container"
-                    class="login-form-container">
+            <div id="login-form-container" class="login-form-container">
                 <form [formGroup]="loginFormGroup" (ngSubmit)="login()">
-                    <mat-form-field id="email-form-field"
-                                    class="login-form-field"
+                    <mat-form-field id="email-form-field" class="login-form-field"
                                     color="accent">
                         <mat-label>Email</mat-label>
-                        <input matInput 
-                                id="email-input" 
-                                type="text" 
-                                formControlName="email"
+                        <input matInput id="email-input" formControlName="email"
+                                type="text" aria-label="email-input"
                                 (keydown.enter)="login()">
-                        <button matSuffix mat-icon-button 
-                                id="email-clear" 
-                                type="button" 
-                                aria-label="Clear" 
+                        <button matSuffix mat-icon-button  id="email-clear-button" 
+                                type="button" aria-label="email-clear-button" 
                                 *ngIf="this.loginFormGroup.controls.email.value"
                                 (click)="this.loginFormGroup.controls.email.setValue('')">
                             <mat-icon id="email-clear-icon"
                                         color="primary">close</mat-icon>
                         </button>
-                        <mat-error *ngIf="loginFormGroup.controls.email.hasError('email') && !loginFormGroup.controls.email.hasError('required')">
+                        <mat-error *ngIf="loginFormGroup.controls.email.hasError('email')">
                             Please enter a valid email
                         </mat-error>
-                        <mat-error *ngIf="!loginFormGroup.controls.email.hasError('email') && loginFormGroup.controls.email.hasError('required')">
+                        <mat-error *ngIf="loginFormGroup.controls.email.hasError('required')">
                             This field is <strong>required</strong>
                         </mat-error>
                     </mat-form-field>
-                    <mat-form-field id="password-form-field" 
-                                    class="login-form-field"
+                    <mat-form-field id="password-form-field" class="login-form-field"
                                     color="accent">
                         <mat-label color="warn">Password</mat-label>
-                        <input matInput 
-                                id="password-input" 
-                                formControlName="password"
-                                autocomplete="current-password"
+                        <input matInput id="password-input" formControlName="password"
+                                autocomplete="current-password" aria-label="password-input"
                                 [type]="hidePassword ? 'password' : 'text'" 
                                 (keydown.enter)="login()">
-                        <button matSuffix mat-icon-button
-                                id="password-clear" 
-                                type="button" 
-                                *ngIf="this.loginFormGroup.controls['password'].value" 
-                                aria-label="Clear" 
-                            (click)="this.loginFormGroup.controls['password'].setValue('')">
+                        <button matSuffix mat-icon-button id="password-clear-button" 
+                                type="button" aria-label="password-clear-button" 
+                                *ngIf="this.loginFormGroup.controls.password.value" 
+                                (click)="this.loginFormGroup.controls.password.setValue('')">
                             <mat-icon id="password-clear-icon"
                                         color="primary">close</mat-icon>
                         </button>
-                        <button mat-icon-button matSuffix 
-                                type="button" id="password-hide" 
+                        <button mat-icon-button matSuffix id="password-hide-button" 
+                                type="button"
                                 (click)="hidePassword = !hidePassword" 
-                                [attr.aria-label]="'Hide password'" 
+                                [attr.aria-label]="'password-hide-button'" 
                                 [attr.aria-pressed]="hidePassword">
-                            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
                         </button>
                         <mat-error *ngIf="loginFormGroup.controls.password.hasError('required')">
                             This field is <strong>required</strong>
@@ -69,25 +56,20 @@
         <mat-card-actions id="login-card-actions">
             <div class="center-flex">
                 <div class="vertical-flex"> 
-                    <button mat-raised-button
-                            id="login-button"
-                            class="login-button mat-elevation-z5" 
-                            type="button"
-                            matTooltip="Gain access to the Innovation Lab!" 
+                    <button mat-raised-button id="login-button" class="login-button mat-elevation-z5" 
+                            type="button" matTooltip="Gain access to the Innovation Lab!" 
                             (click)="login()" 
                             [disabled]="loginFormGroup.invalid">Login</button>
                 
-                    <a id="register-link" 
-                        class="register-link"
+                    <a id="register-link" class="register-link"
                         matTooltip="Register for a new Innovation Lab account!"
                         routerLink="/register">Register</a>
                 </div>
             </div>
         </mat-card-actions>
         <mat-card-footer id="login-card-footer">
-            <mat-progress-bar id="login-card-progress-bar"
-                                *ngIf="loading" 
-                                mode="indeterminate"></mat-progress-bar>
+            <mat-progress-bar id="login-card-progress-bar" mode="indeterminate"
+                                *ngIf="loading" ></mat-progress-bar>
           </mat-card-footer>
     </mat-card>
 </div>

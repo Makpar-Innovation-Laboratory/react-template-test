@@ -19,21 +19,22 @@ phases:
         cd frontend
         npm install --force
         cd ..
-      # startup docker
+      # start up Docker
       - |
         nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay&
         timeout 15 sh -c "until docker info; do echo .; sleep 1; done" 
-      # Log Into ECR
+      # log into ECR
       - |
         aws ecr get-login-password --region $AWS_DEFAULT_REGION |\
           docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      # install Testing and Documentation Dependencies
       - |
         pip install behave==1.2.6 \
                     behave-html-formatter==0.9.8 \
                     requests==2.26.0 \
                     selenium==4.0.0 \
                     git-remote-codecommit==1.15.1
-      # Download sonar scanner
+      # Download Sonar Scanner
       - |
         curl https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip \
             -o "sonar_scanner.zip"
@@ -42,7 +43,7 @@ phases:
   
   pre_build:
     commands:
-      # Lint Source Code
+      # lint source code
       # - |
       #   npx eslint --quiet \
       #     --no-error-on-unmatched-pattern ./src/** \
@@ -52,7 +53,7 @@ phases:
       #   aws s3 cp ../docs/linting/index.html \
       #           s3://${APPLICATION}-coverage${ENV}/linting/react/index.html
       
-      # SonarQube Static Code Analysis
+      # SonarQube static code analysis
       - |
         sonar-scanner \
           -Dsonar.projectKey=${APPLICATION}-frontend${ENV} \

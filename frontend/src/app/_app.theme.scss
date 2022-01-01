@@ -8,7 +8,7 @@
     $warn-palette: map.get($color-config, 'warn');
 
     mat-error{
-        color: map-get($warn-palette, 700) !important;
+        color: map-get($warn-palette, A400) !important;
     }
 
     mat-card{

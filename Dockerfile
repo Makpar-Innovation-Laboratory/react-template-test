@@ -1,4 +1,5 @@
 # ANGULAR BUILD
+ARG ANGULAR_VERSION=12
 FROM 894427396428.dkr.ecr.us-east-1.amazonaws.com/innolab-node:Dev as angular
 
 # DEPENDENCIES

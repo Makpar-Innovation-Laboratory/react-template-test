@@ -1,0 +1,16 @@
+mat-form-field{
+    display: flex;
+}
+.register-container{
+    display: flex; flex-direction: column; 
+    justify-content: space-around;
+    height: 100%; width: 100%;
+}
+.register-container .register-form-container{
+    display: flex; justify-content: center;
+}
+.register-container .register-form-field{
+}
+.register-card{
+    margin-right: 35%; margin-left: 35%;
+}

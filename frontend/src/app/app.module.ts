@@ -37,6 +37,7 @@ import { StoryComponent } from './components/story/story.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SanitizePipe } from './pipes/sanitize.pipe';
+import { RegisterComponent } from './components/register/register.component';
 
 /**
  * # AppModule
@@ -60,6 +61,7 @@ import { SanitizePipe } from './pipes/sanitize.pipe';
 
     // PIPES
     SanitizePipe,
+      RegisterComponent,
   ],
   imports: [
     // ANGULAR CORE
