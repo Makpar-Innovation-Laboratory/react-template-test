@@ -3,7 +3,6 @@ mat-form-field{
 }
 .login-container{
     display: flex; flex-direction: column; 
-    justify-content: center;
     height: 100%; width: 100%;
 }
 .login-container .login-form-container{
@@ -13,6 +12,7 @@ mat-form-field{
     flex: 1;
 }
 .login-card{
+    margin: 2.5%;
     margin-right: 35%; margin-left: 35%;
 }
 .register-link{

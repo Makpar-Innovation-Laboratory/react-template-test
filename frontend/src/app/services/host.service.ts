@@ -8,9 +8,9 @@ export class HostService {
 
   constructor() { }
 
-  // TODO: parameterize host based on environment.ts file, i.e.
-  //        change host to dev, staging or prod based on environment.
-  public getHost(){
-    return environment.host
-  }
+  /**
+   * Parse API host from *environment.ts* file.
+   * @returns current backend API host
+   */
+  public getHost(){ return environment.host }
 }

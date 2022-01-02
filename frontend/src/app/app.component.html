@@ -1,22 +1,30 @@
-<div id="app-container" 
-        class="app-container">
-    <app-toolbar id="app-toolbar"
-                    class="app-toolbar"
+<div id="app-container" class="app-container">
+    <app-toolbar id="app-toolbar" class="app-toolbar"
                     menuTooltip="Innovation Lab Menu"
-                    (menuClick)="toggleMenu()"></app-toolbar>
-    
-    <div [@menu]="this.menuState"
-            id="expansion-menu" 
-            class="expansion-menu">
-
-        <button mat-button 
-                *ngFor="let appRoute of appRoutes"
-                id="route-link"
-                class="route-link"
-                color="accent"
-                [routerLink]="appRoute.route"
-                (click)="closeMenu()">{{ appRoute.title }}</button>
-
+                    (menuClick)="toggleMenu()">
+    </app-toolbar>
+    <div id="expansion-menu" class="expansion-menu"
+            [@menu]="this.menuState">
+        <div id="route-menu" class="route-menu">
+            <span id="route-item" class="route-item"
+                    *ngFor="let appRoute of appRoutes">
+                <button mat-button id="route-link"
+                        class="route-link" color="accent"
+                        *ngIf="displayRouteForUser(appRoute)"
+                        [routerLink]="appRoute.route"
+                        (click)="closeMenu()">
+                    {{ appRoute.title }}
+                </button>
+            </span> 
+        </div>
+        <div id="account-menu" class="account-menu">
+            <button mat-icon-button id="signout-button"
+                    class="signout-button" color="warn"
+                    matTooltip="Sign Out"
+                    (click)="confirmLogout()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>   
     </div>
     <router-outlet></router-outlet>
 </div>

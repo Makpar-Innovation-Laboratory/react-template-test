@@ -27,6 +27,7 @@ export class NewsService {
   }
 
   /**
+   * # Description
    * Construct an instance of {@link NewsService}
    * @param http {@link HTTPClient} for service calls
    * @param host {@link HostService} for retrieving the API host
@@ -35,6 +36,7 @@ export class NewsService {
               private host: HostService) { }
 
   /**
+   * # Description
    * Posts a {@link News} story to the Innovation Lab API
    * @param news {@link News} to be posted
    * @returns observable containing {@link NewsPostResponse}
@@ -49,6 +51,7 @@ export class NewsService {
   }
   
   /**
+   * # Description
    * Retrieve a news story from the Innovation Lab API
    * @param id id of the {@link News} story to retrieve
    * @returns observable containing {@link NewsResponse}
@@ -59,6 +62,7 @@ export class NewsService {
   }
 
   /**
+   * # Description
    * Delete a news story from the Innovaiton Lab API
    * @param id id of the {@link News} story to delete
    * @returns observable containing {@link NewsPostResponse}
@@ -69,6 +73,7 @@ export class NewsService {
   }
 
   /**
+   * # Description
    * Update a news story from the Innovation Lab API
    * @param id id of the {@link News} story to update
    * @returns observable containing {@link NewsPostResponse}
@@ -79,6 +84,7 @@ export class NewsService {
   }
 
   /**
+   * # Description
    * Retrieve all new stories form the Innovation Lab API
    * @returns observable containing {@link NewsResponse}
    */

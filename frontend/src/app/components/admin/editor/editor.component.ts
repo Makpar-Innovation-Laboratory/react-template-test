@@ -2,14 +2,14 @@ import { NewsService } from '../../../services/news.service';
 import { Component} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NewsPostResponse, NewsResponse } from 'src/app/models/news';
+import { News, NewsPostResponse, NewsResponse } from 'src/app/models/news';
 import { DialogComponent, dialogTypes } from '../../dialog/dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { EditorConfig } from './editor.config';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ComponentConfig, editorModes } from '../../component.config';
+import { componentConfig, editorModes } from '../../component.config';
 
 /**
  * # EditorComponent
@@ -69,9 +69,9 @@ export class EditorComponent {
    * @returns message to be displayed in dialog
    */
   private getDialogMessage(): string{
-    if(this.mode == editorModes.edit) return ComponentConfig.editMsg;
-    else if(this.mode == editorModes.new) return ComponentConfig.createMsg;
-    else return ComponentConfig.defaultMsg;
+    if(this.mode == editorModes.edit) return componentConfig.editMsg;
+    else if(this.mode == editorModes.new) return componentConfig.createMsg;
+    else return componentConfig.defaultMsg;
   }
 
   /**
@@ -82,11 +82,25 @@ export class EditorComponent {
     let msg = this.getDialogMessage();
     const dialogRef = this.dialog.open(DialogComponent,{
       data:{ message: msg, type: dialogTypes.YesOrNo, route: null }, 
-      width: ComponentConfig.dialogWidth, height: ComponentConfig.dialogHeight
+      width: componentConfig.dialogWidth, height: componentConfig.dialogHeight
     });
     dialogRef.afterClosed().subscribe((confirm:boolean)=>{
       if(confirm){ this.submit(); }
     })
+  }
+
+  /**
+   * 
+   * @returns 
+   */
+  private formToNews(): News{
+    return {
+      news_id: null,
+          title: this.newsFormGroup.controls.title.value,
+          subject: this.newsFormGroup.controls.subject.value,
+          content: this.sanitizer.bypassSecurityTrustHtml(this.newsFormGroup.controls.content.value),
+          submitted: new Date().toISOString().slice(0, 10)
+    }
   }
 
   /**
@@ -96,28 +110,17 @@ export class EditorComponent {
   public submit(): void {
     if(this.newsFormGroup.valid){
       if(this.mode == editorModes.new){
-        this.news.postNews({
-          news_id: null,
-          title: this.newsFormGroup.controls.title.value,
-          subject: this.newsFormGroup.controls.subject.value,
-          content: this.sanitizer.bypassSecurityTrustHtml(this.newsFormGroup.controls.content.value),
-          submitted: new Date().toISOString().slice(0, 10)
-        }).subscribe((__: NewsPostResponse)=>{
+        this.news.postNews(this.formToNews()).subscribe((__: NewsPostResponse)=>{
           this.newsFormGroup.reset()
-          this.snackBar.open(ComponentConfig.createAlert, 'OK')
+          this.snackBar.open(componentConfig.createAlert, 'OK')
         })
       }
       else if(this.mode == editorModes.edit){
-        this.news.updateNews(this.activatedRoute.snapshot.params.id,{ 
-            news_id: null,
-            title: this.newsFormGroup.controls.title.value,
-            subject: this.newsFormGroup.controls.subject.value,
-            content: this.sanitizer.bypassSecurityTrustHtml(this.newsFormGroup.controls.content.value),
-            submitted: new Date().toISOString().slice(0, 10)
-          }).subscribe((__: NewsPostResponse)=>{
+        this.news.updateNews(this.activatedRoute.snapshot.params.id, this.formToNews())
+          .subscribe((__: NewsPostResponse)=>{
             this.newsFormGroup.reset()
-            this.snackBar.open(ComponentConfig.editAlert, 'OK')
-        })
+            this.snackBar.open(componentConfig.editAlert, 'OK')
+          })
       }
     }
   }

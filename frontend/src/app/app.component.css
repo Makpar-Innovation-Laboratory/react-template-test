@@ -1,11 +1,16 @@
 .app-container{
     width: 100%; height: 100%;
 }
-
 .expansion-menu{
     display: flex; flex-direction: row;
-    justify-content: left;
+    width: 100%; justify-content: space-between;
+}
+.route-menu{
+    justify-content: left; width: 100%;
 }
 .route-link{
     margin-left: 0.5%;
+}
+.account-menu{
+    float: right;
 }
