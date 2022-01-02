@@ -27,15 +27,14 @@ export interface Config{
  * Instance of the interface {@link Config}. This export is imported into components across the application to configure static values through one central configuration file. 
  */
 export const AppConfig: Config = {
-    dialogWidth: '50%', 
-    dialogHeight: '25%',
+    dialogWidth: '50%', dialogHeight: '25%',
     registerMsg: "Verify your email and then return to the login page",
-    editMsg: "Edit post?",
-    editAlert: "News post updated!",
-    createMsg: "Submit new post?",
-    createAlert: "News post created!",
+    editMsg: "Edit post?", editAlert: "News post updated!",
+    createMsg: "Submit new post?", createAlert: "News post created!",
     defaultMsg: "Something seems to have gone wrong...",
     signOutMsg: 'Are you sure you want to sign out?',
+    // NOTE: this doesn't register the routes with Component views. This configures the navigation menu
+    //          within the AppComponent
     routes: [
         { route: '', title: 'Home', tooltip: "Home Page" },
         { route: 'feed', title: 'News Feed', tooltip: "Latest News From The Feed" },

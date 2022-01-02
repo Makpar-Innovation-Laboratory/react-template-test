@@ -3,7 +3,7 @@ import { Component} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { News, NewsPostResponse, NewsResponse } from 'src/app/models/news';
-import { DialogComponent, dialogTypes } from '../../dialog/dialog.component';
+import { DialogComponent, DialogTypes } from '../../dialog/dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { EditorConfig } from './editor.config';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
@@ -83,7 +83,7 @@ export class EditorComponent {
   public confirmSubmission(): void{
     let msg = this.getDialogMessage();
     const dialogRef = this.dialog.open(DialogComponent,{
-      data:{ message: msg, type: dialogTypes.YesOrNo, route: null }, 
+      data:{ message: msg, type: DialogTypes.YesOrNo, route: null }, 
       width: AppConfig.dialogWidth, height: AppConfig.dialogHeight
     });
     dialogRef.afterClosed().subscribe((confirm:boolean)=>{

@@ -8,39 +8,39 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
 
-import { MatCheckboxModule } from '@angular/material/checkbox'; 
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule }  from '@angular/material/form-field';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon'; 
-import { MatInputModule } from '@angular/material/input'; 
-import { MatProgressBarModule } from '@angular/material/progress-bar'; 
-import { MatToolbarModule } from '@angular/material/toolbar'; 
-import { MatTooltipModule } from '@angular/material/tooltip'; 
+import { MatCheckboxModule } from '@angular/material/checkbox'; 
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule }  from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list'
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon'; 
+import { MatInputModule } from '@angular/material/input'; 
+import { MatListModule } from '@angular/material/list'
+import { MatProgressBarModule } from '@angular/material/progress-bar'; 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav'
-import { MatListModule } from '@angular/material/list'
-import { MatGridListModule } from '@angular/material/grid-list'
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSnackBarModule } from '@angular/material/snack-bar'; 
+import { MatToolbarModule } from '@angular/material/toolbar'; 
+import { MatTooltipModule } from '@angular/material/tooltip'; 
 
 import { AppConfig, IconRegistry } from '../config';
-import { AppRoutingModule } from './app-routing.module'; 
-import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component'; 
-import { HomeComponent } from './components/home/home.component';
+import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { SanitizePipe } from './pipes/sanitize.pipe';
+
 import { AdminComponent } from './components/admin/admin.component';
-import { FeedComponent } from './components/feed/feed.component';
-import { EditorComponent } from './components/admin/editor/editor.component';
-import { ArchiveComponent } from './components/admin/archive/archive.component';
+import { AppComponent } from './app.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { EditorComponent } from './components/admin/editor/editor.component';
+import { FeedComponent } from './components/feed/feed.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component'; 
+import { RegisterComponent } from './components/register/register.component';
 import { StoryComponent } from './components/story/story.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { RegisterComponent } from './components/register/register.component';
-import { SanitizePipe } from './pipes/sanitize.pipe';
 
 /**
  * # AppModule
@@ -52,17 +52,16 @@ import { SanitizePipe } from './pipes/sanitize.pipe';
 @NgModule({
   declarations: [
     // COMPONENTS
-    AppComponent,
-    LoginComponent,
-    HomeComponent,
     AdminComponent,
-    EditorComponent,
-    ArchiveComponent,
+    AppComponent,
     DialogComponent,
+    EditorComponent,
+    FeedComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
     StoryComponent,
     ToolbarComponent,
-    RegisterComponent,
-    FeedComponent,
     // PIPES
     SanitizePipe,
   ],

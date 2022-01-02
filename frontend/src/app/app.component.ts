@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AppConfig, AppRoute } from '../config';
 import { Animations, ExpandStates } from 'src/animations';
-import { DialogComponent, dialogTypes } from './components/dialog/dialog.component';
+import { DialogComponent, DialogTypes } from './components/dialog/dialog.component';
 
 /**
  * # AppComponent
@@ -22,7 +22,7 @@ import { DialogComponent, dialogTypes } from './components/dialog/dialog.compone
     Animations.getExpandTrigger('5%')
   ]
 })
-export class AppComponent {
+export class AppComponent{
   public title: string = "Makpar Innovation Lab";
   public menuState : string = ExpandStates.closed;
   public appRoutes: AppRoute[] = AppConfig.routes;
@@ -81,7 +81,7 @@ export class AppComponent {
    */
    public confirmLogout(): void{
     const dialogRef = this.dialog.open(DialogComponent,{
-      data:{ message: AppConfig.signOutMsg, type: dialogTypes.YesOrNo, route: null}, 
+      data:{ message: AppConfig.signOutMsg, type: DialogTypes.YesOrNo, route: null}, 
       width: AppConfig.dialogWidth, height: AppConfig.dialogHeight
     });
     dialogRef.afterClosed().subscribe((confirm: boolean)=>{

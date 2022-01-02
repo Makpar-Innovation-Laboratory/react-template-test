@@ -8,7 +8,6 @@ import { AdminComponent } from './components/admin/admin.component'
 import { FeedComponent } from './components/feed/feed.component';
 import { RegisterComponent } from './components/register/register.component';
 import { StoryComponent } from './components/story/story.component';
-import { ArchiveComponent } from './components/admin/archive/archive.component';
 import { EditorComponent } from './components/admin/editor/editor.component';
 
 const routes: Routes = [
@@ -20,7 +19,6 @@ const routes: Routes = [
   { path: 'admin' , canActivate: [ AuthGuard ], component: AdminComponent,
     // TODO: turn these into a lazy-loaded module
     children:[
-      { path:'archive', component: ArchiveComponent },
       { path:'add', component: EditorComponent },
       { path:'update/:id', component: EditorComponent }
     ]

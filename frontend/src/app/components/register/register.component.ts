@@ -5,7 +5,7 @@ import { Animations, HighlightStates, ScaleStates } from 'src/animations';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { AppConfig } from '../../../config';
-import { DialogComponent, dialogTypes } from '../dialog/dialog.component';
+import { DialogComponent, DialogTypes} from '../dialog/dialog.component';
 
 /**
  * # RegisterComponent
@@ -74,7 +74,7 @@ export class RegisterComponent {
       this.auth.register(this.formToUser()).subscribe((registered : boolean)=>{
         if(registered){
           const dialogRef = this.dialog.open(DialogComponent,{
-            data:{ message: AppConfig.registerMsg, type: dialogTypes.RouteLink, route: 'login' }, 
+            data:{ message: AppConfig.registerMsg, type: DialogTypes.RouteLink, route: 'login' }, 
             width: AppConfig.dialogWidth, height: AppConfig.dialogHeight
           });
           dialogRef.afterClosed().subscribe((confirm: boolean)=>{

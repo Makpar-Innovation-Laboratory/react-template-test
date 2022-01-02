@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Animations, HighlightStates, ScaleStates } from 'src/animations';
 
-export enum dialogTypes {
+export enum DialogTypes {
   YesOrNo="YesOrNo", OK="OK", RouteLink="RouteLink"
 }
 
@@ -44,9 +44,8 @@ export enum dialogTypes {
 export class DialogComponent{
 
   public message: string;
-  public type: dialogTypes;
+  public type: DialogTypes;
   public route: string;
-
   public primaryBtnScaleCntl: ScaleStates = ScaleStates.null;
   public primaryBtnHighlightCntl: HighlightStates = HighlightStates.null;
   public secondaryBtnScaleCntl: ScaleStates = ScaleStates.null;
