@@ -14,3 +14,12 @@
 .account-menu{
     float: right;
 }
+.app-footer{
+    position: fixed; bottom: 0;
+    display: flex; flex-direction: row;
+    justify-content: right;
+    width: 100%; height: 5%;
+}
+.icon-link{
+    margin-right: 1%;
+}
