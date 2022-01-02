@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
-import { componentConfig } from '../component.config';
+import { AppConfig } from '../../../config';
 import { DialogComponent, dialogTypes } from '../dialog/dialog.component';
 
 /**
@@ -67,8 +67,8 @@ export class RegisterComponent {
       this.auth.register(this.formToUser()).subscribe((registered : boolean)=>{
         if(registered){
           const dialogRef = this.dialog.open(DialogComponent,{
-            data:{ message: componentConfig.registerMsg, type: dialogTypes.RouteLink, route: 'login' }, 
-            width: componentConfig.dialogWidth, height: componentConfig.dialogHeight
+            data:{ message: AppConfig.registerMsg, type: dialogTypes.RouteLink, route: 'login' }, 
+            width: AppConfig.dialogWidth, height: AppConfig.dialogHeight
           });
           dialogRef.afterClosed().subscribe((confirm: boolean)=>{
             if(confirm){ this.auth.logout();}

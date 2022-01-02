@@ -1,20 +1,16 @@
 /**
  * Enumeration of {@link EditorComponent} modes.
  */
-export enum editorModes{ edit='edit', new='new' }
-/**
- * Enumeration of {@link AppComponent} menu states.
- */
-export enum menuStates{ open="open", closed="closed"}
+export enum EditorModes{ edit='edit', new='new' }
 
 /**
  * Interface defining metadata associated with routes, for rendering routes into links and buttons. 
  */
- export interface appRoute { route: string, title: string, tooltip: string }
+ export interface AppRoute { route: string, title: string, tooltip: string }
  /**
   * Interface defining metadata associated with icons, for registering icon files with `MatIconRegistry`.
   */
- export interface iconRegistry { icon: string, location: string }
+ export interface IconRegistry { icon: string, location: string }
 /**
  * Interface defining configuration attributes for components within the application.
  */
@@ -24,13 +20,13 @@ export interface Config{
     createMsg: string, defaultMsg: string,
     signOutMsg: string,
     createAlert: string, editAlert: string,
-    routes: appRoute[], registry: iconRegistry[]
+    routes: AppRoute[], registry: IconRegistry[]
 }
 
 /**
  * Instance of the interface {@link Config}. This export is imported into components across the application to configure static values through one central configuration file. 
  */
-export const componentConfig: Config = {
+export const AppConfig: Config = {
     dialogWidth: '50%', 
     dialogHeight: '25%',
     registerMsg: "Verify your email and then return to the login page",

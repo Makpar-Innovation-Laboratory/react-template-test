@@ -9,7 +9,7 @@ import { EditorConfig } from './editor.config';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
-import { componentConfig, editorModes } from '../../component.config';
+import { AppConfig, EditorModes } from '../../../../config';
 
 /**
  * # EditorComponent
@@ -29,7 +29,7 @@ import { componentConfig, editorModes } from '../../component.config';
 })
 export class EditorComponent {
   public newsFormGroup: FormGroup;
-  public mode: editorModes = editorModes.new
+  public mode: EditorModes = EditorModes.new
   public editorConfig: AngularEditorConfig = EditorConfig;
 
   /**
@@ -55,7 +55,7 @@ export class EditorComponent {
     })
     // if url path is 'update/:id', initialize form group with news data from API
     if(this.activatedRoute.snapshot.url[0].path == 'update'){
-      this.mode = editorModes.edit
+      this.mode = EditorModes.edit
       this.news.getNews(this.activatedRoute.snapshot.params.id).subscribe((blog: NewsResponse)=>{
         this.newsFormGroup.controls.title.setValue(blog.results[0].title);
         this.newsFormGroup.controls.subject.setValue(blog.results[0].subject);
@@ -71,9 +71,9 @@ export class EditorComponent {
    * @returns message to be displayed in dialog
    */
   private getDialogMessage(): string{
-    if(this.mode == editorModes.edit) return componentConfig.editMsg;
-    else if(this.mode == editorModes.new) return componentConfig.createMsg;
-    else return componentConfig.defaultMsg;
+    if(this.mode == EditorModes.edit) return AppConfig.editMsg;
+    else if(this.mode == EditorModes.new) return AppConfig.createMsg;
+    else return AppConfig.defaultMsg;
   }
 
   /**
@@ -84,7 +84,7 @@ export class EditorComponent {
     let msg = this.getDialogMessage();
     const dialogRef = this.dialog.open(DialogComponent,{
       data:{ message: msg, type: dialogTypes.YesOrNo, route: null }, 
-      width: componentConfig.dialogWidth, height: componentConfig.dialogHeight
+      width: AppConfig.dialogWidth, height: AppConfig.dialogHeight
     });
     dialogRef.afterClosed().subscribe((confirm:boolean)=>{
       if(confirm){ this.submit(); }
@@ -113,17 +113,17 @@ export class EditorComponent {
    */
   public submit(): void {
     if(this.newsFormGroup.valid){
-      if(this.mode == editorModes.new){
+      if(this.mode == EditorModes.new){
         this.news.postNews(this.formToNews()).subscribe((__: NewsPostResponse)=>{
           this.newsFormGroup.reset()
-          this.snackBar.open(componentConfig.createAlert, 'OK')
+          this.snackBar.open(AppConfig.createAlert, 'OK')
         })
       }
-      else if(this.mode == editorModes.edit){
+      else if(this.mode == EditorModes.edit){
         this.news.updateNews(this.activatedRoute.snapshot.params.id, this.formToNews())
           .subscribe((__: NewsPostResponse)=>{
             this.newsFormGroup.reset()
-            this.snackBar.open(componentConfig.editAlert, 'OK')
+            this.snackBar.open(AppConfig.editAlert, 'OK')
           })
       }
     }

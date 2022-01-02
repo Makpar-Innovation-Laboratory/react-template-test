@@ -26,21 +26,21 @@ import { MatGridListModule } from '@angular/material/grid-list'
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSnackBarModule } from '@angular/material/snack-bar'; 
 
+import { AppConfig, IconRegistry } from '../config';
 import { AppRoutingModule } from './app-routing.module'; 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component'; 
 import { HomeComponent } from './components/home/home.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AdminComponent } from './components/admin/admin.component';
+import { FeedComponent } from './components/feed/feed.component';
 import { EditorComponent } from './components/admin/editor/editor.component';
 import { ArchiveComponent } from './components/admin/archive/archive.component';
-import { StoryComponent } from './components/story/story.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { StoryComponent } from './components/story/story.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { SanitizePipe } from './pipes/sanitize.pipe';
 import { RegisterComponent } from './components/register/register.component';
-import { componentConfig, iconRegistry } from './components/component.config';
-import { FeedComponent } from './components/feed/feed.component';
+import { SanitizePipe } from './pipes/sanitize.pipe';
 
 /**
  * # AppModule
@@ -61,11 +61,10 @@ import { FeedComponent } from './components/feed/feed.component';
     DialogComponent,
     StoryComponent,
     ToolbarComponent,
-
+    RegisterComponent,
+    FeedComponent,
     // PIPES
     SanitizePipe,
-      RegisterComponent,
-      FeedComponent,
   ],
   imports: [
     // ANGULAR CORE
@@ -120,7 +119,7 @@ export class AppModule {
 
   constructor(private matIconRegistry: MatIconRegistry,
               private sanitizer: DomSanitizer){
-    componentConfig.registry.forEach((iconData: iconRegistry)=>{
+    AppConfig.registry.forEach((iconData: IconRegistry)=>{
       this.matIconRegistry.addSvgIcon(iconData.icon, this.sanitizer.bypassSecurityTrustResourceUrl(iconData.location))
     })
   }

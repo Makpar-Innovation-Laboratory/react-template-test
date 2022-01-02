@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
 import { AuthService } from './services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
+import { AppConfig, AppRoute } from '../config';
+import { Animations,  expandStates } from 'src/animations';
 import { DialogComponent, dialogTypes } from './components/dialog/dialog.component';
-import { appRoute, componentConfig, menuStates } from './components/component.config';
 
 /**
  * # AppComponent
@@ -19,23 +19,13 @@ import { appRoute, componentConfig, menuStates } from './components/component.co
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   animations: [
-    trigger('menu',[
-      state(menuStates.open, style({ 
-        height: '5%', opacity: 1
-      })),
-      state(menuStates.closed, style({ 
-        height: '0', opacity: 0 
-      })),
-      transition(`${menuStates.open} <=> ${menuStates.closed}`,[
-        animate('0.5s')
-      ])
-    ])
+    Animations.getExpandTrigger('5%')
   ]
 })
 export class AppComponent {
-  public title: string = "Makpar Innovation Lab"
-  public menuState : menuStates = menuStates.closed
-  public appRoutes: appRoute[] = componentConfig.routes;
+  public title: string = "Makpar Innovation Lab";
+  public menuState : string = expandStates.closed;
+  public appRoutes: AppRoute[] = AppConfig.routes;
 
   /**
    * # Description
@@ -52,11 +42,11 @@ export class AppComponent {
    */
   public toggleMenu(): void{
     switch(this.menuState){
-      case menuStates.open:
-        this.menuState = menuStates.closed;
+      case expandStates.open:
+        this.menuState = expandStates.closed;
         break;
-      case menuStates.closed:
-        this.menuState = menuStates.open;
+      case expandStates.closed:
+        this.menuState = expandStates.open;
         break;
     }
   }
@@ -65,13 +55,13 @@ export class AppComponent {
    * # Description
    * Close {@link menuState}, regardless of current state.
    */
-  public closeMenu(): void{ this.menuState = menuStates.closed; }
+  public closeMenu(): void{ this.menuState = expandStates.closed; }
 
   /** 
    * # Description
    * Open {@link menuState}, regardless of current state
    */
-  public openMenu(): void { this.menuState = menuStates.open; }
+  public openMenu(): void { this.menuState = expandStates.open; }
 
   /**
    * # Description
@@ -79,9 +69,8 @@ export class AppComponent {
    * @param thisRoute route against which user authorization is determined.
    * @returns `true` is user is authorized, `false` otherwise
    */
-  public displayRouteForUser(thisRoute: appRoute): boolean{
-    if(['admin'].includes(thisRoute.route)) 
-      return this.auth.belongsToGroup('administrator') || this.auth.belongsToGroup('developer')
+  public displayRouteForUser(thisRoute: AppRoute): boolean{
+    if(['admin'].includes(thisRoute.route)) return this.auth.belongsToGroup('developer')
     else return true
   }
 
@@ -92,8 +81,8 @@ export class AppComponent {
    */
    public confirmLogout(): void{
     const dialogRef = this.dialog.open(DialogComponent,{
-      data:{ message: componentConfig.signOutMsg, type: dialogTypes.YesOrNo, route: null}, 
-      width: componentConfig.dialogWidth, height: componentConfig.dialogHeight
+      data:{ message: AppConfig.signOutMsg, type: dialogTypes.YesOrNo, route: null}, 
+      width: AppConfig.dialogWidth, height: AppConfig.dialogHeight
     });
     dialogRef.afterClosed().subscribe((confirm: boolean)=>{
       if(confirm){ this.auth.logout();}
