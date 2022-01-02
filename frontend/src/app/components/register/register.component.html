@@ -98,8 +98,12 @@
                 <div class="vertical-flex"> 
                     <button mat-raised-button id="register-button" class="register-button mat-elevation-z5" 
                             type="button" matTooltip="Create an account for the Innovation Lab!" 
-                            (click)="register()" 
-                            [disabled]="registerFormGroup.invalid">Register</button>
+                            [@scale]="registerBtnScaleCntl"
+                            [@highlight]="registerBtnHighlightCntl"
+                            [disabled]="registerFormGroup.invalid"
+                            (mouseenter)="animateRegisterBtn()"
+                            (mouseleave)="normalizeRegisterBtn()"
+                            (click)="register()">Register</button>
                 
                 </div>
             </div>
