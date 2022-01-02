@@ -93,10 +93,42 @@ docker-compose up
 
 The **AdminComponent** uses the *@kolkov/angular-editor* for editing HTML content. Refer to [documentation](https://www.npmjs.com/package/@kolkov/angular-editor) for example usage.
 
+## ComponentConfig
+
+The configuration *frontend/src/app/component/component.config.file* From *frontend/src/app/component/component.config.file* configures most aspects of the **Angular** application from one central location. In particular, the `routes` and `registry` attributes can be modified to display new routes along the navigation menu and add icons to the **Angular Material** icon registry, respectively. For example,
+
+```javascript
+export const componentConfig: Config = {
+    dialogWidth: '50%',  dialogHeight: '25%',
+    registerMsg: "xxx",
+    editMsg: "xxx", editAlert: "xxx",
+    createMsg: "xxxx", createAlert: "xxx",
+    defaultMsg: "xxx",
+    signOutMsg: 'xxx',
+    routes: [
+        { route: '', title: 'Home', tooltip: "Home Page" },
+        { route: 'news', title: 'News Feed', tooltip: "Latest News From The Feed" },
+    ],
+    registry:[
+        { icon: 'facebook', location: '../assets/icons/logo-facebook.svg'},
+    ]
+}
+```
+
+This configuration will add to the navigation menu a route button with text "Home" and a tooltip of "Home Page", along a route button to `/news` with text "News Feed" and tooltip "Latest News From The Feed". In addition, assuming there is a `logo-facebook.svg` in the */frontend/src/assets/icons/* directory, the configuration will also add a **MatIcon** for a facebook, accessible as,
+
+```html
+<mat-icon svgIcon="facebook"><mat-icon>
+```
+
+**NOTE**: the icon file path is relative to the */frontend/src/app/* directory, since the **MatIconRegistry** is modified in the **AppComponent** initialization, when the **Angular** application bootstraps on the client browser for the first time.
+
 ## Generate Docs
 
-From */frontend/* directory,
+Docstrings appends to the classes and methods will get auto-generated into HTML using [Typedoc](https://typedoc.org/). From the */frontend/* directory, 
 
 ```shell
 npx typedoc
 ```
+
+See [comment documentation](https://typedoc.org/guides/doccomments/) for a reference on documenting new **Typescript** code.

@@ -8,9 +8,12 @@ export enum editorModes{ edit='edit', new='new' }
 export enum menuStates{ open="open", closed="closed"}
 
 /**
- * Interface defining meta-data associated with routes, for rendering routes into links and buttons. 
+ * Interface defining metadata associated with routes, for rendering routes into links and buttons. 
  */
  export interface appRoute { route: string, title: string, tooltip: string }
+ /**
+  * Interface defining metadata associated with icons, for registering icon files with `MatIconRegistry`.
+  */
  export interface iconRegistry { icon: string, location: string }
 /**
  * Interface defining configuration attributes for components within the application.
@@ -58,7 +61,6 @@ export const componentConfig: Config = {
         { icon: 'linux', location: '../assets/icons/logo-linux.svg'},
         { icon: 'reddit', location: '../assets/icons/logo-reddit.svg'},
         { icon: 'twitter', location: '../assets/icons/logo-twitter.svg'},
-
     ]
 }
 
