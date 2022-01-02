@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Animations, HighlightStates, ScaleStates } from 'src/animations';
 
 export enum dialogTypes {
   YesOrNo="YesOrNo", OK="OK", RouteLink="RouteLink"
@@ -34,13 +35,22 @@ export enum dialogTypes {
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.css']
+  styleUrls: ['./dialog.component.css'],
+  animations: [
+    Animations.getScaleTrigger(1.25),
+    Animations.getHighlightTrigger(1.25)
+  ]
 })
 export class DialogComponent{
 
   public message: string;
   public type: dialogTypes;
   public route: string;
+
+  public primaryBtnScaleCntl: ScaleStates = ScaleStates.null;
+  public primaryBtnHighlightCntl: HighlightStates = HighlightStates.null;
+  public secondaryBtnScaleCntl: ScaleStates = ScaleStates.null;
+  public secondaryBtnHighlightCntl: HighlightStates = HighlightStates.null;
 
   /**
    * # Description
@@ -64,4 +74,23 @@ export class DialogComponent{
   }
 
 
+  public animatePrimary(): void {
+    this.primaryBtnHighlightCntl = HighlightStates.highlight;
+    this.primaryBtnScaleCntl = ScaleStates.scale;
+  }
+
+  public normalizePrimary(): void {
+    this.primaryBtnHighlightCntl = HighlightStates.null;
+    this.primaryBtnScaleCntl = ScaleStates.null;
+  }
+
+  public animateSecondary(): void {
+    this.secondaryBtnHighlightCntl = HighlightStates.highlight;
+    this.secondaryBtnScaleCntl = ScaleStates.scale;
+  }
+
+  public normalizeSecondary(): void {
+    this.secondaryBtnHighlightCntl = HighlightStates.null;
+    this.secondaryBtnScaleCntl = ScaleStates.null;
+  }
 }

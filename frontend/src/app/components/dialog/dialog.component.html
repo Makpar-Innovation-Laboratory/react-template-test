@@ -1,32 +1,47 @@
-<div class="dialog-container">
+<div id="dialog-container" class="dialog-container">
     <div mat-dialog-content align="center">
         <h2>{{message}}</h2>
     </div>
     
     <!-- 'YesOrNo' type implementation -->
-    <div class="dialog-button-container" id="yes-no-button-container"
+    <div id="yes-no-button-container" class="dialog-button-container"
             *ngIf="this.type=='YesOrNo'">
         <button mat-raised-button id="yes-button"
                 color="primary" 
+                [@scale]="primaryBtnScaleCntl"
+                [@highlight]="primaryBtnHighlightCntl"
+                (mouseenter)="animatePrimary()"
+                (mouseleave)="normalizePrimary()"
                 (click)="onClick(true)">Yes</button>
         <button mat-raised-button id="no-button"
                 color="warn"  
+                [@scale]="secondaryBtnScaleCntl"
+                [@highlight]="secondaryBtnHighlightCntl"
+                (mouseenter)="animateSecondary()"
+                (mouseleave)="normalizeSecondary()"
                 (click)="onClick(false)">No</button>
     </div>
     <!-- 'OK' type implementation-->
-    <div class="dialog-button-container" id="ok-button-container"
+    <div id="ok-button-container" class="dialog-button-container"
             *ngIf="this.type=='OK'">
         <button mat-raised-button id="ok-button"
                 color="primary"
+                [@scale]="primaryBtnScaleCntl"
+                [@highlight]="primaryBtnHighlightCntl"
+                (mouseenter)="animatePrimary()"
+                (mouseleave)="normalizePrimary()"
                 (click)="onClick(true)">Ok</button>
     </div>
     <!-- 'RouteLink' type implementation-->
-    <div class="dialog-button-container" id="route-button-container"
+    <div id="route-button-container" class="dialog-button-container"
             *ngIf="this.type=='RouteLink'">
-        <button mat-button id="route-button"
-                color="accent"
+        <button mat-button id="route-button" color="accent"
                 *ngIf="this.route"
+                [@scale]="primaryBtnScaleCntl"
+                [@highlight]="primaryBtnHighlightCntl"
                 [routerLink]="this.route"
+                (mouseenter)="animatePrimary()"
+                (mouseleave)="normalizePrimary()"
                 (click)="onClick(true)">{{this.route}}</button>
     </div>
 

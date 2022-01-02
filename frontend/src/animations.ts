@@ -20,7 +20,7 @@ export enum AnimationTriggers{
     highlight="highlight"
 }
 /**
- * Enumeration of animation lenghts for {@link Animations}
+ * Enumeration of animation lengths for {@link Animations}
  */
 export enum AnimationPeriods{
     short="0.5s", medium="1.0s"
