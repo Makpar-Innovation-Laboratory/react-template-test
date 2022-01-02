@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ScrollingModule } from '@angular/cdk/scrolling'; 
@@ -12,7 +12,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule }  from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon'; 
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon'; 
 import { MatInputModule } from '@angular/material/input'; 
 import { MatProgressBarModule } from '@angular/material/progress-bar'; 
 import { MatToolbarModule } from '@angular/material/toolbar'; 
@@ -113,4 +113,22 @@ import { RegisterComponent } from './components/register/register.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+  constructor(private matIconRegistry: MatIconRegistry,
+              private sanitizer: DomSanitizer){
+    this.matIconRegistry.addSvgIcon('bitcoin', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-bitcoin.svg'))
+    this.matIconRegistry.addSvgIcon('discord', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-discord.svg'))
+    this.matIconRegistry.addSvgIcon('docker', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-docker.svg'))
+    this.matIconRegistry.addSvgIcon('facebook', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-facebook.svg'))
+    this.matIconRegistry.addSvgIcon('github', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-github.svg'));
+    this.matIconRegistry.addSvgIcon('instagram', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-instagram.svg'))
+    this.matIconRegistry.addSvgIcon('javascript', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-javascript.svg'))
+    this.matIconRegistry.addSvgIcon('linkedin', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-linkedin.svg'))
+    this.matIconRegistry.addSvgIcon('linux', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-tux.svg'))
+    this.matIconRegistry.addSvgIcon('reddit', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-reddit.svg'))
+    this.matIconRegistry.addSvgIcon('twitter', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-twitter.svg'))
+    this.matIconRegistry.addSvgIcon('bitcoin', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-bitcoin.svg'))
+
+  }
+}
