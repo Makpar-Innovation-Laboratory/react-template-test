@@ -39,6 +39,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SanitizePipe } from './pipes/sanitize.pipe';
 import { RegisterComponent } from './components/register/register.component';
+import { componentConfig, iconRegistry } from './components/component.config';
 
 /**
  * # AppModule
@@ -117,18 +118,8 @@ export class AppModule {
 
   constructor(private matIconRegistry: MatIconRegistry,
               private sanitizer: DomSanitizer){
-    this.matIconRegistry.addSvgIcon('bitcoin', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-bitcoin.svg'))
-    this.matIconRegistry.addSvgIcon('discord', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-discord.svg'))
-    this.matIconRegistry.addSvgIcon('docker', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-docker.svg'))
-    this.matIconRegistry.addSvgIcon('facebook', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-facebook.svg'))
-    this.matIconRegistry.addSvgIcon('github', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-github.svg'));
-    this.matIconRegistry.addSvgIcon('instagram', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-instagram.svg'))
-    this.matIconRegistry.addSvgIcon('javascript', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-javascript.svg'))
-    this.matIconRegistry.addSvgIcon('linkedin', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-linkedin.svg'))
-    this.matIconRegistry.addSvgIcon('linux', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-tux.svg'))
-    this.matIconRegistry.addSvgIcon('reddit', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-reddit.svg'))
-    this.matIconRegistry.addSvgIcon('twitter', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-twitter.svg'))
-    this.matIconRegistry.addSvgIcon('bitcoin', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logo-bitcoin.svg'))
-
+    componentConfig.registry.forEach((iconData: iconRegistry)=>{
+      this.matIconRegistry.addSvgIcon(iconData.icon, this.sanitizer.bypassSecurityTrustResourceUrl(iconData.location))
+    })
   }
 }

@@ -11,7 +11,7 @@ export enum menuStates{ open="open", closed="closed"}
  * Interface defining meta-data associated with routes, for rendering routes into links and buttons. 
  */
  export interface appRoute { route: string, title: string, tooltip: string }
-
+ export interface iconRegistry { icon: string, location: string }
 /**
  * Interface defining configuration attributes for components within the application.
  */
@@ -21,7 +21,7 @@ export interface Config{
     createMsg: string, defaultMsg: string,
     signOutMsg: string,
     createAlert: string, editAlert: string,
-    routes: appRoute[]
+    routes: appRoute[], registry: iconRegistry[]
 }
 
 /**
@@ -44,6 +44,21 @@ export const componentConfig: Config = {
         { route: 'team', title: 'Team', tooltip: "Meet the Innovation Lab Team" },
         { route: 'docs', title: 'Documentation', tooltip: "Documentation for the InnoLab Web App" },
         { route: 'admin', title: 'Admin Console', tooltip: "Administrative Access to Site" },  
+    ],
+    // Paths are relative to the /app/ directory since they are imported in the AppComponent constructor
+    registry:[
+        { icon: 'bitcoin', location: '../assets/icons/logo-bitcoin.svg'},
+        { icon: 'discord', location: '../assets/icons/logo-discord.svg'},
+        { icon: 'docker', location: '../assets/icons/logo-docker.svg'},
+        { icon: 'facebook', location: '../assets/icons/logo-facebook.svg'},
+        { icon: 'github', location: '../assets/icons/logo-github.svg'},
+        { icon: 'instagram', location: '../assets/icons/logo-instagram.svg'},
+        { icon: 'javascript', location: '../assets/icons/logo-javascript.svg'},
+        { icon: 'linkedin', location: '../assets/icons/logo-linkedin.svg'},
+        { icon: 'linux', location: '../assets/icons/logo-linux.svg'},
+        { icon: 'reddit', location: '../assets/icons/logo-reddit.svg'},
+        { icon: 'twitter', location: '../assets/icons/logo-twitter.svg'},
+
     ]
 }
 
