@@ -1,24 +1,21 @@
-<div class="action-container">
-    <button mat-icon-button 
-            id="add-blog-button"
-            color="primary"
-            routerLink='/admin/add'
-            matTooltip="Add Blog">
-        <mat-icon>add</mat-icon>
-    </button>
-    <button mat-icon-button 
-            id="view-archive-button"
-            color="primary"
-            routerLink='/admin/archive'
-            matTooltip="Blog Archive">
-        <mat-icon>archive</mat-icon>
-    </button>
+<div id="admin-container" class="admin-container">
+    <div id="main-container" class="main-container"> 
+        <cdk-virtual-scroll-viewport id="viewport" class="viewport" 
+                                        itemSize="0">
+            <router-outlet></router-outlet>
+        </cdk-virtual-scroll-viewport>
+    </div>
+
+    <div class="action-container">
+        <button mat-icon-button id="add-blog-button" 
+                class="add-blog-button" color="primary" 
+                routerLink='/admin/add' matTooltip="Add Blog">
+            <mat-icon>add</mat-icon>
+        </button>
+        <button mat-icon-button id="view-archive-button"
+                color="primary" 
+                routerLink='/admin/archive' matTooltip="Blog Archive">
+            <mat-icon>archive</mat-icon>
+        </button>
+    </div>
 </div>
-  
-<div id="main-container" 
-    class="main-container"> 
-    <cdk-virtual-scroll-viewport class="viewport" itemSize="0">
-        <router-outlet></router-outlet>
-    </cdk-virtual-scroll-viewport>
-</div>
-  
