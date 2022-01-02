@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AppConfig, AppRoute } from '../config';
-import { Animations,  expandStates } from 'src/animations';
+import { Animations, ExpandStates } from 'src/animations';
 import { DialogComponent, dialogTypes } from './components/dialog/dialog.component';
 
 /**
@@ -24,7 +24,7 @@ import { DialogComponent, dialogTypes } from './components/dialog/dialog.compone
 })
 export class AppComponent {
   public title: string = "Makpar Innovation Lab";
-  public menuState : string = expandStates.closed;
+  public menuState : string = ExpandStates.closed;
   public appRoutes: AppRoute[] = AppConfig.routes;
 
   /**
@@ -42,11 +42,11 @@ export class AppComponent {
    */
   public toggleMenu(): void{
     switch(this.menuState){
-      case expandStates.open:
-        this.menuState = expandStates.closed;
+      case ExpandStates.open:
+        this.menuState = ExpandStates.closed;
         break;
-      case expandStates.closed:
-        this.menuState = expandStates.open;
+      case ExpandStates.closed:
+        this.menuState = ExpandStates.open;
         break;
     }
   }
@@ -55,13 +55,13 @@ export class AppComponent {
    * # Description
    * Close {@link menuState}, regardless of current state.
    */
-  public closeMenu(): void{ this.menuState = expandStates.closed; }
+  public closeMenu(): void{ this.menuState = ExpandStates.closed; }
 
   /** 
    * # Description
    * Open {@link menuState}, regardless of current state
    */
-  public openMenu(): void { this.menuState = expandStates.open; }
+  public openMenu(): void { this.menuState = ExpandStates.open; }
 
   /**
    * # Description

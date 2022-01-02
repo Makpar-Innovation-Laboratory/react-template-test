@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Animations, HighlightStates, ScaleStates } from 'src/animations';
 import { UserLogin } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -17,13 +18,20 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  animations: [
+    Animations.getScaleTrigger(1.25),
+    Animations.getHighlightTrigger(1.5)
+  ]
 })
 export class LoginComponent {
 
-  public loginFormGroup: FormGroup;
   public hidePassword: boolean = true;
   public loading: boolean = false;
+
+  public loginFormGroup: FormGroup;
+  public loginBtnScaleControl : ScaleStates = ScaleStates.null;
+  public loginBtnHighlightControl : HighlightStates = HighlightStates.null;
   
   /**
    * # Description
@@ -65,7 +73,20 @@ export class LoginComponent {
       });
     }
     else{ this.loginFormGroup.markAsDirty() }
-    
+  }
+
+  public animateLoginButton(): void{ 
+    if(this.loginFormGroup.valid){ 
+      this.loginBtnScaleControl = ScaleStates.scale; 
+      this.loginBtnHighlightControl = HighlightStates.highlight;
+    }
+  }
+
+  public normalizeLoginButton(): void { 
+    if(this.loginFormGroup.valid){ 
+      this.loginBtnScaleControl = ScaleStates.null; 
+      this.loginBtnHighlightControl = HighlightStates.null;
+    }
   }
 
 }

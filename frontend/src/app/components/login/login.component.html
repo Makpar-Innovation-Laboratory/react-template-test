@@ -59,6 +59,9 @@
                     <button mat-raised-button id="login-button" class="login-button mat-elevation-z5" 
                             type="button" matTooltip="Gain access to the Innovation Lab!" 
                             (click)="login()" 
+                            [@scale]="loginBtnScaleControl" [@highlight] ="loginBtnHighlightControl"
+                            (mouseenter)="animateLoginButton()"
+                            (mouseleave)="normalizeLoginButton()"
                             [disabled]="loginFormGroup.invalid">Login</button>
                 
                     <a id="register-link" class="register-link"
