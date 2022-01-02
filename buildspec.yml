@@ -1,7 +1,7 @@
 version: 0.2
 
 phases:
-  install:
+  install: 
     runtime-versions:
       nodejs: latest 
       python: 3.9
