@@ -7,13 +7,9 @@ import { appRoute, componentConfig, menuStates } from './components/component.co
 
 /**
  * # AppComponent
- * 
  * ## Description
- * 
  * Entrypoint of the Angular application.
- * 
  * ## Example Usage
- * 
  * ```html
  * <app-root></app-root>
  * ```
@@ -44,8 +40,8 @@ export class AppComponent {
   /**
    * # Description
    * Constructs an instance {@link AppComponent}
-   * @param auth 
-   * @param dialog 
+   * @param auth {@link AuthService} instance injection for authenticating with backend API
+   * @param dialog `MatDialog` instance injection for displaying signout message
    */
   constructor(private auth: AuthService,
               private dialog: MatDialog){ }
@@ -67,13 +63,13 @@ export class AppComponent {
 
   /**
    * # Description
-   * Close {@link this.menuState}, regardless of current state.
+   * Close {@link menuState}, regardless of current state.
    */
   public closeMenu(): void{ this.menuState = menuStates.closed; }
 
   /** 
    * # Description
-   * Open {@link this.menuState}, regardless of current state
+   * Open {@link menuState}, regardless of current state
    */
   public openMenu(): void { this.menuState = menuStates.open; }
 
@@ -91,7 +87,7 @@ export class AppComponent {
 
   /**
    * # Description
-   * Displays a responsive {@link MatDialog} on screen.
+   * Displays a responsive `MatDialog` on screen.
    * @param message message to be displayed by the dialog
    */
    public confirmLogout(): void{

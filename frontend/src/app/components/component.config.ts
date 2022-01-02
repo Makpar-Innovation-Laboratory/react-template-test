@@ -8,12 +8,12 @@ export enum editorModes{ edit='edit', new='new' }
 export enum menuStates{ open="open", closed="closed"}
 
 /**
- * Interface defining meta-data associated with routes for rendering into links and buttons. 
+ * Interface defining meta-data associated with routes, for rendering routes into links and buttons. 
  */
  export interface appRoute { route: string, title: string, tooltip: string }
 
 /**
- * Interface defining the configuration attributes for components within the application.
+ * Interface defining configuration attributes for components within the application.
  */
 export interface Config{
     dialogWidth: string, dialogHeight: string,

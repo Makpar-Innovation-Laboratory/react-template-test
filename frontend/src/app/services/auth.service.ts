@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -29,7 +29,7 @@ export class AuthService {
   
   /**
    * # Description
-   * Constructs an instance {@link AuthService}.
+   * Constructs an instance {@link AuthService}. If {@link environment} has the property `mock` set equal to `true`, then a fake JWT token will be stored in `SessionStorage` and all authentication calls to the backend API will be spoofed internally by this service.
    * @param http `HTTPClient` injection for making backend API service calls
    * @param session `SessionStorage` injection for interacting browser session.
    * @param router `Router` injection for routing user based on authentication state.
@@ -43,7 +43,7 @@ export class AuthService {
 
   /**
    * # Description
-   * Retrieves the session's current token
+   * Retrieves the session's current token.
    * @returns {@link Token} token stored in `SessionStorage`.
    */
   private getToken(): Token{
@@ -52,7 +52,7 @@ export class AuthService {
 
   /**
    * # Description
-   * Parse `IdToken` and `Groups` from incoming token and store in `SessionStorage`
+   * Parse `IdToken` and `Groups` from incoming token and store in `SessionStorage`.
    * @param token {@link Token} incoming token.
    */
   private storeToken(token: Token): void{
@@ -71,28 +71,9 @@ export class AuthService {
 
   /**
    * # Description
-   * Use configuration file to generate fake token
-   * @returns {@link Token} mock token
-   */
-  private getFakeToken(): Token{
-    return {
-      ChallengeParameters: {},
-      AuthenticationResult:{
-        AccessToken: mock.token,
-        ExpiresIn: 3600,  
-        TokenType: 'HS256',
-        RefreshToken: mock.token,
-        IdToken: mock.token,
-        Groups: mock.groups
-      }
-    }
-  }
-
-  /**
-   * # Description
    * Determines if the user in the session belongs to the given `groupName`.
    * @param groupName
-   * @returns `true` is user belongs to group, `false` otherwise
+   * @returns `true` is user belongs to group, `false` otherwise.
    */
   public belongsToGroup(groupName: string): boolean{
     if(this.session.retrieve('groups')) return this.session.retrieve('groups').includes(groupName);
@@ -102,13 +83,13 @@ export class AuthService {
   /**
    * # Description
    * Exchange {@link UserLogin} for {@link Token} and store result in `SessionStorage`.
-   * @param userlogin {@link UserLogin} object containing user credentials
-   * @returns observavable containing the {@link Token}
+   * @param userlogin {@link UserLogin} object containing user credentials.
+   * @returns observavable containing the {@link Token}.
    */
   public login(userlogin: UserLogin): Observable<Token>{
     if(environment.mock){ 
-      this.storeToken(this.getFakeToken())
-      return of(this.getToken()) 
+      this.storeToken(mock.auth.token)
+      return of(mock.auth.token) 
     }
     else{
       return this.http.post<Token>(`${this.host.getHost()}/defaults/token`, userlogin).pipe(
@@ -126,9 +107,9 @@ export class AuthService {
   
   /**
    * # Description
-   * Register a {@link User}
+   * Register a {@link User}.
    * @param user 
-   * @returns an observable containing `true` if registration was successful, `false` otherwise
+   * @returns an observable containing `true` if registration was successful, `false` otherwise.
    */
   public register(user: User): Observable<boolean>{
     if(environment.mock) { return of(true); }

@@ -94,12 +94,13 @@ export class EditorComponent {
    * @returns 
    */
   private formToNews(): News{
+    console.log(Object.values(this.sanitizer.bypassSecurityTrustHtml(this.newsFormGroup.controls.content.value))[0])
     return {
       news_id: null,
-          title: this.newsFormGroup.controls.title.value,
-          subject: this.newsFormGroup.controls.subject.value,
-          content: this.sanitizer.bypassSecurityTrustHtml(this.newsFormGroup.controls.content.value),
-          submitted: new Date().toISOString().slice(0, 10)
+      title: this.newsFormGroup.controls.title.value,
+      subject: this.newsFormGroup.controls.subject.value,
+      content: Object.values(this.sanitizer.bypassSecurityTrustHtml(this.newsFormGroup.controls.content.value))[0],
+      submitted: new Date().toISOString().slice(0, 10)
     }
   }
 
