@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service'
 
 @Injectable({
@@ -17,6 +17,10 @@ export class AuthGuard implements CanActivate {
     return this.auth.verify().pipe(
       tap( (data)=>{
         if(!data){this.router.navigateByUrl('/login')}
+      }),
+      catchError((err: any)=>{
+        this.router.navigateByUrl('/login')
+        return throwError(err)
       })
     );
   }
