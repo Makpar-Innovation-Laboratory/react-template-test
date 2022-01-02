@@ -40,6 +40,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SanitizePipe } from './pipes/sanitize.pipe';
 import { RegisterComponent } from './components/register/register.component';
 import { componentConfig, iconRegistry } from './components/component.config';
+import { FeedComponent } from './components/feed/feed.component';
 
 /**
  * # AppModule
@@ -64,6 +65,7 @@ import { componentConfig, iconRegistry } from './components/component.config';
     // PIPES
     SanitizePipe,
       RegisterComponent,
+      FeedComponent,
   ],
   imports: [
     // ANGULAR CORE

@@ -5,6 +5,7 @@ export interface News{
     submitted: string | null,
     subject: string | null,
     title: string | null,
+    snippet: string | null,
     content: SafeHtml | null,
 }
 
@@ -22,5 +23,6 @@ export const NULL_NEWS : News = {
     submitted: null,
     subject: null,
     title: null,
+    snippet: null,
     content: null
 }

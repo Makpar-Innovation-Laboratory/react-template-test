@@ -12,19 +12,6 @@
                     [routerLink]="['/news', story.news_id]">
                 <mat-icon>details</mat-icon>
             </button>
-            <button mat-icon-button id="edit-button"
-                    color="accent"
-                    matTooltip="Edit this story"
-                    [routerLink]="['/admin/update', story.news_id]">
-                <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button id="delete-button"
-                    color="warn"
-                    matTooltip="Delete this story"
-                    *ngIf="story.news_id"
-                    (click)="deleteNews(story.news_id)">
-                <mat-icon>delete_forever</mat-icon>
-            </button>
         </mat-card-actions>
     </mat-card>
 </div>

@@ -42,7 +42,7 @@ export const componentConfig: Config = {
     signOutMsg: 'Are you sure you want to sign out?',
     routes: [
         { route: '', title: 'Home', tooltip: "Home Page" },
-        { route: 'news', title: 'News Feed', tooltip: "Latest News From The Feed" },
+        { route: 'feed', title: 'News Feed', tooltip: "Latest News From The Feed" },
         { route: 'projects', title: 'Projects', tooltip: "Past And Ongoing Projects" },
         { route: 'team', title: 'Team', tooltip: "Meet the Innovation Lab Team" },
         { route: 'docs', title: 'Documentation', tooltip: "Documentation for the InnoLab Web App" },

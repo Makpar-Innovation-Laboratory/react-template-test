@@ -11,6 +11,6 @@
     width: 100%; height: 100%;
     display: flex; flex-direction: column; 
 }
-.title-form-field, .subject-form-field{
+.editor-form-field{
     width: 90%; 
 }

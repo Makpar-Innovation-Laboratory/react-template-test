@@ -50,6 +50,7 @@ export class EditorComponent {
     this.newsFormGroup = this.formBuilder.group({
       title: this.formBuilder.control('', [Validators.required]),
       subject: this.formBuilder.control('', [Validators.required]),
+      snippet: this.formBuilder.control('', [Validators.required]),
       content: this.formBuilder.control('', [Validators.required]),
     })
     // if url path is 'update/:id', initialize form group with news data from API
@@ -58,6 +59,7 @@ export class EditorComponent {
       this.news.getNews(this.activatedRoute.snapshot.params.id).subscribe((blog: NewsResponse)=>{
         this.newsFormGroup.controls.title.setValue(blog.results[0].title);
         this.newsFormGroup.controls.subject.setValue(blog.results[0].subject);
+        this.newsFormGroup.controls.snippet.setValue(blog.results[0].snippet)
         this.newsFormGroup.controls.content.setValue(blog.results[0].content)
       })
     }
@@ -99,6 +101,7 @@ export class EditorComponent {
       news_id: null,
       title: this.newsFormGroup.controls.title.value,
       subject: this.newsFormGroup.controls.subject.value,
+      snippet: this.newsFormGroup.controls.snippet.value,
       content: Object.values(this.sanitizer.bypassSecurityTrustHtml(this.newsFormGroup.controls.content.value))[0],
       submitted: new Date().toISOString().slice(0, 10)
     }
