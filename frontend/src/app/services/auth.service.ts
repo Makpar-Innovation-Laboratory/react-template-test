@@ -10,6 +10,8 @@ import { environment } from 'src/environments/environment';
 import { User, UserLogin } from '../models/user';
 import { mock } from 'src/environments/mock';
 
+import jwt_decode from "jwt-decode";
+
 /**
  * # AuthService
  * 
@@ -47,7 +49,7 @@ export class AuthService {
    * @returns {@link Token} token stored in `SessionStorage`.
    */
   private getToken(): Token{
-    return this.session.retrieve('token')
+    return this.session.retrieve('token');
   }
 
   /**
@@ -56,8 +58,11 @@ export class AuthService {
    * @param token {@link Token} incoming token.
    */
   private storeToken(token: Token): void{
-    this.session.store('groups', token.AuthenticationResult.Groups)
+    console.log(Object(jwt_decode(token.AuthenticationResult.IdToken))['cognito:username'])
+    this.session.store('username', Object(jwt_decode(token.AuthenticationResult.IdToken))['cognito:username'])
+    this.session.store('groups', token.AuthenticationResult.Groups);
     this.session.store('token', token.AuthenticationResult.IdToken); 
+    this.session.store('refresh', token.AuthenticationResult.RefreshToken);
   }
 
   /**
@@ -65,8 +70,19 @@ export class AuthService {
    * Clear current session of `Groups` and `IdToken`.
    */
   private clearToken(): void{
-    this.session.clear('groups')
-    this.session.clear('token')
+    this.session.clear('username')
+    this.session.clear('groups');
+    this.session.clear('token');
+    this.session.clear('refresh');
+  }
+
+  /**
+   * # Description
+   * Get the username of the current user
+   * @returns username in the session
+   */
+  public getUsername(): string{
+    return this.session.retrieve('username')
   }
 
   /**
@@ -88,8 +104,8 @@ export class AuthService {
    */
   public login(userlogin: UserLogin): Observable<Token>{
     if(environment.mock){ 
-      this.storeToken(mock.auth.token)
-      return of(mock.auth.token) 
+      this.storeToken(mock.auth.token);
+      return of(mock.auth.token);
     }
     else{
       return this.http.post<Token>(`${this.host.getHost()}/defaults/token`, userlogin).pipe(
@@ -99,7 +115,7 @@ export class AuthService {
         }),
         catchError((__:any)=> {
           this.loggedIn = false;
-          return throwError('login error')
+          return throwError('login error');
         })
       )
     }
@@ -120,7 +136,7 @@ export class AuthService {
           return true;
         }),
         catchError((__:any)=>{
-          return of(false)
+          return of(false);
         })
       )
     }
@@ -155,7 +171,7 @@ export class AuthService {
    * Clear token from session and navigate to *login*.
    */
   public logout(){
-    this.clearToken()
+    this.clearToken();
     this.router.navigate(['login']);
   }
 

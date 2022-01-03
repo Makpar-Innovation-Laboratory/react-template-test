@@ -123,10 +123,11 @@ export class Animations{
 
 /**
  * # Description
+ * Class for handling the state of an animated HTML element. See {@link Animations} for example usage.
  */
 export class AnimationControl{
     public animationType : AnimationTriggers;
-    public state ?: string;
+    public state !: string;
 
     constructor(type: AnimationTriggers){
         this.animationType = type;
