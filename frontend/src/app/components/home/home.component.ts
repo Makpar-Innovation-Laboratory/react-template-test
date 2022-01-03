@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  selected: string = "cybersecurity";
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSelect(input: string): void {
+    this.selected = input;
   }
 
 }

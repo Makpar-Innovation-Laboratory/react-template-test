@@ -8,12 +8,48 @@
       />
 
       <div class="nav-items">
-        <a mat-button routerLink='/home'>HOME</a>
-        <a mat-button routerLink='/mission'>MISSION</a>
-        <a mat-button routerLink='/team'>TEAM</a>
-        <a mat-button routerLink='/home'>PROJECTS</a>
-        <a mat-button routerLink='/home'>POSTS ARCHIVE</a>
-        <a mat-button routerLink='/home'>ADMIN DASHBOARD</a>
+        <a
+          routerLink="/home"
+          id="{{ path === '/home' ? 'active-tab' : '' }}"
+          class="mat-subheading-2"
+          (click)="onSelect('/home')"
+          >HOME</a
+        >
+        <a
+          routerLink="/mission"
+          id="{{ path === '/mission' ? 'active-tab' : '' }}"
+          class="mat-subheading-2"
+          (click)="onSelect('/mission')"
+          >MISSION</a
+        >
+        <a
+          routerLink="/team"
+          id="{{ path === '/team' ? 'active-tab' : '' }}"
+          class="mat-subheading-2"
+          (click)="onSelect('/team')"
+          >TEAM</a
+        >
+        <a
+          routerLink="/home"
+          id="{{ path === '/projects' ? 'active-tab' : '' }}"
+          class="mat-subheading-2"
+          (click)="onSelect('/projects')"
+          >PROJECTS</a
+        >
+        <a
+          routerLink="/home"
+          id="{{ path === '/archive' ? 'active-tab' : '' }}"
+          class="mat-subheading-2"
+          (click)="onSelect('/archive')"
+          >POSTS ARCHIVE</a
+        >
+        <a
+          routerLink="/home"
+          id="{{ path === '/admin' ? 'active-tab' : '' }}"
+          class="mat-subheading-2"
+          (click)="onSelect('/admin')"
+          >ADMIN DASHBOARD</a
+        >
         <!-- <div class="mat-subheading-1">HOME</div> -->
       </div>
     </mat-toolbar>

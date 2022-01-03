@@ -31,9 +31,33 @@
 ul h5 {
     margin-bottom: 0.5rem;
 }
+ul h5:hover {
+    cursor: pointer;
+}
+
 .selected li {
     font-weight: bold;
 }
 .selected div {
     border-bottom: 2px dashed #234286;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+#open-right {
+    animation: open-right;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes open-right {
+    0% {
+        clip-path: polygon(0 0, 0% 0, 0% 100%, 0% 100%);
+    }
+    100% {
+        clip-path: polygon(0 0%, 100% 0, 100% 100%, 0 100%);
+    }
 }

@@ -17,3 +17,7 @@
     width: 6rem;
     border-top: 2px solid #FFFFFF;
 }
+.row h5 {
+    font-weight: normal;
+    margin-bottom: 0rem;
+}

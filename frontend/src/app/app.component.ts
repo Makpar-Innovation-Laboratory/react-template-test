@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+
+  path = window.location.pathname;
+
+  onSelect(input: string): void {
+    this.path = input
+  }
 }
