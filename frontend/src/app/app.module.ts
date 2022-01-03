@@ -30,7 +30,6 @@ import { AppConfig, IconRegistry } from '../config';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { SanitizePipe } from './pipes/sanitize.pipe';
-
 import { AdminComponent } from './components/admin/admin.component';
 import { AppComponent } from './app.component';
 import { DialogComponent } from './components/dialog/dialog.component';
