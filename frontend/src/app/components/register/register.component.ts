@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Animations, HighlightStates, ScaleStates } from 'src/animations';
+import { AnimationControl, Animations, AnimationTriggers, HighlightStates, ScaleStates } from 'src/animations';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { AppConfig } from '../../../config';
@@ -26,8 +26,8 @@ import { DialogComponent, DialogTypes} from '../dialog/dialog.component';
 export class RegisterComponent {
 
   public registerFormGroup: FormGroup;
-  public registerBtnScaleCntl: ScaleStates = ScaleStates.null;
-  public registerBtnHighlightCntl: HighlightStates = HighlightStates.null;
+  public registerBtnScaleCntl: AnimationControl = new AnimationControl(AnimationTriggers.scale);
+  public registerBtnHighlightCntl: AnimationControl = new AnimationControl(AnimationTriggers.highlight);
   public loading: boolean = false;
 
   /**
@@ -90,18 +90,18 @@ export class RegisterComponent {
    */
   public animateRegisterBtn(): void{
     if(this.registerFormGroup.valid){
-      this.registerBtnHighlightCntl = HighlightStates.highlight;
-      this.registerBtnScaleCntl = ScaleStates.scale;
+      this.registerBtnHighlightCntl.animate();
+      this.registerBtnScaleCntl.animate();
     }
   }
 
   /**
    * 
    */
-  public normalizeRegisterBtn(): void{
+  public primeRegisterBtn(): void{
     if(this.registerFormGroup.valid){
-      this.registerBtnHighlightCntl = HighlightStates.null;
-      this.registerBtnScaleCntl = ScaleStates.null;
+      this.registerBtnHighlightCntl.prime();
+      this.registerBtnScaleCntl.prime();
     }
   }
 

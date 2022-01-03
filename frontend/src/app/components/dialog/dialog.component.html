@@ -11,14 +11,14 @@
                 [@scale]="primaryBtnScaleCntl"
                 [@highlight]="primaryBtnHighlightCntl"
                 (mouseenter)="animatePrimary()"
-                (mouseleave)="normalizePrimary()"
+                (mouseleave)="primePrimary()"
                 (click)="onClick(true)">Yes</button>
         <button mat-raised-button id="no-button"
                 color="warn"  
                 [@scale]="secondaryBtnScaleCntl"
                 [@highlight]="secondaryBtnHighlightCntl"
                 (mouseenter)="animateSecondary()"
-                (mouseleave)="normalizeSecondary()"
+                (mouseleave)="primeSecondary()"
                 (click)="onClick(false)">No</button>
     </div>
     <!-- 'OK' type implementation-->
@@ -26,10 +26,10 @@
             *ngIf="this.type=='OK'">
         <button mat-raised-button id="ok-button"
                 color="primary"
-                [@scale]="primaryBtnScaleCntl"
-                [@highlight]="primaryBtnHighlightCntl"
+                [@scale]="primaryBtnScaleCntl.state"
+                [@highlight]="primaryBtnHighlightCntl.state"
                 (mouseenter)="animatePrimary()"
-                (mouseleave)="normalizePrimary()"
+                (mouseleave)="primePrimary()"
                 (click)="onClick(true)">Ok</button>
     </div>
     <!-- 'RouteLink' type implementation-->
@@ -37,11 +37,11 @@
             *ngIf="this.type=='RouteLink'">
         <button mat-button id="route-button" color="accent"
                 *ngIf="this.route"
-                [@scale]="primaryBtnScaleCntl"
-                [@highlight]="primaryBtnHighlightCntl"
+                [@scale]="primaryBtnScaleCntl.state"
+                [@highlight]="primaryBtnHighlightCntl.state"
                 [routerLink]="this.route"
                 (mouseenter)="animatePrimary()"
-                (mouseleave)="normalizePrimary()"
+                (mouseleave)="primePrimary()"
                 (click)="onClick(true)">{{this.route}}</button>
     </div>
 

@@ -35,12 +35,15 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AppComponent } from './app.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { EditorComponent } from './components/admin/editor/editor.component';
-import { FeedComponent } from './components/feed/feed.component';
+import { FeedComponent } from './components/news/feed/feed.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component'; 
+import { NewsComponent } from './components/news/news.component';
 import { RegisterComponent } from './components/register/register.component';
-import { StoryComponent } from './components/story/story.component';
+import { StoryComponent } from './components/news/story/story.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { TeamComponent } from './components/team/team.component';
 
 /**
  * # AppModule
@@ -52,18 +55,25 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 @NgModule({
   declarations: [
     // COMPONENTS
+      // TODO: lazy-loaded admin module declarations
     AdminComponent,
-    AppComponent,
-    DialogComponent,
     EditorComponent,
+      // TODO: lazy-loaded news module declartions
     FeedComponent,
+    NewsComponent,
+    StoryComponent,
+      // TODO: shared module
+    DialogComponent,
+    ToolbarComponent,
+    SanitizePipe,
+
+    // APP MODULE
+    AppComponent,
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    StoryComponent,
-    ToolbarComponent,
-    // PIPES
-    SanitizePipe,
+    ProjectsComponent,
+    TeamComponent,
   ],
   imports: [
     // ANGULAR CORE
@@ -76,6 +86,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     ScrollingModule,
 
     // ANGULAR MATERIAL
+      // TODO: turn these into a separate material module
     MatAutocompleteModule,
     MatButtonModule,
     MatCardModule,
@@ -96,9 +107,11 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
   
 
     // OTHER
-          // ANGULAR EDITOR
+      // ANGULAR EDITOR
+        // TODO: lazy loaded admin module
     AngularEditorModule,
       // NGX WEBSTORAGE
+        // TODO: shared module
     NgxWebstorageModule.forRoot(),
 
   ],

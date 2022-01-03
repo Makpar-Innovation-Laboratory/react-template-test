@@ -121,6 +121,8 @@ This configuration will add to the navigation menu a route button with text "Hom
 <mat-icon svgIcon="facebook"><mat-icon>
 ```
 
+This icon is added during the **Angular** application initialization in */frontend/src/app/app.module.ts*.
+
 **NOTE**: the icon file path is relative to the */frontend/src/app/* directory, since the **MatIconRegistry** is modified in the **AppComponent** initialization, when the **Angular** application bootstraps on the client browser for the first time.
 
 ## Generate Docs

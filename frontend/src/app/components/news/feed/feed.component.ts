@@ -3,6 +3,11 @@ import { News, NewsPostResponse, NewsResponse } from 'src/app/models/news';
 import { AuthService } from 'src/app/services/auth.service';
 import { NewsService } from 'src/app/services/news.service';
 
+/**
+ * # FeedComponent
+ * ## Description
+ * Component for retrieving and rendering all stories in the Innovation Lab API news feed. If the user viewing the component belongs to the `developer` group, the Component will conditionally render administrative action buttons for editing and deleting stories.
+ */
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',

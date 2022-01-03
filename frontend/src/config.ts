@@ -37,7 +37,7 @@ export const AppConfig: Config = {
     //          within the AppComponent
     routes: [
         { route: '', title: 'Home', tooltip: "Home Page" },
-        { route: 'feed', title: 'News Feed', tooltip: "Latest News From The Feed" },
+        { route: 'news/feed', title: 'News Feed', tooltip: "Latest News From The Feed" },
         { route: 'projects', title: 'Projects', tooltip: "Past And Ongoing Projects" },
         { route: 'team', title: 'Team', tooltip: "Meet the Innovation Lab Team" },
         { route: 'docs', title: 'Documentation', tooltip: "Documentation for the InnoLab Web App" },

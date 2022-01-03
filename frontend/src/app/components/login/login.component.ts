@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Animations, HighlightStates, ScaleStates } from 'src/animations';
+import { AnimationControl, Animations, AnimationTriggers, HighlightStates, ScaleStates } from 'src/animations';
 import { UserLogin } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -28,10 +28,9 @@ export class LoginComponent {
 
   public hidePassword: boolean = true;
   public loading: boolean = false;
-
-  public loginFormGroup: FormGroup;
-  public loginBtnScaleControl : ScaleStates = ScaleStates.null;
-  public loginBtnHighlightControl : HighlightStates = HighlightStates.null;
+  public loginFormGroup: FormGroup; 
+  public loginBtnScaleCntl: AnimationControl = new AnimationControl(AnimationTriggers.scale);
+  public loginBtnHighlightCntl: AnimationControl = new AnimationControl(AnimationTriggers.highlight);
   
   /**
    * # Description
@@ -77,15 +76,15 @@ export class LoginComponent {
 
   public animateLoginButton(): void{ 
     if(this.loginFormGroup.valid){ 
-      this.loginBtnScaleControl = ScaleStates.scale; 
-      this.loginBtnHighlightControl = HighlightStates.highlight;
+      this.loginBtnScaleCntl.animate(); 
+      this.loginBtnHighlightCntl.animate();
     }
   }
 
-  public normalizeLoginButton(): void { 
+  public primeLoginButton(): void { 
     if(this.loginFormGroup.valid){ 
-      this.loginBtnScaleControl = ScaleStates.null; 
-      this.loginBtnHighlightControl = HighlightStates.null;
+      this.loginBtnScaleCntl.prime(); 
+      this.loginBtnHighlightCntl.prime();
     }
   }
 

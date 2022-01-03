@@ -1,16 +1,19 @@
 @use '~@angular/material' as mat;
 @use 'sass:map';
 
-// APP MODULE THEMES
+// COMPONENT THEMES
 @use './app/components/admin/admin.theme' as admin;
 @use './app/app.theme' as app;
 @use './app/components/dialog/dialog.theme' as dialog;
 @use './app/components/admin/editor/editor.theme' as editor;
-@use './app/components/feed/feed.theme' as feed;
+@use './app/components/news/feed/feed.theme' as feed;
 @use './app/components/home/home.theme' as home;
 @use './app/components/login/login.theme' as login;
+@use './app/components/news/news.theme' as news;
+@use './app/components/projects/projects.theme' as projects;
 @use './app/components/register/register.theme' as register;
-@use './app/components/story/story.theme' as story;
+@use './app/components/news/story/story.theme' as story;
+@use './app/components/team/team.theme' as team;
 @use './app/components/toolbar/toolbar.theme' as toolbar;
 
 @import '~@angular/material/theming';
@@ -120,6 +123,9 @@ $makpar-theme: mat-dark-theme(
 @include feed.theme($makpar-alt-theme);
 @include home.theme($makpar-alt-theme);
 @include login.theme($makpar-alt-theme);
+@include news.theme($makpar-alt-theme);
+@include projects.theme($makpar-alt-theme);
 @include register.theme($makpar-alt-theme);
 @include story.theme($makpar-alt-theme);
+@include team.theme($makpar-alt-theme);
 @include toolbar.theme($makpar-alt-theme);

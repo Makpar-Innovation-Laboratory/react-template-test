@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AppConfig, AppRoute } from '../config';
-import { Animations, ExpandStates } from 'src/animations';
+import { AnimationControl, Animations, AnimationTriggers, ExpandStates } from 'src/animations';
 import { DialogComponent, DialogTypes } from './components/dialog/dialog.component';
 
 /**
@@ -24,7 +24,7 @@ import { DialogComponent, DialogTypes } from './components/dialog/dialog.compone
 })
 export class AppComponent{
   public title: string = "Makpar Innovation Lab";
-  public menuState : string = ExpandStates.closed;
+  public menuAnimationCntl: AnimationControl = new AnimationControl(AnimationTriggers.expand)
   public appRoutes: AppRoute[] = AppConfig.routes;
 
   /**
@@ -38,30 +38,30 @@ export class AppComponent{
 
   /**
    * # Description
-   * Switch {@link this.menuState} to opposite state.
+   * Switch {@link menuAnimationCntl} to opposite state.
    */
   public toggleMenu(): void{
-    switch(this.menuState){
+    switch(this.menuAnimationCntl.state){
       case ExpandStates.open:
-        this.menuState = ExpandStates.closed;
+        this.closeMenu()
         break;
       case ExpandStates.closed:
-        this.menuState = ExpandStates.open;
+        this.openMenu()
         break;
     }
   }
 
   /**
    * # Description
-   * Close {@link menuState}, regardless of current state.
+   * Close {@link menuAnimationCntl}, regardless of current state.
    */
-  public closeMenu(): void{ this.menuState = ExpandStates.closed; }
+  public closeMenu(): void{ this.menuAnimationCntl.setState(ExpandStates.closed); }
 
   /** 
    * # Description
-   * Open {@link menuState}, regardless of current state
+   * Open {@link menuAnimationCntl}, regardless of current state
    */
-  public openMenu(): void { this.menuState = ExpandStates.open; }
+  public openMenu(): void { this.menuAnimationCntl.setState(ExpandStates.open); }
 
   /**
    * # Description

@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Animations, HighlightStates, ScaleStates } from 'src/animations';
+import { AnimationControl, Animations, AnimationTriggers, HighlightStates, ScaleStates } from 'src/animations';
 
 export enum DialogTypes {
   YesOrNo="YesOrNo", OK="OK", RouteLink="RouteLink"
@@ -46,10 +46,10 @@ export class DialogComponent{
   public message: string;
   public type: DialogTypes;
   public route: string;
-  public primaryBtnScaleCntl: ScaleStates = ScaleStates.null;
-  public primaryBtnHighlightCntl: HighlightStates = HighlightStates.null;
-  public secondaryBtnScaleCntl: ScaleStates = ScaleStates.null;
-  public secondaryBtnHighlightCntl: HighlightStates = HighlightStates.null;
+  public primaryBtnScaleCntl: AnimationControl = new AnimationControl(AnimationTriggers.scale)
+  public primaryBtnHighlightCntl: AnimationControl = new AnimationControl(AnimationTriggers.highlight)
+  public secondaryBtnScaleCntl: AnimationControl = new AnimationControl(AnimationTriggers.scale)
+  public secondaryBtnHighlightCntl: AnimationControl = new AnimationControl(AnimationTriggers.highlight)
 
   /**
    * # Description
@@ -74,22 +74,22 @@ export class DialogComponent{
 
 
   public animatePrimary(): void {
-    this.primaryBtnHighlightCntl = HighlightStates.highlight;
-    this.primaryBtnScaleCntl = ScaleStates.scale;
+    this.primaryBtnHighlightCntl.animate()
+    this.primaryBtnScaleCntl.animate();
   }
 
-  public normalizePrimary(): void {
-    this.primaryBtnHighlightCntl = HighlightStates.null;
-    this.primaryBtnScaleCntl = ScaleStates.null;
+  public primePrimary(): void {
+    this.primaryBtnHighlightCntl.prime();
+    this.primaryBtnScaleCntl.prime();
   }
 
   public animateSecondary(): void {
-    this.secondaryBtnHighlightCntl = HighlightStates.highlight;
-    this.secondaryBtnScaleCntl = ScaleStates.scale;
+    this.secondaryBtnHighlightCntl.animate();
+    this.secondaryBtnScaleCntl.animate();
   }
 
-  public normalizeSecondary(): void {
-    this.secondaryBtnHighlightCntl = HighlightStates.null;
-    this.secondaryBtnScaleCntl = ScaleStates.null;
+  public primeSecondary(): void {
+    this.secondaryBtnHighlightCntl.prime();
+    this.secondaryBtnScaleCntl.prime();
   }
 }
