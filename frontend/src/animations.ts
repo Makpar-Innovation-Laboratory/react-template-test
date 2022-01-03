@@ -36,21 +36,28 @@ export enum AnimationPeriods{
  * ## Description
  * Static factory for `AnimationTriggerMetaData`
  * ## Example Usage
- * Use static functions within the class in the `animations` attribute of the `@Component` annotation of an **Angular** Component to register animations with the template,
+ * Use static functions within this class in the `animations` attribute of the `@Component` annotation of an **Angular** Component to register animations with the template, i.e.,
  * ```
  * @Component({
- *  selector: 'app-root',
- *  templateUrl: './app.component.html',
- *  styleUrls: ['./app.component.css'],
+ *  selector: 'app-component',
+ *  templateUrl: './component.component.html',
+ *  styleUrls: ['./component.component.css'],
  *  animations: [
  *      Animations.getExpandTrigger('5%')
  *  ]
  * })
- * ```
- * Define a control variable using {@link AnimationControl} within the Component typescript class,
+ * This will expose the animation directive in the Component template HTML. Before using the directive, define a control variable using {@link AnimationControl} within the Component typescript class to bind to the directive,
  * ```javascript
- * 
+ * export class Component{
+ *  public animation: AnimationControl = new AnimationControl(AnimationTriggers.expand)
+ *  # ...
+ * }
  * ```
+ * Then, to invoke the animation, add the directive to an HTML element and bind it to the `state` of the {@link AnimationControl},
+ * ```html
+ * <app-component [@expand]="animation.state"></app-component>
+ * ```
+ * Changing the state of the {@link AnimationControl} will cause the animation to fire. States are enumerated through exported `enum`s within the *animations.ts* module.
  */
 export class Animations{
 
