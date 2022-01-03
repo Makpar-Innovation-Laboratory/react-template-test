@@ -11,13 +11,13 @@ import { StoryComponent } from './components/story/story.component';
 import { EditorComponent } from './components/admin/editor/editor.component';
 
 const routes: Routes = [
+  { path: '', canActivate: [ AuthGuard ], component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: '', canActivate: [ AuthGuard ], component: HomeComponent },
   { path: 'feed', canActivate: [ AuthGuard ], component: FeedComponent },
   { path: 'news/:id' , canActivate: [ AuthGuard], component: StoryComponent },
+  // TODO: turn these into a lazy-loaded module
   { path: 'admin' , canActivate: [ AuthGuard ], component: AdminComponent,
-    // TODO: turn these into a lazy-loaded module
     children:[
       { path:'add', component: EditorComponent },
       { path:'update/:id', component: EditorComponent }

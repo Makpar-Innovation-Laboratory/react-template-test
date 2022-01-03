@@ -6,10 +6,7 @@
     width: 100%; flex: 0;
     display: flex; flex-direction: column;
 }
-.viewport{
-    height: 95%;
-}
 .admin-container{
     width: 100%; height: 100%;
-    display:flex; flex-direction: row;
+    display:flex; flex-direction: column;
 }
