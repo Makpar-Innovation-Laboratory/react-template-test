@@ -134,3 +134,11 @@ npx typedoc
 ```
 
 See [comment documentation](https://typedoc.org/guides/doccomments/) for a reference on documenting new **Typescript** code.
+
+## Dependencies
+
+- [Angular Material](https://material.angular.io/)
+- [@kolkov/angular-editor](https://www.npmjs.com/package/@kolkov/angular-editor)
+- [ngx-webstorage](https://www.npmjs.com/package/ngx-webstorage)
+- [jwt-decode](https://www.npmjs.com/package/jwt-decode)
+- [Typedoc](https://typedoc.org/)
