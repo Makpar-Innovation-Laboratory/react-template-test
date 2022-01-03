@@ -37,7 +37,7 @@ export enum AnimationPeriods{
  * Static factory for `AnimationTriggerMetaData`
  * ## Example Usage
  * Use static functions within this class in the `animations` attribute of the `@Component` annotation of an **Angular** Component to register animations with the template, i.e.,
- * ```
+ * ```typescript
  * @Component({
  *  selector: 'app-component',
  *  templateUrl: './component.component.html',
@@ -46,6 +46,7 @@ export enum AnimationPeriods{
  *      Animations.getExpandTrigger('5%')
  *  ]
  * })
+ * ```
  * This will expose the animation directive in the Component template HTML. Before using the directive, define a control variable using {@link AnimationControl} within the Component typescript class to bind to the directive,
  * ```javascript
  * export class Component{
