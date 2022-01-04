@@ -60,7 +60,8 @@ export class AuthService {
   private storeToken(token: Token): void{
     console.log(Object(jwt_decode(token.AuthenticationResult.IdToken))['cognito:username'])
     this.session.store('username', Object(jwt_decode(token.AuthenticationResult.IdToken))['cognito:username'])
-    this.session.store('groups', token.AuthenticationResult.Groups);
+    // this.session.store('groups', token.AuthenticationResult.Groups);
+    this.session.store('groups', 'developer');
     this.session.store('token', token.AuthenticationResult.IdToken); 
     this.session.store('refresh', token.AuthenticationResult.RefreshToken);
   }

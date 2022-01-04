@@ -45,6 +45,8 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { TeamComponent } from './components/team/team.component';
 import { MissionComponent } from './components/mission/mission.component';
 import { ProjectComponent } from './components/projects/project/project.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { CommentListComponent } from './components/comment-list/comment-list.component';
 
 /**
  * # AppModule
@@ -63,6 +65,8 @@ import { ProjectComponent } from './components/projects/project/project.componen
     FeedComponent,
     NewsComponent,
     StoryComponent,
+    CommentComponent,
+    CommentListComponent,
       // TODO: shared module
     DialogComponent,
     ToolbarComponent,

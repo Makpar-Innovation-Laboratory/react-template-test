@@ -3,6 +3,7 @@ import { Component, OnInit, Input, OnDestroy} from '@angular/core';
 import { BlogService } from '../../services/blog.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
+import {Comment} from '../../models/news'
 
 @Component({
   selector: 'app-comment-list',
@@ -14,15 +15,16 @@ export class CommentListComponent implements OnInit, OnDestroy {
   showReply = false;
   togglePanel: any = {};
   commentSub!: Subscription;
-  @Input() comments!: object
+  @Input() comments!: Comment[];
+  
   constructor(
     private BlogService: BlogService,
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {
-    this.postId = this.route.snapshot.params.id;
+  ngOnInit(): void{
     console.log(this.comments)
+    this.postId = this.route.snapshot.params.id;
   }
 
   onDeleteComment(id:string) {
