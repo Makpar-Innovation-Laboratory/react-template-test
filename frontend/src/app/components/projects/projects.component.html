@@ -34,64 +34,17 @@
     </div>
 
     <div class="projects">
-      <div class="preview bg-white text-primary" style="height: 18rem; overflow: hidden;">
+      <div *ngFor="let project of projects" class="preview bg-white text-primary" style="height: 18rem; overflow: hidden;">
         <div class="preview-image" style="height: 90%;">
           <img src="../../../assets/preview.png" width="100%"/>
         </div>
         <div class="preview-info">
-          <h5 class="mat-title">PROJECT TITLE</h5>
+          <h5 class="mat-title">{{project.title}}</h5>
           <h6 class="mat-subheading-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam. Consectetur adipiscing elit.
+            {{project.description}}
           </h6>
           <div style="display: flex; flex-wrap: wrap">
-            <button class="project-tag">Tag #1</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="preview bg-white text-primary">
-        <div class="preview-image">PREVIEW</div>
-        <div class="preview-info">
-          <h5 class="mat-title">PROJECT TITLE</h5>
-          <h6 class="mat-subheading-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam. Consectetur adipiscing elit.
-          </h6>
-          <div style="display: flex; flex-wrap: wrap">
-            <button class="project-tag">Tag #1</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="preview bg-white text-primary">
-        <div class="preview-image">PREVIEW</div>
-        <div class="preview-info">
-          <h5 class="mat-title">PROJECT TITLE</h5>
-          <h6 class="mat-subheading-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam. Consectetur adipiscing elit.
-          </h6>
-          <div style="display: flex; flex-wrap: wrap">
-            <button class="project-tag">Tag #1</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="preview bg-white text-primary">
-        <div class="preview-image">PREVIEW</div>
-        <div class="preview-info">
-          <h5 class="mat-title">PROJECT TITLE</h5>
-          <h6 class="mat-subheading-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam. Consectetur adipiscing elit.
-          </h6>
-          <div style="display: flex; flex-wrap: wrap">
-            <button class="project-tag">Tag #1</button>
+            <button *ngFor="let tag of project.tags" class="project-tag">{{tag}}</button>
           </div>
         </div>
       </div>

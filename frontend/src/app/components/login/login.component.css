@@ -1,20 +1,62 @@
-mat-form-field{
-    display: flex;
+mat-form-field {
+  display: flex;
 }
-.login-container{
-    display: flex; flex-direction: column; 
-    height: 100%; width: 100%;
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 100vw;
 }
-.login-container .login-form-container{
-    display: flex; justify-content: center;
+.login-container .login-form-container {
+  display: flex;
+  justify-content: center;
 }
-.login-container .login-form-field{
-    flex: 1;
+.login-container .login-form-field {
+  flex: 1;
 }
-.login-card{
-    margin: 2.5%;
-    margin-right: 35%; margin-left: 35%;
+.login-card {
+  padding: 3rem 4rem;
+  background: #ffffff !important;
 }
-.register-link{
-    padding-top: 25%; margin-left: 5%; 
+#login-card-title h4 {
+  text-align: center;
+}
+
+mat-label {
+    color: #707070;
+}
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #707070 !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: #707070 !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: #224185 !important;
+}
+
+.register-link {
+  padding-top: 25%;
+  margin-left: 5%;
+}
+.login-button {
+  background: #224185;
+  color: #ffffff;
+  padding: 0.4rem 1.2rem;
+  border: 1px solid #224185;
+  border-radius: 1.5rem;
+}
+.register-button {
+  background: #ffffff;
+  color: #224185;
+  border: 1px solid #224185;
+  padding: 0.4rem 1.2rem;
+  border-radius: 1.5rem;
 }
