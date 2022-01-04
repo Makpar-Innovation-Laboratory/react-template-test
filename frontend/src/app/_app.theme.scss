@@ -28,15 +28,15 @@
       background-color: map-get($primary-palette, 50);
     }
     
-    ::-webkit-scrollbar {
-      background-color: map-get($accent-palette, 200);
-      box-shadow: inset 0 0 4px map-get($accent-palette, '50-contrast');
-    }
-    ::-webkit-scrollbar-thumb { background-color: map-get($primary-palette, 900); }
-    /* Chrome/Opera/Safari */
-    ::-webkit-input-placeholder, ::-moz-placeholder, :-ms-input-placeholder, :-moz-placeholder{ 
-        color: map-get($primary-palette, 700);
-    }
+    // ::-webkit-scrollbar {
+    //   background-color: map-get($accent-palette, 200);
+    //   box-shadow: inset 0 0 4px map-get($accent-palette, '50-contrast');
+    // }
+    // ::-webkit-scrollbar-thumb { background-color: map-get($primary-palette, 900); }
+    // /* Chrome/Opera/Safari */
+    // ::-webkit-input-placeholder, ::-moz-placeholder, :-ms-input-placeholder, :-moz-placeholder{ 
+    //     color: map-get($primary-palette, 700);
+    // }
 }
 
 @mixin theme($theme) {

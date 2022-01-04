@@ -1,25 +1,28 @@
-.app-container{
-    width: 100%; height: 100%;
+
+
+.app-container {
+    background-image: url(../assets/bg.png);
+    background-position: center;
+    min-height: 100vh;
 }
-.expansion-menu{
-    display: flex; flex-direction: row;
-    width: 100%; justify-content: space-between;
+/* Navigation Styles */
+.toolbar-container {
+    display: flex;
+    background: transparent;
+    border-bottom: 2px dashed #ffffffaf;
 }
-.route-menu{
-    justify-content: left; width: 100%;
+.nav-items {
+    display: flex;
 }
-.route-link{
-    margin-left: 0.5%;
+.nav-items a {
+    padding-bottom: 0rem;
+    margin-bottom: 0;
+    margin-left: 1rem;
+    text-decoration: none;
+    color: #FFFFFF;
+    
 }
-.account-menu{
-    float: right;
-}
-.app-footer{
-    position: fixed; bottom: 0;
-    display: flex; flex-direction: row;
-    justify-content: right;
-    width: 100%; height: 5%;
-}
-.icon-link{
-    margin-right: 1%;
+
+#active-tab {
+    border-bottom: 2px solid #FFFFFF;
 }

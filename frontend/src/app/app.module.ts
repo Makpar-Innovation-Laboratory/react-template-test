@@ -43,6 +43,7 @@ import { StoryComponent } from './components/news/story/story.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { TeamComponent } from './components/team/team.component';
+import { MissionComponent } from './components/mission/mission.component';
 
 /**
  * # AppModule
@@ -73,6 +74,7 @@ import { TeamComponent } from './components/team/team.component';
     RegisterComponent,
     ProjectsComponent,
     TeamComponent,
+    MissionComponent,
   ],
   imports: [
     // ANGULAR CORE
