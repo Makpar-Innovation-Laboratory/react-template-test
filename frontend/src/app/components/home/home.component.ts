@@ -8,25 +8,14 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomeComponent {
 
-<<<<<<< HEAD
-  selected: string = "cybersecurity";
-
-  constructor() { }
-=======
   public username : string;
->>>>>>> Dev
-
-
-  selected: string = "cybersecurity";
-  onSelect(input: string): void {
-    this.selected = input;
-  }
+  public selected: string = "cybersecurity";
 
   constructor(private auth : AuthService) { 
     this.username = this.auth.getUsername()
   }
 
-  onSelect(input: string): void {
+  public onSelect(input: string): void {
     this.selected = input;
   }
 

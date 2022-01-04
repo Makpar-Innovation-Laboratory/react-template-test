@@ -35,12 +35,6 @@ const routes: Routes = [
       { path:'update/:id', component: EditorComponent }
     ]
   },
-<<<<<<< HEAD
-  {path:'blog/:id', canActivate: [AuthGuard], component:ViewBlogComponent},
-  { path: 'mission', canActivate: [AuthGuard], component: MissionComponent},
-  { path: 'team', canActivate: [AuthGuard], component: TeamComponent},
-=======
->>>>>>> Dev
 ];
 
 @NgModule({
