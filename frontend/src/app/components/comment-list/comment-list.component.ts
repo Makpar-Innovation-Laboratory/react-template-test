@@ -15,7 +15,8 @@ export class CommentListComponent implements OnInit, OnDestroy {
   showReply = false;
   togglePanel: any = {};
   commentSub!: Subscription;
-  @Input() comments!: Comment[]
+  @Input() comments!: Comment[];
+  
   constructor(
     private BlogService: BlogService,
     private route: ActivatedRoute

@@ -14,7 +14,8 @@ import { MatDialog } from '@angular/material/dialog';
 export class CommentComponent implements OnInit{
   postId!: string;
   commentForm!: FormGroup;
- 
+  @Input() child!: string;
+  @Input() parent_id!: number;
   constructor(
     private fb: FormBuilder,
     private BlogService: BlogService,
@@ -42,11 +43,22 @@ export class CommentComponent implements OnInit{
   }
   onSubmit() {
     console.log('clicked')
-    const content = {
-      submitted: formatDate(new Date(), 'yyyy-MM-dd', 'en'),
-      content: this.commentForm.value.content,
-      news_id: this.postId,
+    let content
+    if (this.child === "false"){
+      content = {
+        submitted: formatDate(new Date(), 'yyyy-MM-dd', 'en'),
+        content: this.commentForm.value.content,
+        news_id: this.postId,
+      }
+    } else {
+      content = {
+        submitted: formatDate(new Date(), 'yyyy-MM-dd', 'en'),
+        content: this.commentForm.value.content,
+        news_id: this.postId,
+        parent_comment: this.parent_id
+      }
     }
+    
     console.log(content)
     this.BlogService.addComment(content).subscribe((response)=>{
       if(response){

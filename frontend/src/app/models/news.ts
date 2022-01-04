@@ -12,6 +12,11 @@ export interface News{
 
 export interface Comment{
     author: string | null,
+    child_comments:Comment[] | null,
+    comment_id:number,
+    // is_author:boolean,
+    // news_id: number ,
+    // parent_comment:number,
     submitted: string | null,
     content: string | null
 }
