@@ -28,7 +28,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-
 }
 .projects {
   width: 85%;
@@ -51,22 +50,29 @@
 }
 
 .preview h5 {
-    border-bottom: 2px dashed #224185;
+  border-bottom: 2px dashed #224185;
+}
+.preview h6 {
+  margin-bottom: 0;
 }
 
 .preview-image {
-    width: 50%;
+  width: 50%;
 }
 
 .preview-info {
-  padding: 2rem;
+  padding: 1.5rem;
   width: 50%;
 }
 
 .project-tag {
-    background: #224185;
-    color: #FFFFFF;
-    border: none;
-    padding: .5rem 1.2rem;
-    border-radius: 1.5rem;
+  background: #224185;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 1.5rem;
+  margin-top: 0.5rem;
+}
+.project-tag:not(:last-child) {
+  margin-right: 0.5rem;
 }
