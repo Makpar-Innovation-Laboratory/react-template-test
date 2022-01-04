@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NewsComponent } from './components/news/news.component';
 import { ProjectsComponent } from './components/projects/projects.component';
+import { ProjectComponent } from './components/projects/project/project.component';
 import { RegisterComponent } from './components/register/register.component';
 import { StoryComponent } from './components/news/story/story.component';
 import { TeamComponent } from './components/team/team.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'mission', component: MissionComponent },
   { path: 'projects', component: ProjectsComponent },
+  { path: 'project', component: ProjectComponent },
   { path: 'team', component: TeamComponent },
     // TODO: turn these routes into a lazy-loaded news module
   { path: 'news', canActivate: [ AuthGuard ], component: NewsComponent,

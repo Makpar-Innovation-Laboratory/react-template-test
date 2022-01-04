@@ -17,7 +17,7 @@ mat-form-field {
   flex: 1;
 }
 .login-card {
-  padding: 3rem 4rem;
+  padding: 3rem 5rem;
   background: #ffffff !important;
 }
 #login-card-title h4 {
@@ -42,10 +42,6 @@ mat-label {
   background-color: #224185 !important;
 }
 
-.register-link {
-  padding-top: 25%;
-  margin-left: 5%;
-}
 .login-button {
   background: #224185;
   color: #ffffff;

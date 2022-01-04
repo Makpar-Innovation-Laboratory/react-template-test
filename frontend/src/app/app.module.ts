@@ -44,6 +44,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { TeamComponent } from './components/team/team.component';
 import { MissionComponent } from './components/mission/mission.component';
+import { ProjectComponent } from './components/projects/project/project.component';
 
 /**
  * # AppModule
@@ -75,6 +76,7 @@ import { MissionComponent } from './components/mission/mission.component';
     ProjectsComponent,
     TeamComponent,
     MissionComponent,
+    ProjectComponent,
   ],
   imports: [
     // ANGULAR CORE

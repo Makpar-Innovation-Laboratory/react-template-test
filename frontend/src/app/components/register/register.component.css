@@ -1,14 +1,55 @@
-mat-form-field{
-    display: flex;
+mat-form-field {
+  display: flex;
 }
-.register-container{
-    display: flex; flex-direction: column; 
-    height: 100%; width: 100%;
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 100vw;
 }
-.register-form-container{
-    display: flex; justify-content: center;
+.register-form-container {
+  display: flex;
+  justify-content: center;
 }
-.register-card{
-    margin-right: auto; margin-left: auto;
-    margin-top: 2.5%;
+.register-card {
+  padding: 3rem 5rem;
+  background: #ffffff !important;
 }
+
+#register-card-title h4 {
+  text-align: center;
+}
+
+/* Override material UI styling */
+mat-label {
+  color: #707070;
+}
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #707070 !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: #707070 !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: #224185 !important;
+}
+
+/* Border */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: black !important;
+}
+
+.mat-checkbox-inner-container {
+  border: 1px solid #707070;
+}
+.mat-card {
+  color: #707070 !important;
+}
+
