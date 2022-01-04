@@ -8,49 +8,15 @@
         />
   
         <div class="nav-items">
-          <a
-            routerLink="/"
-            id="{{ path === '/' ? 'active-tab' : '' }}"
-            class="mat-subheading-2"
-            (click)="onSelect('/')"
-            >HOME</a
-          >
-          <a
-            routerLink="/mission"
-            id="{{ path === '/mission' ? 'active-tab' : '' }}"
-            class="mat-subheading-2"
-            (click)="onSelect('/mission')"
-            >MISSION</a
-          >
-          <a
-            routerLink="/team"
-            id="{{ path === '/team' ? 'active-tab' : '' }}"
-            class="mat-subheading-2"
-            (click)="onSelect('/team')"
-            >TEAM</a
-          >
-          <a
-            routerLink="/projects"
-            id="{{ path === '/projects' ? 'active-tab' : '' }}"
-            class="mat-subheading-2"
-            (click)="onSelect('/projects')"
-            >PROJECTS</a
-          >
-          <a
-            routerLink="/news"
-            id="{{ path === '/news' ? 'active-tab' : '' }}"
-            class="mat-subheading-2"
-            (click)="onSelect('/news')"
-            >POSTS ARCHIVE</a
-          >
-          <a
-            routerLink="/admin"
-            id="{{ path === '/admin' ? 'active-tab' : '' }}"
-            class="mat-subheading-2"
-            (click)="onSelect('/admin')"
-            >ADMIN DASHBOARD</a
-          >
-          <!-- <div class="mat-subheading-1">HOME</div> -->
+          <span *ngFor="let appRoute of appRoutes">
+            <a *ngIf="displayRouteForUser(appRoute)"
+              [id]="activeRoute(appRoute)"
+              [routerLink]="appRoute.route"
+              class="mat-subheading-2"
+              (click)="onSelect(appRoute.route)">
+              {{appRoute.title}}
+            </a>
+          </span>   
         </div>
       </mat-toolbar>
     </div>
