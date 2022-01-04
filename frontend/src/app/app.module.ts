@@ -43,6 +43,8 @@ import { StoryComponent } from './components/news/story/story.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { TeamComponent } from './components/team/team.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { CommentListComponent } from './components/comment-list/comment-list.component';
 
 /**
  * # AppModule
@@ -61,6 +63,8 @@ import { TeamComponent } from './components/team/team.component';
     FeedComponent,
     NewsComponent,
     StoryComponent,
+    CommentComponent,
+    CommentListComponent,
       // TODO: shared module
     DialogComponent,
     ToolbarComponent,

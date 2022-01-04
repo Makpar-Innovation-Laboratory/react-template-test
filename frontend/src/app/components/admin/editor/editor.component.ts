@@ -103,7 +103,8 @@ export class EditorComponent {
       subject: this.newsFormGroup.controls.subject.value,
       snippet: this.newsFormGroup.controls.snippet.value,
       content: Object.values(this.sanitizer.bypassSecurityTrustHtml(this.newsFormGroup.controls.content.value))[0],
-      submitted: new Date().toISOString().slice(0, 10)
+      submitted: new Date().toISOString().slice(0, 10),
+      comments:[{ author: null, submitted: null, content: null }]
     }
   }
 

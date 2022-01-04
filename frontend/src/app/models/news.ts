@@ -7,6 +7,13 @@ export interface News{
     title: string | null,
     snippet: string | null,
     content: SafeHtml | null,
+    comments: Comment[]
+}
+
+export interface Comment{
+    author: string | null,
+    submitted: string | null,
+    content: string | null
 }
 
 export interface NewsPostResponse{
@@ -24,5 +31,6 @@ export const NULL_NEWS : News = {
     subject: null,
     title: null,
     snippet: null,
-    content: null
+    content: null,
+    comments: []
 }

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BlogService } from './../../services/blog.service';
 import { Route, ActivatedRoute } from '@angular/router';
 import {formatDate} from '@angular/common'
-import { AlertDialogBodyComponent } from './../alert-dialog-body/alert-dialog-body.component';
+import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-comment',
@@ -32,7 +32,7 @@ export class CommentComponent implements OnInit{
     this.commentForm.reset();
   }
   open_alert_dialog(message:string){
-    let dialogRef = this.dialog.open(AlertDialogBodyComponent,{
+    let dialogRef = this.dialog.open(DialogComponent,{
       width:'550px',
       height: '200px',
       data:{
