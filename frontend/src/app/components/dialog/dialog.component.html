@@ -1,0 +1,49 @@
+<div id="dialog-container" class="dialog-container">
+    <div mat-dialog-content align="center">
+        <h2>{{message}}</h2>
+    </div>
+    
+    <!-- 'YesOrNo' type implementation -->
+    <div id="yes-no-button-container" class="dialog-button-container"
+            *ngIf="this.type=='YesOrNo'">
+        <button mat-raised-button id="yes-button"
+                color="primary" 
+                [@scale]="primaryBtnScaleCntl"
+                [@highlight]="primaryBtnHighlightCntl"
+                (mouseenter)="animatePrimary()"
+                (mouseleave)="primePrimary()"
+                (click)="onClick(true)">Yes</button>
+        <button mat-raised-button id="no-button"
+                color="warn"  
+                [@scale]="secondaryBtnScaleCntl"
+                [@highlight]="secondaryBtnHighlightCntl"
+                (mouseenter)="animateSecondary()"
+                (mouseleave)="primeSecondary()"
+                (click)="onClick(false)">No</button>
+    </div>
+    <!-- 'OK' type implementation-->
+    <div id="ok-button-container" class="dialog-button-container"
+            *ngIf="this.type=='OK'">
+        <button mat-raised-button id="ok-button"
+                color="primary"
+                [@scale]="primaryBtnScaleCntl.state"
+                [@highlight]="primaryBtnHighlightCntl.state"
+                (mouseenter)="animatePrimary()"
+                (mouseleave)="primePrimary()"
+                (click)="onClick(true)">Ok</button>
+    </div>
+    <!-- 'RouteLink' type implementation-->
+    <div id="route-button-container" class="dialog-button-container"
+            *ngIf="this.type=='RouteLink'">
+        <button mat-button id="route-button" color="accent"
+                *ngIf="this.route"
+                [@scale]="primaryBtnScaleCntl.state"
+                [@highlight]="primaryBtnHighlightCntl.state"
+                [routerLink]="this.route"
+                (mouseenter)="animatePrimary()"
+                (mouseleave)="primePrimary()"
+                (click)="onClick(true)">{{this.route}}</button>
+    </div>
+
+</div>
+

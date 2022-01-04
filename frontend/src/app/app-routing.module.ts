@@ -1,30 +1,46 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
-import { AdminComponent } from './components/admin/admin.component';
-import { AllBlogsComponent } from './components/admin/all-blogs/all-blogs.component';
-import { AddBlogComponent } from './components/admin/add-blog/add-blog.component';
-import { UpdateBlogComponent } from './components/admin/update-blog/update-blog.component';
-import { ViewBlogComponent } from './components/view-blog/view-blog.component';
 import { AuthGuard } from './guards/auth.guard';
-import { MissionComponent } from './components/mission/mission.component';
+import { AdminComponent } from './components/admin/admin.component'
+import { EditorComponent } from './components/admin/editor/editor.component';
+import { FeedComponent } from './components/news/feed/feed.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { NewsComponent } from './components/news/news.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { RegisterComponent } from './components/register/register.component';
+import { StoryComponent } from './components/news/story/story.component';
 import { TeamComponent } from './components/team/team.component';
+import { MissionComponent } from './components/mission/mission.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'home', canActivate: [ AuthGuard ], component: HomeComponent},
-  { path:'admin', canActivate: [ AuthGuard ], component:AdminComponent,
-    children:[
-      {path:'all-blogs', component:AllBlogsComponent},
-      {path:'add-blog', component:AddBlogComponent},
-      {path:'update-blog/:id',component:UpdateBlogComponent}
+  { path: '', canActivate: [ AuthGuard ], component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'mission', component: MissionComponent },
+  { path: 'projects', component: ProjectsComponent },
+  { path: 'team', component: TeamComponent },
+    // TODO: turn these routes into a lazy-loaded news module
+  { path: 'news', canActivate: [ AuthGuard ], component: NewsComponent,
+    children: [
+      { path: 'feed', component: FeedComponent },
+      { path: ':id', component: StoryComponent }
     ]
   },
+    // TODO: turn these routes into a lazy-loaded admin module
+  { path: 'admin' , canActivate: [ AuthGuard ], component: AdminComponent,
+    children:[
+      { path:'add', component: EditorComponent },
+      { path:'update/:id', component: EditorComponent }
+    ]
+  },
+<<<<<<< HEAD
   {path:'blog/:id', canActivate: [AuthGuard], component:ViewBlogComponent},
   { path: 'mission', canActivate: [AuthGuard], component: MissionComponent},
   { path: 'team', canActivate: [AuthGuard], component: TeamComponent},
+=======
+>>>>>>> Dev
 ];
 
 @NgModule({

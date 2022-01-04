@@ -1,0 +1,8 @@
+<mat-card id="news-details-container" class="news-details-container mat-elevation-z3" 
+            *ngIf="newsPost">
+    <mat-card-title> {{ newsPost.title }} </mat-card-title>
+    <mat-card-subtitle>{{ newsPost.submitted }}</mat-card-subtitle>
+    <mat-card-content>
+        <div [innerHTML] = "newsPost.content | sanitize: 'html' "></div>
+    </mat-card-content>
+</mat-card>

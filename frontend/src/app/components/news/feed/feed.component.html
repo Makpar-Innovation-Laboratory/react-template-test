@@ -1,0 +1,28 @@
+<div id="news-container" class="news-container"
+        *ngIf="feed">
+    <mat-card id="newsfeed-card" class="newsfeed-card"
+                *ngFor="let story of feed">
+        <mat-card-title>{{ story.title }}</mat-card-title>
+        <mat-card-subtitle>{{ story.submitted }}</mat-card-subtitle>
+        <mat-card-content> {{ story.snippet }} </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-icon-button id="view-button"
+                    color="accent" matTooltip="View this story"
+                    [routerLink]="['/news', story.news_id]">
+                <mat-icon>details</mat-icon>
+            </button>
+            <button mat-icon-button id="edit-button"
+                    color="accent" matTooltip="Edit this story"
+                    *ngIf="isDeveloper && story.news_id"
+                    [routerLink]="['/admin/update', story.news_id]">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button id="delete-button"
+                    color="warn" matTooltip="Delete this story"
+                    *ngIf="isDeveloper && story.news_id"
+                    (click)="deleteNews(story.news_id)">
+                <mat-icon>delete_forever</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

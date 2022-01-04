@@ -1,21 +1,24 @@
 mat-form-field{
     display: flex;
 }
-
 .login-container{
     display: flex; flex-direction: column; 
+<<<<<<< HEAD
     justify-content: center;
     height: 70vh; width: 100%;
+=======
+    height: 100%; width: 100%;
+>>>>>>> Dev
+}
+.login-container .login-form-container{
+    display: flex; justify-content: center;
 }
 .login-container .login-form-field{
     flex: 1;
-
 }
 .login-card{
+    margin: 2.5%;
     margin-right: 35%; margin-left: 35%;
-}
-.login-button{
-    /*TODO*/
 }
 .register-link{
     padding-top: 25%; margin-left: 5%; 

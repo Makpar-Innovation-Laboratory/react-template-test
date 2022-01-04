@@ -6,5 +6,6 @@ export interface Token{
         TokenType: string,
         RefreshToken: string,
         IdToken: string
+        Groups: string[]
     }
 }

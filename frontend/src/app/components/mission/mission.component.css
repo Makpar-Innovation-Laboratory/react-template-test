@@ -1,4 +1,5 @@
 .column {
+<<<<<<< HEAD
   width: 45%;
   display: flex;
   flex-direction: column;
@@ -35,3 +36,41 @@
 .mat-title {
   font-weight: normal;
 }
+=======
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .card {
+    width: 85%;
+    background: white;
+    height: 15rem;
+    margin-top: 3rem;
+    padding: 1rem 0;
+  }
+  .card h5 {
+    /* height: 2.5rem; */
+    border-bottom: 2px dashed #224185;
+    width: 5.5rem;
+    padding-bottom: 0.6rem;
+    white-space: nowrap;
+    padding-left: 2rem;
+    margin-top: 0.5rem;
+  }
+  .card h6 {
+    margin: 1rem 2.2rem;
+  }
+  .mission-header h5 {
+      margin-bottom: 0.5rem;
+      font-weight: normal;
+  }
+  .mission-header-border {
+      height: 0.7rem;
+      width: 6rem;
+      border-top: 2px solid #FFFFFF;
+  }
+  .mat-title {
+    font-weight: normal;
+  }
+>>>>>>> Dev

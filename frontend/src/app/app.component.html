@@ -1,61 +1,28 @@
 <div class="app-container">
-  <div style="width: 100vw">
-    <mat-toolbar id="toolbar-container" class="toolbar-container">
-      <img
-        id="logo-image"
-        src="/assets/makpar_logo_white_vector.svg"
-        height="34"
-      />
-
-      <div class="nav-items">
-        <a
-          routerLink="/home"
-          id="{{ path === '/home' ? 'active-tab' : '' }}"
-          class="mat-subheading-2"
-          (click)="onSelect('/home')"
-          >HOME</a
-        >
-        <a
-          routerLink="/mission"
-          id="{{ path === '/mission' ? 'active-tab' : '' }}"
-          class="mat-subheading-2"
-          (click)="onSelect('/mission')"
-          >MISSION</a
-        >
-        <a
-          routerLink="/team"
-          id="{{ path === '/team' ? 'active-tab' : '' }}"
-          class="mat-subheading-2"
-          (click)="onSelect('/team')"
-          >TEAM</a
-        >
-        <a
-          routerLink="/home"
-          id="{{ path === '/projects' ? 'active-tab' : '' }}"
-          class="mat-subheading-2"
-          (click)="onSelect('/projects')"
-          >PROJECTS</a
-        >
-        <a
-          routerLink="/home"
-          id="{{ path === '/archive' ? 'active-tab' : '' }}"
-          class="mat-subheading-2"
-          (click)="onSelect('/archive')"
-          >POSTS ARCHIVE</a
-        >
-        <a
-          routerLink="/home"
-          id="{{ path === '/admin' ? 'active-tab' : '' }}"
-          class="mat-subheading-2"
-          (click)="onSelect('/admin')"
-          >ADMIN DASHBOARD</a
-        >
-        <!-- <div class="mat-subheading-1">HOME</div> -->
-      </div>
-    </mat-toolbar>
+    <div style="width: 100vw">
+      <mat-toolbar id="toolbar-container" class="toolbar-container">
+        <img
+          id="logo-image"
+          src="/assets/makpar_logo_white_vector.svg"
+          height="34"
+        />
+  
+        <div class="nav-items">
+          <span *ngFor="let appRoute of appRoutes">
+            <a *ngIf="displayRouteForUser(appRoute)"
+              [id]="activeRoute(appRoute)"
+              [routerLink]="appRoute.route"
+              class="mat-subheading-2"
+              (click)="onSelect(appRoute.route)">
+              {{appRoute.title}}
+            </a>
+          </span>   
+        </div>
+      </mat-toolbar>
+    </div>
+  
+    <div class="component-container">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-
-  <div class="component-container">
-    <router-outlet></router-outlet>
-  </div>
-</div>
+  

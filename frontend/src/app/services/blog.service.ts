@@ -45,4 +45,8 @@ export class BlogService {
   public delete_blog(id:string){
     return this.http.delete(this.delete_blog_url + id);
   }
+
+  addComment(comment:Object){
+    return this.http.post<Token>(this.add_comment_url, comment)
+  }
 }

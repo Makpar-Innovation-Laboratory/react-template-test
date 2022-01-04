@@ -1,0 +1,74 @@
+<div id="news-container" class="news-container">
+    <mat-card id="news-container" class="editor-container">
+        <mat-card-title>News Feed Editor</mat-card-title>
+        <mat-card-content>
+            <div id="add-news-form-container" class="add-news-form-container">
+                <form [formGroup]="newsFormGroup" (ngSubmit)="submit()">
+                    <!-- TITLE FORM FIELD-->
+                    <mat-form-field id="title-form-field" class="editor-form-field"
+                                    color="accent">
+                        <mat-label>Title</mat-label>
+                        <input matInput id="title-input" type="text" 
+                                formControlName="title">
+                        <button matSuffix mat-icon-button id="clear" 
+                                type="button" aria-label="Clear" 
+                                *ngIf="this.newsFormGroup.controls.title.value"
+                                (click)="this.newsFormGroup.controls.title.setValue('')">
+                            <mat-icon id="title-clear-icon" color="primary">close</mat-icon>
+                        </button>
+                        <mat-error *ngIf="!newsFormGroup.controls.title.hasError('required')">
+                            This field is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <!-- SUBJECT FORM FIELD -->
+                    <mat-form-field id="subject-form-field" class="editor-form-field"
+                                    color="accent">
+                        <mat-label>Subject</mat-label>
+                        <input matInput id="subject-input" type="text" 
+                                formControlName="subject">
+                        <button matSuffix mat-icon-button id="clear" 
+                                type="button" aria-label="Clear" 
+                                *ngIf="this.newsFormGroup.controls.subject.value"
+                                (click)="this.newsFormGroup.controls.subject.setValue('')">
+                            <mat-icon id="subject-clear-icon" color="primary">close</mat-icon>
+                        </button>
+                        <mat-error *ngIf="!newsFormGroup.controls.subject.hasError('required')">
+                            This field is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <!-- SNIPPET FORM FIELD -->
+                    <mat-form-field id="snippet-form-field" class="editor-form-field"
+                                    color="accent">
+                        <mat-label>Snippet</mat-label>
+                        <input matInput id="snippet-input" 
+                                type="text" formControlName="snippet">
+                        <button matSuffix mat-icon-button id="clear" 
+                                type="button" aria-label="Clear" 
+                                *ngIf="this.newsFormGroup.controls.snippet.value"
+                                (click)="this.newsFormGroup.controls.snippet.setValue('')">
+                            <mat-icon id="snippet-clear-icon" color="primary">close</mat-icon>
+                        </button>
+                        <mat-error *ngIf="!newsFormGroup.controls.snippet.hasError('required')">
+                            This field is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <!-- CONTENT FORM FIELD-->
+                    <angular-editor id="html-editor" formControlName="content" 
+                                    [config]="editorConfig"></angular-editor>
+                </form>
+            </div>
+        </mat-card-content>
+        <mat-card-actions align="end"> 
+            <button mat-icon-button id="add-news-button"
+                    class="add-news-button" color="accent"
+                    [disabled]="newsFormGroup.invalid"
+                    matTooltip="{{this.mode == 'new' ? 'Submit news story': 'Edit news story'}}"
+                    (click)="confirmSubmission()">
+                <mat-icon>add</mat-icon>
+            </button>
+            <button mat-icon-button id="cancel-add-news-button" routerLink='/admin'>
+                Cancel
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
