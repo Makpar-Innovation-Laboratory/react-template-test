@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AppConfig, AppRoute } from '../config';
 import { AnimationControl, Animations, AnimationTriggers, ExpandStates } from 'src/animations';
 import { DialogComponent, DialogTypes } from './components/dialog/dialog.component';
+import { ActivatedRoute } from '@angular/router';
 
 /**
  * # AppComponent
@@ -26,12 +27,8 @@ export class AppComponent{
   public title: string = "Makpar Innovation Lab";
   public menuAnimationCntl: AnimationControl = new AnimationControl(AnimationTriggers.expand)
   public appRoutes: AppRoute[] = AppConfig.routes;
-
-  path = window.location.pathname;
-  onSelect(input: string): void {
-    this.path = input
-  }
-
+  public path: string;
+  
   /**
    * # Description
    * Constructs an instance {@link AppComponent}
@@ -39,7 +36,19 @@ export class AppComponent{
    * @param dialog `MatDialog` instance injection for displaying signout message
    */
   constructor(private auth: AuthService,
-              private dialog: MatDialog){ }
+              private dialog: MatDialog,
+              private activatedRoute: ActivatedRoute){
+    this.path = activatedRoute.snapshot.url.toString()
+  }
+
+  /**
+   * # Description
+   * Persist the user selected path
+   * @param input path to be set
+   */
+  public onSelect(input: string): void {
+    this.path = input
+  }
 
   /**
    * # Description
@@ -77,6 +86,16 @@ export class AppComponent{
   public displayRouteForUser(thisRoute: AppRoute): boolean{
     if(['admin'].includes(thisRoute.route)) return this.auth.belongsToGroup('developer')
     else return true
+  }
+
+  /**
+   * # Description
+   * Determine if the passed in route is the currently activated route
+   * @param thisRoute {@link AppRoute}
+   * @returns 
+   */
+  public activeRoute(thisRoute: AppRoute): string{
+    return thisRoute.route == this.path ? 'active-tab' : ''
   }
 
   /**

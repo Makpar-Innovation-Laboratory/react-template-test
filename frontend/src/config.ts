@@ -36,12 +36,13 @@ export const AppConfig: Config = {
     // NOTE: this doesn't register the routes with Component views. This configures the navigation menu
     //          within the AppComponent
     routes: [
-        { route: '', title: 'Home', tooltip: "Home Page" },
-        { route: 'news/feed', title: 'News Feed', tooltip: "Latest News From The Feed" },
-        { route: 'projects', title: 'Projects', tooltip: "Past And Ongoing Projects" },
-        { route: 'team', title: 'Team', tooltip: "Meet the Innovation Lab Team" },
-        { route: 'docs', title: 'Documentation', tooltip: "Documentation for the InnoLab Web App" },
-        { route: 'admin', title: 'Admin Console', tooltip: "Administrative Access to Site" },  
+        { route: '', title: 'HOME', tooltip: "Home Page" },
+        { route: 'mission', title: 'MISSION', tooltip: 'Innovation Lab Mission Statement' },
+        { route: 'team', title: 'TEAM', tooltip: "Meet the Innovation Lab Team" },
+        { route: 'news/feed', title: 'NEWS FEED', tooltip: "Latest News From The Feed" },
+        { route: 'projects', title: 'PROJECTS', tooltip: "Past And Ongoing Projects" },
+        { route: 'docs', title: 'DOCS', tooltip: "Documentation for the InnoLab Web App" },
+        { route: 'admin', title: 'ADMIN CONSOLE', tooltip: "Administrative Access to Site" },  
     ],
     // Paths are relative to the /app/ directory since they are imported in the AppComponent constructor
     registry:[
