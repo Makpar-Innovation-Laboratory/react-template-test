@@ -1,4 +1,198 @@
-<div id="home-container" 
-        class="home-container">
-        Welcome, {{ this.username }}
-</div>
+<div class="home-container" style="padding-bottom: 100px;">
+        <div class="home-header">
+          <div style="margin: 100px; width: 50%">
+            <h3 class="mat-display-2 text-white">INNOVATION LAB</h3>
+            <h5 class="mat-headline text-white">
+              LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT
+            </h5>
+          </div>
+      
+          <div>
+            <div style="display: flex; flex-direction: column">
+              <h5 class="mat-headline" style="margin-right: 50px; text-align: right">
+                <a routerLink='/home' class="text-white">MISSION</a>
+              </h5>
+              <h5 class="mat-headline" style="margin-right: 50px; text-align: right">
+                <a routerLink='/team' class="text-white">TEAM</a>
+              </h5>
+              <h5 class="mat-headline" style="margin-right: 50px; text-align: right">
+                <a routerLink='/home' class="text-white">PROJECTS</a>
+              </h5>
+              <h5 class="mat-headline" style="margin-right: 50px; text-align: right">
+                <a routerLink='/home' class="text-white">POSTS ARCHIVE</a>
+              </h5>
+            </div>
+            <div style="height: 0.5rem; width: 18rem; border-bottom: 2px dashed #ffffffaf;"></div>
+          </div>
+        </div>
+      
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            width: 80%;
+            background: #ffffff;
+            overflow: hidden;
+          "
+        >
+          <div class="card" style="padding: 1rem 0;">
+            <div style="width: 100%">
+              <div style="display: flex; padding-left: 50px; margin-top: 20px">
+                <h5 class="mat-headline text-primary" style="text-align: left">SERVICES</h5>
+                <!-- <img
+                  class="mat-headline right-arrow"
+                  src="../../../assets/right_arrow_icon.svg"
+                  style="margin-left: 30px"
+                /> -->
+              </div>
+      
+              <div style="height: 0.2rem; width: 8rem; border-bottom: 2px dashed #234286;"></div>
+            </div>
+      
+            <div style="width: 100%; display: flex; justify-content: flex-end">
+              <ul class="text-primary" style="width: 100%">
+                <div
+                  style="
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: 1rem;
+                  "
+                  class="{{selected === 'cybersecurity' ? 'selected' : ''}}"
+                >
+                  <li>
+                    <h5 class="mat-headline" (click)="onSelect('cybersecurity')">CYBERSECURITY</h5>
+                  </li>
+                  <div style="height: 1.5rem; width: 50%"></div>
+                </div>
+                <div
+                  style="
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: 1rem;
+                  "
+                  class="{{selected === 'machine-learning' ? 'selected' : ''}}"
+                >
+                  <li>
+                    <h5 class="mat-headline" (click)="onSelect('machine-learning')">MACHINE LEARNING</h5>
+                  </li>
+                  <div style="height: 1.5rem; width: 50%"></div>
+                </div>
+                <div
+                  style="
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: 1rem;
+                  "
+                  class="{{selected === 'cloud-migration' ? 'selected' : ''}}"
+                >
+                  <li>
+                    <h5 class="mat-headline" (click)="onSelect('cloud-migration')">CLOUD MIGRATION</h5>
+                  </li>
+                  <div style="height: 1.5rem; width: 50%"></div>
+                </div>
+                <div
+                  style="
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: 1rem;
+                  "
+                  class="{{selected === 'devsecops' ? 'selected' : ''}}"
+                >
+                  <li>
+                    <h5 class="mat-headline" (click)="onSelect('devsecops')">DEVSECOPS</h5>
+                  </li>
+                  <div style="height: 1.5rem; width: 50%"></div>
+                </div>
+                <div
+                  style="
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: 1rem;
+                  "
+                  class="{{selected === 'agile' ? 'selected' : ''}}"
+                >
+                  <li>
+                    <h5 class="mat-headline" (click)="onSelect('agile')">AGILE</h5>
+                  </li>
+                  <div id="hr-line" style="height: 1.5rem; width: 50%"></div>
+                </div>
+              </ul>
+            </div>
+          </div>
+      
+          <div class="card bg-primary" style="height: 100%; padding: 4rem 0;">
+            <div *ngIf="selected === 'cybersecurity'" style="margin: 50px 40px">
+              <h5 class="mat-headline text-white" style="text-align: center">
+                CYBERSECURITY
+              </h5>
+      
+              <h6 class="mat-title text-white" style="text-align: center">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                minim veniam. Consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt.
+              </h6>
+            </div>
+      
+            <div *ngIf="selected === 'machine-learning'" style="margin: 50px 40px">
+              <h5 class="mat-headline text-white" style="text-align: center">
+                MACHINE LEARNING
+              </h5>
+      
+              <h6 class="mat-title text-white" style="text-align: center">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                minim veniam. Consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt.
+              </h6>
+            </div>
+      
+            <div *ngIf="selected === 'cloud-migration'" style="margin: 50px 40px">
+              <h5 class="mat-headline text-white" style="text-align: center">
+                CLOUD MIGRATION
+              </h5>
+      
+              <h6 class="mat-title text-white" style="text-align: center">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                minim veniam. Consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt.
+              </h6>
+            </div>
+      
+            <div *ngIf="selected === 'devsecops'" style="margin: 50px 40px">
+              <h5 class="mat-headline text-white" style="text-align: center">
+                DEVSECOPS
+              </h5>
+      
+              <h6 class="mat-title text-white" style="text-align: center">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                minim veniam. Consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt.
+              </h6>
+            </div>
+      
+            <div *ngIf="selected === 'agile'" style="margin: 50px 40px">
+              <h5 class="mat-headline text-white" style="text-align: center">
+                AGILE
+              </h5>
+      
+              <h6 class="mat-title text-white" style="text-align: center">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                minim veniam. Consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt.
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      

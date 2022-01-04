@@ -1,3 +1,63 @@
-.home-container{
-    width: 100%; height: 100%;
+
+
+.home-containter {
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh;
+    width: 100vw;
+}
+
+/* Header Styles */
+.home-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    min-height: 70vh;
+}
+.mat-display-2 {
+    margin-bottom: 1rem;
+}
+
+/* Services Section Styles */
+.card {
+    min-height: 35vh; 
+    width: 50%;
+}
+.card ul {
+    list-style-type: none;
+    /* font-size: 1.6rem; */
+}
+ul h5 {
+    margin-bottom: 0.5rem;
+}
+ul h5:hover {
+    cursor: pointer;
+}
+
+.selected li {
+    font-weight: bold;
+}
+.selected div {
+    border-bottom: 2px dashed #234286;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+#open-right {
+    animation: open-right;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes open-right {
+    0% {
+        clip-path: polygon(0 0, 0% 0, 0% 100%, 0% 100%);
+    }
+    100% {
+        clip-path: polygon(0 0%, 100% 0, 100% 100%, 0 100%);
+    }
 }
