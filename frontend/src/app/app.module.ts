@@ -30,7 +30,6 @@ import { AppConfig, IconRegistry } from '../config';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { SanitizePipe } from './pipes/sanitize.pipe';
-
 import { AdminComponent } from './components/admin/admin.component';
 import { AppComponent } from './app.component';
 import { DialogComponent } from './components/dialog/dialog.component';
@@ -44,6 +43,7 @@ import { StoryComponent } from './components/news/story/story.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { TeamComponent } from './components/team/team.component';
+import { MissionComponent } from './components/mission/mission.component';
 
 /**
  * # AppModule
@@ -74,6 +74,7 @@ import { TeamComponent } from './components/team/team.component';
     RegisterComponent,
     ProjectsComponent,
     TeamComponent,
+    MissionComponent,
   ],
   imports: [
     // ANGULAR CORE

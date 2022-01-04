@@ -1,63 +1,62 @@
-<div id="app-container" class="app-container">
-    <!-- TOOLBAR -->
-    <app-toolbar id="app-toolbar" class="app-toolbar"
-                    menuTooltip="Innovation Lab Menu"
-                    (menuClick)="toggleMenu()">
-    </app-toolbar>
-    <!-- EXPANSION MENU -->
-    <div id="expansion-menu" class="expansion-menu"
-            [@expand]="menuAnimationCntl.state">
-        <!-- ROUTE SUBMENU -->
-        <div id="route-menu" class="route-menu">
-            <span id="route-item" class="route-item"
-                    *ngFor="let appRoute of appRoutes">
-                <button mat-button id="route-link" 
-                        class="route-link" color="accent"
-                        *ngIf="displayRouteForUser(appRoute)"
-                        [matTooltip]="appRoute.tooltip"
-                        [routerLink]="appRoute.route"
-                        (click)="closeMenu()">
-                    {{ appRoute.title }}
-                </button>
-            </span> 
+<div class="app-container">
+    <div style="width: 100vw">
+      <mat-toolbar id="toolbar-container" class="toolbar-container">
+        <img
+          id="logo-image"
+          src="/assets/makpar_logo_white_vector.svg"
+          height="34"
+        />
+  
+        <div class="nav-items">
+          <a
+            routerLink="/"
+            id="{{ path === '/' ? 'active-tab' : '' }}"
+            class="mat-subheading-2"
+            (click)="onSelect('/')"
+            >HOME</a
+          >
+          <a
+            routerLink="/mission"
+            id="{{ path === '/mission' ? 'active-tab' : '' }}"
+            class="mat-subheading-2"
+            (click)="onSelect('/mission')"
+            >MISSION</a
+          >
+          <a
+            routerLink="/team"
+            id="{{ path === '/team' ? 'active-tab' : '' }}"
+            class="mat-subheading-2"
+            (click)="onSelect('/team')"
+            >TEAM</a
+          >
+          <a
+            routerLink="/projects"
+            id="{{ path === '/projects' ? 'active-tab' : '' }}"
+            class="mat-subheading-2"
+            (click)="onSelect('/projects')"
+            >PROJECTS</a
+          >
+          <a
+            routerLink="/news"
+            id="{{ path === '/news' ? 'active-tab' : '' }}"
+            class="mat-subheading-2"
+            (click)="onSelect('/news')"
+            >POSTS ARCHIVE</a
+          >
+          <a
+            routerLink="/admin"
+            id="{{ path === '/admin' ? 'active-tab' : '' }}"
+            class="mat-subheading-2"
+            (click)="onSelect('/admin')"
+            >ADMIN DASHBOARD</a
+          >
+          <!-- <div class="mat-subheading-1">HOME</div> -->
         </div>
-        <!-- ACCOUNT SUBMENU -->
-        <div id="account-menu" class="account-menu">
-            <button mat-icon-button id="signout-button" 
-                    class="signout-button" color="warn"
-                    matTooltip="Sign Out"
-                    (click)="confirmLogout()">
-                <mat-icon>close</mat-icon>
-            </button>
-        </div>   
+      </mat-toolbar>
     </div>
-    <router-outlet></router-outlet>
-
-    <div id="app-footer" class="app-footer">
-        <a id="facebook-link" class="icon-link"
-            aria-label="facebook-link" role="link"
-            href="https://twitter.com/MakparCorp" target="_blank">
-            <mat-icon id="facebook-icon" svgIcon="facebook" color="primary"
-                        matTooltip="Visit the Makpar Facebook Page"></mat-icon>
-        </a>
-        <a id="linkedin-link" class="icon-link"
-            aria-label="linkedin-link" role="link"
-            href="https://twitter.com/MakparCorp" target="_blank">
-            <mat-icon id="linkedin-icon" svgIcon="linkedin" color="primary"
-                        matTooltip="Visit the Makpar LinkedIn Profile"></mat-icon>
-        </a>
-        <a id="twitter-link" class="icon-link"
-            aria-label="twitter-link" role="link"
-            href="https://twitter.com/MakparCorp" target="_blank">
-            <mat-icon id="twitter-icon" svgIcon="twitter" color="primary"
-                        matTooltip="Visit the Makpar Twitter Page"></mat-icon>
-        </a>
-        <a id="rss-link" class="icon-link"
-            aria-label="rss-feed" role="link"
-            href="https://innolab-dev.makpar-innovation.net/api/news/rss-feed"
-            target="_blank">
-            <mat-icon color="primary"
-                        matTooltip="View the Makpar Innovation Lab News Feed">rss_feed</mat-icon>
-        </a>
+  
+    <div class="component-container">
+      <router-outlet></router-outlet>
     </div>
-</div>
+  </div>
+  

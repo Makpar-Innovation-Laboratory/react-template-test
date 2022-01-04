@@ -27,6 +27,11 @@ export class AppComponent{
   public menuAnimationCntl: AnimationControl = new AnimationControl(AnimationTriggers.expand)
   public appRoutes: AppRoute[] = AppConfig.routes;
 
+  path = window.location.pathname;
+  onSelect(input: string): void {
+    this.path = input
+  }
+
   /**
    * # Description
    * Constructs an instance {@link AppComponent}

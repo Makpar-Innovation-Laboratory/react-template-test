@@ -12,12 +12,13 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { RegisterComponent } from './components/register/register.component';
 import { StoryComponent } from './components/news/story/story.component';
 import { TeamComponent } from './components/team/team.component';
-
+import { MissionComponent } from './components/mission/mission.component';
 
 const routes: Routes = [
   { path: '', canActivate: [ AuthGuard ], component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'mission', component: MissionComponent },
   { path: 'projects', component: ProjectsComponent },
   { path: 'team', component: TeamComponent },
     // TODO: turn these routes into a lazy-loaded news module

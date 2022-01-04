@@ -10,6 +10,12 @@ export class HomeComponent {
 
   public username : string;
 
+
+  selected: string = "cybersecurity";
+  onSelect(input: string): void {
+    this.selected = input;
+  }
+
   constructor(private auth : AuthService) { 
     this.username = this.auth.getUsername()
   }
