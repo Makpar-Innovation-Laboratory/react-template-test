@@ -1,4 +1,4 @@
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { NewsService } from '../../../services/news.service';
 import { Component, OnInit } from '@angular/core';
 import { News, NewsResponse } from 'src/app/models/news';
@@ -11,11 +11,11 @@ import { News, NewsResponse } from 'src/app/models/news';
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
-  styleUrls: ['./story.component.css']
+  styleUrls: ['./story.component.css'],
 })
 export class StoryComponent implements OnInit {
-  public newsId : number;
-  public newsPost : News | undefined;
+  public newsId: number;
+  public newsPost: News | undefined;
 
   /**
    * # Description
@@ -23,20 +23,60 @@ export class StoryComponent implements OnInit {
    * @param news service for retrieving news feed from Innovation Lab API
    * @param activatedRoute currently activated route in user brwoser
    */
-  constructor(private news: NewsService, 
-              private activatedRoute: ActivatedRoute) { 
-    this.newsId = this.activatedRoute.snapshot.params.id
+  constructor(
+    private news: NewsService,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.newsId = this.activatedRoute.snapshot.params.id;
     // console.log(this.newsId)
   }
 
   /**
    * Angular Lifecycle Hook initialization
    */
+  
+  
   ngOnInit() {
-    this.news.getNews(this.newsId).subscribe((data: NewsResponse)=>{
-      this.newsPost = data.results[0]
-      console.log(this.newsPost.comments)
+
+    // this.newsPost = {
+    //   "news_id": 3,
+    //   "submitted": "2022-01-04",
+    //   "subject": ["super", " fun"],
+    //   "title": "Another one",
+    //   "snippet": "",
+    //   "content": "Blah blah blah ginger lemon",
+    //   "author": "pcofrancesco@makpar.com",
+    //   "comments": [
+    //     {
+    //       "comment_id": 4,
+    //       "news_id": 3,
+    //       "author": "pcofrancesco@makpar.com",
+    //       "parent_comment": null,
+    //       "content": "it's a me, mario",
+    //       "submitted": "2022-01-04",
+    //       "is_author": true,
+    //       "child_comments": [
+    //         {
+    //           "comment_id": 5,
+    //           "news_id": 3,
+    //           "author": "pcofrancesco@makpar.com",
+    //           "parent_comment": 4,
+    //           "content": "and luigi",
+    //           "submitted": "2022-01-04",
+    //           "is_author": true,
+    //           "child_comments": []
+    //         }
+    //       ]
+    //     }
+    //   ]
+    // }
+      
+    
+    
+
+    this.news.getNews(this.newsId).subscribe((data: NewsResponse) => {
+      this.newsPost = data.results[0];
+      // console.log(this.newsPost.comments)
     });
   }
-
 }

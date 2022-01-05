@@ -25,6 +25,7 @@ import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatSnackBarModule } from '@angular/material/snack-bar'; 
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { MatTooltipModule } from '@angular/material/tooltip'; 
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { AppConfig, IconRegistry } from '../config';
 import { AppRoutingModule } from './app-routing.module';
@@ -111,6 +112,7 @@ import { CommentListComponent } from './components/comment-list/comment-list.com
     MatSnackBarModule,
     MatToolbarModule,
     MatTooltipModule,
+    MatExpansionModule,
   
 
     // OTHER

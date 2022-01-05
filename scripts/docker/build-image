@@ -38,7 +38,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 
-if [ "${PROXY,,}" == "true" ]
+if [ "${PROXY}" == "true" ]
 then
     log "Configuring \e[3m$CONTAINER_NAME\e[0m With Upstream Server at \e[3m$PROXY_HOST:$PROXY_PORT\e[0m" $SCRIPT_NAME
     cp "$CONF_DIR/nginx.proxy.conf" "$CONF_DIR/nginx.conf"

@@ -3,20 +3,20 @@ import { SafeHtml } from "@angular/platform-browser";
 export interface News{
     news_id: number | null,
     submitted: string | null,
-    subject: string | null,
+    subject: string[] | null,
     title: string | null,
     snippet: string | null,
     content: SafeHtml | null,
-    comments: Comment[]
+    comments: Comment[] | null
 }
 
 export interface Comment{
     author: string | null,
     child_comments:Comment[] | null,
     comment_id:number,
-    // is_author:boolean,
-    // news_id: number ,
-    // parent_comment:number,
+    is_author:boolean | null,
+    news_id: number ,
+    parent_comment:number | null,
     submitted: string | null,
     content: string | null
 }

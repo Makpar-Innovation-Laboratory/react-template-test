@@ -6,5 +6,5 @@
         <div [innerHTML] = "newsPost.content | sanitize: 'html' "></div>
     </mat-card-content>
     <app-comment [child]="'false'" [parent_id]="0"> </app-comment>
-    <app-comment-list *ngIf="newsPost.comments" [comments]="newsPost.comments" ></app-comment-list>
+    <!-- <app-comment-list *ngIf="newsPost.comments" [comments]="newsPost.comments" ></app-comment-list> -->
 </mat-card>
