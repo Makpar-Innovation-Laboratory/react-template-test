@@ -27,7 +27,7 @@ export class TeamComponent implements OnInit {
     [
       { name: 'Aurora Pariseau', position: 'Full Stack Developer', bio: '' },
       { name: 'Thomas Klock', position: 'Full Stack Developer', bio: '' },
-      { name: 'Phung Ngo', position: 'DevSecOps', bio: '' },
+      { name: 'Phung Ngo', position: 'UX/Front End Developer', bio: '' },
     ]
   ];
 

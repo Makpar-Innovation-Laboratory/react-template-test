@@ -96,6 +96,7 @@ export class EditorComponent {
    * @returns 
    */
   private formToNews(): News{
+    console.log(this.newsFormGroup)
     console.log(Object.values(this.sanitizer.bypassSecurityTrustHtml(this.newsFormGroup.controls.content.value))[0])
     return {
       news_id: null,
@@ -104,7 +105,8 @@ export class EditorComponent {
       snippet: this.newsFormGroup.controls.snippet.value,
       content: Object.values(this.sanitizer.bypassSecurityTrustHtml(this.newsFormGroup.controls.content.value))[0],
       submitted: new Date().toISOString().slice(0, 10),
-      comments:[{ author: null, submitted: null, content: null, child_comments: null , comment_id: 0, is_author: null, news_id: 0, parent_comment: null}]
+      comments:[{ author: null, submitted: null, content: null, child_comments: null , comment_id: 0, is_author: null, news_id: 0, parent_comment: null}],
+      author: null
     }
   }
 

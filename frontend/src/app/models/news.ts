@@ -7,7 +7,8 @@ export interface News{
     title: string | null,
     snippet: string | null,
     content: SafeHtml | null,
-    comments: Comment[] | null
+    comments: Comment[] | null,
+    author: string | null,
 }
 
 export interface Comment{
@@ -37,5 +38,6 @@ export const NULL_NEWS : News = {
     title: null,
     snippet: null,
     content: null,
-    comments: []
+    comments: [],
+    author: null
 }

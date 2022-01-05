@@ -1,9 +1,42 @@
-.news-container{
-    width: 100%;
-    display: flex; flex-direction: column;
-    justify-content: center;
+.news-container {
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
-.newsfeed-card{
-    margin-right: auto; margin-left: auto;
-    margin-top: 1%; width: 85%;
+.newsfeed-card {
+  margin-top: 5%;
+  width: 45%;
+  margin-left: 5%;
+  padding: 0 !important;
+}
+
+.newsfeed-card:nth-child(odd) {
+  margin-left: 2.5%;
+}
+.feed-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.feed-header-border {
+  height: 0.7rem;
+  width: 6rem;
+  border-top: 2px solid #ffffff;
+}
+.feed-header {
+  width: 90%;
+}
+.post-title:hover {
+  cursor: pointer;
+}
+
+/* Override mat-card */
+.mat-card {
+  border-radius: 0 !important;
+}
+.mat-card-actions, .mat-card-subtitle, .mat-card-content {
+  display: block;
+  margin-bottom: 0 !important;
 }

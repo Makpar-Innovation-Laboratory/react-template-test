@@ -1,28 +1,100 @@
-<div id="news-container" class="news-container"
-        *ngIf="feed">
-    <mat-card id="newsfeed-card" class="newsfeed-card"
-                *ngFor="let story of feed">
-        <mat-card-title>{{ story.title }}</mat-card-title>
-        <mat-card-subtitle>{{ story.submitted }}</mat-card-subtitle>
-        <mat-card-content> {{ story.snippet }} </mat-card-content>
-        <mat-card-actions align="end">
-            <button mat-icon-button id="view-button"
-                    color="accent" matTooltip="View this story"
-                    [routerLink]="['/news', story.news_id]">
-                <mat-icon>details</mat-icon>
+<div class="feed-container" style="padding: 3rem 0 15rem 0">
+  <div
+    style="display: flex; justify-content: center"
+    class="text-white feed-header"
+  >
+    <div style="width: 20%; text-align: right; height: 100%">
+      <h4 class="mat-headline" style="margin-right: 2rem">NEWS FEED</h4>
+    </div>
+
+    <div style="width: 75%">
+      <h5 class="mat-title">LOREM IPSUM DOLOR SIT AMET</h5>
+      <div class="feed-header-border"></div>
+      <h6 class="mat-subheading-2">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam. Consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+      </h6>
+    </div>
+  </div>
+
+  <div style="width: 100%">
+    <div
+      style="width: 25%; border-bottom: 2px dashed #ffffff; margin-bottom: 2rem"
+    ></div>
+  </div>
+
+  <div>
+    <h6 class="mat-subheading-2 text-white">Filters</h6>
+  </div>
+
+  <div id="news-container" class="news-container" *ngIf="feed">
+    <mat-card
+      id="newsfeed-card"
+      class="newsfeed-card"
+      *ngFor="let story of feed"
+    >
+      <div style="width: 100%; height: 15rem; overflow: hidden">
+        <img src="../../../../assets/preview.png" width="100%" />
+      </div>
+
+      <div style="padding: 2rem;">
+        <mat-card-title
+          class="post-title"
+          [routerLink]="['/news', story.news_id]"
+          >{{ story.title }}</mat-card-title
+        >
+        <div
+          style="
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 1.5rem;
+          "
+        >
+          <mat-card-subtitle
+            >Author: {{ story.author ? story.author : "" }}</mat-card-subtitle
+          >
+          <mat-card-subtitle>{{ story.submitted }}</mat-card-subtitle>
+        </div>
+        <mat-card-subtitle>{{ story.subject }}</mat-card-subtitle>
+        <!-- <mat-card-content> {{ story.snippet }} </mat-card-content> -->
+
+        <div style="width: 100%; display: flex; justify-content: flex-end;">
+          <mat-card-actions>
+            <!-- <button
+              mat-icon-button
+              id="view-button"
+              color="accent"
+              matTooltip="View this story"
+              [routerLink]="['/news', story.news_id]"
+            >
+              <mat-icon>details</mat-icon>
+            </button> -->
+            <button
+              mat-icon-button
+              id="edit-button"
+              color="white"
+              matTooltip="Edit this story"
+              *ngIf="isDeveloper && story.news_id"
+              [routerLink]="['/admin/update', story.news_id]"
+            >
+              <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button id="edit-button"
-                    color="accent" matTooltip="Edit this story"
-                    *ngIf="isDeveloper && story.news_id"
-                    [routerLink]="['/admin/update', story.news_id]">
-                <mat-icon>edit</mat-icon>
+            <button
+              mat-icon-button
+              id="delete-button"
+              color="white"
+              matTooltip="Delete this story"
+              *ngIf="isDeveloper && story.news_id"
+              (click)="deleteNews(story.news_id)"
+            >
+              <mat-icon>delete_forever</mat-icon>
             </button>
-            <button mat-icon-button id="delete-button"
-                    color="warn" matTooltip="Delete this story"
-                    *ngIf="isDeveloper && story.news_id"
-                    (click)="deleteNews(story.news_id)">
-                <mat-icon>delete_forever</mat-icon>
-            </button>
-        </mat-card-actions>
+          </mat-card-actions>
+        </div>
+      </div>
     </mat-card>
+  </div>
 </div>

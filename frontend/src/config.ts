@@ -39,10 +39,10 @@ export const AppConfig: Config = {
         { route: '', title: 'HOME', tooltip: "Home Page" },
         { route: 'mission', title: 'MISSION', tooltip: 'Innovation Lab Mission Statement' },
         { route: 'team', title: 'TEAM', tooltip: "Meet the Innovation Lab Team" },
-        { route: 'news/feed', title: 'NEWS FEED', tooltip: "Latest News From The Feed" },
         { route: 'projects', title: 'PROJECTS', tooltip: "Past And Ongoing Projects" },
+        { route: 'news/feed', title: 'NEWS FEED', tooltip: "Latest News From The Feed" },
         { route: 'docs', title: 'DOCS', tooltip: "Documentation for the InnoLab Web App" },
-        { route: 'admin', title: 'ADMIN CONSOLE', tooltip: "Administrative Access to Site" },  
+        { route: 'admin', title: 'ADMIN DASHBOARD', tooltip: "Administrative Access to Site" },  
     ],
     // Paths are relative to the /app/ directory since they are imported in the AppComponent constructor
     registry:[
