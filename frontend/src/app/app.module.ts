@@ -45,6 +45,8 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { TeamComponent } from './components/team/team.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentListComponent } from './components/comment-list/comment-list.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+
 
 /**
  * # AppModule
@@ -77,6 +79,7 @@ import { CommentListComponent } from './components/comment-list/comment-list.com
     RegisterComponent,
     ProjectsComponent,
     TeamComponent,
+    UserProfileComponent,
   ],
   imports: [
     // ANGULAR CORE

@@ -10,7 +10,7 @@ import {Comment} from '../../models/news'
   templateUrl: './comment-list.component.html',
   styleUrls: ['./comment-list.component.css']
 })
-export class CommentListComponent implements OnInit, OnDestroy {
+export class CommentListComponent implements OnInit {
   postId!: string;
   showReply = false;
   togglePanel: any = {};
@@ -34,7 +34,7 @@ export class CommentListComponent implements OnInit, OnDestroy {
   onReply(){
     this.showReply = (!this.showReply) ? true : false;
   }
-  ngOnDestroy() {
-    this.commentSub.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.commentSub.unsubscribe();
+  // }
 }

@@ -32,6 +32,7 @@ export class FeedComponent implements OnInit {
    ngOnInit(): void{
     this.isDeveloper = this.auth.belongsToGroup('developer')
     this.news.getAllNews().subscribe((thisNews: NewsResponse)=>{
+      console.log(thisNews.results)
       this.feed = thisNews.results;
     })
   }

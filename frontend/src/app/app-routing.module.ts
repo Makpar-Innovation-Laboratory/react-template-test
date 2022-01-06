@@ -12,7 +12,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { RegisterComponent } from './components/register/register.component';
 import { StoryComponent } from './components/news/story/story.component';
 import { TeamComponent } from './components/team/team.component';
-
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', canActivate: [ AuthGuard ], component: HomeComponent },
@@ -31,6 +31,8 @@ const routes: Routes = [
   { path: 'admin' , canActivate: [ AuthGuard ], component: AdminComponent,
     children:[
       { path:'add', component: EditorComponent },
+      { path: 'feed', component: FeedComponent },
+      { path: 'user', component: UserProfileComponent },
       { path:'update/:id', component: EditorComponent }
     ]
   },
