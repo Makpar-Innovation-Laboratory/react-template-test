@@ -9,7 +9,7 @@
 .toolbar-container {
     display: flex;
     background: transparent;
-    border-bottom: 2px dashed #ffffffaf;
+    border-bottom: 2px dashed;
 }
 .nav-items {
     display: flex;
@@ -18,11 +18,9 @@
     padding-bottom: 0rem;
     margin-bottom: 0;
     margin-left: 1rem;
-    text-decoration: none;
-    color: #FFFFFF;
-    
+    text-decoration: none;    
 }
 
 #active-tab {
-    border-bottom: 2px solid #FFFFFF;
+    border-bottom: 2px solid;
 }
