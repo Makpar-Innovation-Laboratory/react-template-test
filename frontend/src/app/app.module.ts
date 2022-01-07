@@ -51,6 +51,8 @@ import { ProjectComponent } from './components/projects/project/project.componen
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { PaginationComponent } from './components/news/feed/pagination/pagination.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+
 
 /**
  * # AppModule
@@ -86,6 +88,7 @@ import { PaginationComponent } from './components/news/feed/pagination/paginatio
     MissionComponent,
     ProjectComponent,
     PaginationComponent,
+    UserProfileComponent,
   ],
   imports: [
     // ANGULAR CORE

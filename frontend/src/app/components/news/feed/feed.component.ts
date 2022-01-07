@@ -40,6 +40,7 @@ export class FeedComponent implements OnInit {
     
 
     this.news.getAllNews().subscribe((thisNews: NewsResponse)=>{
+      console.log(thisNews.results)
       this.feed = thisNews.results;
       console.log(thisNews.results);
     })

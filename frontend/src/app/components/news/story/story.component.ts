@@ -37,46 +37,9 @@ export class StoryComponent implements OnInit {
   
   
   ngOnInit() {
-
-    // this.newsPost = {
-    //   "news_id": 3,
-    //   "submitted": "2022-01-04",
-    //   "subject": ["super", " fun"],
-    //   "title": "Another one",
-    //   "snippet": "",
-    //   "content": "Blah blah blah ginger lemon",
-    //   "author": "pcofrancesco@makpar.com",
-    //   "comments": [
-    //     {
-    //       "comment_id": 4,
-    //       "news_id": 3,
-    //       "author": "pcofrancesco@makpar.com",
-    //       "parent_comment": null,
-    //       "content": "it's a me, mario",
-    //       "submitted": "2022-01-04",
-    //       "is_author": true,
-    //       "child_comments": [
-    //         {
-    //           "comment_id": 5,
-    //           "news_id": 3,
-    //           "author": "pcofrancesco@makpar.com",
-    //           "parent_comment": 4,
-    //           "content": "and luigi",
-    //           "submitted": "2022-01-04",
-    //           "is_author": true,
-    //           "child_comments": []
-    //         }
-    //       ]
-    //     }
-    //   ]
-    // }
-      
-    
-    
-
-    this.news.getNews(this.newsId).subscribe((data: NewsResponse) => {
-      this.newsPost = data.results[0];
-      // console.log(this.newsPost.comments)
+    this.news.getNews(this.newsId).subscribe((data: NewsResponse)=>{
+      this.newsPost = data.results[0]
+      console.log(data)
     });
   }
 }
