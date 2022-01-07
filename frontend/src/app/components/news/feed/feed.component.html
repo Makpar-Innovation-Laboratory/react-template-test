@@ -24,19 +24,31 @@
     ></div>
   </div>
 
-  <div>
-    <h6 class="mat-subheading-2 text-white">Filters</h6>
-    <input class="search-bar" placeholder="Search" />
-    <button class="button-primary">Search</button>
+  <div style="width: 75%; display: flex; justify-content: space-between;">
+    <div style="display: flex;">
+      <input id="searchBar" name="searchBar" class="search-bar" placeholder="Search" [(ngModel)]='searchValue' />
+      <button class="button-primary" style="margin-left: 1rem" (click)="search(searchValue)">Search</button>  
+    </div>
+    <pagination-controls
+      (pageChange)="p = $event"
+      previousLabel="Previous"
+      nextLabel="Next"
+      [directionLinks]="true"
+      [autoHide]="true"
+      id="pagination"
+    >
+    </pagination-controls>
   </div>
 
   <div id="news-container" class="news-container" *ngIf="feed">
     <mat-card
       id="newsfeed-card"
       class="newsfeed-card"
-      *ngFor="let story of feed | paginate: { id: 'pagination', itemsPerPage: 3, currentPage: p }"
+      *ngFor="
+        let story of feed
+          | paginate: { id: 'pagination', itemsPerPage: 4, currentPage: p }
+      "
     >
-
       <div style="width: 100%; height: 15rem; overflow: hidden">
         <img src="../../../../assets/preview.png" width="100%" />
       </div>
@@ -106,8 +118,10 @@
     >
       <p class="text-white">No posts found</p>
     </div>
-    <div style="width: 100%; display: flex; justify-content: flex-end">
-      <pagination-controls
+  </div>
+
+  <div style="width: 75%; display: flex; justify-content: flex-end; margin-top: 3rem;">
+    <pagination-controls
       (pageChange)="p = $event"
       previousLabel="Previous"
       nextLabel="Next"
@@ -116,7 +130,5 @@
       id="pagination"
     >
     </pagination-controls>
-      <!-- <app-pagination [allPagesNumber]="allPages" (changePage)="onPageChange($event)"></app-pagination> -->
-    </div>
   </div>
 </div>

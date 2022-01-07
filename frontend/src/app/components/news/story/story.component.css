@@ -1,5 +1,16 @@
-.news-details-container{
-    margin-right: auto; margin-left: auto;
-    margin-top: 1%; width: 85%;
-    min-height: 30%;
+/* Typography */
+.mat-display-1 {
+    margin-bottom: 1rem;
 }
+
+.story-container {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.projects-header-border {
+    height: 0.7rem;
+    width: 6rem;
+    border-top: 2px solid #ffffff;
+  }

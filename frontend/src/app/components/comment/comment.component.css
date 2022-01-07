@@ -1,0 +1,18 @@
+.mat-title {
+    font-weight: normal;
+}
+
+.mat-form-field-infix {
+    background: #ffffff5f !important;
+}
+
+
+textarea {
+    border: none;
+    width: 90%;
+    max-width: 90%;
+    min-height: 3rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background:  #ffffffad;
+}

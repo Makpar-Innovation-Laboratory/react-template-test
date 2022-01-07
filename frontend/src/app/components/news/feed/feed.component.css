@@ -3,6 +3,7 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  margin-bottom: 2rem;
 }
 .newsfeed-card {
   margin-top: 5%;
@@ -43,13 +44,15 @@
 
 .search-bar {
   background: #FFFFFF;
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   border: none;
   padding: 0.4rem 1.2rem;
-  font-size: 1rem;
+  /* font-size: 1rem;
+  line-height: 1rem; */
   color: #707070;
   min-width: 20vw;
+  box-shadow: 0 2px 6px #0000005d;
 }
-/* .mat-paginator {
-  background: #707070;
-} */
+.button-primary {
+  box-shadow: 0 2px 6px #0000005d;
+}

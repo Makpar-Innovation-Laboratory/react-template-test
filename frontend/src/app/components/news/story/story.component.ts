@@ -39,7 +39,7 @@ export class StoryComponent implements OnInit {
   ngOnInit() {
     this.news.getNews(this.newsId).subscribe((data: NewsResponse)=>{
       this.newsPost = data.results[0]
-      console.log(data)
+      console.log(data.results[0])
     });
   }
 }

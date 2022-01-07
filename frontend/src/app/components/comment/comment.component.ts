@@ -16,6 +16,15 @@ export class CommentComponent implements OnInit{
   commentForm!: FormGroup;
   @Input() child!: string;
   @Input() parent_id!: number;
+  showComment: boolean = false;
+
+  showCommentToggle(): void {
+    this.showComment = true;
+  }
+  hideCommentToggle(): void {
+    this.showComment = false;
+  }
+
   constructor(
     private fb: FormBuilder,
     private BlogService: BlogService,
@@ -62,7 +71,8 @@ export class CommentComponent implements OnInit{
     console.log(content)
     this.BlogService.addComment(content).subscribe((response)=>{
       if(response){
-        this.open_alert_dialog("The blog was successfully deleted");
+        console.log("New comment added");
+        // this.open_alert_dialog("The blog was successfully deleted");
       }
     })
   }
