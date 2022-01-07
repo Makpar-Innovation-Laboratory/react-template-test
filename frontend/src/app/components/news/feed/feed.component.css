@@ -40,3 +40,16 @@
   display: block;
   margin-bottom: 0 !important;
 }
+
+.search-bar {
+  background: #FFFFFF;
+  border-radius: 1rem;
+  border: none;
+  padding: 0.4rem 1.2rem;
+  font-size: 1rem;
+  color: #707070;
+  min-width: 20vw;
+}
+/* .mat-paginator {
+  background: #707070;
+} */

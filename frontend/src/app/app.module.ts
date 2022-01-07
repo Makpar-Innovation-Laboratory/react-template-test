@@ -4,6 +4,7 @@ import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ScrollingModule } from '@angular/cdk/scrolling'; 
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
@@ -26,6 +27,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { MatTooltipModule } from '@angular/material/tooltip'; 
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { AppConfig, IconRegistry } from '../config';
 import { AppRoutingModule } from './app-routing.module';
@@ -48,6 +50,7 @@ import { MissionComponent } from './components/mission/mission.component';
 import { ProjectComponent } from './components/projects/project/project.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentListComponent } from './components/comment-list/comment-list.component';
+import { PaginationComponent } from './components/news/feed/pagination/pagination.component';
 
 /**
  * # AppModule
@@ -82,6 +85,7 @@ import { CommentListComponent } from './components/comment-list/comment-list.com
     TeamComponent,
     MissionComponent,
     ProjectComponent,
+    PaginationComponent,
   ],
   imports: [
     // ANGULAR CORE
@@ -92,6 +96,8 @@ import { CommentListComponent } from './components/comment-list/comment-list.com
     FormsModule,
     ReactiveFormsModule,
     ScrollingModule,
+
+    NgxPaginationModule,
 
     // ANGULAR MATERIAL
       // TODO: turn these into a separate material module
@@ -113,7 +119,7 @@ import { CommentListComponent } from './components/comment-list/comment-list.com
     MatToolbarModule,
     MatTooltipModule,
     MatExpansionModule,
-  
+    MatPaginatorModule,
 
     // OTHER
       // ANGULAR EDITOR
