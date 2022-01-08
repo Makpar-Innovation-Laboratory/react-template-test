@@ -19,7 +19,7 @@
     .text-primary {
       color: map-get($primary-palette, 500);
     }
-    .selected div{
+    .selected{
       border-bottom: map-get($primary-palette, 500);
     }
     .sidenav-border{

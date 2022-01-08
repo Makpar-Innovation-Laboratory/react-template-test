@@ -29,8 +29,9 @@
         <ul class="text-primary" style="width: 100%">
           <div id="nav-select" class="nav-select" 
               *ngFor="let section of sections">
-            <li class="{{ isSelected(section) ? 'selected' : ''}}">
-              <h5 class="mat-headline" (click)="onSelect(section)">{{section.title}}</h5>
+            <li >
+              <h5 class="mat-headline" (click)="onSelect(section)">
+                <span class="{{ isSelected(section) ? 'selected' : ''}}">{{section.title}}</span></h5>
             </li>
             <div style="height: 1.5rem; width: 35%"></div>
           </div>
