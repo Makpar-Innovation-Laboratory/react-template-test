@@ -84,8 +84,7 @@ export class AppComponent{
    * @returns `true` is user is authorized, `false` otherwise
    */
   public displayRouteForUser(thisRoute: AppRoute): boolean{
-    if(['admin'].includes(thisRoute.route)) return this.auth.belongsToGroup('developer')
-    else return true
+    return this.auth.displayRouteForUser(thisRoute);
   }
 
   /**

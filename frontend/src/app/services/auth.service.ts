@@ -11,6 +11,7 @@ import { User, UserLogin } from '../models/user';
 import { mock } from 'src/environments/mock';
 
 import jwt_decode from "jwt-decode";
+import { AppConfig, AppRoute } from 'src/config';
 
 /**
  * # AuthService
@@ -97,6 +98,19 @@ export class AuthService {
     else return false;
   }
   
+   /**
+   * # Description
+   * Determine if the user in the current session is authorized to view a route.
+   * @param thisRoute route against which user authorization is determined.
+   * @returns `true` is user is authorized, `false` otherwise
+   */
+  public displayRouteForUser(thisRoute: AppRoute): boolean{
+    let dev_routes : AppRoute[] = AppConfig.routes.filter(e=> e.dev)
+    console.log(`dev routes ${dev_routes}`)
+    if(dev_routes.includes(thisRoute)) return this.belongsToGroup('developer')
+    else return true
+  }
+
   /**
    * # Description
    * Exchange {@link UserLogin} for {@link Token} and store result in `SessionStorage`.

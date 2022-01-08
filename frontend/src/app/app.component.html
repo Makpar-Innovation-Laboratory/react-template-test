@@ -20,21 +20,15 @@
         </div>
 
         <button mat-icon-button id="signout-button"
-
-                    class="signout-button" color="warn"
-
-                    matTooltip="Sign Out"
-
-                    (click)="confirmLogout()">
-
+                class="signout-button" color="warn"
+                matTooltip="Sign Out"
+                (click)="confirmLogout()">
                 <mat-icon>close</mat-icon>
-
-            </button>
+        </button>
       </mat-toolbar>
     </div>
   
     <div class="component-container">
-      <h1>obvious change for blue-green deployment</h1>
       <router-outlet></router-outlet>
     </div>
   </div>

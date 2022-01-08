@@ -10,7 +10,7 @@ export interface Section{ key: string, title: string, description: string }
 /**
  * Interface defining metadata associated with routes, for rendering routes into links and buttons. 
  */
- export interface AppRoute { route: string, title: string, tooltip: string }
+ export interface AppRoute { route: string, title: string, tooltip: string, dev: boolean }
  /**
   * Interface defining metadata associated with icons, for registering icon files with `MatIconRegistry`.
   */
@@ -24,7 +24,8 @@ export interface Config{
     createMsg: string, defaultMsg: string,
     signOutMsg: string,
     createAlert: string, editAlert: string,
-    routes: AppRoute[], registry: IconRegistry[],
+    routes: AppRoute[],
+    registry: IconRegistry[],
     sections: Section[]
 }
 
@@ -55,13 +56,13 @@ export const AppConfig: Config = {
     // NOTE: this doesn't register the routes with Component views. This configures the navigation menu
     //          within the AppComponent
     routes: [
-        { route: '', title: 'HOME', tooltip: "Home Page" },
-        { route: 'mission', title: 'MISSION', tooltip: 'Innovation Lab Mission Statement' },
-        { route: 'team', title: 'TEAM', tooltip: "Meet the Innovation Lab Team" },
-        { route: 'news/feed', title: 'NEWS FEED', tooltip: "Latest News From The Feed" },
-        { route: 'projects', title: 'PROJECTS', tooltip: "Past And Ongoing Projects" },
-        { route: 'docs', title: 'DOCS', tooltip: "Documentation for the InnoLab Web App" },
-        { route: 'admin', title: 'ADMIN CONSOLE', tooltip: "Administrative Access to Site" },  
+        { route: '', title: 'HOME', tooltip: "Home Page", dev: false },
+        { route: 'mission', title: 'MISSION', tooltip: 'Innovation Lab Mission Statement', dev: false },
+        { route: 'team', title: 'TEAM', tooltip: "Meet the Innovation Lab Team", dev: false },
+        { route: 'news/feed', title: 'NEWS FEED', tooltip: "Latest News From The Feed", dev: false },
+        { route: 'projects', title: 'PROJECTS', tooltip: "Past And Ongoing Projects", dev: false },
+        { route: 'docs', title: 'DOCS', tooltip: "Documentation for the InnoLab Web App", dev: false },
+        { route: 'admin', title: 'ADMIN CONSOLE', tooltip: "Administrative Access to Site", dev: true},  
     ],
     // NOTE: this configures the home component sections display
     sections: [
