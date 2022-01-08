@@ -9,7 +9,9 @@
     <div>
       <div class="sidenav-container">
         <h5 class="mat-headline text-white" *ngFor="let route of appRoutes">
-          <a [routerLink]="route.route">{{route.title}}</a>
+          <a *ngIf="route.route != '/docs'" [routerLink]="route.route">{{route.title}}</a>
+          <a *ngIf="route.route == '/docs'" href="http://innolab-coverage.makpar-innovation.net"
+              target="_blankg">{{route.title}}</a>
         </h5>
       </div>
       <div class="sidenav-border"></div>
