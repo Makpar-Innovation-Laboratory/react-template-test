@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { AppConfig, AppRoute, Section } from 'src/config';
 
@@ -26,7 +27,8 @@ export class HomeComponent {
    * Constructs an instance of {@link HomeComponent}
    * @param auth instance of {@link AuthService} injected into component by Angular
    */
-  constructor(private auth : AuthService) { 
+  constructor(private auth : AuthService,
+              private router: Router) { 
     this.username = this.auth.getUsername()
   }
 

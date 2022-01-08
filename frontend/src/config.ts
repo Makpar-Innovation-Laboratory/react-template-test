@@ -56,13 +56,13 @@ export const AppConfig: Config = {
     // NOTE: this doesn't register the routes with Component views. This configures the navigation menu
     //          within the AppComponent
     routes: [
-        { route: '', title: 'HOME', tooltip: "Home Page", dev: false },
-        { route: 'mission', title: 'MISSION', tooltip: 'Innovation Lab Mission Statement', dev: false },
-        { route: 'team', title: 'TEAM', tooltip: "Meet the Innovation Lab Team", dev: false },
-        { route: 'news/feed', title: 'NEWS FEED', tooltip: "Latest News From The Feed", dev: false },
-        { route: 'projects', title: 'PROJECTS', tooltip: "Past And Ongoing Projects", dev: false },
-        { route: 'docs', title: 'DOCS', tooltip: "Documentation for the InnoLab Web App", dev: false },
-        { route: 'admin', title: 'ADMIN CONSOLE', tooltip: "Administrative Access to Site", dev: true},  
+        { route: '/', title: 'HOME', tooltip: "Home Page", dev: false },
+        { route: '/mission', title: 'MISSION', tooltip: 'Innovation Lab Mission Statement', dev: false },
+        { route: '/team', title: 'TEAM', tooltip: "Meet the Innovation Lab Team", dev: false },
+        { route: '/news/feed', title: 'NEWS FEED', tooltip: "Latest News From The Feed", dev: false },
+        { route: '/projects', title: 'PROJECTS', tooltip: "Past And Ongoing Projects", dev: false },
+        { route: '/docs', title: 'DOCS', tooltip: "Documentation for the InnoLab Web App", dev: false },
+        { route: '/admin', title: 'ADMIN CONSOLE', tooltip: "Administrative Access to Site", dev: true},  
     ],
     // NOTE: this configures the home component sections display
     sections: [

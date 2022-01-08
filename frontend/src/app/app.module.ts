@@ -4,7 +4,6 @@ import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ScrollingModule } from '@angular/cdk/scrolling'; 
 
-import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { MatIconRegistry } from '@angular/material/icon';
 

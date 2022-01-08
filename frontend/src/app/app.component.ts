@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AppConfig, AppRoute } from '../config';
 import { AnimationControl, Animations, AnimationTriggers, ExpandStates } from 'src/animations';
 import { DialogComponent, DialogTypes } from '../shared/components/dialog/dialog.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 /**
  * # AppComponent
@@ -37,8 +37,15 @@ export class AppComponent{
    */
   constructor(private auth: AuthService,
               private dialog: MatDialog,
-              private activatedRoute: ActivatedRoute){
-    this.path = activatedRoute.snapshot.url.toString()
+              private activatedRoute: ActivatedRoute,
+              private router: Router){
+    this.path = activatedRoute.snapshot.url.toString();
+    router.events.subscribe((val) => {
+      if(val instanceof NavigationEnd) { 
+        console.log(`setting path to ${val.url}`)
+        this.path = val.url; 
+      }
+  });
   }
 
   /**

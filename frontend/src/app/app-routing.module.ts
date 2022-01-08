@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from '../shared/guards/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProjectsComponent } from './components/projects/projects.component';
@@ -13,9 +13,9 @@ const routes: Routes = [
   { path: '', canActivate: [ AuthGuard ], component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'mission', component: MissionComponent },
-  { path: 'projects', component: ProjectsComponent },
-  { path: 'team', component: TeamComponent },  
+  { path: 'mission', canActivate: [ AuthGuard ],  component: MissionComponent },
+  { path: 'projects', canActivate: [ AuthGuard ], component: ProjectsComponent },
+  { path: 'team', canActivate: [ AuthGuard ], component: TeamComponent },  
   { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) },
   { path: 'news', loadChildren: () => import('./modules/news/news.module').then(m => m.NewsModule) },
 ];
