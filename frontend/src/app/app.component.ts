@@ -25,7 +25,6 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 })
 export class AppComponent{
   public title: string = "Makpar Innovation Lab";
-  public menuAnimationCntl: AnimationControl = new AnimationControl(AnimationTriggers.expand)
   public appRoutes: AppRoute[] = AppConfig.routes;
   public path: string;
   
@@ -56,34 +55,6 @@ export class AppComponent{
   public onSelect(input: string): void {
     this.path = input
   }
-
-  /**
-   * # Description
-   * Switch {@link menuAnimationCntl} to opposite state.
-   */
-  public toggleMenu(): void{
-    switch(this.menuAnimationCntl.state){
-      case ExpandStates.open:
-        this.closeMenu()
-        break;
-      case ExpandStates.closed:
-        this.openMenu()
-        break;
-    }
-  }
-
-  /**
-   * # Description
-   * Close {@link menuAnimationCntl}, regardless of current state.
-   */
-  public closeMenu(): void{ this.menuAnimationCntl.setState(ExpandStates.closed); }
-
-  /** 
-   * # Description
-   * Open {@link menuAnimationCntl}, regardless of current state
-   */
-  public openMenu(): void { this.menuAnimationCntl.setState(ExpandStates.open); }
-
   /**
    * # Description
    * Determine if the user in the current session is authorized to view a route.

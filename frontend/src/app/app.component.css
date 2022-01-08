@@ -7,7 +7,8 @@
 }
 /* Navigation Styles */
 .toolbar-container {
-    display: flex;
+    display: flex; width: 100%;
+    flex-direction: row;
     background: transparent;
     border-bottom: 2px dashed;
 }
@@ -20,7 +21,9 @@
     margin-left: 1rem;
     text-decoration: none;    
 }
-
+.signout-button{
+    margin-left: auto;
+}
 #active-tab {
     border-bottom: 2px solid;
 }
