@@ -17,7 +17,7 @@ import { AppConfig, AppRoute, Section } from 'src/config';
 export class HomeComponent {
 
   public username : string;
-  public selected: string = AppConfig.sections[0].key;
+  public selected: Section = AppConfig.sections[0];
   public sections: Section[] = AppConfig.sections;
   public appRoutes: AppRoute[] = AppConfig.routes
 
@@ -35,7 +35,7 @@ export class HomeComponent {
    * Select a {@link Section} to view within the {@link HomeComponent}
    * @param input 
    */
-  public onSelect(input: string): void {
+  public onSelect(input: Section): void {
     this.selected = input;
   }
 
@@ -45,7 +45,7 @@ export class HomeComponent {
    * @param section 
    * @returns 
    */
-  public isSelected(section: string): boolean{
+  public isSelected(section: Section): boolean{
     return section == this.selected;
   }
 

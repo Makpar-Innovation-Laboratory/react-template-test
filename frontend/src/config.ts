@@ -63,7 +63,7 @@ export const AppConfig: Config = {
         { route: 'docs', title: 'DOCS', tooltip: "Documentation for the InnoLab Web App" },
         { route: 'admin', title: 'ADMIN CONSOLE', tooltip: "Administrative Access to Site" },  
     ],
-    // NOTE: this configures the home component display
+    // NOTE: this configures the home component sections display
     sections: [
         { key: 'cyber-security' , title: 'CYBERSECURITY', description: 'a description of cybersecurity goes here' },
         { key: 'machine-learning', title: 'MACHINE LEARNING', description: 'a description of machine learning goes here' },

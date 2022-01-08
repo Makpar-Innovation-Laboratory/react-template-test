@@ -19,8 +19,8 @@
 
 /* Services Section Styles */
 .card {
-    width: 50%;
-    height: 100%; padding: 2rem 0; min-height: 25rem;
+    width: 50%; min-height: 25rem;
+    height: 100%; padding: 2rem 0; 
 
 }
 .card ul {
@@ -41,7 +41,7 @@ ul h5:hover {
 .sidenav-container{
     display: flex; flex-direction: column
 }
-.menu-border{
+.sidenav-border{
     border-bottom: 2px dashed;
     height: 0.5rem; width: 18rem;
 }
