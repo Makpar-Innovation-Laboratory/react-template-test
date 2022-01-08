@@ -61,7 +61,7 @@ export const AppConfig: Config = {
         { route: '/team', title: 'TEAM', tooltip: "Meet the Innovation Lab Team", dev: false },
         { route: '/news/feed', title: 'NEWS FEED', tooltip: "Latest News From The Feed", dev: false },
         { route: '/projects', title: 'PROJECTS', tooltip: "Past And Ongoing Projects", dev: false },
-        { route: '/docs', title: 'DOCS', tooltip: "Documentation for the InnoLab Web App", dev: false },
+        { route: '/docs', title: 'DOCS', tooltip: "Documentation for the InnoLab Web App", dev: true },
         { route: '/admin', title: 'ADMIN', tooltip: "Administrative Access to Site", dev: true},  
     ],
     // NOTE: this configures the home component sections display
