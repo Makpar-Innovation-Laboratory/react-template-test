@@ -2,6 +2,7 @@
 @use 'sass:map';
 
 // COMPONENT THEMES
+@use './global.scss' as global;
 @use './app/app.theme' as app;
 @use './app/components/home/home.theme' as home;
 @use './app/components/login/login.theme' as login;
@@ -120,6 +121,7 @@ $makpar-theme: mat-dark-theme(
 
 @include angular-material-theme($makpar-alt-theme);
 
+@include global.theme($makpar-alt-theme);
 @include admin.theme($makpar-alt-theme);
 @include app.theme($makpar-alt-theme);
 @include dialog.theme($makpar-alt-theme);

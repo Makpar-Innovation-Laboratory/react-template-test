@@ -28,18 +28,14 @@ export class StoryComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.newsId = this.activatedRoute.snapshot.params.id;
-    // console.log(this.newsId)
   }
 
   /**
    * Angular Lifecycle Hook initialization
    */
-  
-  
   ngOnInit() {
     this.news.getNews(this.newsId).subscribe((data: NewsResponse)=>{
       this.newsPost = data.results[0]
-      console.log(data.results[0])
     });
   }
 }

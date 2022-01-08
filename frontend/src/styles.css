@@ -1,3 +1,4 @@
+/*root document styles*/
 html,
 body {
   height: 100%;
@@ -7,22 +8,26 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   overflow-x: hidden;
 }
+a {
+  text-decoration: none; color: inherit;
+}
+button:hover {
+  cursor: pointer;
+}
 
 /*containers*/
 .vertical-flex {
-  display: flex;
-  flex-direction: column;
+  display: flex; flex-direction: column;
 }
 .center-flex {
-  display: flex;
-  justify-content: center;
+  display: flex; justify-content: center;
   align-items: center;
 }
 .line-flex {
-  display: flex;
-  flex-wrap: nowrap;
+  display: flex; flex-wrap: nowrap;
   align-items: flex-end;
 }
+
 /*formatting*/
 .margin-center {
   margin: auto;
@@ -35,26 +40,7 @@ body {
 }
 
 /* buttons */
-a {
-    text-decoration: none;
-    color: inherit;
-}
-button:hover {
-  cursor: pointer;
-}
-.button-primary {
-  background: #224185;
-  color: #ffffff;
-  padding: 0.4rem 1.2rem;
-  border: 1px solid #224185;
-  border-radius: 1.5rem;
-  max-height: 2rem;
-}
-/* buttons */
-.button-white {
-  background: #ffffff;
-  color: #224185;
-  border: 1px solid #224185;
+.btn-primary-style{
   padding: 0.4rem 1.2rem;
   border-radius: 1.5rem;
   max-height: 2rem;

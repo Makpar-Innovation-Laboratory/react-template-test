@@ -5,8 +5,13 @@
 .mat-form-field-infix {
     background: #ffffff5f !important;
 }
+.card-header{
+    display: flex
+}
 
-
+.action-container{
+    width: 95%; display: flex; justify-content: space-between;
+}
 textarea {
     border: none;
     width: 90%;
