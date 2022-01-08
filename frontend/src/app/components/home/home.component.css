@@ -1,5 +1,4 @@
 
-
 .home-containter {
     display: flex; flex-direction: column; 
     min-height: 100vh; width: 100vw;
@@ -20,7 +19,9 @@
 
 /* Services Section Styles */
 .card {
-    min-height: 35vh; width: 50%;
+    width: 50%;
+    height: 100%; padding: 2rem 0; min-height: 25rem;
+
 }
 .card ul {
     list-style-type: none;
@@ -51,10 +52,21 @@ ul h5:hover {
     height: 100%; width: 80%;
 }
 .services-container .nav-header{
-    display: flex; padding-left: 50px; margin-top: 20px
+    display: flex; padding-left: 50px; 
+    margin-top: 20px
 }
-.services-nav-container .nav-header .nav-border{
+.services-container .nav-header .nav-border{
     height: 0.2rem; width: 8rem;
+    
+}
+
+.services-container .nav-selector{
+    width: 100%; display: flex; 
+    justify-content: flex-end
+}
+.services-container .nav-selector .nav-selection{
+    width: 100%; display: flex;
+    justify-content: flex-end; margin-top: 1rem;
 }
 
 a {

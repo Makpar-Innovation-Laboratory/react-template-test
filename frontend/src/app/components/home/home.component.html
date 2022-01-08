@@ -9,17 +9,9 @@
       
           <div>
             <div class="sidenav-container">
-              <h5 class="mat-headline text-white">
-                <a routerLink='/home'>MISSION</a>
-              </h5>
-              <h5 class="mat-headline text-white">
-                <a routerLink='/team'>TEAM</a>
-              </h5>
-              <h5 class="mat-headline text-white">
-                <a routerLink='/projects'>PROJECTS</a>
-              </h5>
-              <h5 class="mat-headline text-white">
-                <a routerLink='/news/feed'>NEWS FEED</a>
+              <h5 class="mat-headline text-white"
+                  *ngFor="let route of appRoutes">
+                <a routerLink="route.route">{{route.title}}</a>
               </h5>
             </div>
             <div class="menu-border"></div>
@@ -27,162 +19,39 @@
         </div>
       
         <div class="services-container">
+          <!--SECTION NAV-->
           <div class="nav" style="padding: 1rem 0;">
             <div class="nav-menu">
               <div class="nav-header">
                 <h5 class="mat-headline text-primary" style="text-align: left">SERVICES</h5>
-                <!-- <img
-                  class="mat-headline right-arrow"
-                  src="../../../assets/right_arrow_icon.svg"
-                  style="margin-left: 30px"
-                /> -->
+                <!-- <img class="mat-headline right-arrow" src="../../../assets/icons/right_arrow_icon.svg"
+                          style="margin-left: 30px"/> -->
               </div>
               <div class="nav-border"></div>
             </div>
-      
-            <div style="width: 100%; display: flex; justify-content: flex-end">
-              <ul class="services-nav-items" style="width: 100%">
-                <div
-                  style="
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    margin-top: 1rem;
-                  "
-                  class="{{selected === 'cybersecurity' ? 'selected' : ''}}"
-                >
-                  <li>
-                    <h5 class="mat-headline" (click)="onSelect('cybersecurity')">CYBERSECURITY</h5>
+            <!-- SECTIN NAV selector-->
+            <div class="nav-selector">
+              <ul class="text-primary" style="width: 100%">
+                <div id="nav-select" class="nav-select" 
+                    *ngFor="let section of sections">
+                  <li class="{{ isSelected(section.key) ? 'selected' : ''}}">
+                    <h5 class="mat-headline" (click)="onSelect(section.key)">{{section.title}}</h5>
                   </li>
                   <div style="height: 1.5rem; width: 35%"></div>
-                </div>
-                <div
-                  style="
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    margin-top: 1rem;
-                  "
-                  class="{{selected === 'machine-learning' ? 'selected' : ''}}"
-                >
-                  <li>
-                    <h5 class="mat-headline" (click)="onSelect('machine-learning')">MACHINE LEARNING</h5>
-                  </li>
-                  <div style="height: 1.5rem; width: 35%"></div>
-                </div>
-                <div
-                  style="
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    margin-top: 1rem;
-                  "
-                  class="{{selected === 'cloud-migration' ? 'selected' : ''}}"
-                >
-                  <li>
-                    <h5 class="mat-headline" (click)="onSelect('cloud-migration')">CLOUD MIGRATION</h5>
-                  </li>
-                  <div style="height: 1.5rem; width: 35%"></div>
-                </div>
-                <div
-                  style="
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    margin-top: 1rem;
-                  "
-                  class="{{selected === 'devsecops' ? 'selected' : ''}}"
-                >
-                  <li>
-                    <h5 class="mat-headline" (click)="onSelect('devsecops')">DEVSECOPS</h5>
-                  </li>
-                  <div style="height: 1.5rem; width: 35%"></div>
-                </div>
-                <div
-                  style="
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    margin-top: 1rem;
-                  "
-                  class="{{selected === 'agile' ? 'selected' : ''}}"
-                >
-                  <li>
-                    <h5 class="mat-headline" (click)="onSelect('agile')">AGILE</h5>
-                  </li>
-                  <div id="hr-line" style="height: 1.5rem; width: 35%"></div>
                 </div>
               </ul>
             </div>
           </div>
-      
-          <div class="card bg-primary" style="height: 100%; padding: 2rem 0; min-height: 25rem;">
-            <div *ngIf="selected === 'cybersecurity'" style="margin: 50px 40px">
+
+          <div class="card bg-primary" *ngFor="let section of sections">
+            <div *ngIf="isSelected(section.key)" style="margin: 50px 40px">
               <h5 class="mat-headline text-white" style="text-align: center">
-                CYBERSECURITY
+                {{section.title}}
               </h5>
-      
               <h6 class="mat-title text-white" style="text-align: center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam. Consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt.
-              </h6>
-            </div>
-      
-            <div *ngIf="selected === 'machine-learning'" style="margin: 50px 40px">
-              <h5 class="mat-headline text-white" style="text-align: center">
-                MACHINE LEARNING
-              </h5>
-      
-              <h6 class="mat-title text-white" style="text-align: center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam. Consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt.
-              </h6>
-            </div>
-      
-            <div *ngIf="selected === 'cloud-migration'" style="margin: 50px 40px">
-              <h5 class="mat-headline text-white" style="text-align: center">
-                CLOUD MIGRATION
-              </h5>
-      
-              <h6 class="mat-title text-white" style="text-align: center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam. Consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt.
-              </h6>
-            </div>
-      
-            <div *ngIf="selected === 'devsecops'" style="margin: 50px 40px">
-              <h5 class="mat-headline text-white" style="text-align: center">
-                DEVSECOPS
-              </h5>
-      
-              <h6 class="mat-title text-white" style="text-align: center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam. Consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt.
-              </h6>
-            </div>
-      
-            <div *ngIf="selected === 'agile'" style="margin: 50px 40px">
-              <h5 class="mat-headline text-white" style="text-align: center">
-                AGILE
-              </h5>
-      
-              <h6 class="mat-title text-white" style="text-align: center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam. Consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt.
+                {{section.description}}
               </h6>
             </div>
           </div>
-
-        </div>
       </div>
       

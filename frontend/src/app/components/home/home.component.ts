@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { AppConfig, AppRoute, Section } from 'src/config';
 
 /**
  * # HomeComponent
@@ -16,7 +17,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HomeComponent {
 
   public username : string;
-  public selected: string = "cybersecurity";
+  public selected: string = AppConfig.sections[0].key;
+  public sections: Section[] = AppConfig.sections;
+  public appRoutes: AppRoute[] = AppConfig.routes
 
   /**
    * # Description
@@ -28,11 +31,22 @@ export class HomeComponent {
   }
 
   /**
-   * 
+   * # Description
+   * Select a {@link Section} to view within the {@link HomeComponent}
    * @param input 
    */
   public onSelect(input: string): void {
     this.selected = input;
+  }
+
+  /**
+   * # Description
+   * Determines if the input section key is the currently selected {@link Section}
+   * @param section 
+   * @returns 
+   */
+  public isSelected(section: string): boolean{
+    return section == this.selected;
   }
 
 }
