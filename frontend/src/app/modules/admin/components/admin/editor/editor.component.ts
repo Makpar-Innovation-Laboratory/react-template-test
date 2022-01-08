@@ -1,15 +1,15 @@
-import { NewsService } from '../../../services/news.service';
+import { NewsService } from 'src/app/services/news.service';
 import { Component} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { News, NewsPostResponse, NewsResponse } from 'src/app/models/news';
-import { DialogComponent, DialogTypes } from '../../../../shared/components/dialog/dialog.component';
+import { DialogComponent, DialogTypes } from 'src/shared/components/dialog/dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { EditorConfig } from './editor.config';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AppConfig, EditorModes } from '../../../../config';
+import { AppConfig, EditorModes } from 'src/config';
 
 /**
  * # EditorComponent

@@ -3,7 +3,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ScrollingModule } from '@angular/cdk/scrolling'; 
-import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NgxWebstorageModule } from 'ngx-webstorage';
@@ -12,7 +11,6 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { SharedModule } from '../shared/shared.module';
 import { AppConfig, IconRegistry } from '../config';
 import { AppRoutingModule } from './app-routing.module';
-import { SanitizePipe } from './pipes/sanitize.pipe';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component'; 
@@ -32,10 +30,6 @@ import { PaginationComponent } from './modules/news/components/news/feed/paginat
  */
 @NgModule({
   declarations: [
-      // TODO: shared module
-    SanitizePipe,
-
-    // APP MODULE
     AppComponent,
     HomeComponent,
     LoginComponent,
@@ -47,22 +41,11 @@ import { PaginationComponent } from './modules/news/components/news/feed/paginat
     PaginationComponent,
   ],
   imports: [
-    
-    // ANGULAR CORE
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     ScrollingModule,
-
-    NgxPaginationModule,
-
-    // OTHER
-      // ANGULAR EDITOR
-        // TODO: lazy loaded admin module
-    AngularEditorModule,
-      // NGX WEBSTORAGE
-        // TODO: shared module
     NgxWebstorageModule.forRoot(),
     SharedModule,
   ],

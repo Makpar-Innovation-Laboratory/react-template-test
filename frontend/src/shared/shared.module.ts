@@ -8,7 +8,7 @@ import { SessionStorageService } from 'ngx-webstorage';
 
 import { MaterialModule } from 'src/material/material.module';
 
-import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
+import { AuthInterceptor } from 'src/shared/interceptors/auth.interceptor';
 
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
@@ -23,8 +23,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    RouterModule
-    
+    RouterModule   
   ],
   exports: [
     DialogComponent,

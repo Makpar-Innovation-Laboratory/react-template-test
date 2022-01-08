@@ -2,19 +2,24 @@
 @use 'sass:map';
 
 // COMPONENT THEMES
-@use './app/components/admin/admin.theme' as admin;
 @use './app/app.theme' as app;
-@use './app/components/admin/editor/editor.theme' as editor;
-@use './app/components/news/feed/feed.theme' as feed;
 @use './app/components/home/home.theme' as home;
 @use './app/components/login/login.theme' as login;
-@use './app/components/news/news.theme' as news;
 @use './app/components/projects/projects.theme' as projects;
 @use './app/components/register/register.theme' as register;
-@use './app/components/news/story/story.theme' as story;
 @use './app/components/team/team.theme' as team;
+
 @use './shared/components/dialog/dialog.theme' as dialog;
 @use './shared/components/toolbar/toolbar.theme' as toolbar;
+
+@use './app/modules/news/components/news/feed/feed.theme' as feed;
+@use './app/modules/news/components/news/news.theme' as news;
+@use './app/modules/news/components/news/story/story.theme' as story;
+
+
+@use './app/modules/admin/components/admin/editor/editor.theme' as editor;
+@use './app/modules/admin/components/admin/admin.theme' as admin;
+
 
 @import '~@angular/material/theming';
 

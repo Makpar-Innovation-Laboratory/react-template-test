@@ -7,6 +7,9 @@ import { CommentComponent } from './components/comment/comment.component';
 import { CommentListComponent } from './components/comment-list/comment-list.component'; 
 import { FeedComponent } from './components/news/feed/feed.component';
 import { StoryComponent } from './components/news/story/story.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SharedModule } from 'src/shared/shared.module';
+import { SanitizePipe } from 'src/shared/pipes/sanitize.pipe';
 
 @NgModule({
   declarations: [
@@ -14,18 +17,21 @@ import { StoryComponent } from './components/news/story/story.component';
     CommentListComponent,
     FeedComponent,
     NewsComponent,
-    StoryComponent
+    StoryComponent,
+    SanitizePipe,
   ],
   imports: [
-    CommonModule,
-    NewsRoutingModule
+    SharedModule,
+    NewsRoutingModule,
+    NgxPaginationModule,
   ],
   exports: [
     CommentComponent,
     CommentListComponent,
     FeedComponent,
     NewsComponent,
-    StoryComponent
-  ]
+    StoryComponent,
+    SanitizePipe
+  ],
 })
 export class NewsModule { }
