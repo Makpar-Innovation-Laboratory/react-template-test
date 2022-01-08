@@ -10,7 +10,6 @@
 @use './app/components/team/team.theme' as team;
 
 @use './shared/components/dialog/dialog.theme' as dialog;
-@use './shared/components/toolbar/toolbar.theme' as toolbar;
 
 @use './app/modules/news/components/news/feed/feed.theme' as feed;
 @use './app/modules/news/components/news/news.theme' as news;
@@ -133,4 +132,3 @@ $makpar-theme: mat-dark-theme(
 @include register.theme($makpar-alt-theme);
 @include story.theme($makpar-alt-theme);
 @include team.theme($makpar-alt-theme);
-@include toolbar.theme($makpar-alt-theme);

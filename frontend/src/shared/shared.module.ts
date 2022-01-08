@@ -11,12 +11,10 @@ import { MaterialModule } from 'src/material/material.module';
 import { AuthInterceptor } from 'src/shared/interceptors/auth.interceptor';
 
 import { DialogComponent } from './components/dialog/dialog.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
     DialogComponent,
-    ToolbarComponent
   ],
   imports: [
     MaterialModule,
@@ -27,7 +25,6 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
   ],
   exports: [
     DialogComponent,
-    ToolbarComponent,
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
