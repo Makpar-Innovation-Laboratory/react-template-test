@@ -33,7 +33,7 @@ ul h5:hover {
     cursor: pointer;
 }
 
-.selected li {
+.selected {
     font-weight: bold;
 }
 

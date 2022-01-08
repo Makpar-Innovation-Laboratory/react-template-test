@@ -27,7 +27,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { MatTooltipModule } from '@angular/material/tooltip'; 
 import { MatExpansionModule } from '@angular/material/expansion';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { AppConfig, IconRegistry } from '../config';
 import { AppRoutingModule } from './app-routing.module';
