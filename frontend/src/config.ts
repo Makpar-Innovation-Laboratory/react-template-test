@@ -4,6 +4,10 @@
 export enum EditorModes{ edit='edit', new='new' }
 
 /**
+ * 
+ */
+export interface Sections{ section: string, description: string }
+/**
  * Interface defining metadata associated with routes, for rendering routes into links and buttons. 
  */
  export interface AppRoute { route: string, title: string, tooltip: string }
@@ -20,7 +24,8 @@ export interface Config{
     createMsg: string, defaultMsg: string,
     signOutMsg: string,
     createAlert: string, editAlert: string,
-    routes: AppRoute[], registry: IconRegistry[]
+    routes: AppRoute[], registry: IconRegistry[],
+    sections: Sections[]
 }
 
 /**
@@ -33,17 +38,6 @@ export const AppConfig: Config = {
     createMsg: "Submit new post?", createAlert: "News post created!",
     defaultMsg: "Something seems to have gone wrong...",
     signOutMsg: 'Are you sure you want to sign out?',
-    // NOTE: this doesn't register the routes with Component views. This configures the navigation menu
-    //          within the AppComponent
-    routes: [
-        { route: '', title: 'HOME', tooltip: "Home Page" },
-        { route: 'mission', title: 'MISSION', tooltip: 'Innovation Lab Mission Statement' },
-        { route: 'team', title: 'TEAM', tooltip: "Meet the Innovation Lab Team" },
-        { route: 'projects', title: 'PROJECTS', tooltip: "Past And Ongoing Projects" },
-        { route: 'news/feed', title: 'NEWS FEED', tooltip: "Latest News From The Feed" },
-        { route: 'docs', title: 'DOCS', tooltip: "Documentation for the InnoLab Web App" },
-        { route: 'admin', title: 'ADMIN DASHBOARD', tooltip: "Administrative Access to Site" },  
-    ],
     // Paths are relative to the /app/ directory since they are imported in the AppComponent constructor
     registry:[
         { icon: 'bitcoin', location: '../assets/icons/logo-bitcoin.svg'},
@@ -57,6 +51,20 @@ export const AppConfig: Config = {
         { icon: 'linux', location: '../assets/icons/logo-linux.svg'},
         { icon: 'reddit', location: '../assets/icons/logo-reddit.svg'},
         { icon: 'twitter', location: '../assets/icons/logo-twitter.svg'},
+    ],
+    // NOTE: this doesn't register the routes with Component views. This configures the navigation menu
+    //          within the AppComponent
+    routes: [
+        { route: '', title: 'HOME', tooltip: "Home Page" },
+        { route: 'mission', title: 'MISSION', tooltip: 'Innovation Lab Mission Statement' },
+        { route: 'team', title: 'TEAM', tooltip: "Meet the Innovation Lab Team" },
+        { route: 'news/feed', title: 'NEWS FEED', tooltip: "Latest News From The Feed" },
+        { route: 'projects', title: 'PROJECTS', tooltip: "Past And Ongoing Projects" },
+        { route: 'docs', title: 'DOCS', tooltip: "Documentation for the InnoLab Web App" },
+        { route: 'admin', title: 'ADMIN CONSOLE', tooltip: "Administrative Access to Site" },  
+    ],
+    sections: [
+        { section: '', description: ''}
     ]
 }
 

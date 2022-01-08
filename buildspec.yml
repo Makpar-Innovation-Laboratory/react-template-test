@@ -1,6 +1,7 @@
 version: 0.2
 
 phases:
+
   install: 
     runtime-versions:
       nodejs: latest 
@@ -57,7 +58,7 @@ phases:
       - |
         sonar-scanner \
           -Dsonar.projectKey=${APPLICATION}-frontend${ENV} \
-          -Dsonar.host.url=http://$SONAR_URL \
+          -Dsonar.host.url=https://$SONAR_URL \
           -Dsonar.login=$SONAR_TOKEN \
           -Dsonar.log.level=DEBUG \
           -Dsonar.sources=$(pwd)/frontend/src/ \
@@ -66,7 +67,6 @@ phases:
       # -Dsonar.coverageReportPaths=path/to/coverage.xml
       # see: https://docs.sonarqube.org/latest/analysis/coverage/
 
-      
   build:
     commands:
       - |

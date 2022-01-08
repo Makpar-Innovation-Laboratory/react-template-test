@@ -7,22 +7,30 @@
     $accent-palette: map.get($color-config, 'accent');
     $warn-palette: map.get($color-config, 'warn');
 
-    .bg-white {
-      background-color: #FFFFFF;
+    .bg-white, .services-container {
+      background-color: map-get($primary-palette, default-contrast);
     }
     .bg-primary {
       background-color: map-get($primary-palette, 500);
     }
-
     .text-white {
-      color: #FFFFFF;
+      color: map-get($primary-palette, default-contrast);
     }
     .text-primary {
       color: map-get($primary-palette, 500);
     }
+    .selected div{
+      border-bottom: map-get($primary-palette, 500);
+    }
+    .menu-border{
+      border-bottom:  2px dashed map-get($primary-palette, 'default-contrast') !important;
 
-    .toolbar-container, .logo-container{
-      background-color: map-get($primary-palette, 700);
+    }
+    .services-container {
+      background-color: map-get($primary-palette, default-contrast);
+    }
+    .services-container .nav-menu .nav-border{
+      border-bottom: 2px dashed map-get($primary-palette, 500);
     }
 }
 
