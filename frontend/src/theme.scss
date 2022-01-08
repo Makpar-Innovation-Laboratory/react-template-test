@@ -4,7 +4,6 @@
 // COMPONENT THEMES
 @use './app/components/admin/admin.theme' as admin;
 @use './app/app.theme' as app;
-@use './app/components/dialog/dialog.theme' as dialog;
 @use './app/components/admin/editor/editor.theme' as editor;
 @use './app/components/news/feed/feed.theme' as feed;
 @use './app/components/home/home.theme' as home;
@@ -14,7 +13,8 @@
 @use './app/components/register/register.theme' as register;
 @use './app/components/news/story/story.theme' as story;
 @use './app/components/team/team.theme' as team;
-@use './app/components/toolbar/toolbar.theme' as toolbar;
+@use './shared/components/dialog/dialog.theme' as dialog;
+@use './shared/components/toolbar/toolbar.theme' as toolbar;
 
 @import '~@angular/material/theming';
 

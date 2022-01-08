@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy, Input  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BlogService } from './../../services/blog.service';
+import { BlogService } from '../../../../services/blog.service';
 import { Route, ActivatedRoute } from '@angular/router';
 import {formatDate} from '@angular/common'
-import { DialogComponent } from '../dialog/dialog.component';
+import { DialogComponent } from '../../../../../shared/components/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-comment',

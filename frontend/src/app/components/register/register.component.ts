@@ -5,7 +5,7 @@ import { AnimationControl, Animations, AnimationTriggers, HighlightStates, Scale
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { AppConfig } from '../../../config';
-import { DialogComponent, DialogTypes} from '../dialog/dialog.component';
+import { DialogComponent, DialogTypes} from '../../../shared/components/dialog/dialog.component';
 
 /**
  * # RegisterComponent

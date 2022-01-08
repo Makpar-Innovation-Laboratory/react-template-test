@@ -1,9 +1,9 @@
 // import { Comment } from './../comment.model';
 import { Component, OnInit, Input, OnDestroy} from '@angular/core';
-import { BlogService } from '../../services/blog.service';
+import { BlogService } from '../../../../services/blog.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
-import {Comment} from '../../models/news'
+import {Comment} from '../../../../models/news'
 
 @Component({
   selector: 'app-comment-list',

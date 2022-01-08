@@ -3,7 +3,7 @@ import { AuthService } from './services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AppConfig, AppRoute } from '../config';
 import { AnimationControl, Animations, AnimationTriggers, ExpandStates } from 'src/animations';
-import { DialogComponent, DialogTypes } from './components/dialog/dialog.component';
+import { DialogComponent, DialogTypes } from '../shared/components/dialog/dialog.component';
 import { ActivatedRoute } from '@angular/router';
 
 /**
