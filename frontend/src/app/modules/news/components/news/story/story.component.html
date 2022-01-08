@@ -26,7 +26,7 @@
     <div class="content">
       <div [innerHTML]="newsPost.content | sanitize: 'html'"></div>
     </div>
-    <app-comment [child]="false" [parent_id]="0"> </app-comment>
+    <app-comment [child]="false" [parentId]="null"> </app-comment>
     <app-comment-list *ngIf="newsPost.comments" [comments]="newsPost.comments" ></app-comment-list>
   </div>
 </div>

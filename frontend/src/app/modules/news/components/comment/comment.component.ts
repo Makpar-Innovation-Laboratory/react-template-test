@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy, Input  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BlogService } from '../../../../services/blog.service';
-import { Route, ActivatedRoute } from '@angular/router';
-import {formatDate} from '@angular/common'
+import { ActivatedRoute } from '@angular/router';
 import { DialogComponent, DialogTypes } from '../../../../../shared/components/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AppConfig } from 'src/config';
+import { Comment } from 'src/app/models/news';
+
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
@@ -13,23 +14,22 @@ import { AppConfig } from 'src/config';
 })
 
 export class CommentComponent implements OnInit{
-  public postId: string;
+  public showComment: boolean = false;
+  public postId: number;
   public commentForm: FormGroup;
 
   @Input() public child!: boolean;
-  @Input() public parent_id!: number;
+  @Input() public parentId!: number | null;
   
-  public showComment: boolean = false;
-
   constructor(private fb: FormBuilder,
               private BlogService: BlogService,
               private route: ActivatedRoute,
               private dialog: MatDialog) {
     this.postId = this.route.snapshot.params.id;
     this.commentForm = this.fb.group({
-      content: ['', Validators.required],
+      content: this.fb.control('', [Validators.required]),
     });
-    }
+  }
 
   ngOnInit() { }
 
@@ -44,28 +44,21 @@ export class CommentComponent implements OnInit{
     });
   }
 
-  public onSubmit() {
-    let content
-    if (this.child){
-      content = {
-        submitted: formatDate(new Date(), 'yyyy-MM-dd', 'en'),
-        content: this.commentForm.value.content,
-        news_id: this.postId,
-      }
-    } else {
-      content = {
-        submitted: formatDate(new Date(), 'yyyy-MM-dd', 'en'),
-        content: this.commentForm.value.content,
-        news_id: this.postId,
-        parent_comment: this.parent_id
-      }
+  private formToComment(): Comment{
+    return{
+      content: this.commentForm.controls.content.value,
+      news_id: this.postId,
+      comment_id: null,
+      submitted: null,
+      parent_comment: this.child ? null : this.parentId,
+      child_comments: null,
+      author: null
     }
-    
-    this.BlogService.addComment(content).subscribe((response)=>{
-      if(response){
-        console.log("New comment added");
-        // this.open_alert_dialog("The blog was successfully deleted");
-      }
+  }
+
+  public onSubmit() {
+    this.BlogService.addComment(this.formToComment()).subscribe((response)=>{
+      if(response){ console.log("New comment added"); }
     })
   }
 

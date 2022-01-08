@@ -2,8 +2,8 @@ import { SafeHtml } from "@angular/platform-browser";
 
 export interface News{
     news_id: number | null,
-    submitted: string | null,
     subject: string[] | null,
+    submitted: string | null,
     title: string | null,
     snippet: string | null,
     content: SafeHtml | null,
@@ -11,14 +11,14 @@ export interface News{
     author: string | null,
 }
 
+// NOTE: don't need is_author, since author is stored in comment and username is stored in session.
 export interface Comment{
     author: string | null,
-    child_comments:Comment[] | null,
-    comment_id:number,
-    is_author:boolean | null,
-    news_id: number ,
-    parent_comment:number | null,
+    child_comments: Comment[] | null,
     submitted: string | null,
+    comment_id: number | null,
+    parent_comment: number | null,
+    news_id: number | null,
     content: string | null
 }
 
