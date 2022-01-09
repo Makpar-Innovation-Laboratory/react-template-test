@@ -23,7 +23,8 @@
               placeholder="Search" [(ngModel)]='searchValue' />  
     </div>
 
-    <pagination-controls id="pagination" (pageChange)="pageIndex = $event"
+    <pagination-controls id="pagination-controls"
+                          (pageChange)="changePage($event,'top')"
                           previousLabel="Previous" nextLabel="Next"
                           [directionLinks]="true" [autoHide]="true">
     </pagination-controls>
@@ -32,7 +33,7 @@
   <div id="news-container" *ngIf="feed">
     <mat-card id="news-item" class="news-card"
               *ngFor="let story of filteredFeed() |
-                         paginate: { id: 'pagination', itemsPerPage: 4, currentPage: pageIndex }">
+                         paginate: { id: 'pagination-controls', itemsPerPage: 4, currentPage: pageIndex }">
 
       <div id="news-preview-container">
         <img mat-card-image src="/assets/preview.png" alt="Innovation Lab News Preview"/>
@@ -51,25 +52,19 @@
         <mat-card-content> {{ story.snippet }} </mat-card-content>
         <div id="news-action-container">
           <mat-card-actions>
-            <button mat-icon-button 
-              id="view-button" 
-              color="accent"
-              matTooltip="View this story"
+            <button mat-icon-button id="view-button" 
+              color="accent" matTooltip="View this story" 
               [routerLink]="['/news', story.news_id]">
               <mat-icon>details</mat-icon>
             </button>
-            <button mat-icon-button 
-              id="edit-button" 
-              color="accent"
-              matTooltip="Edit this story"
+            <button mat-icon-button id="edit-button" 
+              color="accent" matTooltip="Edit this story"
               *ngIf="isDeveloper && story.news_id"
               [routerLink]="['/admin/update', story.news_id]">
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button 
-              id="delete-button" 
-              color="warn"
-              matTooltip="Delete this story"
+            <button mat-icon-button id="delete-button" 
+              color="warn" matTooltip="Delete this story"
               *ngIf="isDeveloper && story.news_id"
               (click)="deleteNews(story.news_id)">
               <mat-icon>delete_forever</mat-icon>
@@ -85,13 +80,10 @@
   </div>
 
   <div id="paginator">
-    <pagination-controls id="paginator-controls"
-      (pageChange)="pageIndex = $event"
-      previousLabel="Previous"
-      nextLabel="Next"
-      [directionLinks]="true"
-      [autoHide]="true"
-    >
+    <pagination-controls id="pagination-controls"
+      (pageChange)="changePage($event,'bottom')"
+      previousLabel="Previous" nextLabel="Next"
+      [directionLinks]="true" [autoHide]="true">
     </pagination-controls>
   </div>
 </div>

@@ -60,4 +60,8 @@ export class FeedComponent implements OnInit {
         return this.feed;
     }
 
+    public changePage(index: number, src: string): void{
+      this.pageIndex = index;
+      if(src == 'bottom') window.scroll(0,0); 
+    }
 }
