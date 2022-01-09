@@ -105,32 +105,26 @@ $makpar-alt-accent: mat-palette($analogous-alt-palette);
 $makpar-warn: mat-palette($triadic-palette);
 $makpar-alt-warn: mat-palette($triadic-alt-palette);
 
-$makpar-alt-theme: mat-dark-theme(
-    $makpar-primary,
-    $makpar-alt-accent,
-    $makpar-alt-warn
-);
 $makpar-theme: mat-dark-theme(
     $makpar-primary,
     $makpar-accent,
-    $makpar-warn,
+    $makpar-alt-warn,
 );
 
+@include angular-material-theme($makpar-theme);
 
-@include angular-material-theme($makpar-alt-theme);
-
-@include global.theme($makpar-alt-theme);
-@include admin.theme($makpar-alt-theme);
-@include app.theme($makpar-alt-theme);
-@include comments.theme($makpar-alt-theme);
-@include dialog.theme($makpar-alt-theme);
-@include editor.theme($makpar-alt-theme);
-@include feed.theme($makpar-alt-theme);
-@include home.theme($makpar-alt-theme);
-@include login.theme($makpar-alt-theme);
-@include news.theme($makpar-alt-theme);
-@include projects.theme($makpar-alt-theme);
-@include register.theme($makpar-alt-theme);
-@include reply.theme($makpar-alt-theme);
-@include story.theme($makpar-alt-theme);
-@include team.theme($makpar-alt-theme);
+@include global.theme($makpar-theme);
+@include admin.theme($makpar-theme);
+@include app.theme($makpar-theme);
+@include comments.theme($makpar-theme);
+@include dialog.theme($makpar-theme);
+@include editor.theme($makpar-theme);
+@include feed.theme($makpar-theme);
+@include home.theme($makpar-theme);
+@include login.theme($makpar-theme);
+@include news.theme($makpar-theme);
+@include projects.theme($makpar-theme);
+@include register.theme($makpar-theme);
+@include reply.theme($makpar-theme);
+@include story.theme($makpar-theme);
+@include team.theme($makpar-theme);
