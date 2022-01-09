@@ -10,6 +10,11 @@ import { AuthInterceptor } from 'src/app/modules/shared/interceptors/auth.interc
 
 import { DialogComponent } from './components/dialog/dialog.component';
 
+/**
+ * # SharedModule
+ * ## Description
+ * Modules for imports shared across all other modules. Imports and exports {@link MaterialModule} for other modules. Injects a {@link AuthInterceptor} into the HTTP request chain to append JWT {@link Token} stored in the browser's session.
+ */
 @NgModule({
   declarations: [
     DialogComponent,

@@ -10,6 +10,11 @@ import { SanitizePipe } from 'src/app/modules/shared/pipes/sanitize.pipe';
 import { CommentsComponent } from './components/comments/comments.component';
 import { ReplyComponent } from './components/comments/reply/reply.component';
 
+/**
+ * # NewsModule
+ * ## Description
+ * Module for importing the components and services necessary for interacting with the Innovation Lab backend api. Declares and exports {@link FeedComponent}, {@link NewsComponent}, {@link StoryComponent}, {@link CommentsComponent}, {@link ReplyComponent} and {@link SanitizePipe} for lazy-loading. Imports `NgxPagination`.
+ */
 @NgModule({
   declarations: [
     FeedComponent,

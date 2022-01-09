@@ -15,6 +15,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip'; 
 import { MatExpansionModule } from '@angular/material/expansion';
 
+/**
+ * # MaterialModule
+ * ## Description
+ * Module for import **Angular Material** components.
+ */
 @NgModule({
   declarations: [],
   imports: [

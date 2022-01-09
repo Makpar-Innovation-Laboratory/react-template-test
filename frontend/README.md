@@ -163,6 +163,7 @@ See [comment documentation](https://typedoc.org/guides/doccomments/) for a refer
 
 - [Angular Material](https://material.angular.io/)
 - [@kolkov/angular-editor](https://www.npmjs.com/package/@kolkov/angular-editor)
+- [ngx-pagination](https://www.npmjs.com/package/ngx-pagination)
 - [ngx-webstorage](https://www.npmjs.com/package/ngx-webstorage)
 - [jwt-decode](https://www.npmjs.com/package/jwt-decode)
 - [Typedoc](https://typedoc.org/)

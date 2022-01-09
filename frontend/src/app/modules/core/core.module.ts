@@ -6,6 +6,11 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { ProjectComponent } from './components/projects/project/project.component';
 import { TeamComponent } from './components/team/team.component';
 
+/**
+ * # CoreModule
+ * ## Description
+ * Module for the core Innovation Lab site components. Declares and exports {@link MissionComponent}, {@link ProjectsComponent}, {@link ProjectComponent} and {@link TeamComponent} for all other modules that need access to these components.
+ */
 @NgModule({
   declarations: [
     MissionComponent,
@@ -16,6 +21,12 @@ import { TeamComponent } from './components/team/team.component';
   imports: [
     SharedModule,
     CoreRoutingModule
+  ],
+  exports: [
+    MissionComponent,
+    ProjectsComponent,
+    ProjectComponent,
+    TeamComponent
   ]
 })
 export class CoreModule { }
