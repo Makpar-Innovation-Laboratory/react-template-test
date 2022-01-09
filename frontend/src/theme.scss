@@ -11,8 +11,11 @@
 @use './app/modules/admin/components/admin/admin.theme' as admin;
 @use './app/modules/admin/components/admin/editor/editor.theme' as editor;
 
+@use './app/modules/core/components/mission/mission.theme' as mission;
 @use './app/modules/core/components/projects/projects.theme' as projects;
+@use './app/modules/core/components/projects/project/project.theme' as project;
 @use './app/modules/core/components/team/team.theme' as team;
+
 
 @use './app/modules/shared/components/dialog/dialog.theme' as dialog;
 
@@ -125,7 +128,9 @@ $makpar-theme: mat-dark-theme(
 @include feed.theme($makpar-theme);
 @include home.theme($makpar-theme);
 @include login.theme($makpar-theme);
+@include mission.theme($makpar-theme);
 @include news.theme($makpar-theme);
+@include project.theme($makpar-theme);
 @include projects.theme($makpar-theme);
 @include register.theme($makpar-theme);
 @include reply.theme($makpar-theme);

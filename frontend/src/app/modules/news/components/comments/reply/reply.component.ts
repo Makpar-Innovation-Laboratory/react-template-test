@@ -9,7 +9,7 @@ import { AppConfig } from 'src/config';
 /**
  * # ReplyComponent
  * ## Description
- * A widget for replying to comments. Pass in a {@link commentId} to bind this component to a particular comment. The component will display a `mat-card` with a `reply` icon button. If the user clicks on the `reply`, a comment form will unfold to allow the user to reply to this comment. 
+ * A widget for replying to comments. Pass in a {@link commentId} to bind this component to a particular {@link Comment}. Initially, when {@link showEditor} is `false`, {@link ReplyComponent} will display a `mat-card` with a `reply` `mat-icon` button. If the user clicks on the `reply` button, the state of {@link showEditor} will switch to `true` and a {@link commentForm} will unfold to allow the user to reply to this {@link Comment}. 
  * ## Example Usage
  * ```html
  * <app-reply [commentId]="1" [tooltip]="Reply to a comment!"></app-reply>
@@ -49,13 +49,14 @@ export class ReplyComponent{
 
   /**
    * # Description
-   * Reset {@link commentForm}.
+   * Reset the values and validation on {@link commentForm}.
    */
   public onCommentCancel() : void{ 
     this.commentForm.reset();}
 
   /**
-   * 
+   * # Description
+   * Switch the boolean state of {@link showEditor}. 
    */
   public toggleEditor(): void { this.showEditor = !this.showEditor; }
 

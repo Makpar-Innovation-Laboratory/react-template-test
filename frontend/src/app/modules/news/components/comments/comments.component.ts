@@ -4,7 +4,11 @@ import { Comment } from 'src/app/models/news';
 /**
  * # CommentsComponent
  * ## Description
+ * Component for rendering a nested array of {@link Comment}. Pass in the array through the {@link comments} property.
  * ## Example Usage
+ * ```html
+ * <app-comments [comments]="theseComments"></app-comments>
+ * ```
  */
 @Component({
   selector: 'app-comments',
