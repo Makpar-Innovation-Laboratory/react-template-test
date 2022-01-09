@@ -1,25 +1,42 @@
 /*root document styles*/
-html,
-body {
-  height: 100%;
-}
+html, body { height: 100%; }
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   overflow-x: hidden;
 }
-a {
-  text-decoration: none; color: inherit;
-}
-button:hover {
-  cursor: pointer;
-}
-textarea:focus, input:focus{
-  outline: none;
-}
+a { text-decoration: none; color: inherit; }
+button:hover { cursor: pointer; }
 /* buttons */
 .btn-primary-style{
   padding: 0.4rem 1.2rem;
   border-radius: 1.5rem;
   max-height: 2rem;
+}
+
+
+/* NGX Pagination Styling */
+.ngx-pagination {
+  background: #FFFFFF !important;
+  padding: 0.3rem 0.5rem 0.3rem 0.4rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 6px #0000005d;
+  margin: 0 !important;
+  font-size: 0.9rem !important;
+}
+.ngx-pagination .ng-star-inserted {
+  color: #224185 !important;
+}
+.disabled .ng-star-inserted {
+  color: #707070 !important;
+}
+.ngx-pagination .current {
+  background: #224185 !important;
+}
+.ngx-pagination .current .ng-star-inserted {
+  color: #FFFFFF !important;
+}
+
+textarea:focus, input:focus{
+  outline: none;
 }

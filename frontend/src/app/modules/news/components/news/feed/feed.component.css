@@ -38,6 +38,10 @@ mat-card img{
 #news-action-container{
   width: 100%; display: flex; justify-content: flex-end
 }
+#paginator{
+  display: flex; justify-content: flex-end; 
+  margin-top: 3rem; width: 75%;
+}
 .feed-subtitle-container{
   width: 100%; margin-bottom: 1.5rem;
   display: flex; justify-content: space-between;

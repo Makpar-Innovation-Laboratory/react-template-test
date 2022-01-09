@@ -33,6 +33,7 @@
     <mat-card id="news-item" class="news-card"
               *ngFor="let story of filteredFeed() |
                          paginate: { id: 'pagination', itemsPerPage: 4, currentPage: pageIndex }">
+
       <img mat-card-image src="/assets/preview.png" alt="Innovation Lab News Preview"/>
 
       <div style="padding: 2rem">
@@ -46,21 +47,26 @@
           <mat-card-subtitle>{{ story.author }}</mat-card-subtitle>
         </div>
         <mat-card-content> {{ story.snippet }} </mat-card-content>
-
-        <div style="width: 100%; display: flex; justify-content: flex-end">
+        <div id="news-action-container">
           <mat-card-actions>
-            <button mat-icon-button id="view-button"color="accent"
+            <button mat-icon-button 
+              id="view-button" 
+              color="accent"
               matTooltip="View this story"
               [routerLink]="['/news', story.news_id]">
               <mat-icon>details</mat-icon>
             </button>
-            <button mat-icon-button id="edit-button" color="accent"
+            <button mat-icon-button 
+              id="edit-button" 
+              color="accent"
               matTooltip="Edit this story"
               *ngIf="isDeveloper && story.news_id"
               [routerLink]="['/admin/update', story.news_id]">
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button id="delete-button" color="warn"
+            <button mat-icon-button 
+              id="delete-button" 
+              color="warn"
               matTooltip="Delete this story"
               *ngIf="isDeveloper && story.news_id"
               (click)="deleteNews(story.news_id)">
@@ -71,22 +77,18 @@
       </div>
     </mat-card>
 
-    <div
-      *ngIf="feed.length == 0"
-      style="width: 100%; display: flex; justify-content: center"
-    >
+    <div id="no-results-container" *ngIf="filteredFeed().length == 0">
       <p class="text-white">No posts found</p>
     </div>
   </div>
 
-  <div style="width: 75%; display: flex; justify-content: flex-end; margin-top: 3rem;">
-    <pagination-controls
+  <div id="paginator">
+    <pagination-controls id="paginator-controls"
       (pageChange)="pageIndex = $event"
       previousLabel="Previous"
       nextLabel="Next"
       [directionLinks]="true"
       [autoHide]="true"
-      id="pagination"
     >
     </pagination-controls>
   </div>
