@@ -12,6 +12,8 @@ export interface News{
 }
 
 // NOTE: don't need is_author, since author is stored in comment and username is stored in session.
+//          do comparision between Comment.author and AuthService.getUsername() to determine if 
+//          comment belongs to user.
 export interface Comment{
     author: string | null,
     child_comments: Comment[] | null,
