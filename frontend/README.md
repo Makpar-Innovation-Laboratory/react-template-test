@@ -89,9 +89,29 @@ docker-compose up
 
 **NOTE**: If running through `docker-compose up`, ensure the image tag of the most recent build matches the image tag specified in the `docker-compose.yml`.
 
-## HTML Editor
+## Lazy Loading
 
-The **AdminComponent** uses the *@kolkov/angular-editor* for editing HTML content. Refer to [documentation](https://www.npmjs.com/package/@kolkov/angular-editor) for example usage.
+The **Angular** application is broken into modules for [lazy-loading](https://angular.io/guide/lazy-loading-ngmodules). This minimizes the size of the compiled artifacts and creates a faster user experience, since the application will only load what is needed, when it is needed.
+
+### AppModule
+
+The main module, where application enters. This is the first module loaded; it is *always* loaded and *always* loaded first.
+
+### CoreModule
+
+The module behind the authentication wall. After the user logins in, this module is loaded. 
+
+### NewsModule
+
+The module for interacting with and rendering the results of the backend API. This module is only loaded if service calls to the backend need to be made.
+
+### AdminModule
+
+The module for administrative functions. This module is only loaded *if* the user is a **Developer** *and if* the user enters the administrative module of the application, through the `/admin` route.
+
+### SharedModule
+
+This module stores imports that are required across modules. This is where the modules from **Angular Core** and **Angular Material** are imported. Components, services, etc., that are used in all other modules can also be found here.
 
 ## ComponentConfig
 
@@ -124,6 +144,10 @@ This configuration will add to the navigation menu a route button with text "Hom
 This icon is added during the **Angular** application initialization in */frontend/src/app/app.module.ts*.
 
 **NOTE**: the icon file path is relative to the */frontend/src/app/* directory, since the **MatIconRegistry** is modified in the **AppComponent** initialization, when the **Angular** application bootstraps on the client browser for the first time.
+
+## HTML Editor
+
+The **AdminComponent** uses the *@kolkov/angular-editor* for editing HTML content. Refer to [documentation](https://www.npmjs.com/package/@kolkov/angular-editor) for example usage.
 
 ## Generate Docs
 
