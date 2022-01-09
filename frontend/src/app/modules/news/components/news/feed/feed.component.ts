@@ -51,7 +51,7 @@ export class FeedComponent implements OnInit {
 
     /**
      * # Description
-     * Use {@link searchValue} to filter {@link feed} by title or author.
+     * Use user-inputted {@link searchValue} to filter {@link feed} by title or author.
      */
     public filteredFeed(): News[] {
       if(this.searchValue) 
@@ -60,6 +60,12 @@ export class FeedComponent implements OnInit {
         return this.feed;
     }
 
+    /**
+     * # Description
+     * Iterate {@link pageIndex}. If the page change event is emitted from the bottom paginator element, the view will scroll to the top of the page.
+     * @param index current index of the page
+     * @param src which pagination element is emitting the page change event
+     */
     public changePage(index: number, src: string): void{
       this.pageIndex = index;
       if(src == 'bottom') window.scroll(0,0); 
