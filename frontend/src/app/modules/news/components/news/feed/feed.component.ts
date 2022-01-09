@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { News, NewsPostResponse, NewsResponse } from 'src/app/models/news';
 import { AuthService } from 'src/app/services/auth.service';
-import { NewsService } from 'src/app/services/news.service';
+import { NewsService } from 'src/app/modules/news/services/news.service';
 
 /**
  * # FeedComponent

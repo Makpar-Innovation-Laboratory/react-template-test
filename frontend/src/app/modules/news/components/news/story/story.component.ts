@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { NewsService } from '../../../../../services/news.service';
+import { NewsService } from '../../../services/news.service';
 import { Component, OnInit } from '@angular/core';
 import { News, NewsResponse } from 'src/app/models/news';
 

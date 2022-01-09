@@ -5,8 +5,6 @@ import { FeedComponent } from './components/news/feed/feed.component';
 import { NewsComponent } from './components/news/news.component';
 import { StoryComponent } from './components/news/story/story.component';
 
-
-
 const routes: Routes = [
   { path: '', canActivate: [ AuthGuard ], component: NewsComponent },
   { path: 'feed', canActivate: [ AuthGuard ], component: FeedComponent },

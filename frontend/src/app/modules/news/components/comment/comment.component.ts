@@ -1,9 +1,9 @@
 import { Component, OnInit, Input  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Comment } from 'src/app/models/news';
-import { CommentService } from 'src/app/services/comment.service';
+import { CommentService } from 'src/app/modules/news/services/comment.service';
 import { AppConfig } from 'src/config';
 
 /**
@@ -38,6 +38,7 @@ export class CommentComponent implements OnInit{
   constructor(private fb: FormBuilder,
               private comments: CommentService,
               private route: ActivatedRoute,
+              private router: Router,
               private snackBar: MatSnackBar,) {
     this.postId = this.route.snapshot.params.id;
     this.commentForm = this.fb.group({
@@ -50,7 +51,10 @@ export class CommentComponent implements OnInit{
   /**
    * 
    */
-  public onCommentCancel() : void{ this.commentForm.reset(); }
+  public onCommentCancel() : void{ 
+    this.commentForm.reset();
+    this.router.navigateByUrl(`/news/${this.postId}`)
+  }
 
   /**
    * 

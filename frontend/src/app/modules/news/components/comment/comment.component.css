@@ -1,23 +1,14 @@
 .mat-title {
     font-weight: normal;
 }
-
-.mat-form-field-infix {
-    background: #ffffff5f !important;
-}
 .card-header{
     display: flex
 }
-
 .action-container{
-    width: 95%; display: flex; justify-content: space-between;
+    width: 100%; display: flex; justify-content: space-between;
 }
 textarea {
-    border: none;
-    width: 90%;
-    max-width: 90%;
-    min-height: 3rem;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    background:  #ffffffad;
+    border: none; border-radius: 0.5rem;
+    width: 90%; max-width: 90%;
+    min-height: 3rem; padding: 1rem;
 }

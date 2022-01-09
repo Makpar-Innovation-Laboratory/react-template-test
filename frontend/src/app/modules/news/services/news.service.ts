@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, } from 'rxjs';
-import { HostService } from './host.service';
-import { News, NewsPostResponse, NewsResponse } from '../models/news';
+import { HostService } from '../../../services/host.service';
+import { News, NewsPostResponse, NewsResponse } from '../../../models/news';
 import { environment } from 'src/environments/environment';
+import { NewsModule } from '../news.module';
+import { AdminModule } from '../../admin/admin.module';
 
 /**
  * # NewsService
@@ -14,7 +16,7 @@ import { environment } from 'src/environments/environment';
  * ```
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class NewsService {
 

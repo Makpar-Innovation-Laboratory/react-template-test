@@ -1,4 +1,4 @@
-import { NewsService } from 'src/app/services/news.service';
+import { NewsService } from 'src/app/modules/news/services/news.service';
 import { Component} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

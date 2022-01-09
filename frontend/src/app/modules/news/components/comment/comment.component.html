@@ -2,31 +2,27 @@
   <div class="card-header">
     <h5 class="mat-title">COMMENTS</h5>
     <button mat-icon-button style="margin-left: 1rem;" 
+            matTooltip="Submit a comment!"
             (click)="toggleComment()" *ngIf="!showComment">
-      <mat-icon> comment</mat-icon>
+      <mat-icon>comment</mat-icon>
     </button>
   </div>
   <div class="card-body" *ngIf="showComment">
     <form (ngSubmit)="onSubmit()" [formGroup]="commentForm">
-      <div class="row">
-        <div class="col-md-12">
-          <mat-form-field style="width: 100%">
-            <mat-label> Comment </mat-label>
-            <textarea id="comment-input" formControlName="content"
-                      placeholder="any thoughts..." mat-input></textarea>
-            <mat-error *ngIf="commentForm.controls['content'].hasError('required')">Required</mat-error>
-          </mat-form-field>
-        </div>
-      </div>
+      <mat-form-field style="width: 100%">
+        <mat-label> Comment </mat-label>
+        <textarea matInput id="comment-input" formControlName="content"
+                  placeholder="any thoughts..." mat-input></textarea>
+        <mat-error *ngIf="commentForm.controls['content'].hasError('required')">Required</mat-error>
+      </mat-form-field>
       <div class="action-container">
-        <button mat-button type="button" class="btn-primary-style btn-white-theme" 
-                (click)="toggleComment()">Cancel</button>
-        <div>
-          <button mat-button type="button" class="btn-primary-style btn-white-theme" 
-                  (click)="onCommentCancel()">Clear</button>
-          <button mat-button type="submit" class="btn-primary-style btn-white-theme" 
-                  (click)="onSubmit()" style="margin-left: 0.5rem;">Comment</button>
-        </div>
+        <button mat-icon-button type="button" color="warn"
+                *ngIf="commentForm.touched" (click)="onCommentCancel()">
+                <mat-icon>backspace</mat-icon>
+        </button>
+        <button mat-icon-button type="submit" (click)="onSubmit()">
+          <mat-icon>comment</mat-icon>
+        </button>
       </div>
     </form>
   </div>

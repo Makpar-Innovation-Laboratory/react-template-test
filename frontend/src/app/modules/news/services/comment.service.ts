@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Comment, CommentPostResponse } from '../models/news';
-import { HostService } from './host.service';
+import { Comment, CommentPostResponse } from '../../../models/news';
+import { HostService } from '../../../services/host.service';
 
 /**
  * # CommentService
@@ -14,7 +14,7 @@ import { HostService } from './host.service';
  * ```
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class CommentService {
 
