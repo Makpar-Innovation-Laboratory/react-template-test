@@ -1,58 +1,56 @@
-.news-container {
-  width: 80%;
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
-.newsfeed-card {
-  margin-top: 5%;
-  width: 45%;
-  margin-left: 5%;
-  padding: 0 !important;
-}
-
-.newsfeed-card:nth-child(odd) {
-  margin-left: 2.5%;
-}
 .feed-container {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 3rem 0 15rem 0;
 }
 .feed-header-border {
-  height: 0.7rem;
-  width: 6rem;
-  border-top: 2px solid #ffffff;
+  height: 0.7rem; width: 6rem;
 }
 .feed-header {
-  width: 90%;
+  width: 100%; display: flex;
+  justify-content: center;
+}
+.feed-header .title{
+  width: 25%; height: 100%;
+  text-align: right;
+}
+.feed-header .content{
+  width: 75%;
+}
+.divider{
+  width: 25%; margin-bottom: 2rem;
 }
 .post-title:hover {
   cursor: pointer;
 }
-
-/* Override mat-card */
-.mat-card {
-  border-radius: 0 !important;
+.search-container{
+  width: 75%; display: flex; 
+  justify-content: space-between;
 }
-.mat-card-actions, .mat-card-subtitle, .mat-card-content {
-  display: block;
-  margin-bottom: 0 !important;
-}
-
 .search-bar {
-  background: #FFFFFF;
-  border-radius: 1.5rem;
-  border: none;
-  padding: 0.4rem 1.2rem;
-  /* font-size: 1rem;
-  line-height: 1rem; */
-  color: #707070;
-  min-width: 20vw;
-  box-shadow: 0 2px 6px #0000005d;
+  border-radius: 1.5rem; border: none;
+  padding: 0.4rem 1.2rem; min-width: 20vw;
 }
-.button-primary {
-  box-shadow: 0 2px 6px #0000005d;
+.news-container {
+  width: 80%; margin-bottom: 2rem;
+  display: flex; justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.news-card {
+  margin-top: 5%;margin-left: 5%;
+  width: 45%; padding: 0;
+}
+.news-card-preview{
+  width: 100%; height: 15rem; overflow: hidden;
+}
+#newsfeed-subtitle-container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1.5rem;
+}
+.newsfeed-card:nth-child(odd) {
+  margin-left: 2.5%;
 }

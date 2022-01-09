@@ -1,15 +1,12 @@
-<!-- <div *ngFor="let comment of comments; let i = index"> -->
 <div *ngFor="let comment of comments ">
     <div>
       <h5 matLine> {{comment.author}}  </h5>
       <p>{{comment.content}}</p>
-      <!-- <mat-button mat-mini-fab (click)="onDeleteComment(comment.comment_id)"><mat-icon>delete</mat-icon></mat-button> -->
     </div>
     <li>
       <app-comment-list *ngIf="comment.child_comments" [comments]="comment.child_comments" ></app-comment-list>
     </li>
     <div mat-action>
-      <!-- <div mat-button-toggle (click)="togglePanel[i] = !togglePanel[i]">Reply</div> -->
       <app-comment [child]="true" [parentId]= "comment.comment_id"></app-comment>
     </div>
     <mat-divider></mat-divider>

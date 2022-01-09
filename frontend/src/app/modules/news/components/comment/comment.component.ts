@@ -1,11 +1,8 @@
-import { Component, OnInit, OnDestroy, Input  } from '@angular/core';
+import { Component, OnInit, Input  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BlogService } from '../../../../services/blog.service';
 import { ActivatedRoute } from '@angular/router';
-import { DialogComponent, DialogTypes } from '../../../../../shared/components/dialog/dialog.component';
-import { MatDialog } from '@angular/material/dialog';
-import { AppConfig } from 'src/config';
 import { Comment } from 'src/app/models/news';
+import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
   selector: 'app-comment',
@@ -22,9 +19,8 @@ export class CommentComponent implements OnInit{
   @Input() public parentId!: number | null;
   
   constructor(private fb: FormBuilder,
-              private BlogService: BlogService,
-              private route: ActivatedRoute,
-              private dialog: MatDialog) {
+              private comments: CommentService,
+              private route: ActivatedRoute) {
     this.postId = this.route.snapshot.params.id;
     this.commentForm = this.fb.group({
       content: this.fb.control('', [Validators.required]),
@@ -35,13 +31,6 @@ export class CommentComponent implements OnInit{
 
   public onCommentCancel() : void{
     this.commentForm.reset();
-  }
-
-  public openAlertDialog(message: string): void{
-    this.dialog.open(DialogComponent,{
-      data:{ message: "Message goes here", type: DialogTypes.OK, route: null }, 
-      width: AppConfig.dialogWidth, height: AppConfig.dialogHeight
-    });
   }
 
   private formToComment(): Comment{
@@ -56,11 +45,7 @@ export class CommentComponent implements OnInit{
     }
   }
 
-  public onSubmit() {
-    this.BlogService.addComment(this.formToComment()).subscribe((response)=>{
-      if(response){ console.log("New comment added"); }
-    })
-  }
+  public onSubmit() { }
 
   public toggleComment(): void { this.showComment = !this.showComment; }
 

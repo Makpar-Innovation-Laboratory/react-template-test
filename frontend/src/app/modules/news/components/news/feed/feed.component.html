@@ -1,13 +1,10 @@
-<div class="feed-container" style="padding: 3rem 0 15rem 0">
-  <div
-    style="display: flex; justify-content: center"
-    class="text-white feed-header"
-  >
-    <div style="width: 20%; text-align: right; height: 100%">
+<div class="feed-container">
+  <div class="text-white feed-header">
+    <div class="title">
       <h4 class="mat-headline" style="margin-right: 2rem">NEWS FEED</h4>
     </div>
 
-    <div style="width: 75%">
+    <div class="content">
       <h5 class="mat-title">LOREM IPSUM DOLOR SIT AMET</h5>
       <div class="feed-header-border"></div>
       <h6 class="mat-subheading-2">
@@ -18,58 +15,32 @@
     </div>
   </div>
 
-  <div style="width: 100%">
-    <div
-      style="width: 25%; border-bottom: 2px dashed #ffffff; margin-bottom: 2rem"
-    ></div>
-  </div>
+  <div style="width: 100%"><div class="divider"></div></div>
 
-  <div style="width: 75%; display: flex; justify-content: space-between;">
+  <div class="search-container">
     <div style="display: flex;">
-      <input id="searchBar" name="searchBar" class="search-bar" placeholder="Search" [(ngModel)]='searchValue' />
-      <button class="button-primary" style="margin-left: 1rem" (click)="search(searchValue)">Search</button>  
+      <input id="search-bar" name="searchBar" class="search-bar" 
+              placeholder="Search" [(ngModel)]='searchValue' />  
     </div>
-    <pagination-controls
-      (pageChange)="p = $event"
-      previousLabel="Previous"
-      nextLabel="Next"
-      [directionLinks]="true"
-      [autoHide]="true"
-      id="pagination"
-    >
+
+
+    <pagination-controls id="pagination" (pageChange)="p = $event"
+                          previousLabel="Previous" nextLabel="Next"
+                          [directionLinks]="true" [autoHide]="true">
     </pagination-controls>
   </div>
 
   <div id="news-container" class="news-container" *ngIf="feed">
-    <mat-card
-      id="newsfeed-card"
-      class="newsfeed-card"
-      *ngFor="
-        let story of feed
-          | paginate: { id: 'pagination', itemsPerPage: 4, currentPage: p }
-      "
-    >
-      <div style="width: 100%; height: 15rem; overflow: hidden">
-        <img src="../../../../assets/preview.png" width="100%" />
+    <mat-card id="news-item" class="news-card"
+              *ngFor="let story of filteredFeed() | paginate: { id: 'pagination', itemsPerPage: 4, currentPage: p }">
+      <div class="news-card-preview">
+        <img src="/assets/preview.png" width="100%" />
       </div>
 
       <div style="padding: 2rem">
-        <mat-card-title
-          class="post-title"
-          [routerLink]="['/news', story.news_id]"
-          >{{ story.title }}</mat-card-title
-        >
-        <div
-          style="
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 1.5rem;
-          "
-        >
-          <mat-card-subtitle
-            >Author: {{ story.author ? story.author : "" }}</mat-card-subtitle
+        <mat-card-title class="post-title" [routerLink]="['/news', story.news_id]">{{ story.title }}</mat-card-title>
+        <div id="newsfeed-subtitle-container">
+          <mat-card-subtitle>Author: {{ story.author ? story.author : "" }}</mat-card-subtitle
           >
           <mat-card-subtitle>{{ story.submitted }}</mat-card-subtitle>
         </div>

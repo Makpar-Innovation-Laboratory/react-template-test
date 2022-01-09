@@ -18,7 +18,6 @@ export class FeedComponent implements OnInit {
   public isDeveloper: boolean = false;
   public feed: News[] = [];
   public p: number = 1;
-  public origFeed: News[] = [];
   public searchValue: string = '';
 
   // fetchedData: News[] = [];
@@ -39,12 +38,8 @@ export class FeedComponent implements OnInit {
    */
    ngOnInit(): void{
     this.isDeveloper = this.auth.belongsToGroup('developer')
-    
-
     this.news.getAllNews().subscribe((thisNews: NewsResponse)=>{
       this.feed = thisNews.results;
-      this.origFeed = thisNews.results;
-      console.log(thisNews.results);
     })
   }
 
@@ -59,24 +54,13 @@ export class FeedComponent implements OnInit {
       })
     }
 
-
-    public search(value: string): void {
-      console.log("origFeed");
-      console.log(this.origFeed);
-      console.log("Searched for: " + value);
-      let filteredFeed = [];
-      for (let i = 0; i < this.origFeed.length; i++) {
-        if (this.origFeed[i] != null) {
-          let title = String(this.origFeed[i].title);
-          let content = String(this.origFeed[i].content);
-          let author = String(this.origFeed[i].author);
-          if ( title.includes(value) || content.includes(value) || author.includes(value) ) {
-            filteredFeed.push(this.origFeed[i]);
-          }
-        }
-      }
-      this.feed = filteredFeed;
-      console.log(filteredFeed);
+    /**
+     *
+     * @param value 
+     */
+    public filteredFeed(): News[] {
+      if(this.searchValue) return this.feed.filter(e => e.title?.includes(this.searchValue) || e.author?.includes(this.searchValue))
+      else return this.feed;
     }
 
 }

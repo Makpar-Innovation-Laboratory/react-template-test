@@ -7,6 +7,15 @@
     $accent-palette: map.get($color-config, 'accent');
     $warn-palette: map.get($color-config, 'warn');
 
+    .divider{
+      border-bottom: 2px dashed map-get($primary-palette, default-contrast); 
+    }
+    .feed-header-border{
+      border-top: 2px solid map-get($primary-palette, default-contrast);
+    }
+    .search-bar{
+      background: map-get($primary-palette, default-contrast);
+    }
 }
 
 @mixin theme($theme) {
