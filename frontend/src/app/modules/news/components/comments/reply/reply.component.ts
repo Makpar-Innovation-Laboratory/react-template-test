@@ -9,7 +9,7 @@ import { AppConfig } from 'src/config';
 /**
  * # ReplyComponent
  * ## Description
- * A widget for reply to comments. Pass in a {@link commentId} to bind this component to a particular comment. The component will display a `mat-card` with a `reply` icon button. If the user clicks on the `reply`, a comment form will unfold to allow the user to reply to this comment. 
+ * A widget for replying to comments. Pass in a {@link commentId} to bind this component to a particular comment. The component will display a `mat-card` with a `reply` icon button. If the user clicks on the `reply`, a comment form will unfold to allow the user to reply to this comment. 
  * ## Example Usage
  * ```html
  * <app-reply [commentId]="1" [tooltip]="Reply to a comment!"></app-reply>
@@ -48,7 +48,8 @@ export class ReplyComponent{
   }
 
   /**
-   * 
+   * # Description
+   * Reset {@link commentForm}.
    */
   public onCommentCancel() : void{ 
     this.commentForm.reset();}
@@ -58,13 +59,18 @@ export class ReplyComponent{
    */
   public toggleEditor(): void { this.showEditor = !this.showEditor; }
 
+  /**
+   * # Description
+   * If {@link commentForm} is not displayed, toggle {@link showEditor} to display it. If {@link commentForm} is displayed, submit new {@link Comment}.
+   */
   public processClick(): void{
     if(this.showEditor){ this.onSubmit(); }
     else{ this.toggleEditor(); }
   }
   /**
-   * 
-   * @returns {@link Comment}
+   * # Description
+   * Transfer the contents of {@link commentForm} into a {@link Comment} object.
+   * @returns {@link Comment} 
    */
   private formToComment(): Comment{
     return{
@@ -77,10 +83,10 @@ export class ReplyComponent{
   }
 
   /**
-   * 
+   * # Description
+   * Submit {@link commentForm} if it has passed all of its validation checks. 
    */
   public onSubmit() {
-    console.log(`this is the comment id you are replying to: ${this.commentId}`)
     if(this.commentForm.valid){
       this.comments.postComment(this.formToComment()).subscribe((__: any)=>{
         this.commentForm.reset();
