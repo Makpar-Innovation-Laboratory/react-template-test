@@ -1,22 +1,47 @@
-.feed-container {
+mat-card img{
+  object-fit: scale-down;
+  height: 15rem; width: 100%;
+}
+#feed-container {
   width: 100%;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   padding: 3rem 0 15rem 0;
 }
-.feed-header-border {
+#search-container{
+  width: 75%; display: flex; 
+  justify-content: space-between;
+}
+#feed-header-border {
   height: 0.7rem; width: 6rem;
 }
-.feed-header {
+#feed-header {
   width: 100%; display: flex;
   justify-content: center;
 }
-.feed-header .title{
+#feed-title{
   width: 25%; height: 100%;
   text-align: right;
 }
-.feed-header .content{
+#feed-header-content{
   width: 75%;
+}
+#search-bar {
+  border-radius: 1.5rem; border: none;
+  padding: 0.4rem 1.2rem; min-width: 20vw;
+}
+#news-container {
+  width: 80%; margin-bottom: 2rem;
+  display: flex; justify-content: flex-start;
+  flex-wrap: wrap;
+}
+#news-action-container{
+  width: 100%; display: flex; justify-content: flex-end
+}
+.feed-subtitle-container{
+  width: 100%; margin-bottom: 1.5rem;
+  display: flex; justify-content: space-between;
+  align-items: flex-end;
 }
 .divider{
   width: 25%; margin-bottom: 2rem;
@@ -24,33 +49,37 @@
 .post-title:hover {
   cursor: pointer;
 }
-.search-container{
-  width: 75%; display: flex; 
-  justify-content: space-between;
-}
-.search-bar {
-  border-radius: 1.5rem; border: none;
-  padding: 0.4rem 1.2rem; min-width: 20vw;
-}
-.news-container {
-  width: 80%; margin-bottom: 2rem;
-  display: flex; justify-content: flex-start;
-  flex-wrap: wrap;
-}
 .news-card {
-  margin-top: 5%;margin-left: 5%;
+  margin-top: 5%; margin-left: 5%;
   width: 45%; padding: 0;
 }
 .news-card-preview{
   width: 100%; height: 15rem; overflow: hidden;
 }
-#newsfeed-subtitle-container{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 1.5rem;
-}
 .newsfeed-card:nth-child(odd) {
   margin-left: 2.5%;
+}
+
+
+
+/* NGX Pagination Styling */
+.ngx-pagination {
+  background: #FFFFFF !important;
+  padding: 0.3rem 0.5rem 0.3rem 0.4rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 6px #0000005d;
+  margin: 0 !important;
+  font-size: 0.9rem !important;
+}
+.ngx-pagination .ng-star-inserted {
+  color: #224185 !important;
+}
+.disabled .ng-star-inserted {
+  color: #707070 !important;
+}
+.ngx-pagination .current {
+  background: #224185 !important;
+}
+.ngx-pagination .current .ng-star-inserted {
+  color: #FFFFFF !important;
 }

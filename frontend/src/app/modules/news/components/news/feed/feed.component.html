@@ -1,12 +1,12 @@
-<div class="feed-container">
-  <div class="text-white feed-header">
-    <div class="title">
+<div id="feed-container">
+  <div id="feed-header" class="text-white">
+    <div id="feed-title">
       <h4 class="mat-headline" style="margin-right: 2rem">NEWS FEED</h4>
     </div>
 
-    <div class="content">
+    <div id="feed-header-content">
       <h5 class="mat-title">LOREM IPSUM DOLOR SIT AMET</h5>
-      <div class="feed-header-border"></div>
+      <div id="feed-header-border"></div>
       <h6 class="mat-subheading-2">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -17,65 +17,53 @@
 
   <div style="width: 100%"><div class="divider"></div></div>
 
-  <div class="search-container">
+  <div id="search-container">
     <div style="display: flex;">
       <input id="search-bar" name="searchBar" class="search-bar" 
               placeholder="Search" [(ngModel)]='searchValue' />  
     </div>
 
-
-    <pagination-controls id="pagination" (pageChange)="p = $event"
+    <pagination-controls id="pagination" (pageChange)="pageIndex = $event"
                           previousLabel="Previous" nextLabel="Next"
                           [directionLinks]="true" [autoHide]="true">
     </pagination-controls>
   </div>
 
-  <div id="news-container" class="news-container" *ngIf="feed">
+  <div id="news-container" *ngIf="feed">
     <mat-card id="news-item" class="news-card"
-              *ngFor="let story of filteredFeed() | paginate: { id: 'pagination', itemsPerPage: 4, currentPage: p }">
-      <div class="news-card-preview">
-        <img src="/assets/preview.png" width="100%" />
-      </div>
+              *ngFor="let story of filteredFeed() |
+                         paginate: { id: 'pagination', itemsPerPage: 4, currentPage: pageIndex }">
+      <img mat-card-image src="/assets/preview.png" alt="Innovation Lab News Preview"/>
 
       <div style="padding: 2rem">
-        <mat-card-title class="post-title" [routerLink]="['/news', story.news_id]">{{ story.title }}</mat-card-title>
-        <div id="newsfeed-subtitle-container">
-          <mat-card-subtitle>Author: {{ story.author ? story.author : "" }}</mat-card-subtitle
-          >
+        <mat-card-title class="post-title" 
+                        [routerLink]="['/news', story.news_id]">{{ story.title }}</mat-card-title>
+        <div id="author-submission-container" class="feed-subtitle-container">
+          <mat-card-subtitle>Author: {{ story.author }}</mat-card-subtitle>
           <mat-card-subtitle>{{ story.submitted }}</mat-card-subtitle>
         </div>
-        <mat-card-subtitle>{{ story.subject }}</mat-card-subtitle>
-        <!-- <mat-card-content> {{ story.snippet }} </mat-card-content> -->
+        <div id="subject-container" class="feed-subtitle-container">
+          <mat-card-subtitle>{{ story.author }}</mat-card-subtitle>
+        </div>
+        <mat-card-content> {{ story.snippet }} </mat-card-content>
 
         <div style="width: 100%; display: flex; justify-content: flex-end">
           <mat-card-actions>
-            <!-- <button
-              mat-icon-button
-              id="view-button"
-              color="accent"
+            <button mat-icon-button id="view-button"color="accent"
               matTooltip="View this story"
-              [routerLink]="['/news', story.news_id]"
-            >
+              [routerLink]="['/news', story.news_id]">
               <mat-icon>details</mat-icon>
-            </button> -->
-            <button
-              mat-icon-button
-              id="edit-button"
-              color="white"
+            </button>
+            <button mat-icon-button id="edit-button" color="accent"
               matTooltip="Edit this story"
               *ngIf="isDeveloper && story.news_id"
-              [routerLink]="['/admin/update', story.news_id]"
-            >
+              [routerLink]="['/admin/update', story.news_id]">
               <mat-icon>edit</mat-icon>
             </button>
-            <button
-              mat-icon-button
-              id="delete-button"
-              color="white"
+            <button mat-icon-button id="delete-button" color="warn"
               matTooltip="Delete this story"
               *ngIf="isDeveloper && story.news_id"
-              (click)="deleteNews(story.news_id)"
-            >
+              (click)="deleteNews(story.news_id)">
               <mat-icon>delete_forever</mat-icon>
             </button>
           </mat-card-actions>
@@ -93,7 +81,7 @@
 
   <div style="width: 75%; display: flex; justify-content: flex-end; margin-top: 3rem;">
     <pagination-controls
-      (pageChange)="p = $event"
+      (pageChange)="pageIndex = $event"
       previousLabel="Previous"
       nextLabel="Next"
       [directionLinks]="true"

@@ -17,13 +17,8 @@ export class FeedComponent implements OnInit {
 
   public isDeveloper: boolean = false;
   public feed: News[] = [];
-  public p: number = 1;
+  public pageIndex: number = 1;
   public searchValue: string = '';
-
-  // fetchedData: News[] = [];
-  // displayedData: News[] = [];
-  // itemsPerPage: number = 3;
-  // allPages!: number;
 
   /**
    * ## Description
@@ -55,8 +50,8 @@ export class FeedComponent implements OnInit {
     }
 
     /**
-     *
-     * @param value 
+     * # Description
+     * Use {@link searchValue} to filter {@link feed} by title or author.
      */
     public filteredFeed(): News[] {
       if(this.searchValue) return this.feed.filter(e => e.title?.includes(this.searchValue) || e.author?.includes(this.searchValue))
