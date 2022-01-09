@@ -1,5 +1,5 @@
-<div class="home-container" style="padding-bottom: 100px;">
-  <div class="home-header">
+<div id="home-container" style="padding-bottom: 100px;">
+  <div id="home-header">
     <div style="margin: 100px; width: 50%">
       <h3 class="mat-display-2 text-white">INNOVATION LAB</h3>
       <h5 class="mat-headline text-white">
@@ -7,43 +7,37 @@
       </h5>
     </div>
     <div>
-      <div class="sidenav-container">
+      <div id="sidenav-container">
         <h5 class="mat-headline text-white" *ngFor="let route of appRoutes">
           <a *ngIf="route.route != '/docs'" [routerLink]="route.route">{{route.title}}</a>
           <a *ngIf="route.route == '/docs'" href="http://innolab-coverage.makpar-innovation.net"
               target="_blankg">{{route.title}}</a>
         </h5>
       </div>
-      <div class="sidenav-border"></div>
+      <div id="sidenav-border"></div>
     </div>
   </div>   
-  <div class="services-container">
-    <div class="nav" style="padding: 1rem 0;">
-      <div class="nav-menu">
-        <div class="nav-header">
-          <h5 class="mat-headline text-primary" style="text-align: left">SERVICES</h5>
-          <!-- <img class="mat-headline right-arrow" src="../../../assets/icons/right_arrow_icon.svg"
-                    style="margin-left: 30px"/> -->
+  <div id="services-container">
+    <div id="nav">
+      <div id="nav-header">
+        <h5 class="mat-headline text-primary" style="text-align: left">SERVICES</h5>
+        <!-- <img class="mat-headline right-arrow" src="../../../assets/icons/right_arrow_icon.svg"
+                  style="margin-left: 30px"/> -->
+      </div>
+      <div id="nav-border" class="dashed-border"></div>
+      <div id="nav-selector" class="text-primary">
+        <div id="nav-select" *ngFor="let section of sections">
+          <h5 class="mat-headline" (click)="onSelect(section)">
+            <span class="{{ isSelected(section) ? 'selected' : ''}}">{{section.title}}</span>
+          </h5>
+          <div id="select-underline" class="dashed-border" *ngIf="isSelected(section)"></div>
         </div>
-        <div class="nav-border"></div>
-      </div>
-      <div class="nav-selector">
-        <ul class="text-primary" style="width: 100%">
-          <div id="nav-select" class="nav-select" 
-              *ngFor="let section of sections">
-            <li >
-              <h5 class="mat-headline" (click)="onSelect(section)">
-                <span class="{{ isSelected(section) ? 'selected' : ''}}">{{section.title}}</span></h5>
-            </li>
-            <div style="height: 1.5rem; width: 35%"></div>
-          </div>
-        </ul>
       </div>
     </div>
-    <div id="nav-view" class="card bg-primary">
-        <h5 class="mat-headline text-white" style="text-align: center">{{selected.title}}</h5>
-        <h6 class="mat-title text-white" style="text-align: center">{{selected.description}}</h6>
-      </div>
+    <div id="nav-view" class="bg-primary">
+      <h5 class="mat-headline text-white" style="text-align: center">{{selected.title}}</h5>
+      <h6 class="mat-title text-white" style="text-align: center">{{selected.description}}</h6>
     </div>
+  </div>
 </div>
 

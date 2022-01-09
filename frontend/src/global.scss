@@ -14,6 +14,18 @@
       color: map-get($primary-palette, 100) !important;
       background-color: map-get($primary-palette, 500) !important;
     }
+    .bg-white {
+      background-color: map-get($primary-palette, default-contrast);
+    }
+    .bg-primary {
+      background-color: map-get($primary-palette, 500);
+    }
+    .text-white {
+      color: map-get($primary-palette, default-contrast);
+    }
+    .text-primary {
+      color: map-get($primary-palette, 500);
+    }
     .btn-primary-theme{
       color: map-get($primary-palette, default-contrast);
       background-color: map-get($primary-palette, 500);
