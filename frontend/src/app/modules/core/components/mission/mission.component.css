@@ -1,13 +1,20 @@
-.mission-container {
+#mission-container {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 3rem 0;
 }
-.mission-header {
+#mission-header {
   width: 90%;
+  display: flex; justify-content: center;
 }
-
+#values-container{
+  width: 100%; display: flex; justify-content: center
+}
+#values-col-right{
+  margin-top: 3rem;
+}
 .column {
   width: 45%;
   display: flex;
@@ -16,14 +23,12 @@
 }
 .card {
   width: 85%;
-  background: white;
   height: 15rem;
   margin-top: 3rem;
   padding: 1rem 0;
 }
 .card h5 {
   /* height: 2.5rem; */
-  border-bottom: 2px dashed #224185;
   width: 5.5rem;
   padding-bottom: 0.6rem;
   white-space: nowrap;
@@ -34,13 +39,12 @@
   margin: 1rem 2.2rem;
 }
 .mission-header h5 {
-    margin-bottom: 0.5rem;
-    font-weight: normal;
+  margin-bottom: 0.5rem;
+  font-weight: normal;
 }
 .mission-header-border {
-    height: 0.7rem;
-    width: 6rem;
-    border-top: 2px solid #FFFFFF;
+  height: 0.7rem;
+  width: 6rem;
 }
 .mat-title {
   font-weight: normal;
