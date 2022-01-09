@@ -5,7 +5,7 @@
     display: flex
 }
 .action-container{
-    width: 100%; display: flex; justify-content: space-between;
+    width: 100%; display: flex; justify-content: right;
 }
 textarea {
     border: none; border-radius: 0.5rem;

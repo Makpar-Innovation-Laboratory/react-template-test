@@ -1,7 +1,7 @@
 import { Component, OnInit, Input  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Comment } from 'src/app/models/news';
 import { CommentService } from 'src/app/modules/news/services/comment.service';
 import { AppConfig } from 'src/config';
@@ -25,8 +25,8 @@ export class CommentComponent implements OnInit{
   public postId: number;
   public commentForm: FormGroup;
 
-  @Input() public child!: boolean;
-  @Input() public parentId!: number | null;
+  @Input() public child: boolean = false;
+  @Input() public parentId: number | null = null;
   
   /**
    * 
@@ -38,7 +38,6 @@ export class CommentComponent implements OnInit{
   constructor(private fb: FormBuilder,
               private comments: CommentService,
               private route: ActivatedRoute,
-              private router: Router,
               private snackBar: MatSnackBar,) {
     this.postId = this.route.snapshot.params.id;
     this.commentForm = this.fb.group({
@@ -52,9 +51,7 @@ export class CommentComponent implements OnInit{
    * 
    */
   public onCommentCancel() : void{ 
-    this.commentForm.reset();
-    this.router.navigateByUrl(`/news/${this.postId}`)
-  }
+    this.commentForm.reset();}
 
   /**
    * 
@@ -79,9 +76,12 @@ export class CommentComponent implements OnInit{
    * 
    */
   public onSubmit() {
-    this.comments.postComment(this.formToComment()).subscribe((__: any)=>{
-      this.commentForm.reset();
-      this.snackBar.open(AppConfig.commentAlert, 'OK');
-    })
+    if(this.commentForm.valid){
+      this.comments.postComment(this.formToComment()).subscribe((__: any)=>{
+        this.commentForm.reset();
+        this.showComment = false;
+        this.snackBar.open(AppConfig.commentAlert, 'OK');
+      })
+    }
   }
 }
