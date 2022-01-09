@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './components/admin/admin.component';
 import { EditorComponent } from './components/admin/editor/editor.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { SharedModule } from 'src/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
@@ -11,7 +11,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
   declarations: [
     AdminComponent,
     EditorComponent,
-    UserProfileComponent,
+    ProfileComponent,
   ],
   imports: [
     AdminRoutingModule,
@@ -21,7 +21,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
   exports: [
     AdminComponent,
     EditorComponent,
-    UserProfileComponent,
+    ProfileComponent,
   ]
 })
 export class AdminModule { }
