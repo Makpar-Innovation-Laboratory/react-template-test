@@ -9,9 +9,10 @@ import { AppConfig } from 'src/config';
 /**
  * # ReplyComponent
  * ## Description
+ * A widget for reply to comments. Pass in a {@link commentId} to bind this component to a particular comment. The component will display a `mat-card` with a `reply` icon button. If the user clicks on the `reply`, a comment form will unfold to allow the user to reply to this comment. 
  * ## Example Usage
  * ```html
- * <app-comment [child]="true|false" [parentId]="int"></app-comment>
+ * <app-reply [commentId]="1" [tooltip]="Reply to a comment!"></app-reply>
  * ```
  */
 @Component({
@@ -19,7 +20,7 @@ import { AppConfig } from 'src/config';
   templateUrl: './reply.component.html',
   styleUrls: ['./reply.component.css']
 })
-export class ReplyComponent implements OnInit {
+export class ReplyComponent{
 
   public showEditor: boolean = false;
   public postId: number;
@@ -29,11 +30,12 @@ export class ReplyComponent implements OnInit {
   @Input() public tooltip: string = "dialectical considerations on the epistemology of ontical solipism"
   
   /**
-   * 
-   * @param fb 
-   * @param comments {@link CommentService}
-   * @param route 
-   * @param snackBar 
+   * # Description
+   * Constructs an instance {@link ReplyComponent}
+   * @param fb Instance of `FormBuilder` to used to construct {@link commentForm}
+   * @param comments {@link CommentService} used to post comments to the Innovation Lab API
+   * @param route current `ActivatedRoute` 
+   * @param snackBar `MatSnackBar` used to alert user of successful comment post.
    */
   constructor(private fb: FormBuilder,
               private comments: CommentService,
@@ -44,8 +46,6 @@ export class ReplyComponent implements OnInit {
       content: this.fb.control('', [Validators.required]),
     });
   }
-
-  ngOnInit() { }
 
   /**
    * 
