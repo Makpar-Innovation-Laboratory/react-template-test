@@ -16,6 +16,9 @@
     .search-bar{
       background: map-get($primary-palette, default-contrast);
     }
+    #view-button, #edit-button, #delete-button{
+      background-color: map-get($primary-palette, 400);
+    }
 }
 
 @mixin theme($theme) {

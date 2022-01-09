@@ -7,17 +7,13 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { MatIconRegistry } from '@angular/material/icon';
 
-import { SharedModule } from '../shared/shared.module';
-import { AppConfig, IconRegistry } from '../config';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { AppConfig, IconRegistry } from 'src/config';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component'; 
 import { RegisterComponent } from './components/register/register.component';
-import { ProjectsComponent } from './components/projects/projects.component';
-import { TeamComponent } from './components/team/team.component';
-import { MissionComponent } from './components/mission/mission.component';
-import { ProjectComponent } from './components/projects/project/project.component';
+import { HomeComponent } from './components/home/home.component';
 
 /**
  * # AppModule
@@ -29,13 +25,9 @@ import { ProjectComponent } from './components/projects/project/project.componen
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     LoginComponent,
     RegisterComponent,
-    ProjectsComponent,
-    TeamComponent,
-    MissionComponent,
-    ProjectComponent,
+    HomeComponent
   ],
   imports: [
     AppRoutingModule,

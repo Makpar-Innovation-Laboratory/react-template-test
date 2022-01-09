@@ -19,9 +19,14 @@
     margin-left: 1rem;
     text-decoration: none;    
 }
-#user-buttons-container{
+#user-button-container{
     display: flex; flex-direction: row;
     margin-left: auto; flex: 0;
+    border-radius: 25px;
+    opacity: 0.5;
+}
+#user-button-container:hover{
+    opacity: 0.75
 }
 #active-tab {
     border-bottom: 2px solid;

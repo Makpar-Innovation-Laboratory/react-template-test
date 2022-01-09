@@ -52,18 +52,18 @@
         <mat-card-content> {{ story.snippet }} </mat-card-content>
         <div id="news-action-container">
           <mat-card-actions>
-            <button mat-icon-button id="view-button" 
+            <button mat-icon-button id="view-button" class="mat-elevation-z3 feed-button"
               color="accent" matTooltip="View this story" 
               [routerLink]="['/news', story.news_id]">
               <mat-icon>library_books</mat-icon>
             </button>
-            <button mat-icon-button id="edit-button" 
+            <button mat-icon-button id="edit-button" class="mat-elevation-z3 feed-button"
               color="accent" matTooltip="Edit this story"
               *ngIf="isDeveloper && story.news_id"
               [routerLink]="['/admin/update', story.news_id]">
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button id="delete-button" 
+            <button mat-icon-button id="delete-button" class="mat-elevation-z3 feed-button"
               color="warn" matTooltip="Delete this story"
               *ngIf="isDeveloper && story.news_id"
               (click)="deleteNews(story.news_id)">

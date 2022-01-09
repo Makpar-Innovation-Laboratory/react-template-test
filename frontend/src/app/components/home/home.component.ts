@@ -27,8 +27,7 @@ export class HomeComponent {
    * Constructs an instance of {@link HomeComponent}
    * @param auth instance of {@link AuthService} injected into component by Angular
    */
-  constructor(private auth : AuthService,
-              private router: Router) { 
+  constructor(private auth : AuthService) { 
     this.username = this.auth.getUsername()
   }
 

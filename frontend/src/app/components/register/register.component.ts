@@ -1,11 +1,11 @@
 import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { AnimationControl, Animations, AnimationTriggers, HighlightStates, ScaleStates } from 'src/animations';
+import { AnimationControl, Animations, AnimationTriggers } from 'src/animations';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
-import { AppConfig } from '../../../config';
-import { DialogComponent, DialogTypes} from '../../../shared/components/dialog/dialog.component';
+import { AppConfig } from 'src/config';
+import { DialogComponent, DialogTypes} from 'src/app/modules/shared/components/dialog/dialog.component';
 
 /**
  * # RegisterComponent
@@ -86,7 +86,7 @@ export class RegisterComponent {
   }
 
   /**
-   * 
+   * # Description
    */
   public animateRegisterBtn(): void{
     if(this.registerFormGroup.valid){
@@ -96,7 +96,7 @@ export class RegisterComponent {
   }
 
   /**
-   * 
+   * # Description
    */
   public primeRegisterBtn(): void{
     if(this.registerFormGroup.valid){

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from 'src/shared/guards/auth.guard';
+import { AuthGuard } from 'src/app/modules/shared/guards/auth.guard';
 import { FeedComponent } from './components/news/feed/feed.component';
 import { NewsComponent } from './components/news/news.component';
 import { StoryComponent } from './components/news/story/story.component';

@@ -3,7 +3,7 @@ import { Component} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { News, NewsPostResponse, NewsResponse } from 'src/app/models/news';
-import { DialogComponent, DialogTypes } from 'src/shared/components/dialog/dialog.component';
+import { DialogComponent, DialogTypes } from 'src/app/modules/shared/components/dialog/dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { EditorConfig } from './editor.config';
 import { AngularEditorConfig } from '@kolkov/angular-editor';

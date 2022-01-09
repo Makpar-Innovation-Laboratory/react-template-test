@@ -5,8 +5,8 @@ import { NewsComponent } from './components/news/news.component';
 import { FeedComponent } from './components/news/feed/feed.component';
 import { StoryComponent } from './components/news/story/story.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { SharedModule } from 'src/shared/shared.module';
-import { SanitizePipe } from 'src/shared/pipes/sanitize.pipe';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { SanitizePipe } from 'src/app/modules/shared/pipes/sanitize.pipe';
 import { CommentsComponent } from './components/comments/comments.component';
 import { ReplyComponent } from './components/comments/reply/reply.component';
 

@@ -42,6 +42,9 @@ mat-card img{ object-fit: cover; }
 #news-action-container{
   width: 100%; display: flex; justify-content: flex-end
 }
+.feed-button{
+  margin-right: 0.5rem; margin-left: 0.5rem;
+}
 #paginator{
   display: flex; justify-content: flex-end; 
   margin-top: 3rem; width: 75%;

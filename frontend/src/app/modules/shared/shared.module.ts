@@ -5,10 +5,8 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { SessionStorageService } from 'ngx-webstorage';
-
-import { MaterialModule } from 'src/material/material.module';
-
-import { AuthInterceptor } from 'src/shared/interceptors/auth.interceptor';
+import { MaterialModule } from 'src/app/modules/shared/material.module';
+import { AuthInterceptor } from 'src/app/modules/shared/interceptors/auth.interceptor';
 
 import { DialogComponent } from './components/dialog/dialog.component';
 

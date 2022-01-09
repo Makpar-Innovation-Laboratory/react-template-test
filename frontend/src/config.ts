@@ -60,10 +60,10 @@ export const AppConfig: Config = {
     //          within the AppComponent
     routes: [
         { route: '/', title: 'HOME', tooltip: "Home Page", dev: false },
-        { route: '/mission', title: 'MISSION', tooltip: 'Innovation Lab Mission Statement', dev: false },
-        { route: '/team', title: 'TEAM', tooltip: "Meet the Innovation Lab Team", dev: false },
+        { route: '/lab/mission', title: 'MISSION', tooltip: 'Innovation Lab Mission Statement', dev: false },
+        { route: '/lab/team', title: 'TEAM', tooltip: "Meet the Innovation Lab Team", dev: false },
         { route: '/news/feed', title: 'NEWS FEED', tooltip: "Latest News From The Feed", dev: false },
-        { route: '/projects', title: 'PROJECTS', tooltip: "Past And Ongoing Projects", dev: false },
+        { route: '/lab/projects', title: 'PROJECTS', tooltip: "Past And Ongoing Projects", dev: false },
         { route: '/docs', title: 'DOCS', tooltip: "Documentation for the InnoLab Web App", dev: true },
         { route: '/admin', title: 'ADMIN', tooltip: "Administrative Access to Site", dev: true},  
     ],

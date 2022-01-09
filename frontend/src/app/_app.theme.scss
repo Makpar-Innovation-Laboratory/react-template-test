@@ -7,23 +7,17 @@
     $accent-palette: map.get($color-config, 'accent');
     $warn-palette: map.get($color-config, 'warn');
 
-    mat-error{
-        color: map-get($warn-palette, A400) !important;
-    }
-
-    mat-card{
-      color: map-get($primary-palette, 100) !important;
-      background-color: map-get($primary-palette, 600) !important;
-    }
-
-    .nav-items a{
-      color: map-get($primary-palette, default-contrast)
+    #user-button-container{
+      background-color: map-get($primary-palette, 300);
     }
 
     #active-tab, .toolbar-container{
       border-bottom: map-get($primary-palette, default-contrast)
     }
     
+    #nav-items a{
+      color: map-get($primary-palette, default-contrast)
+    }
     // ::-webkit-scrollbar {
     //   background-color: map-get($accent-palette, 200);
     //   box-shadow: inset 0 0 4px map-get($accent-palette, '50-contrast');
