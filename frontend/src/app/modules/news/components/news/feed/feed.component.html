@@ -34,7 +34,9 @@
               *ngFor="let story of filteredFeed() |
                          paginate: { id: 'pagination', itemsPerPage: 4, currentPage: pageIndex }">
 
-      <img mat-card-image src="/assets/preview.png" alt="Innovation Lab News Preview"/>
+      <div id="news-preview-container">
+        <img mat-card-image src="/assets/preview.png" alt="Innovation Lab News Preview"/>
+      </div>
 
       <div style="padding: 2rem">
         <mat-card-title class="post-title" 

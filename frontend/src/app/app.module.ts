@@ -18,7 +18,6 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { TeamComponent } from './components/team/team.component';
 import { MissionComponent } from './components/mission/mission.component';
 import { ProjectComponent } from './components/projects/project/project.component';
-import { PaginationComponent } from './modules/news/components/news/feed/pagination/pagination.component';
 
 /**
  * # AppModule
@@ -37,7 +36,6 @@ import { PaginationComponent } from './modules/news/components/news/feed/paginat
     TeamComponent,
     MissionComponent,
     ProjectComponent,
-    PaginationComponent,
   ],
   imports: [
     AppRoutingModule,

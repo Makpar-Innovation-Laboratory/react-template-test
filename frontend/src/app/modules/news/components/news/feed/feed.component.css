@@ -1,6 +1,7 @@
-mat-card img{
-  object-fit: scale-down;
-  height: 15rem; width: 100%;
+mat-card img{ object-fit: cover; }
+.mat-card { border-radius: 0; }
+.mat-card-actions, .mat-card-subtitle, .mat-card-content {
+  display: block; margin-bottom: 0;
 }
 #feed-container {
   width: 100%;
@@ -34,6 +35,9 @@ mat-card img{
   width: 80%; margin-bottom: 2rem;
   display: flex; justify-content: flex-start;
   flex-wrap: wrap;
+}
+#news-preview-container{
+  width: 100%; height: 15rem; overflow: hidden
 }
 #news-action-container{
   width: 100%; display: flex; justify-content: flex-end

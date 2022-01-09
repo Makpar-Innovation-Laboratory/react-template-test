@@ -54,8 +54,10 @@ export class FeedComponent implements OnInit {
      * Use {@link searchValue} to filter {@link feed} by title or author.
      */
     public filteredFeed(): News[] {
-      if(this.searchValue) return this.feed.filter(e => e.title?.includes(this.searchValue) || e.author?.includes(this.searchValue))
-      else return this.feed;
+      if(this.searchValue) 
+        return this.feed.filter(e => e.title?.includes(this.searchValue) || e.author?.includes(this.searchValue))
+      else 
+        return this.feed;
     }
 
 }
