@@ -15,7 +15,8 @@
 @use './app/modules/news/components/news/feed/feed.theme' as feed;
 @use './app/modules/news/components/news/news.theme' as news;
 @use './app/modules/news/components/news/story/story.theme' as story;
-
+@use './app/modules/news/components/comments/comments.theme' as comments;
+@use './app/modules/news/components/comments/reply/reply.theme' as reply;
 
 @use './app/modules/admin/components/admin/editor/editor.theme' as editor;
 @use './app/modules/admin/components/admin/admin.theme' as admin;
@@ -121,6 +122,7 @@ $makpar-theme: mat-dark-theme(
 @include global.theme($makpar-alt-theme);
 @include admin.theme($makpar-alt-theme);
 @include app.theme($makpar-alt-theme);
+@include comments.theme($makpar-alt-theme);
 @include dialog.theme($makpar-alt-theme);
 @include editor.theme($makpar-alt-theme);
 @include feed.theme($makpar-alt-theme);
@@ -129,5 +131,6 @@ $makpar-theme: mat-dark-theme(
 @include news.theme($makpar-alt-theme);
 @include projects.theme($makpar-alt-theme);
 @include register.theme($makpar-alt-theme);
+@include reply.theme($makpar-alt-theme);
 @include story.theme($makpar-alt-theme);
 @include team.theme($makpar-alt-theme);

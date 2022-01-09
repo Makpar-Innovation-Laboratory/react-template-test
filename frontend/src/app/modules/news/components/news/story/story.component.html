@@ -14,19 +14,17 @@
       <h6 class="mat-subheading-2">{{ newsPost.submitted }} </h6>
     </div>
   </div>
-
   <div id="story-detail-container" class="story-detail-container"
         *ngIf="newsPost">
-    <h4 class="mat-display-1" style="margin-right: 2rem">
-      {{ newsPost.title }}
-    </h4>
+    <h4 class="mat-display-1" style="margin-right: 2rem">{{ newsPost.title }}</h4>
     <div class="projects-header-border"></div>
     <h6 class="mat-subheading-2">{{ newsPost.subject }}</h6>
 
     <div class="content">
       <div [innerHTML]="newsPost.content | sanitize: 'html'"></div>
     </div>
-    <app-comment></app-comment>
-    <app-comment-list *ngIf="newsPost.comments" [comments]="newsPost.comments" ></app-comment-list>
+    <h5>COMMENTS</h5>
+    <app-reply></app-reply>
+    <app-comments *ngIf="newsPost.comments" [comments]="newsPost.comments" ></app-comments>
   </div>
 </div>

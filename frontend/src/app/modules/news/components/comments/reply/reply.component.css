@@ -2,7 +2,7 @@
     font-weight: normal;
 }
 .card-header{
-    display: flex
+    display: flex; width: 100%; justify-content: right;
 }
 .action-container{
     width: 100%; display: flex; justify-content: right;

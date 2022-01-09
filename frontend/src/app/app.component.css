@@ -1,26 +1,27 @@
-.app-container {
+#app-container {
     background-image: url(../assets/bg.png);
     background-position: center;
     min-height: 100vh;
 }
 /* Navigation Styles */
-.toolbar-container {
+#toolbar-container {
     display: flex; width: 100%;
-    flex-direction: row;
+    flex-direction: space-between;
     background: transparent;
     border-bottom: 2px dashed;
 }
-.nav-items {
-    display: flex;
+#nav-items {
+    display: flex; flex: 1;
 }
-.nav-items a {
+#nav-items a {
     padding-bottom: 0rem;
     margin-bottom: 0;
     margin-left: 1rem;
     text-decoration: none;    
 }
-.signout-button{
-    margin-left: auto;
+#user-buttons-container{
+    display: flex; flex-direction: row;
+    margin-left: auto; flex: 0;
 }
 #active-tab {
     border-bottom: 2px solid;

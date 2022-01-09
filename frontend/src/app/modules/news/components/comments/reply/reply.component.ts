@@ -1,13 +1,13 @@
-import { Component, OnInit, Input  } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { CommentService } from '../../../services/comment.service';
 import { Comment } from 'src/app/models/news';
-import { CommentService } from 'src/app/modules/news/services/comment.service';
 import { AppConfig } from 'src/config';
 
 /**
- * # CommentComponent
+ * # ReplyComponent
  * ## Description
  * ## Example Usage
  * ```html
@@ -15,18 +15,18 @@ import { AppConfig } from 'src/config';
  * ```
  */
 @Component({
-  selector: 'app-comment',
-  templateUrl: './comment.component.html',
-  styleUrls: ['./comment.component.css']
+  selector: 'app-reply',
+  templateUrl: './reply.component.html',
+  styleUrls: ['./reply.component.css']
 })
+export class ReplyComponent implements OnInit {
 
-export class CommentComponent implements OnInit{
-  public showComment: boolean = false;
+  public showEditor: boolean = false;
   public postId: number;
   public commentForm: FormGroup;
 
-  @Input() public child: boolean = false;
-  @Input() public parentId: number | null = null;
+  @Input() public commentId: number | null = null;
+  @Input() public tooltip: string = "dialectical considerations on the epistemology of ontical solipism"
   
   /**
    * 
@@ -56,8 +56,12 @@ export class CommentComponent implements OnInit{
   /**
    * 
    */
-  public toggleComment(): void { this.showComment = !this.showComment; }
+  public toggleEditor(): void { this.showEditor = !this.showEditor; }
 
+  public processClick(): void{
+    if(this.showEditor){ this.onSubmit(); }
+    else{ this.toggleEditor(); }
+  }
   /**
    * 
    * @returns {@link Comment}
@@ -66,7 +70,7 @@ export class CommentComponent implements OnInit{
     return{
       content: this.commentForm.controls.content.value,
       news_id: this.postId,
-      parent_comment: this.child ? null : this.parentId,
+      parent_comment: this.commentId ? null : this.commentId,
       child_comments: null, author: null,
       comment_id: null, submitted: null
     }
@@ -76,10 +80,11 @@ export class CommentComponent implements OnInit{
    * 
    */
   public onSubmit() {
+    console.log(`this is the comment id you are replying to: ${this.commentId}`)
     if(this.commentForm.valid){
       this.comments.postComment(this.formToComment()).subscribe((__: any)=>{
         this.commentForm.reset();
-        this.showComment = false;
+        this.showEditor = false;
         this.snackBar.open(AppConfig.commentAlert, 'OK');
       })
     }
