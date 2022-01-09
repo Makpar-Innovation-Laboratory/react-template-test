@@ -20,10 +20,12 @@ export interface Section{ key: string, title: string, description: string }
  */
 export interface Config{
     dialogWidth: string, dialogHeight: string,
-    registerMsg: string, editMsg: string,
-    createMsg: string, defaultMsg: string,
+    createMsg: string, createAlert: string,
+    editMsg: string, editAlert: string,
+    registerMsg: string,
+    defaultMsg: string,
     signOutMsg: string,
-    createAlert: string, editAlert: string,
+    commentAlert: string,
     routes: AppRoute[],
     registry: IconRegistry[],
     sections: Section[]
@@ -39,6 +41,7 @@ export const AppConfig: Config = {
     createMsg: "Submit new post?", createAlert: "News post created!",
     defaultMsg: "Something seems to have gone wrong...",
     signOutMsg: 'Are you sure you want to sign out?',
+    commentAlert: 'Comment submitted!',
     // Paths are relative to the /app/ directory since they are imported in the AppComponent constructor
     registry:[
         { icon: 'bitcoin', location: '../assets/icons/logo-bitcoin.svg' },

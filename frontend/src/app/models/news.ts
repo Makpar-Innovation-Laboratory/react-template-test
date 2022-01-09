@@ -27,6 +27,11 @@ export interface NewsPostResponse{
     message: string
 }
 
+export interface CommentPostResponse{
+    id: number,
+    message: string
+}
+
 export interface NewsResponse{
     results: News[]
 }

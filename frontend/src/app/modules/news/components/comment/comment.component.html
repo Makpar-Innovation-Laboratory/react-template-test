@@ -1,9 +1,9 @@
 <div class="card">
   <div class="card-header">
     <h5 class="mat-title">COMMENTS</h5>
-    <button mat-button class="btn-primary-style btn-primary-theme mat-elevation-z5"
-            style="margin-left: 1rem;" (click)="toggleComment()" *ngIf="!showComment">
-      + Add a Comment
+    <button mat-icon-button style="margin-left: 1rem;" 
+            (click)="toggleComment()" *ngIf="!showComment">
+      <mat-icon> comment</mat-icon>
     </button>
   </div>
   <div class="card-body" *ngIf="showComment">
@@ -31,6 +31,6 @@
     </form>
   </div>
 </div>
-<div style="margin-left: 2rem;">
+<div style="margin-left: 2rem;" *ngIf="!child">
   <app-comment-list></app-comment-list>
 </div>

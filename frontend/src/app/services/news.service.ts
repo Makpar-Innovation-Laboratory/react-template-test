@@ -6,14 +6,11 @@ import { News, NewsPostResponse, NewsResponse } from '../models/news';
 import { environment } from 'src/environments/environment';
 
 /**
- * # NewServices
- * 
+ * # NewsService
  * ## Description
- * 
  * ## Example Usage
- * 
  * ```javascript
- * constructor(private news : New)
+ * constructor(private news : NewsService)
  * ```
  */
 @Injectable({

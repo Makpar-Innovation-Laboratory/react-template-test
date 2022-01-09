@@ -1,9 +1,8 @@
 <div class="story-container text-white">
   <div class="story-header">
-    <button mat-button id="back-button" 
-            class="btn-primary-style btn-primary-theme mat-elevation-z2"
+    <button mat-icon-button id="back-button" 
             routerLink="/news/feed">
-      &lt; BACK
+            <mat-icon>arrow_back</mat-icon>
     </button>
 
     <div *ngIf="newsPost" class="story-info">
