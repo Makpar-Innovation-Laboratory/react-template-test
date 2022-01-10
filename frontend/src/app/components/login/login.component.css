@@ -19,7 +19,7 @@ mat-form-field {
 #login-card {
   padding: 3rem 5rem;
 }
-#login-card-title h4 {
+#login-card-title {
   text-align: center;
 }
 #login-card-actions{
