@@ -131,8 +131,10 @@ phases:
             --paths "/*"
 
       # Push image to ECR 
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
-
+      - |
+        bash -c '
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
+        '
 cache:
   path:
     - frontend/node_modules
