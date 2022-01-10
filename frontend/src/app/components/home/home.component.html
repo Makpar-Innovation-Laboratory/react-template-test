@@ -1,4 +1,4 @@
-<div id="home-container" style="padding-bottom: 100px;">
+<div id="home-container">
   <div id="home-header">
     <div style="margin: 100px; width: 50%">
       <h3 class="mat-display-2 text-white">INNOVATION LAB</h3>
@@ -6,24 +6,19 @@
         LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT
       </h5>
     </div>
-    <div>
-      <div id="sidenav-container">
-        <h5 class="mat-headline text-white" *ngFor="let route of appRoutes">
-          <a *ngIf="route.route != '/docs'" [routerLink]="route.route">{{route.title}}</a>
-          <a *ngIf="route.route == '/docs'" href="http://innolab-coverage.makpar-innovation.net"
-              target="_blankg">{{route.title}}</a>
-        </h5>
-      </div>
+    <div id="sidenav-container">
+      <h5 class="mat-headline text-white" *ngFor="let route of appRoutes">
+        <a *ngIf="route.route != '/docs'" [routerLink]="route.route">{{route.title}}</a>
+        <a *ngIf="route.route == '/docs'" href="http://innolab-coverage.makpar-innovation.net"
+            target="_blankg">{{route.title}}</a>
+      </h5>
       <div id="sidenav-border"></div>
     </div>
   </div>   
-  
   <div id="services-container">
     <div id="nav">
       <div id="nav-header">
         <div id="nav-title" class="mat-headline text-primary">SERVICES</div>
-        <!-- <img class="mat-headline right-arrow" src="../../../assets/icons/right_arrow_icon.svg"
-                  style="margin-left: 30px"/> -->
         <div id="nav-border" class="dashed-border"></div>
       </div>
       <div id="nav-selector" class="text-primary">
@@ -36,8 +31,8 @@
       </div>
     </div>
     <div id="nav-view" class="bg-primary">
-      <h5 id="view-title" class="text-white" >{{selected.title}}</h5>
-      <h6 id="view-description" class="text-white">{{selected.description}}</h6>
+      <h5 id="view-title" class="text-white mat-headline" >{{selected.title}}</h5>
+      <h6 id="view-description" class="text-white mat-body">{{selected.description}}</h6>
     </div>
   </div>
 </div>
