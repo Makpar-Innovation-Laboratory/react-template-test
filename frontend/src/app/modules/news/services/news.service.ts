@@ -92,4 +92,9 @@ export class NewsService {
     else return this.http.get<NewsResponse>(`${this.host.getHost()}/news`)
   }
 
+  public flagComment(id: number, comment: Comment): Observable<NewsPostResponse>{
+    // TODO: mock implementation
+    return this.http.put<NewsPostResponse>(`${this.host.getHost()}/news/comment/${id}`, comment)
+  }
+
 }
