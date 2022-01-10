@@ -24,7 +24,7 @@
             </mat-error>
           </mat-form-field>
           <!-- USER NAME FORM FIELD-->
-          <mat-form-field id="username-form-field" class="register-form-field" color="accent">
+          <mat-form-field id="username-form-field" class="register-form-field" color="primary">
             <mat-label color="warn">Username</mat-label>
             <input matInput id="username-input" formControlName="username" type="text"
                     (keydown.enter)="register()"/>
@@ -42,7 +42,7 @@
             </mat-error>
           </mat-form-field>
           <!-- BUSINESS NAME FORM FIELD -->
-          <mat-form-field id="business-name-form-field" class="register-form-field" color="accent">
+          <mat-form-field id="business-name-form-field" class="register-form-field" color="primary">
             <mat-label>Business Name</mat-label>
             <input matInput id="businessname-input" formControlName="business_name" type="text"
                     (keydown.enter)="register()"/>
@@ -60,7 +60,7 @@
             </mat-error>
           </mat-form-field>
           <!-- ADDRESS FORM FIELD -->
-          <mat-form-field id="address-form-field" class="register-form-field" color="accent">
+          <mat-form-field id="address-form-field" class="register-form-field" color="primary">
             <mat-label>Address</mat-label>
             <input matInput id="adress-input" formControlName="address" type="text"
                     (keydown.enter)="register()"/>
@@ -79,7 +79,7 @@
           </mat-form-field>
           <!-- NOTIFICATION FORM FIELD -->
           <mat-checkbox id="notifications-form-field" class="register-form-field"
-                        aria-label="notifications-form-field"
+                        aria-label="notifications-form-field" color="primary"
                         formControlName="notifications" appearance="outline">
             Notifications
           </mat-checkbox>
