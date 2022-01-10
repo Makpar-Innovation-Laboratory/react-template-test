@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { News, NewsResponse } from '../models/news';
 
+/**
+ * # StateService
+ * ## Description
+ * Singleton service for persisting data in memory during the execution of the **Angular** application in the client browser. All properties passed into this service will remain accessible during the duration of a *single* page load, i.e., if the browser refreshes, the variables in this class will reset.
+ */
 @Injectable({
   providedIn: 'root'
 })
