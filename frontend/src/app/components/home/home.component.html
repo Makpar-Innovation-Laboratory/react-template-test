@@ -17,17 +17,18 @@
       <div id="sidenav-border"></div>
     </div>
   </div>   
+  
   <div id="services-container">
     <div id="nav">
       <div id="nav-header">
-        <h5 class="mat-headline text-primary" style="text-align: left">SERVICES</h5>
+        <div id="nav-title" class="mat-headline text-primary">SERVICES</div>
         <!-- <img class="mat-headline right-arrow" src="../../../assets/icons/right_arrow_icon.svg"
                   style="margin-left: 30px"/> -->
+        <div id="nav-border" class="dashed-border"></div>
       </div>
-      <div id="nav-border" class="dashed-border"></div>
       <div id="nav-selector" class="text-primary">
         <div id="nav-select" *ngFor="let section of sections">
-          <h5 class="mat-headline" (click)="onSelect(section)">
+          <h5 id="nav-headline" class="mat-headline" (click)="onSelect(section)">
             <span class="{{ isSelected(section) ? 'selected' : ''}}">{{section.title}}</span>
           </h5>
           <div id="select-underline" class="dashed-border" *ngIf="isSelected(section)"></div>
@@ -35,8 +36,8 @@
       </div>
     </div>
     <div id="nav-view" class="bg-primary">
-      <h5 class="mat-headline text-white" style="text-align: center">{{selected.title}}</h5>
-      <h6 class="mat-title text-white" style="text-align: center">{{selected.description}}</h6>
+      <h5 id="view-title" class="text-white" >{{selected.title}}</h5>
+      <h6 id="view-description" class="text-white">{{selected.description}}</h6>
     </div>
   </div>
 </div>
