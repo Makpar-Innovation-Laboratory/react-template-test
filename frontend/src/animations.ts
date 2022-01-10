@@ -3,32 +3,30 @@ import { animate, AnimationTriggerMetadata, state, style, transition, trigger } 
 /**
  * Enumeration of {@link Animations} expand animation states.
  */
-export enum ExpandStates{ 
-    open="open", closed="closed"
-}
+export enum ExpandStates{  open="open", closed="closed" }
 /**
  * Enumeration of {@link Animations} scale animation states
  */
-export enum ScaleStates{ 
-    scale="scale", normal="normal"
-}
+export enum ScaleStates{  scale="scale", normal="normal" }
 /**
  * Enumeration of {@link Animations} highlight states
  */
-export enum HighlightStates{ 
-    highlight="highlight", normal="normal" 
-}
+export enum HighlightStates{  highlight="highlight", normal="normal"  }
+/**
+ * Enumeration of {@link Animations} fade states
+ */
+export enum FadeStates { in="in", out="out" }
 /**
  * Enumeration of triggers for {@link Animations}.
  */
 export enum AnimationTriggers{
-    expand="expand", scale="scale", highlight="highlight"
+    expand="expand", scale="scale", highlight="highlight", fade="fade"
 }
 /**
  * Enumeration of animation lengths for {@link Animations}
  */
 export enum AnimationPeriods{
-    short="0.5s", medium="1.0s",long="2.0s"
+    short=0.5, medium=1,long=2
 }
 
 /**
@@ -66,10 +64,10 @@ export class Animations{
      * # Description
      * Get animation trigger for expanding an element to a given height over a specific time period.
      * @param toHeight height expressed in CSS units (e.g. %, px, em, etc.)
-     * @param animateLength animation length expressed in seconds (e.g. '0.5s', '1s', '2s')
+     * @param animateLength animation length expressed in seconds (e.g. 0.5, 1, 2, etc.)
      * @returns animation expand trigger
      */
-    public static getExpandTrigger(toHeight: string, animateLength: string = AnimationPeriods.short)
+    public static getExpandTrigger(toHeight: string, animateLength: number = AnimationPeriods.short)
     : AnimationTriggerMetadata {
         return trigger(AnimationTriggers.expand,[
             state(ExpandStates.open, style({ 
@@ -79,7 +77,7 @@ export class Animations{
                 height: '0', opacity: 0 
             })),
             transition(`${ExpandStates.open} <=> ${ExpandStates.closed}`,[
-                animate(`${animateLength}`)
+                animate(`${animateLength}s`)
             ])
         ])
     }
@@ -88,17 +86,17 @@ export class Animations{
      * # Description
      * Get animation trigger for scaling an element by a given factor over a specified time period
      * @param scaleFactor scale factor expressed as a ratio of initial height (e.g. 0.5, 1, 1.25, etc.)
-     * @param animateLength animation length expressed in seconds (e.g. '0.5s', '1s', '2s')
+     * @param animateLength animation length expressed in seconds (e.g. 0.5, 1, 2, etc.)
      * @returns animation scale trigger
      */
-    public static getScaleTrigger(scaleFactor: number, animateLength: string = AnimationPeriods.short)
+    public static getScaleTrigger(scaleFactor: number, animateLength: number = AnimationPeriods.short)
     : AnimationTriggerMetadata {
         return trigger(AnimationTriggers.scale, [
             state(ScaleStates.scale, style({
                 transform: `scale(${scaleFactor}, ${scaleFactor})`
             })),
             transition(`void <=> ${ScaleStates.scale}`, [
-                animate(`${animateLength}`)
+                animate(`${animateLength}s`)
             ])
         ])
     }
@@ -106,19 +104,47 @@ export class Animations{
     /**
      * # Get animation trigger for highlighting an element by a given factor over a specified time period.
      * @param scaleFactor highlight factor expressed as a ratio of initial height (e.g. 0.5, 1, 1.25, etc.)
-     * @param animateLength animation length expressed in seconds (e.g. '0.5s', '1s', '2s')
+     * @param animateLength animation length expressed in seconds (e.g. 0.5, 1, 2, etc.)
      * @returns animation scale trigger
      */
-     public static getHighlightTrigger(highlightFactor: number, animateLength: string = AnimationPeriods.short)
+     public static getHighlightTrigger(highlightFactor: number, animateLength: number = AnimationPeriods.short)
      : AnimationTriggerMetadata {
          return trigger(AnimationTriggers.highlight, [
              state(HighlightStates.highlight, style({
                  filter: `brightness(${highlightFactor})`
              })),
              transition(`void <=> ${ScaleStates.scale}`, [
-                 animate(`${animateLength}`)
+                 animate(`${animateLength}s`)
              ])
          ])
+     }
+
+     /**
+      * 
+      * @param animateLength 
+      * @returns 
+      */
+     public static getFadeTrigger(animateLength: number = AnimationPeriods.medium)
+     : AnimationTriggerMetadata {
+        return trigger(AnimationTriggers.fade, [
+            state(FadeStates.in, style({
+                opacity: 1
+            })),
+            state(FadeStates.out, style({
+                opacity: 0
+            })),
+            transition(':enter', [
+                style({opacity: 1}),
+                animate(`${animateLength}s`)
+            ]),
+            transition(':leave', [
+                style({opacity: 0}),
+                animate(`${animateLength}s`)
+            ]),
+            transition(`${FadeStates.in} <=> ${FadeStates.out}`, [
+                animate(`${animateLength}s`)
+            ])
+        ])
      }
 }
 

@@ -7,24 +7,35 @@
   $accent-palette: map.get($color-config, "accent");
   $warn-palette: map.get($color-config, "warn");
 
-  .bg-white {
-    background-color: #FFFFFF;
+  #login-card{
+    background: map-get($primary-palette, default-contrast) !important;
   }
-  .bg-primary {
-    background-color: map-get($primary-palette, 500);
+  #login-button{
+    background: map-get($primary-palette, 500);
+    color: map-get($primary-palette, default-contrast);
+    border: 1px solid map-get($primary-palette, 500);
   }
-
-  .text-white {
-    color: #FFFFFF;
-  }
-  .text-primary {
+  #register-button{
+    background: map-get($primary-palette, default-contrast);
     color: map-get($primary-palette, 500);
+    border: 1px solid map-get($primary-palette, 500);
   }
   .mat-form-field.mat-form-field-invalid .mat-form-field-label.mat-accent,
-  .mat-form-field.mat-form-field-invalid
-    .mat-form-field-label
-    .mat-form-field-required-marker {
+  .mat-form-field.mat-form-field-invalid .mat-form-field-label
+  .mat-form-field-required-marker {
     color: map-get($warn-palette, 300) !important;
+  }
+  mat-label {
+    color: map-get($accent-palette, 300);
+  }
+  .mat-form-field-ripple {
+    background-color: map-get($primary-palette, 500) !important;
+  }
+  .mat-focused .mat-form-field-label {
+    color: map-get($accent-palette, 300) !important;
+  }
+  .mat-form-field-underline {
+    background-color: map-get($accent-palette, 300) !important;
   }
 }
 

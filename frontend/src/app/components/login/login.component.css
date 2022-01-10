@@ -1,7 +1,7 @@
 mat-form-field {
   display: flex;
 }
-.login-container {
+#login-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,50 +9,24 @@ mat-form-field {
   height: 90vh;
   width: 100vw;
 }
-.login-container .login-form-container {
+#login-container .login-form-container {
   display: flex;
   justify-content: center;
 }
-.login-container .login-form-field {
+#login-container .login-form-field {
   flex: 1;
 }
-.login-card {
+#login-card {
   padding: 3rem 5rem;
-  background: #ffffff !important;
 }
 #login-card-title h4 {
   text-align: center;
 }
-
-mat-label {
-    color: #707070;
-}
-::ng-deep .mat-focused .mat-form-field-label {
-  /*change color of label*/
-  color: #707070 !important;
-}
-
-::ng-deep.mat-form-field-underline {
-  /*change color of underline*/
-  background-color: #707070 !important;
-}
-
-::ng-deep.mat-form-field-ripple {
-  /*change color of underline when focused*/
-  background-color: #224185 !important;
-}
-
-.login-button {
-  background: #224185;
-  color: #ffffff;
+#login-button {
   padding: 0.4rem 1.2rem;
-  border: 1px solid #224185;
   border-radius: 1.5rem;
 }
-.register-button {
-  background: #ffffff;
-  color: #224185;
-  border: 1px solid #224185;
+#register-button {
   padding: 0.4rem 1.2rem;
   border-radius: 1.5rem;
 }
