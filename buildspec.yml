@@ -44,6 +44,8 @@ phases:
   
   pre_build:
     commands:
+      # TODO: unit tests!
+
       # lint source code
       # - |
       #   npx eslint --quiet \
@@ -75,7 +77,6 @@ phases:
           docker build -t ${APPLICATION}-frontend:${BRANCH^} .
           docker tag ${APPLICATION}-frontend:${BRANCH^} \
               $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
-          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
         '
   
   post_build:
@@ -128,6 +129,9 @@ phases:
         aws cloudfront create-invalidation \
             --distribution-id $COVERAGE_DISTRIBUTION_ID \
             --paths "/*"
+
+      # Push image to ECR 
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
 
 cache:
   path:
