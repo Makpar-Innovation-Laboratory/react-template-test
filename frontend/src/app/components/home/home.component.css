@@ -10,6 +10,9 @@ ul h5:hover { cursor: pointer; }
     align-items: center;
     width: 100vw; min-height: 70vh;
 }
+#splash {
+    margin: 100px; width: 50%
+}
 #sidenav-container{ 
     display: flex; flex-direction: column; 
     justify-content: right;
