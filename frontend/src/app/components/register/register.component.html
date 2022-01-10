@@ -1,216 +1,109 @@
-<div id="register-container bg-white" class="register-container">
-  <mat-card id="register-card" class="register-card mat-elevation-z8">
-    <mat-card-title id="register-card-title">
-      <h4 class="mat-headline text-primary">Sign Up</h4>
+<div id="register-container">
+  <mat-card id="register-card" class="mat-elevation-z8">
+    <mat-card-title id="register-card-title" class="mat-headline text-primary">
+      Sign Up
     </mat-card-title>
     <mat-card-content id="register-card-content">
-      <div id="register-form-container" class="register-form-container">
+      <div id="register-form-container">
         <form [formGroup]="registerFormGroup" (ngSubmit)="register()">
           <!-- EMAIL FORM FIELD-->
-          <mat-form-field
-            id="email-form-field"
-            class="register-form-field"
-            color="accent"
-          >
+          <mat-form-field id="email-form-field" class="register-form-field" color="accent">
             <mat-label>Email</mat-label>
-            <input
-              matInput
-              id="email-input"
-              formControlName="email"
-              type="text"
-              (keydown.enter)="register()"
-            />
-            <button
-              matSuffix
-              mat-icon-button
-              id="email-clear"
-              type="button"
-              aria-label="Clear"
-              *ngIf="this.registerFormGroup.controls.email.value"
-              (click)="this.registerFormGroup.controls.email.setValue('')"
-            >
+            <input matInput id="email-input" formControlName="email" type="text" 
+                    (keydown.enter)="register()"/>
+            <button matSuffix mat-icon-button id="email-clear" type="button" aria-label="Clear"
+                    *ngIf="this.registerFormGroup.controls.email.value"
+                    (click)="this.registerFormGroup.controls.email.setValue('')">
               <mat-icon id="email-clear-icon" color="primary">close</mat-icon>
             </button>
-            <mat-error
-              *ngIf="registerFormGroup.controls.email.hasError('email')"
-            >
+            <mat-error *ngIf="registerFormGroup.controls.email.hasError('email')">
               Please enter a valid email
             </mat-error>
-            <mat-error
-              *ngIf="registerFormGroup.controls.email.hasError('required')"
-            >
+            <mat-error *ngIf="registerFormGroup.controls.email.hasError('required')">
               This field is <strong>required</strong>
             </mat-error>
           </mat-form-field>
-          <!-- USER NAME FORMFIELD-->
-          <mat-form-field
-            id="username-form-field"
-            class="register-form-field"
-            color="accent"
-          >
+          <!-- USER NAME FORM FIELD-->
+          <mat-form-field id="username-form-field" class="register-form-field" color="accent">
             <mat-label color="warn">Username</mat-label>
-            <input
-              matInput
-              id="username-input"
-              formControlName="username"
-              type="text"
-              (keydown.enter)="register()"
-            />
-            <button
-              matSuffix
-              mat-icon-button
-              id="username-clear-button"
-              type="button"
-              aria-label="username-clear-button"
-              *ngIf="this.registerFormGroup.controls.username.value"
-              (click)="this.registerFormGroup.controls.username.setValue('')"
-            >
-              <mat-icon id="username-clear-icon" color="primary"
-                >close</mat-icon
-              >
+            <input matInput id="username-input" formControlName="username" type="text"
+                    (keydown.enter)="register()"/>
+            <button matSuffix mat-icon-button id="username-clear-button" type="button"
+                    aria-label="username-clear-button"
+                    *ngIf="this.registerFormGroup.controls.username.value"
+                    (click)="this.registerFormGroup.controls.username.setValue('')">
+              <mat-icon id="username-clear-icon" color="primary">close</mat-icon>
             </button>
-            <mat-error
-              *ngIf="registerFormGroup.controls.username.hasError('required')"
-            >
+            <mat-error *ngIf="registerFormGroup.controls.username.hasError('required')">
               This field is <strong>required</strong>
             </mat-error>
-            <mat-error
-              *ngIf="registerFormGroup.controls.username.hasError('maxLength')"
-            >
+            <mat-error *ngIf="registerFormGroup.controls.username.hasError('maxLength')">
               This field cannot exceed <strong>50</strong> characters.
             </mat-error>
           </mat-form-field>
           <!-- BUSINESS NAME FORM FIELD -->
-          <mat-form-field
-            id="business-name-form-field"
-            class="register-form-field"
-            color="accent"
-          >
-            <mat-label color="warn">Business Name</mat-label>
-            <input
-              matInput
-              id="businessname-input"
-              formControlName="business_name"
-              type="text"
-              (keydown.enter)="register()"
-            />
-            <button
-              matSuffix
-              mat-icon-button
-              id="business-clear-button"
-              type="button"
-              aria-label="business-clear-button"
-              *ngIf="this.registerFormGroup.controls.business_name.value"
-              (click)="
-                this.registerFormGroup.controls.business_name.setValue('')
-              "
-            >
-              <mat-icon id="business-clear-icon" color="primary"
-                >close</mat-icon
-              >
+          <mat-form-field id="business-name-form-field" class="register-form-field" color="accent">
+            <mat-label>Business Name</mat-label>
+            <input matInput id="businessname-input" formControlName="business_name" type="text"
+                    (keydown.enter)="register()"/>
+            <button matSuffix mat-icon-button id="business-clear-button"
+                    type="button" aria-label="business-clear-button"
+                    *ngIf="this.registerFormGroup.controls.business_name.value"
+                    (click)="this.registerFormGroup.controls.business_name.setValue('')">
+              <mat-icon id="business-clear-icon" color="primary">close</mat-icon>
             </button>
-            <mat-error
-              *ngIf="
-                registerFormGroup.controls.business_name.hasError('required')
-              "
-            >
+            <mat-error *ngIf="registerFormGroup.controls.business_name.hasError('required')">
               This field is <strong>required</strong>
             </mat-error>
-            <mat-error
-              *ngIf="
-                registerFormGroup.controls.business_name.hasError('maxLength')
-              "
-            >
+            <mat-error *ngIf="registerFormGroup.controls.business_name.hasError('maxLength')">
               This field cannot exceed <strong>100</strong> characters.
             </mat-error>
           </mat-form-field>
           <!-- ADDRESS FORM FIELD -->
-          <mat-form-field
-            id="address-form-field"
-            class="register-form-field"
-            color="accent"
-          >
-            <mat-label color="warn">Address</mat-label>
-            <input
-              matInput
-              id="adress-input"
-              formControlName="address"
-              type="text"
-              (keydown.enter)="register()"
-            />
-            <button
-              matSuffix
-              mat-icon-button
-              id="address-clear-button"
-              type="button"
-              aria-label="address-clear-button"
-              *ngIf="this.registerFormGroup.controls.address.value"
-              (click)="this.registerFormGroup.controls.address.setValue('')"
-            >
+          <mat-form-field id="address-form-field" class="register-form-field" color="accent">
+            <mat-label>Address</mat-label>
+            <input matInput id="adress-input" formControlName="address" type="text"
+                    (keydown.enter)="register()"/>
+            <button matSuffix mat-icon-button id="address-clear-button" type="button"
+                    aria-label="address-clear-button"
+                    *ngIf="this.registerFormGroup.controls.address.value"
+                    (click)="this.registerFormGroup.controls.address.setValue('')">
               <mat-icon id="address-clear-icon" color="primary">close</mat-icon>
             </button>
-            <mat-error
-              *ngIf="registerFormGroup.controls.address.hasError('required')"
-            >
+            <mat-error *ngIf="registerFormGroup.controls.address.hasError('required')">
               This field is <strong>required</strong>
             </mat-error>
-            <mat-error
-              *ngIf="registerFormGroup.controls.address.hasError('maxLength')"
-            >
+            <mat-error *ngIf="registerFormGroup.controls.address.hasError('maxLength')">
               This field cannot exceed <strong>250</strong> characters.
             </mat-error>
           </mat-form-field>
           <!-- NOTIFICATION FORM FIELD -->
-          <!-- <mat-checkbox
-            id="notifications-form-field"
-            class="register-form-field"
-            aria-label="notifications-form-field"
-            color="white"
-            formControlName="notifications"
-            appearance="outline"
-            >Notifications</mat-checkbox> -->
-          <input
-            id="notifications-form-field"
-            type="checkbox"
-            formControlName="notifications"
-          /><label for="notifications-form-field">Notifications</label>
+          <mat-checkbox id="notifications-form-field" class="register-form-field"
+                        aria-label="notifications-form-field"
+                        formControlName="notifications" appearance="outline">
+            Notifications
+          </mat-checkbox>
         </form>
       </div>
     </mat-card-content>
 
     <mat-card-actions id="register-card-actions">
-      <div style="display: flex; justify-content: space-evenly;">
-        <button
-          id="register-button"
-          class="button-primary"
-          type="button"
-          matTooltip="Create an account for the Innovation Lab!"
-          [disabled]="registerFormGroup.invalid"
-          [@scale]="registerBtnScaleCntl.state"
-          [@highlight]="registerBtnHighlightCntl.state"
-          (mouseenter)="animateRegisterBtn()"
-          (mouseleave)="primeRegisterBtn()"
-          (click)="register()"
-        >
-          Sign Up
-        </button>
+      <button mat-raised-button id="register-button" type="button" color="primary"
+        [disabled]="registerFormGroup.invalid && registerFormGroup.touched"
+        [@scale]="registerBtnScaleCntl.state" [@highlight]="registerBtnHighlightCntl.state"
+        (mouseenter)="animateRegisterBtn()" (mouseleave)="primeRegisterBtn()" 
+        (click)="register()">
+        Sign Up
+      </button>
 
-        <button
-          id="register-link"
-          class="button-white"
-          matTooltip="Register for a new Innovation Lab account!"
-          routerLink="/login"
-        >
-          Sign In
-        </button>
-      </div>
+      <button mat-stroked-button id="login-button" color="primary" routerLink="/login">
+        Sign In
+      </button>
     </mat-card-actions>
+
     <mat-card-footer id="register-card-footer">
-      <mat-progress-bar
-        id="register-card-progress-bar"
-        mode="indeterminate"
-        *ngIf="loading"
-      ></mat-progress-bar>
+      <mat-progress-bar id="register-card-progress-bar" mode="buffer" *ngIf="loading">
+      </mat-progress-bar>
     </mat-card-footer>
   </mat-card>
 </div>

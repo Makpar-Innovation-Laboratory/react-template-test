@@ -9,5 +9,4 @@ mat-form-field { display: flex; }
 #login-card { padding: 3rem 5rem; }
 #login-card-title { text-align: center; }
 #login-card-actions{ display: flex; justify-content: space-evenly; }
-#login-button { padding: 0.4rem 1.2rem; border-radius: 1.5rem; }
-#register-button { padding: 0.4rem 1.2rem; border-radius: 1.5rem; }
+#login-button, #register-button { padding: 0.4rem 1.2rem; border-radius: 1.5rem; }

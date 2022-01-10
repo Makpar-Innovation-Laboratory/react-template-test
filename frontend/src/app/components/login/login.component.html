@@ -47,17 +47,16 @@
     </mat-card-content>
     <mat-card-actions id="login-card-actions">
       <button mat-raised-button id="login-button" color="primary" (click)="login()" 
-              [disabled]="loginFormGroup.touched">
+              [disabled]="loginFormGroup.touched && loginFormGroup.invalid">
         Sign In
       </button>
-      <button mat-stroked-button id="register-button" routerLink="/register" 
-              matTooltip="Register for a new Innovation Lab account!">
+      <button mat-stroked-button id="register-button" routerLink="/register">
         Sign Up
       </button>
     </mat-card-actions>
     <mat-card-footer id="login-card-footer">
-      <mat-progress-bar id="login-card-progress-bar" mode="indeterminate" 
-                        *ngIf="loading"></mat-progress-bar>
+      <mat-progress-bar id="login-card-progress-bar" mode="buffer" 
+                        color="primary" *ngIf="loading"></mat-progress-bar>
     </mat-card-footer>
   </mat-card>
 </div>

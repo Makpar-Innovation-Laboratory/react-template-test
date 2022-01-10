@@ -7,14 +7,14 @@
     $accent-palette: map.get($color-config, 'accent');
     $warn-palette: map.get($color-config, 'warn');
 
-    .register-button{
-      color: map-get($accent-palette, 50);
-      background-color: map-get($primary-palette, 900);
+    #register-card{
+      background: map-get($primary-palette, default-contrast) !important;
     }
 
-    // .mat-form-field.mat-form-field-invalid .mat-form-field-label.mat-accent, .mat-form-field.mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker{
-    //   color: map-get($warn-palette, 300) !important;
-    // }
+    .mat-form-field.mat-form-field-invalid .mat-form-field-label.mat-accent, 
+    .mat-form-field.mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker{
+      color: map-get($warn-palette, 300) !important;
+    }
 }
 
 @mixin theme($theme) {
