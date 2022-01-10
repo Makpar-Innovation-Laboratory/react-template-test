@@ -9,7 +9,7 @@ mat-form-field {
   height: 90vh;
   width: 100vw;
 }
-#login-container .login-form-container {
+#login-container #login-form-container {
   display: flex;
   justify-content: center;
 }
@@ -21,6 +21,9 @@ mat-form-field {
 }
 #login-card-title h4 {
   text-align: center;
+}
+#login-card-actions{
+  display: flex; justify-content: space-evenly;
 }
 #login-button {
   padding: 0.4rem 1.2rem;

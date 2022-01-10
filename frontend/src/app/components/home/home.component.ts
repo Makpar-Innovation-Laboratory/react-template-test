@@ -36,7 +36,7 @@ export class HomeComponent {
 
   /**
    * # Description
-   * Select a {@link Section} to view within the {@link HomeComponent}
+   * Select a {@link Section} to view within the {@link HomeComponent}. Initiates the animation of the section through the {@link sectionFadeState}.
    * @param input 
    */
   public onSelect(input: Section): void {
