@@ -1,4 +1,4 @@
-<mat-card *ngFor="let comment of comments">
+<mat-card id="comment-card-item" class="comment-card" *ngFor="let comment of comments">
     <mat-card-subtitle>{{comment.author}}</mat-card-subtitle>
     <mat-card-subtitle>{{comment.submitted}}</mat-card-subtitle>
     <mat-card-content>

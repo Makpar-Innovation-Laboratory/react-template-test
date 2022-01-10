@@ -1,4 +1,4 @@
-<mat-card class="card">
+<mat-card id="reply-card">
     <mat-card-content id="comment-editor" class="card-body" 
                       *ngIf="showEditor">
       <form (ngSubmit)="onSubmit()" [formGroup]="commentForm">
