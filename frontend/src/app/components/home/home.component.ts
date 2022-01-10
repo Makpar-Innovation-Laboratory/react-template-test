@@ -16,7 +16,7 @@ import { AppConfig, AppRoute, Section } from 'src/config';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   animations:[
-    Animations.getFadeTrigger()
+    Animations.getFadeTrigger(AnimationPeriods.short)
   ]
 })
 export class HomeComponent {
@@ -41,12 +41,10 @@ export class HomeComponent {
    */
   public onSelect(input: Section): void {
     this.sectionFadeState = FadeStates.out;
-    console.log(`sectionFadeState: ${this.sectionFadeState}`)
     setTimeout(()=>{
       this.selected = input; 
       this.sectionFadeState = FadeStates.in;
-      console.log(`sectionFadeState: ${this.sectionFadeState}`)
-    }, AnimationPeriods.medium)
+    }, AnimationPeriods.short*1000)
   }
 
   /**

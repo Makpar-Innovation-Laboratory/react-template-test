@@ -30,9 +30,11 @@
         </div>
       </div>
     </div>
-    <div id="nav-view" class="bg-primary" [@fade]="sectionFadeState">
-      <h5 id="view-title" class="text-white mat-headline" >{{selected.title}}</h5>
-      <h6 id="view-description" class="text-white mat-body">{{selected.description}}</h6>
+    <div id="nav-view" class="bg-primary">
+      <h5 id="view-title" class="text-white mat-headline" 
+          [@fade]="sectionFadeState">{{selected.title}}</h5>
+      <h6 id="view-description" class="text-white mat-body" 
+          [@fade]="sectionFadeState">{{selected.description}}</h6>
     </div>
   </div>
 </div>
