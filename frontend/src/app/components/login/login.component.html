@@ -46,8 +46,8 @@
       </form>
     </mat-card-content>
     <mat-card-actions id="login-card-actions">
-      <button mat-raised-button id="login-button" type="button" (click)="login()" 
-              [disabled]="loginFormGroup.invalid">
+      <button mat-raised-button id="login-button" color="primary" (click)="login()" 
+              [disabled]="loginFormGroup.touched">
         Sign In
       </button>
       <button mat-stroked-button id="register-button" routerLink="/register" 
