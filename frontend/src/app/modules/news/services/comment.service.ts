@@ -14,7 +14,7 @@ import { HostService } from '../../../services/host.service';
  * ```
  */
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class CommentService {
 

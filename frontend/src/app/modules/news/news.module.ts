@@ -9,6 +9,8 @@ import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { SanitizePipe } from 'src/app/modules/shared/pipes/sanitize.pipe';
 import { CommentsComponent } from './components/comments/comments.component';
 import { ReplyComponent } from './components/comments/reply/reply.component';
+import { CommentService } from './services/comment.service';
+import { NewsService } from './services/news.service';
 
 /**
  * # NewsModule
@@ -36,6 +38,10 @@ import { ReplyComponent } from './components/comments/reply/reply.component';
     NewsComponent,
     StoryComponent,
     SanitizePipe
+  ],
+  providers:[
+    NewsService,
+    CommentService
   ]
 })
 export class NewsModule { }

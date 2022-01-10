@@ -6,6 +6,7 @@ import { EditorComponent } from './components/admin/editor/editor.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { NewsService } from '../news/services/news.service';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,9 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     AdminComponent,
     EditorComponent,
     ProfileComponent,
+  ],
+  providers:[
+    NewsService
   ]
 })
 export class AdminModule { }

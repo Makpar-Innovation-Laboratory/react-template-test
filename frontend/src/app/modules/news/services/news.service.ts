@@ -4,8 +4,7 @@ import { Observable, of, } from 'rxjs';
 import { HostService } from '../../../services/host.service';
 import { News, NewsPostResponse, NewsResponse } from '../../../models/news';
 import { environment } from 'src/environments/environment';
-import { NewsModule } from '../news.module';
-import { AdminModule } from '../../admin/admin.module';
+import { StateService } from 'src/app/services/state.service';
 
 /**
  * # NewsService
@@ -16,23 +15,20 @@ import { AdminModule } from '../../admin/admin.module';
  * ```
  */
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class NewsService {
-
-
-  private mock_news: NewsResponse = {
-      results: []
-  }
 
   /**
    * # Description
    * Construct an instance of {@link NewsService}
    * @param http {@link HTTPClient} for service calls
    * @param host {@link HostService} for retrieving the API host
+   * @param state {@link StateService} for persisting data in memory during the application execution
    */
   constructor(private http: HttpClient, 
-              private host: HostService) { }
+              private host: HostService,
+              private state: StateService) { }
 
   /**
    * # Description
@@ -43,8 +39,8 @@ export class NewsService {
   public postNews(news: News): Observable<NewsPostResponse>{
     // NOTE: posts must end in trailing slash
     if(environment.mock){
-      this.mock_news.results.push(news);
-      return of({ id: this.mock_news.results.length, message: 'News Story Saved'})
+      this.state.addMockNews(news);
+      return of({ id: this.state.getLatestMockNewsId(), message: 'News Story Saved'})
     }
     else return this.http.post<NewsPostResponse>(`${this.host.getHost()}/news/`, news)
   }
@@ -56,7 +52,7 @@ export class NewsService {
    * @returns observable containing {@link NewsResponse}
    */
   public getNews(id: number): Observable<NewsResponse>{
-    if(environment.mock) return of({ results: [this.mock_news.results[id-1]] })
+    if(environment.mock) return of(this.state.getMockNewsByID(id))
     else return this.http.get<NewsResponse>(`${this.host.getHost()}/news/post/${id}`)
   }
 
@@ -88,7 +84,8 @@ export class NewsService {
    * @returns observable containing {@link NewsResponse}
    */
   public getAllNews(): Observable<NewsResponse>{
-    if(environment.mock) return of(this.mock_news)
+    if(environment.mock) {
+      return of(this.state.getMockNews())}
     else return this.http.get<NewsResponse>(`${this.host.getHost()}/news`)
   }
 
