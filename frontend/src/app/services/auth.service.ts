@@ -106,7 +106,7 @@ export class AuthService {
    */
   public displayRouteForUser(thisRoute: AppRoute): boolean{
     let dev_routes : AppRoute[] = AppConfig.routes.filter(e=> e.dev)
-    console.log(`dev routes ${dev_routes}`)
+    // console.log(`dev routes ${dev_routes}`)
     if(dev_routes.includes(thisRoute)) return this.belongsToGroup('developer')
     else return true
   }
