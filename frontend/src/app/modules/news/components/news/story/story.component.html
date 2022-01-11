@@ -52,5 +52,8 @@
         [comments]="newsPost.comments"
       ></app-comments>
     </div>
+    <h5>COMMENTS</h5>
+    <app-reply class="mat-elevation-z4" tooltip="Join the fray!" [reply_bool]="false"></app-reply>
+    <app-comments *ngIf="newsPost.comments" [comments]="newsPost.comments" ></app-comments>
   </div>
 </div>

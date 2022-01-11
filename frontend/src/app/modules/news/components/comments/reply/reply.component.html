@@ -11,6 +11,10 @@
       </form>
     </mat-card-content>
     <mat-card-actions class="action-container">
+      <button mat-icon-button id="add-comment"
+              (click)="onSubmit()">
+        <mat-icon>add</mat-icon>
+      </button>
       <button mat-icon-button id="clear-button"
               color="warn" matTooltip="On second thought.."
               *ngIf="commentForm.touched">

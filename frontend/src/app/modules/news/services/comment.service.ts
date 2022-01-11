@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Comment, CommentPostResponse } from '../../../models/news';
 import { HostService } from '../../../services/host.service';
-
+import {formatDate} from '@angular/common';
 /**
  * # CommentService
  * ## Description
@@ -19,7 +19,7 @@ import { HostService } from '../../../services/host.service';
 export class CommentService {
 
   private mockComments : Comment[] = []
-
+  content!: object
   /**
 * # Description
    * Construct an instance of {@link CommentService}
@@ -37,10 +37,25 @@ export class CommentService {
    */
    public postComment(comment: Comment){
     // NOTE: posts must end in trailing slash
+    if (comment.parent_comment === null){
+      this.content = {
+        news_id: comment.news_id,
+        submitted: formatDate(new Date(), 'yyyy-MM-dd', 'en'),
+        content: comment.content
+      }
+    } else {
+      this.content = {
+        news_id: comment.news_id,
+        submitted: formatDate(new Date(), 'yyyy-MM-dd', 'en'),
+        content: comment.content,
+        parent_comment: comment.parent_comment
+      }
+    }
+    
     if(environment.mock){
       this.mockComments.push(comment);
       return of({ id: this.mockComments.length, message: 'News Story Saved'})
     }
-    else return this.http.post<CommentPostResponse>(`${this.host.getHost()}/news/post-comment`, comment)
+    else return this.http.post<CommentPostResponse>(`${this.host.getHost()}/news/post-comment`, this.content)
   }
 }
