@@ -94,3 +94,9 @@ mat-card img{ object-fit: cover; }
 .ngx-pagination .current .ng-star-inserted {
   color: #FFFFFF !important;
 }
+
+#view-button, #edit-button, #delete-button{
+  box-shadow: none;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}

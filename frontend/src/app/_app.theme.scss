@@ -10,6 +10,9 @@
     #user-button-container{
       background-color: map-get($primary-palette, 300);
     }
+    #signout-button {
+      color: #FFFFFF;
+    }
 
     #active-tab, .toolbar-container{
       border-bottom: map-get($primary-palette, default-contrast)

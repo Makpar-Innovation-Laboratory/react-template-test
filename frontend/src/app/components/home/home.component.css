@@ -1,5 +1,6 @@
-ul h5 {
-  margin-bottom: 0.5rem;
+
+#sidenav-container .mat-headline {
+  margin: 13px 3rem 0 0 !important;
 }
 ul h5:hover {
   cursor: pointer;
@@ -24,7 +25,7 @@ ul h5:hover {
 #sidenav-container {
   display: flex;
   flex-direction: column;
-  justify-content: right;
+  align-items: flex-end;
 }
 #sidenav-container #sidenav-border {
   border-bottom: 2px dashed;
@@ -40,7 +41,7 @@ ul h5:hover {
 }
 #services-container #nav {
   height: 90%;
-  flex: 1.2;
+  flex: 1.5;
 }
 #services-container #nav-view {
   height: 100%;

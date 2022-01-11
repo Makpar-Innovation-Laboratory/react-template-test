@@ -7,9 +7,9 @@
       </h5>
     </div>
     <div id="sidenav-container">
-      <h5 class="mat-headline text-white" *ngFor="let route of appRoutes">
-        <a *ngIf="route.route != '/docs'" [routerLink]="route.route">{{route.title}}</a>
-        <a *ngIf="route.route == '/docs'" href="http://innolab-coverage.makpar-innovation.net"
+      <h5 class="mat-headline text-white" *ngFor="let route of appRoutes; let i = index" style="margin-right: 3rem;">
+        <a *ngIf="route.route != '/docs' && (i != 0 && i < 5)" [routerLink]="route.route">{{route.title}}</a>
+        <a *ngIf="route.route == '/docs' && (i != 0 && i < 5)" href="http://innolab-coverage.makpar-innovation.net"
             target="_blank">{{route.title}}</a>
       </h5>
       <div id="sidenav-border"></div>

@@ -12,7 +12,8 @@
     border-bottom: 2px dashed;
 }
 #nav-items {
-    display: flex; flex: 1;
+    display: flex; 
+   width: 80%;
 }
 #nav-items a {
     padding-bottom: 0rem;
@@ -22,9 +23,11 @@
 }
 #user-button-container{
     display: flex; flex-direction: row;
-    margin-left: auto; flex: 0;
+    margin-left: auto; 
     border-radius: 25px;
-    opacity: 0.5;
+    /* opacity: 0.5; */
+    background: none;
+    width: 10%;
 }
 #user-button-container:hover{
     opacity: 0.75
