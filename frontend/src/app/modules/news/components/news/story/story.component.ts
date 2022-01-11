@@ -30,6 +30,11 @@ export class StoryComponent implements OnInit {
     this.newsId = this.activatedRoute.snapshot.params.id;
   }
 
+  showComment: boolean = false;
+  showCommentToggle():void {
+    this.showComment = !this.showComment;
+  }
+
   /**
    * Angular Lifecycle Hook initialization
    */

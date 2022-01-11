@@ -27,6 +27,7 @@
             <span class="{{ isSelected(section) ? 'selected' : ''}}">{{section.title}}</span>
           </h5>
           <div id="select-underline" class="dashed-border" *ngIf="isSelected(section)"></div>
+          <div id="select-underline" class="hidden-border" *ngIf="!isSelected(section)"></div>
         </div>
       </div>
     </div>

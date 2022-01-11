@@ -8,7 +8,15 @@
     $warn-palette: map.get($color-config, 'warn');
 
     #reply-card{
-      background-color: transparent !important;
+      // background-color: transparent !important;
+      background: map-get($primary-palette, 50);
+    }
+
+    .mat-button {
+      background: map-get($primary-palette, 500);
+    }
+    .comment-button {
+      background: map-get($primary-palette, 500);
     }
 }
 

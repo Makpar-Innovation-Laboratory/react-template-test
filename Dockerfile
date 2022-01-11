@@ -1,6 +1,7 @@
 # ANGULAR BUILD
 ARG ANGULAR_VERSION=12
-FROM 894427396428.dkr.ecr.us-east-1.amazonaws.com/innolab-node:Dev as angular
+# FROM 8944273428.dkr.ecr.us-east-1.amazonaws.com/innolab-node:Dev as angular
+FROM node:16 AS angular
 
 # DEPENDENCIES
 RUN apt-get update -y && \
@@ -18,7 +19,8 @@ RUN npm install --force && \
     ng build --prod --output-hashing none
 
 # PRODUCTION SERVER
-FROM 894427396428.dkr.ecr.us-east-1.amazonaws.com/innolab-nginx:Dev
+# FROM 894427396428.dkr.ecr.us-east-1.amazonaws.com/innolab-nginx:Dev
+FROM nginx:latest
 
 # DEPENDENCIES && CONFIGURATION
 RUN apt-get update -y && \

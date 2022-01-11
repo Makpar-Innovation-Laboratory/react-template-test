@@ -22,7 +22,7 @@ import { AppConfig } from 'src/config';
 })
 export class ReplyComponent{
 
-  public showEditor: boolean = false;
+  public showEditor: boolean = true;
   public postId: number;
   public commentForm: FormGroup;
 

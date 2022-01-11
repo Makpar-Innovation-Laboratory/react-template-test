@@ -10,9 +10,11 @@ button:hover { cursor: pointer; }
 textarea:focus, input:focus{ outline: none; }
 /* button styles*/
 .btn-primary-style{
-  padding: 0.4rem 1.2rem;
-  border-radius: 1.5rem;
-  max-height: 2rem;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+  border-radius: 1.5rem !important;
+  height: 2.2rem !important;
+  font-weight: normal !important;
 }
 /* ngx-pagination styles */
 .ngx-pagination {

@@ -20,7 +20,12 @@
 
   <div class="projects-wrapper">
     <div class="projects-year">
-      <div style="height: 25%">
+      <div [style.height]="yearHeight" *ngFor="let project of projects">
+        <h4 class="mat-headline text-white" style="margin: 2rem 2rem 0 0">
+          {{project.date}}
+        </h4>
+      </div>
+      <!-- <div [style.height]="yearHeight">
         <h4 class="mat-headline text-white" style="margin: 2rem 2rem 0 0">
           2022
         </h4>
@@ -30,7 +35,7 @@
         <h4 class="mat-headline text-white" style="margin: 2rem 2rem 0 0">
           2021
         </h4>
-      </div>
+      </div> -->
     </div>
 
     <div class="projects">

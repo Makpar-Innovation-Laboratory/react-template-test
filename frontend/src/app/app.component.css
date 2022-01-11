@@ -2,6 +2,7 @@
     background-image: url(../assets/bg.png);
     background-position: center;
     min-height: 100vh;
+    padding-bottom: 5rem;
 }
 /* Navigation Styles */
 #toolbar-container {

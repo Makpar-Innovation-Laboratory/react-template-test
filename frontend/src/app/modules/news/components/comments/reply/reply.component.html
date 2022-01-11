@@ -16,10 +16,11 @@
               *ngIf="commentForm.touched">
         <mat-icon>backspace</mat-icon>
       </button>
-      <button mat-icon-button id="comment-butonn"
+      <button mat-button id="comment-butonn"
               [matTooltip]="tooltip"
               (click)="processClick()">
-        <mat-icon>comment</mat-icon>
+        <!-- <mat-icon>comment</mat-icon> -->
+        Reply
       </button>
     </mat-card-actions>
 </mat-card>

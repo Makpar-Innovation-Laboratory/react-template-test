@@ -41,3 +41,15 @@
     width: 6rem;
     border-top: 2px solid #ffffff;
   }
+.comment-button {
+    border-radius: 1.5rem;
+    height: 2.2rem;
+    margin-left: 1rem;
+    font-weight: normal;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+.mat-title {
+    margin: 0;
+    font-weight: normal;
+}
