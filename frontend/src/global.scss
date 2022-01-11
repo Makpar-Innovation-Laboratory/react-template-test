@@ -10,10 +10,10 @@
     mat-error{
       color: map-get($warn-palette, A400) !important;
     }
-    // mat-card{
-    //   color: map-get($primary-palette, 100) !important;
-    //   background-color: map-get($primary-palette, 500) !important;
-    // }
+    mat-card{
+      color: map-get($primary-palette, 100) !important;
+      // background-color: map-get($primary-palette, 500) !important;
+    }
     .bg-white {
       background-color: map-get($primary-palette, default-contrast);
     }

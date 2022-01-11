@@ -32,13 +32,15 @@
 #user-button-container {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
   margin-left: auto;
   border-radius: 25px;
+  padding-right: 16px;
   /* opacity: 0.5; */
   background: none;
   width: 10%;
 }
-#user-button-container:hover {
+#settings-button:hover, #signout-button:hover {
   opacity: 0.75;
 }
 #active-tab {

@@ -9,11 +9,14 @@
 
     #reply-card{
       // background-color: transparent !important;
-      background: map-get($primary-palette, 50);
+      // background: map-get($primary-palette, 50);
+      background-color: map-get($primary-palette, 50) !important;
+      color: map-get($primary-palette, '50-contrast') !important;
     }
 
     .mat-button {
       background: map-get($primary-palette, 500);
+      color: map-get($primary-palette, 50) !important;
     }
     .comment-button {
       background: map-get($primary-palette, 500);

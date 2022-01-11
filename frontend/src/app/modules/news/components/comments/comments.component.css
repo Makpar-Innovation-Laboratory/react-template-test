@@ -4,8 +4,11 @@
 }
 
 #comment-container {
-    padding: 2rem 0;
-    margin-left: 2rem;
+    padding-top: 0.5rem;
+    /* margin-left: 2rem; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 .mat-card {
     border-radius: 0.5rem;
@@ -15,4 +18,7 @@
     height: 2.5rem;
     border-radius: 1.5rem;
     background: #FFFFFF;
+}
+button {
+    margin-top: 0.5rem !important;
 }

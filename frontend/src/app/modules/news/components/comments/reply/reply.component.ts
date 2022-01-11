@@ -65,7 +65,10 @@ export class ReplyComponent{
    * If {@link commentForm} is not displayed, toggle {@link showEditor} to display it. If {@link commentForm} is displayed, submit new {@link Comment}.
    */
   public processClick(): void{
-    if(this.showEditor){ this.onSubmit(); }
+    if(this.showEditor){ 
+      this.onSubmit();
+      location.reload();
+    }
     else{ this.toggleEditor(); }
   }
   /**
