@@ -122,15 +122,14 @@ phases:
       # OWASP ZAP Scan
       - |
         bash -c '
-          docker run --volume test:/zap/wrk/:rw \
+          mkdir -p $(pwd)/out
+          chmod 777 $(pwd)/out
+          docker run --volume $(pwd)/out:/zap/wrk/:rw \
                      --network host \
                      --tty \
                      894427396428.dkr.ecr.us-east-1.amazonaws.com/innolab-owasp:Dev \
                      zap-full-scan.py -t http://localhost:8080 -r OWASP_report_frontend.html
-          CID=$(docker run -p 80:80 -v test:/test -d 894427396428.dkr.ecr.us-east-1.amazonaws.com/innolab-nginx:Dev)
-          wait-for-it localhost:80
-          docker cp $CID:/test ./
-          aws s3 cp ./OWASP_report_frontend.html s3://${APPLICATION}-data-files/zap_report/OWASP_report_frontend.html
+          aws s3 cp ./out/OWASP_report_frontend.html s3://${APPLICATION}-data-files/zap_report/OWASP_report_frontend.html
         '
         
       # Generate documentation
