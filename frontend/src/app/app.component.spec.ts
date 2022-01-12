@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SessionStorageService } from 'ngx-webstorage';
@@ -7,9 +8,12 @@ import { AuthService } from './services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatDialogModule } from '@angular/material/dialog';
+import { of } from 'rxjs';
 
 
 describe('AppComponent', () => {
+  let httpClient: HttpClient;
+  let httpTestingController: HttpTestingController;
 
   beforeAll(async ()=>{
     let store : any= {};
@@ -18,17 +22,19 @@ describe('AppComponent', () => {
       store: (key: string, value: string) => { store[key] = `${value}`; },
       clear: (key: string) => { delete store[key]; },
     };
-    spyOn(SessionStorageService, 'retrieve' as never).and.callFake(mockLocalStorage.retrieve as never)
+    const mockActivateRoute = {
+      snapshot: { url: { toString: () => { return '/'; } } }
+    }
+    spyOn(SessionStorageService, "retrieve" as never).and.callFake(mockLocalStorage.retrieve as never)
     spyOn(SessionStorageService, 'store' as never).and.callFake(mockLocalStorage.store as never)
     spyOn(SessionStorageService, 'clear' as never).and.callFake(mockLocalStorage.clear as never)
     const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
-    const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
     await TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, OverlayModule, MatDialogModule],
+      imports: [ RouterTestingModule, OverlayModule, MatDialogModule, HttpClientTestingModule ],
       providers:[
         AuthService, SessionStorageService, ActivatedRoute,
-        { provide: HttpClient, useValue: httpClientSpy },
-        { proivde: Router, useValue: routerSpy },
+        { provide: ActivatedRoute, useValue: of(mockActivateRoute)},
+        { provide: Router, useValue: routerSpy },
       ]
     })
   });
@@ -39,6 +45,8 @@ describe('AppComponent', () => {
         AppComponent
       ],
     }).compileComponents();
+    httpClient = TestBed.inject(HttpClient);
+    httpTestingController = TestBed.inject(HttpTestingController);
   });
 
   it('should create the app', () => {

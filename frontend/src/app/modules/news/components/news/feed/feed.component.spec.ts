@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SessionStorageService } from 'ngx-webstorage';
 import { AuthService } from 'src/app/services/auth.service';
+import { NewsService } from '../../../services/news.service';
 
 import { FeedComponent } from './feed.component';
 
@@ -24,9 +26,9 @@ describe('FeedComponent', () => {
     spyOn(SessionStorageService, 'store' as never).and.callFake(mockLocalStorage.store as never)
     spyOn(SessionStorageService, 'clear' as never).and.callFake(mockLocalStorage.clear as never)
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule ],
+      imports: [ RouterTestingModule, HttpClientTestingModule ],
       providers:[
-        AuthService, SessionStorageService,
+        AuthService, NewsService, SessionStorageService,
         { provide: HttpClient, useValue: httpClientSpy },
         { proivde: Router, useValue: routerSpy },
       ]

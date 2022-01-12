@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -13,6 +14,7 @@ describe('ReplyComponent', () => {
     const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
     await TestBed.configureTestingModule({
       declarations: [ ReplyComponent ],
+      imports: [ HttpClientTestingModule ],
       providers: [
         FormBuilder, ActivatedRoute,
         { provide: HttpClient, useValue: httpClientSpy },

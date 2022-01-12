@@ -15,6 +15,8 @@ phases:
         else
           export ENV=""
         fi
+        apt-get update -y
+        apt-get install -y wait-for-it
       # install frontend dependencies
       - |
         cd frontend
@@ -77,6 +79,8 @@ phases:
           docker build -t ${APPLICATION}-frontend:${BRANCH^} .
           docker tag ${APPLICATION}-frontend:${BRANCH^} \
               $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
+          cp ./conf/nginx.standalone.conf ./conf/nginx.conf
+          docker build -t ${APPLICATION}-frontend:test .
         '
   
   post_build:
@@ -115,6 +119,18 @@ phases:
                     s3://${APPLICATION}-coverage/test-coverage/bdd/behave-report-frontend.html
           cd ../..
         '
+      # OWASP ZAP Scan
+      - |
+        docker run --publish 8080:8080 \
+                    --name ${APPLICATION}_frontend \
+                    --env NGINX_PORT=8080 \
+                    --env ROOT_DIR=/home/build \
+                    --detach \
+                    ${APPLICATION}-frontend:test
+        wait-for-it localhost:8080
+        docker run -v $(pwd):/zap/wrk/:rw --network host -t owasp/zap2docker-stable zap-full-scan.py -t http://localhost:8080 -r OWASP_report_frontend.html
+        aws s3 cp ./OWASP_report_frontend.html s3://${APPLICATION}-data-files/zap_report/OWASP_report_frontend.html
+        
       # Generate documentation
       - |
         cd frontend
