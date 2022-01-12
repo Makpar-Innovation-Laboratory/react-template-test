@@ -79,8 +79,6 @@ phases:
           docker build -t ${APPLICATION}-frontend:${BRANCH^} .
           docker tag ${APPLICATION}-frontend:${BRANCH^} \
               $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
-          cp ./conf/nginx.standalone.conf ./conf/nginx.conf
-          docker build -t ${APPLICATION}-frontend:test .
         '
   
   post_build:
@@ -124,13 +122,16 @@ phases:
       # OWASP ZAP Scan
       - |
         bash -c '
-          docker run -v test:/zap/wrk/:rw --network host -t owasp/zap2docker-stable zap-full-scan.py -t http://localhost:8080 -r OWASP_report_frontend.html
-          CID=$(docker run -p 80:80 -v test:/test -d nginx:latest)
+          docker run --volume test:/zap/wrk/:rw \
+                     --network host \
+                     --tty \
+                     894427396428.dkr.ecr.us-east-1.amazonaws.com/innolab-owasp:Dev \
+                     zap-full-scan.py -t http://localhost:8080 -r OWASP_report_frontend.html
+          CID=$(docker run -p 80:80 -v test:/test -d 894427396428.dkr.ecr.us-east-1.amazonaws.com/innolab-nginx:Dev)
           wait-for-it localhost:80
           docker cp $CID:/test ./
           aws s3 cp ./OWASP_report_frontend.html s3://${APPLICATION}-data-files/zap_report/OWASP_report_frontend.html
         '
-
         
       # Generate documentation
       - |
