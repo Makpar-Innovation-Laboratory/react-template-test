@@ -10,7 +10,9 @@
   display: flex; justify-content: center;
 }
 #values-container{
-  width: 100%; display: flex; justify-content: center
+  width: 100%; 
+  display: flex; 
+  justify-content: center;
 }
 #values-col-right{
   margin-top: 3rem;
@@ -22,21 +24,28 @@
   align-items: center;
 }
 .card {
-  width: 85%;
-  height: 15rem;
+  width: 21%;
+  /* height: 15rem; */
   margin-top: 3rem;
-  padding: 1rem 0;
+  padding: 2rem 0;
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card:first-child {
+  margin-left: 0;
 }
 .card h5 {
   /* height: 2.5rem; */
-  width: 5.5rem;
   padding-bottom: 0.6rem;
   white-space: nowrap;
-  padding-left: 2rem;
-  margin-top: 0.5rem;
+  margin: 2rem 0 1rem 0;
+  text-align: center;
 }
 .card h6 {
-  margin: 1rem 2.2rem;
+  margin: 0 2.2rem 2rem 2.2rem;
+  text-align: center;
 }
 .mission-header h5 {
   margin-bottom: 0.5rem;
