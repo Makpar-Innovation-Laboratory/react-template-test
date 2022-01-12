@@ -63,20 +63,6 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
-            },
-            "testing": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.testing.ts"
-                }
-              ]
             }
           },
           "defaultConfiguration": "production"
@@ -115,7 +101,18 @@
               "src/theme.scss"
             ],
             "scripts": []
+          },
+        "configurations": {
+          "testing": {
+            "sourceMap": true,
+            "fileReplacements": [
+              {
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.testing.ts"
+              }
+            ]
           }
+        }
         }
       }
     }

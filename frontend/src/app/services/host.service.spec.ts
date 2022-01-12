@@ -2,8 +2,6 @@ import { TestBed } from '@angular/core/testing';
 
 import { HostService } from './host.service';
 
-import { environment } from 'src/environments/environment';
-
 describe('HostService', () => {
   let service: HostService;
 

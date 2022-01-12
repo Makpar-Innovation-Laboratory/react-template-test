@@ -1,10 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 import { DialogComponent } from './dialog.component';
 
 describe('DialogComponent', () => {
   let component: DialogComponent;
   let fixture: ComponentFixture<DialogComponent>;
+
+  beforeAll(()=>{
+    TestBed.configureTestingModule({
+      imports: [ MatDialogModule ],
+      providers: [
+        { provide: MatDialogRef, useValue: {} },
+      ]
+    })
+  });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

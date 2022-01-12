@@ -15,6 +15,8 @@ phases:
         else
           export ENV=""
         fi
+        apt-get update -y
+        apt-get install -y wait-for-it
       # install frontend dependencies
       - |
         cd frontend
@@ -93,6 +95,7 @@ phases:
                    --env APP_PORT=8000 \
                    --detach \
                    $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-backend:${BRANCH^}
+          wait-for-it localhost:8000
           docker run --publish 8080:8080 \
                     --name ${APPLICATION}_frontend \
                     --env NGINX_PORT=8080 \
@@ -101,6 +104,7 @@ phases:
                     --env PROXY_PORT=8000 \
                     --detach \
                     $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
+          wait-for-it localhost:8080
           git clone codecommit://${APPLICATION}-test-harness
           cd ${APPLICATION}-test-harness/python
           export FRONTEND_HOST_URL="http://localhost:8080"
@@ -115,6 +119,20 @@ phases:
                     s3://${APPLICATION}-coverage/test-coverage/bdd/behave-report-frontend.html
           cd ../..
         '
+      # OWASP ZAP Scan
+      - |
+        bash -c '
+          docker run --volume test:/zap/wrk/:rw \
+                     --network host \
+                     --tty \
+                     894427396428.dkr.ecr.us-east-1.amazonaws.com/innolab-owasp:Dev \
+                     zap-full-scan.py -t http://localhost:8080 -r OWASP_report_frontend.html
+          CID=$(docker run -p 80:80 -v test:/test -d 894427396428.dkr.ecr.us-east-1.amazonaws.com/innolab-nginx:Dev)
+          wait-for-it localhost:80
+          docker cp $CID:/test ./
+          aws s3 cp ./OWASP_report_frontend.html s3://${APPLICATION}-data-files/zap_report/OWASP_report_frontend.html
+        '
+        
       # Generate documentation
       - |
         cd frontend
