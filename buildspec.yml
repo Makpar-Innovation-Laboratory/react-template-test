@@ -92,8 +92,9 @@ phases:
     commands:
       # Start Up Cluster
       - |
-        docker container stop innolab_backend && docker container rm innolab_backend
-        docker container stop innolab_frontend && docker container rm innolab_frontend
+        docker container rm innolab_backend || true
+        docker container rm innolab_frontend || true
+      - docker container ps
       - |
         docker run --publish 8000:8000 \
                    --name ${APPLICATION}_backend \
@@ -164,7 +165,7 @@ phases:
       - |
         docker container stop innolab_backend && docker container rm innolab_backend
         docker container stop innolab_frontend && docker container rm innolab_frontend
-        
+
       # Push image to ECR 
       - |
         bash -c '
