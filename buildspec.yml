@@ -90,10 +90,12 @@ phases:
   
   post_build:
     commands:
-      # BDD Tests 
+      # Start Up Cluster
       - |
-        bash -c '
-          docker run --publish 8000:8000 \
+        docker container stop innolab_backend && docker container rm innolab_backend
+        docker container stop innolab_frontend && docker container rm innolab_frontend
+      - |
+        docker run --publish 8000:8000 \
                    --name ${APPLICATION}_backend \
                    --env COGNITO_USER_POOL=$POOL_ID \
                    --env COGNITO_AUDIENCE=$CLIENT_ID \
@@ -102,16 +104,20 @@ phases:
                    --env APP_PORT=8000 \
                    --detach \
                    $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-backend:${BRANCH^}
-          wait-for-it localhost:8000
-          docker run --publish 8080:8080 \
-                    --name ${APPLICATION}_frontend \
-                    --env NGINX_PORT=8080 \
-                    --env ROOT_DIR=/home/build \
-                    --env PROXY_HOST=localhost \
-                    --env PROXY_PORT=8000 \
-                    --detach \
-                    $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
-          wait-for-it localhost:8080
+        wait-for-it localhost:8000
+        docker run --publish 8080:8080 \
+                  --name ${APPLICATION}_frontend \
+                  --env NGINX_PORT=8080 \
+                  --env ROOT_DIR=/home/build \
+                  --env PROXY_HOST=localhost \
+                  --env PROXY_PORT=8000 \
+                  --detach \
+                  $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
+        wait-for-it localhost:8080
+
+      # BDD Tests 
+      - |
+        bash -c '
           git clone codecommit://${APPLICATION}-test-harness
           cd ${APPLICATION}-test-harness/python
           export FRONTEND_HOST_URL="http://localhost:8080"
@@ -154,6 +160,11 @@ phases:
             --distribution-id $COVERAGE_DISTRIBUTION_ID \
             --paths "/*"
 
+      # Kill Cluster
+      - |
+        docker container stop innolab_backend && docker container rm innolab_backend
+        docker container stop innolab_frontend && docker container rm innolab_frontend
+        
       # Push image to ECR 
       - |
         bash -c '
