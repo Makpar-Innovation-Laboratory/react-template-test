@@ -35,6 +35,7 @@ phases:
         bash -c '
           docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/innolab-node:${BRANCH^}
           docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/innolab-nginx:${BRANCH^}    
+          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/innolab-owasp:${BRANCH^}    
         '
       # install Testing and Documentation Dependencies
       - |
