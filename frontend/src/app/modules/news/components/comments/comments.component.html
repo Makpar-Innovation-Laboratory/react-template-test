@@ -4,7 +4,7 @@
     <mat-card-content>
         {{comment.content}}
         <app-comments *ngIf="comment.child_comments" [comments]="comment.child_comments"></app-comments>
-        <app-reply class="mat-elevation-z4" [commentId]="comment.comment_id" [reply_bool]="true"
+        <app-reply class="mat-elevation-z4" [commentId]="comment.comment_id" 
                     tooltip="Submit a reply!"></app-reply>
     </mat-card-content>
 </mat-card>

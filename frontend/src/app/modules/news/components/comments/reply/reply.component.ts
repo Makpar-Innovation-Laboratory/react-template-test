@@ -25,7 +25,6 @@ export class ReplyComponent{
   public showEditor: boolean = false;
   public postId: number;
   public commentForm: FormGroup;
-  @Input() reply_bool: boolean = false
   @Input() public commentId: number | null = null;
   @Input() public tooltip: string = "dialectical considerations on the epistemology of ontical solipism"
   
