@@ -11,15 +11,22 @@
       </form>
     </mat-card-content>
     <mat-card-actions class="action-container">
+      <button mat-icon-button id="add-comment"
+              (click)="onSubmit()">
+        <mat-icon>add</mat-icon>
+      </button>
       <button mat-icon-button id="clear-button"
               color="warn" matTooltip="On second thought.."
               *ngIf="commentForm.touched">
         <mat-icon>backspace</mat-icon>
       </button>
-      <button mat-icon-button id="comment-butonn"
+      <button mat-button id="comment-butonn"
               [matTooltip]="tooltip"
-              (click)="processClick()">
-        <mat-icon>comment</mat-icon>
+              (click)="processClick()"
+              class="btn-primary-style"
+              >
+        <!-- <mat-icon>comment</mat-icon> -->
+        Reply
       </button>
     </mat-card-actions>
 </mat-card>

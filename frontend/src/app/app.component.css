@@ -1,33 +1,48 @@
 #app-container {
-    background-image: url(../assets/bg.png);
-    background-position: center;
-    min-height: 100vh;
+  /* background-image: url(../assets/bg.png); */
+  background-image: linear-gradient(
+      to bottom,
+      hsla(221, 59%, 33%, 0.55),
+      hsla(221, 59%, 33%, 0.55)
+    ),
+    url(../assets/bg-orig.jpeg);
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  padding-bottom: 5rem;
 }
 /* Navigation Styles */
 #toolbar-container {
-    display: flex; width: 100%;
-    flex-direction: space-between;
-    background: transparent;
-    border-bottom: 2px dashed;
+  display: flex;
+  width: 100%;
+  flex-direction: space-between;
+  background: transparent;
+  border-bottom: 2px dashed;
 }
 #nav-items {
-    display: flex; flex: 1;
+  display: flex;
+  width: 80%;
 }
 #nav-items a {
-    padding-bottom: 0rem;
-    margin-bottom: 0;
-    margin-left: 1rem;
-    text-decoration: none;    
+  padding-bottom: 0rem;
+  margin-bottom: 0;
+  margin-left: 1rem;
+  text-decoration: none;
 }
-#user-button-container{
-    display: flex; flex-direction: row;
-    margin-left: auto; flex: 0;
-    border-radius: 25px;
-    opacity: 0.5;
+#user-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-left: auto;
+  border-radius: 25px;
+  padding-right: 16px;
+  /* opacity: 0.5; */
+  background: none;
+  width: 10%;
 }
-#user-button-container:hover{
-    opacity: 0.75
+#settings-button:hover, #signout-button:hover {
+  opacity: 0.75;
 }
 #active-tab {
-    border-bottom: 2px solid;
+  border-bottom: 2px solid;
 }

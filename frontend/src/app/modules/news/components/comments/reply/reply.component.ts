@@ -22,10 +22,10 @@ import { AppConfig } from 'src/config';
 })
 export class ReplyComponent{
 
-  public showEditor: boolean = false;
+  public showEditor: boolean = true;
   public postId: number;
   public commentForm: FormGroup;
-
+  @Input() reply_bool: boolean = false
   @Input() public commentId: number | null = null;
   @Input() public tooltip: string = "dialectical considerations on the epistemology of ontical solipism"
   
@@ -65,7 +65,10 @@ export class ReplyComponent{
    * If {@link commentForm} is not displayed, toggle {@link showEditor} to display it. If {@link commentForm} is displayed, submit new {@link Comment}.
    */
   public processClick(): void{
-    if(this.showEditor){ this.onSubmit(); }
+    if(this.showEditor){ 
+      this.onSubmit();
+      location.reload();
+    }
     else{ this.toggleEditor(); }
   }
   /**
@@ -77,7 +80,7 @@ export class ReplyComponent{
     return{
       content: this.commentForm.controls.content.value,
       news_id: this.postId,
-      parent_comment: this.commentId ? null : this.commentId,
+      parent_comment: this.commentId ? this.commentId: null,
       child_comments: null, author: null,
       comment_id: null, submitted: null
     }
@@ -89,6 +92,7 @@ export class ReplyComponent{
    */
   public onSubmit() {
     if(this.commentForm.valid){
+      console.log(this.formToComment())
       this.comments.postComment(this.formToComment()).subscribe((__: any)=>{
         this.commentForm.reset();
         this.showEditor = false;

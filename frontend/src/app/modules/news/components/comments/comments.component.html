@@ -1,10 +1,65 @@
-<mat-card id="comment-card-item" class="comment-card" *ngFor="let comment of comments">
-    <mat-card-subtitle>{{comment.author}}</mat-card-subtitle>
-    <mat-card-subtitle>{{comment.submitted}}</mat-card-subtitle>
+<div *ngFor="let comment of comments" id="comment-container">
+  <div style="width: 100%; display: flex; align-items: center; justify-content: flex-start;">
+    <div id="photo-placeholder"></div>
+
+    <h5 class="mat-title" style="margin-left: 1rem">{{ comment.author }}</h5>
+    <h6 class="mat-subheading-2" style="margin-left: 1rem">
+      {{ comment.submitted }}
+    </h6>
+  </div>
+
+  <mat-card
+    id="comment-card-item"
+    class="comment-card"
+    style="width: 90%; padding: 2.5%;"
+  >
     <mat-card-content>
-        {{comment.content}}
-        <app-comments *ngIf="comment.child_comments" [comments]="comment.child_comments"></app-comments>
-        <app-reply class="mat-elevation-z4" [commentId]="comment.comment_id"
-                    tooltip="Submit a reply!"></app-reply>
+      Comment: {{ comment.comment_id }}<br />
+      {{ comment.content }}
     </mat-card-content>
-</mat-card>
+  </mat-card>
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding-top: 0.5rem;
+      width: 90%;
+    "
+  >
+    <button
+      mat-button
+      (click)="showReplyToggle(comment.comment_id)"
+      class="btn-primary-style"
+      style="margin-top: 0 !important"
+    >
+      + Reply
+    </button>
+    <div style="width: 100%; margin: 0.5rem 0;" *ngIf="showReply && buttonId == comment.comment_id">
+      <app-reply
+        class="mat-elevation-z4"
+        [commentId]="comment.comment_id"
+        tooltip="Submit a reply!"
+        
+      ></app-reply>
+    </div>
+  </div>
+
+  <div style="width: 95%;">
+    <app-comments
+    *ngIf="comment.child_comments"
+    [comments]="comment.child_comments"
+  ></app-comments>
+  </div>
+
+  <!-- <app-reply
+    *ngIf="showReply && buttonId == comment.comment_id"
+    class="mat-elevation-z4"
+    [commentId]="comment.comment_id"
+    [reply_bool]="true"
+    tooltip="Submit a reply!"
+  ></app-reply> -->
+
+  <!-- <app-reply class="mat-elevation-z4" [commentId]="comment.comment_id"
+                        tooltip="Submit a reply!"></app-reply> -->
+</div>

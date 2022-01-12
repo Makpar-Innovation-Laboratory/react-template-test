@@ -17,7 +17,11 @@
       background: map-get($primary-palette, default-contrast);
     }
     #view-button, #edit-button, #delete-button{
-      background-color: map-get($primary-palette, 400);
+      background-color: transparent;
+      color: map-get($primary-palette, default-contrast);
+    }
+    .news-card {
+      background: map-get($primary-palette, 500);
     }
 }
 

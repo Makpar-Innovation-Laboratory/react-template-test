@@ -1,0 +1,24 @@
+
+.mat-title, .mat-subheading-2 {
+    margin: 0;
+}
+
+#comment-container {
+    padding-top: 0.5rem;
+    /* margin-left: 2rem; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.mat-card {
+    border-radius: 0.5rem;
+}
+#photo-placeholder {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 1.5rem;
+    background: #FFFFFF;
+}
+button {
+    margin-top: 0.5rem !important;
+}

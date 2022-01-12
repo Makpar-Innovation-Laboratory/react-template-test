@@ -7,7 +7,7 @@
     width: 100vw;
     display: flex;
     justify-content: center;
-    padding: 3rem 0 15rem 0;
+    padding: 3rem 0 0 0;
 }
 .story-container .story-header{
     width: 20%; display: flex; justify-content: space-between
@@ -25,7 +25,9 @@
 .story-detail-container .content{
     margin-top: 3rem; margin-bottom: 4rem
 }
-
+.profile-pic {
+    background: #FFFFFF; /* Placeholder for image */
+}
 .back-button {
     background: #224185;
     color: #ffffff;
@@ -41,3 +43,27 @@
     width: 6rem;
     border-top: 2px solid #ffffff;
   }
+.comment-button {
+    border-radius: 1.5rem;
+    height: 2.2rem;
+    margin-left: 1rem;
+    font-weight: normal;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+.mat-title {
+    margin: 0;
+    font-weight: normal;
+}
+
+@media only screen and (max-width: 1200px) {
+    .story-container {
+        padding: 3rem 0;
+    }
+    .story-container .story-header{
+        width: 25%;
+    }
+    .story-detail-container{
+        width: 60%;
+    }
+}

@@ -18,13 +18,14 @@
     </div>
 
     <div id="user-button-container">
-      <button mat-icon-button id="settings-button" matTooltip="Settings"
+      <button mat-icon-button id="settings-button" matTooltip="User Profile"
               routerLink="/admin/user">
         <mat-icon>settings</mat-icon>      
       </button>
       <button mat-icon-button id="signout-button" color="warn"
               matTooltip="Sign Out" (click)="confirmLogout()">
-              <mat-icon>cancel</mat-icon>
+              <!-- <mat-icon>cancel</mat-icon> -->
+              Sign Out
       </button>
     </div>
   </mat-toolbar>

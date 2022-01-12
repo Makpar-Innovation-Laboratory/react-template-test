@@ -74,8 +74,11 @@ mat-card img{ object-fit: cover; }
 
 
 /* NGX Pagination Styling */
-.ngx-pagination {
-  background: #FFFFFF !important;
+/* #pagination-controls ul {
+  background: #224185 !important;
+} */
+/* .ngx-pagination {
+  background: #224185 !important;
   padding: 0.3rem 0.5rem 0.3rem 0.4rem;
   border-radius: 1.5rem;
   box-shadow: 0 2px 6px #0000005d;
@@ -93,4 +96,10 @@ mat-card img{ object-fit: cover; }
 }
 .ngx-pagination .current .ng-star-inserted {
   color: #FFFFFF !important;
+} */
+
+#view-button, #edit-button, #delete-button{
+  box-shadow: none;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }

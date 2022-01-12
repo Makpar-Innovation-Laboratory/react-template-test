@@ -19,6 +19,14 @@ export class CommentsComponent {
 
   @Input() public comments: Comment[] | null = null;
 
+  showReply:boolean = false;
+  buttonId:number | null = -1;
+  showReplyToggle(comment_id: number | null) {
+    this.showReply = !this.showReply;
+    this.buttonId = comment_id;
+    console.log(comment_id);
+  }
+
   /**
    * # Description
    * Constructs an instance of {@link CommentsComponent}

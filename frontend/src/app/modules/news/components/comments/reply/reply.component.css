@@ -1,14 +1,24 @@
 .mat-title {
-    font-weight: normal;
+  font-weight: normal;
 }
-.card-header{
-    display: flex; width: 100%; justify-content: right;
+.card-header {
+  display: flex;
+  width: 100%;
+  justify-content: right;
 }
-.action-container{
-    width: 100%; display: flex; justify-content: right;
+.action-container {
+  width: 100%;
+  display: flex;
+  justify-content: right;
 }
 textarea {
-    border: none; border-radius: 0.5rem;
-    width: 90%; max-width: 90%;
-    min-height: 3rem; padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  /* width: 90%;
+  max-width: 90%;
+  min-height: 3rem;
+  padding: 1rem; */
+}
+.mat-card {
+  border-radius: 0.5rem;
 }

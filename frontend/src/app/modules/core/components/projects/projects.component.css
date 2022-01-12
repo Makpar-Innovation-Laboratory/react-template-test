@@ -19,18 +19,18 @@
 
 .projects-wrapper {
   display: flex;
-  width: 80%;
+  width: 90%;
   margin-top: 2rem;
 }
 
 .projects-year {
-  width: 10%;
+  width: 20%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 .projects {
-  width: 85%;
+  width: 90%;
   border-left: 2px dashed #ffffff;
   display: flex;
   flex-direction: column;
