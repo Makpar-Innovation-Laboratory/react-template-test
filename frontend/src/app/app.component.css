@@ -38,11 +38,15 @@
   padding-right: 16px;
   /* opacity: 0.5; */
   background: none;
-  width: 10%;
+  min-width: 10%;
 }
 #settings-button:hover, #signout-button:hover {
   opacity: 0.75;
 }
 #active-tab {
   border-bottom: 2px solid;
+}
+#signout-button {
+  background: transparent;
+  padding: 0.2rem 0.5rem;
 }

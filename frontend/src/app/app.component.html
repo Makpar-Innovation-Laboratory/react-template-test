@@ -20,12 +20,12 @@
     <div id="user-button-container">
       <button mat-icon-button id="settings-button" matTooltip="User Profile"
               routerLink="/admin/user">
-        <mat-icon>settings</mat-icon>      
+        <mat-icon>account_circle</mat-icon>      
       </button>
-      <button mat-icon-button id="signout-button" color="warn"
-              matTooltip="Sign Out" (click)="confirmLogout()">
+      <button mat-button id="signout-button" color="warn"
+              matTooltip="Sign Out" (click)="confirmLogout()" style="font-weight: normal !important;">
               <!-- <mat-icon>cancel</mat-icon> -->
-              Sign Out
+              SIGN OUT
       </button>
     </div>
   </mat-toolbar>
