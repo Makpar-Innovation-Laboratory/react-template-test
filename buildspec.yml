@@ -164,11 +164,8 @@ phases:
         docker container stop innolab_backend && docker container rm innolab_backend
         docker container stop innolab_frontend && docker container rm innolab_frontend
 
-      # Push image to ECR 
+      # Push image to ECR -> Signal deploy pipeline to take over
       - |
         bash -c '
           docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
         '
-cache:
-  path:
-    - frontend/node_modules
