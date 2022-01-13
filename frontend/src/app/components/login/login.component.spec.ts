@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -17,10 +17,11 @@ describe('LoginComponent', () => {
     const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
     const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule ],
+      imports: [ RouterTestingModule, HttpClientTestingModule ],
       providers:[
         AuthService, SessionStorageService, FormBuilder,
-        { proivde: Router, useValue: routerSpy },
+        { provide: Router, useValue: routerSpy },
+        { provide: HttpClient, useValue: httpClientSpy },
       ]
     })
   });

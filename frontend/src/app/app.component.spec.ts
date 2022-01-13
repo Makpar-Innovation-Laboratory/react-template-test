@@ -29,12 +29,14 @@ describe('AppComponent', () => {
     spyOn(SessionStorageService, 'store' as never).and.callFake(mockLocalStorage.store as never)
     spyOn(SessionStorageService, 'clear' as never).and.callFake(mockLocalStorage.clear as never)
     const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
-    await TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, OverlayModule, MatDialogModule, HttpClientTestingModule ],
-      providers:[
+    const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule, OverlayModule, MatDialogModule, HttpClientTestingModule],
+      providers: [
         AuthService, SessionStorageService, ActivatedRoute,
-        { provide: ActivatedRoute, useValue: of(mockActivateRoute)},
+        { provide: ActivatedRoute, useValue: of(mockActivateRoute) },
         { provide: Router, useValue: routerSpy },
+        { provide: HttpClient, useValue: httpClientSpy },
       ]
     })
   });

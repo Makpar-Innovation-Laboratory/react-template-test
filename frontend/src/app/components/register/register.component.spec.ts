@@ -2,7 +2,9 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SessionStorageService } from 'ngx-webstorage';
@@ -18,9 +20,10 @@ describe('RegisterComponent', () => {
     const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
     const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, OverlayModule, MatDialogModule, HttpClientTestingModule ],
+      imports: [ RouterTestingModule, OverlayModule, MatDialogModule, 
+                 HttpClientTestingModule, NoopAnimationsModule ],
       providers:[
-        AuthService, SessionStorageService,
+        AuthService, SessionStorageService, FormBuilder, 
         { provide: HttpClient, useValue: httpClientSpy },
         { proivde: Router, useValue: routerSpy },
       ]
