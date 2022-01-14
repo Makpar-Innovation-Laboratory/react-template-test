@@ -40,10 +40,7 @@ export class AppComponent{
               private router: Router){
     this.path = activatedRoute.snapshot.url.toString();
     router.events.subscribe((val) => {
-      if(val instanceof NavigationEnd) { 
-        console.log(`setting path to ${val.url}`)
-        this.path = val.url; 
-      }
+      if(val instanceof NavigationEnd) { this.path = val.url; }
   });
   }
 
@@ -52,9 +49,7 @@ export class AppComponent{
    * Persist the user selected path
    * @param input path to be set
    */
-  public onSelect(input: string): void {
-    this.path = input
-  }
+  public onSelect(input: string): void { this.path = input; }
   
   /**
    * # Description

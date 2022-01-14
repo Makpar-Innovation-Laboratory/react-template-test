@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SessionStorageService } from 'ngx-webstorage';
 import { AppComponent } from './app.component';
 import { AuthService } from './services/auth.service';
@@ -21,22 +21,25 @@ const mockLocalStorage = {
 const mockActivateRoute = {
   snapshot: { url: { toString: () => { return '/'; } } }
 }
+const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
 
 describe('AppComponent', () => {
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
   let authService: AuthService;
+  let hostService: HostService;
+  let fixture: ComponentFixture<AppComponent>;
 
-  beforeAll(async ()=>{
+  beforeEach(waitForAsync(()=>{
     spyOn(SessionStorageService, 'retrieve' as never).and.callFake(mockLocalStorage.retrieve as never)
     spyOn(SessionStorageService, 'store' as never).and.callFake(mockLocalStorage.store as never)
     spyOn(SessionStorageService, 'clear' as never).and.callFake(mockLocalStorage.clear as never)
 
-    await TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       declarations: [ AppComponent ],
       imports: [
-        HttpClientTestingModule,
         RouterTestingModule.withRoutes([{path: '', component: HomeComponent}]), 
+        HttpClientTestingModule,
         OverlayModule, 
         MaterialModule, 
       ],
@@ -46,28 +49,34 @@ describe('AppComponent', () => {
         AuthService,
         HostService,
         { provide: ActivatedRoute, useValue: of(mockActivateRoute) },
+        { provide: Router, useValue: routerSpy },
       ]
     }).compileComponents()
+  }));
 
-    let session = TestBed.inject(SessionStorageService)
-    let auth = TestBed.inject(AuthService);
-    let host = TestBed.inject(HostService)
+  beforeEach(()=>{
+    httpClient = TestBed.inject(HttpClient);
+    httpTestingController = TestBed.inject(HttpTestingController);
+    authService = TestBed.inject(AuthService);
+    hostService = TestBed.inject(HostService);
+    fixture = TestBed.createComponent(AppComponent);
   });
 
+  afterEach(()=>{
+    httpTestingController.verify();
+  })
+
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
   it(`should have as title 'Makpar Innovation Lab'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('Makpar Innovation Lab');
   });
 
   it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.content span')?.textContent).toContain('frontend app is running!');

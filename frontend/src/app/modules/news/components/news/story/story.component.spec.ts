@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from 'src/app/modules/shared/material.module';
@@ -14,30 +14,26 @@ describe('StoryComponent', () => {
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
 
-  beforeAll(async ()=>{
+  beforeAll(waitForAsync(()=>{
     const mockActivateRoute = {
       snapshot: { 
         url: { toString: () => { return 'news/1'; } },
         params: { id: 1 }
       }
     }
-    await TestBed.configureTestingModule({
-      imports: [ RouterTestingModule.withRoutes([{path: 'news/:id', component: StoryComponent} ]),
-                 HttpClientTestingModule,
-                 MaterialModule ],
+    TestBed.configureTestingModule({
+      declarations: [ StoryComponent ],
+      imports: [ 
+        RouterTestingModule.withRoutes([{path: 'news/:id', component: StoryComponent} ]),
+        HttpClientTestingModule,
+        MaterialModule 
+      ],
       providers:[
         NewsService,
         { provide: ActivatedRoute, useValue: mockActivateRoute }
       ]
-    })
-  });
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ StoryComponent ]
-    })
-    .compileComponents();
-  });
+    }).compileComponents()
+  }));
 
   beforeEach(() => {
     httpClient = TestBed.inject(HttpClient);

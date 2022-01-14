@@ -10,13 +10,14 @@ describe('NewsComponent', () => {
   let component: NewsComponent;
   let fixture: ComponentFixture<NewsComponent>;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     await TestBed.configureTestingModule({
       declarations: [ NewsComponent ],
       imports: [ 
         RouterTestingModule.withRoutes([{path: 'news/feed', component: NewsComponent}]), 
         HttpClientTestingModule,
-        MaterialModule ],
+        MaterialModule 
+      ],
       providers: [ NewsService ]
     })
     .compileComponents();
