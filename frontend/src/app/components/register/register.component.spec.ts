@@ -2,7 +2,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
@@ -19,13 +19,19 @@ describe('RegisterComponent', () => {
 
   beforeAll(()=>{
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule.withRoutes([{path: 'register', component: RegisterComponent}]), 
-                 OverlayModule, 
-                 MaterialModule, 
-                 HttpClientTestingModule, 
-                 NoopAnimationsModule ],
+      imports: [ 
+        RouterTestingModule.withRoutes([{path: 'register', component: RegisterComponent}]), 
+        OverlayModule, 
+        MaterialModule, 
+        HttpClientTestingModule, 
+        NoopAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule
+      ],
       providers:[
-        AuthService, SessionStorageService, FormBuilder
+        AuthService, 
+        SessionStorageService, 
+        FormBuilder
       ]
     })
   });

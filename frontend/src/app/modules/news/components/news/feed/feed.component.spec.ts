@@ -8,6 +8,7 @@ import { MaterialModule } from 'src/app/modules/shared/material.module';
 import { AuthService } from 'src/app/services/auth.service';
 import { HostService } from 'src/app/services/host.service';
 import { NewsService } from '../../../services/news.service';
+import { StoryComponent } from '../story/story.component';
 
 import { FeedComponent } from './feed.component';
 
@@ -35,7 +36,10 @@ describe('FeedComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ FeedComponent ],
       imports: [ 
-        RouterTestingModule, 
+        RouterTestingModule.withRoutes([
+          { path: 'feed', component: FeedComponent }, 
+          { path: ':id', component: StoryComponent }
+        ]), 
         HttpClientTestingModule, 
         MaterialModule
       ],

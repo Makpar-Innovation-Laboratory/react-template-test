@@ -1,7 +1,7 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -24,9 +24,14 @@ describe('EditorComponent', () => {
         RouterTestingModule, 
         HttpClientTestingModule,
         OverlayModule, 
-        MaterialModule],
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule
+      ],
       providers:[
-        NewsService, FormBuilder, DomSanitizer,
+        NewsService, 
+        FormBuilder, 
+        DomSanitizer,
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
       ]
     }).compileComponents();
