@@ -57,7 +57,7 @@ phases:
 
       - |
         cd frontend
-        npm run test
+        npm run test-headless
         aws s3 cp ./coverage/frontend/. \
                 s3://${APPLICATION}-coverage/test-coverage/frontend/ \
                 --recursive

@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --code-coverage --configuration testing",
+    "test-headless": "ng test --code-coverage --configuration testing --no-watch --no-progress --browsers=ChromeHeadlessCI",
     "docs": "npx typedoc"
   },
   "private": true,
