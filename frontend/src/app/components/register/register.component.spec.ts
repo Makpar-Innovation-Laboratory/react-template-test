@@ -8,6 +8,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SessionStorageService } from 'ngx-webstorage';
+import { MaterialModule } from 'src/app/modules/shared/material.module';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { RegisterComponent } from './register.component';
@@ -19,8 +20,10 @@ describe('RegisterComponent', () => {
   beforeAll(()=>{
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule.withRoutes([{path: 'register', component: RegisterComponent}]), 
-                 OverlayModule, MatDialogModule, 
-                 HttpClientTestingModule, NoopAnimationsModule ],
+                 OverlayModule, 
+                 MaterialModule, 
+                 HttpClientTestingModule, 
+                 NoopAnimationsModule ],
       providers:[
         AuthService, SessionStorageService, FormBuilder
       ]

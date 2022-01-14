@@ -55,6 +55,14 @@ phases:
     commands:
       # TODO: unit tests!
 
+      - |
+        cd frontend
+        npm run test
+        aws s3 cp ./coverage/frontend/. \
+                s3://${APPLICATION}-coverage/test-coverage/frontend/ \
+                --recursive
+        cd ..
+        
       # lint source code
       # - |
       #   npx eslint --quiet \

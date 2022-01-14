@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MaterialModule } from 'src/app/modules/shared/material.module';
 import { CommentService } from '../../../services/comment.service';
 
 import { ReplyComponent } from './reply.component';
@@ -22,7 +23,8 @@ describe('ReplyComponent', () => {
     await TestBed.configureTestingModule({
     declarations: [ ReplyComponent ],
     imports: [ HttpClientTestingModule,
-               RouterTestingModule, MatSnackBarModule ],
+               RouterTestingModule, 
+               MaterialModule ],
     providers: [
       FormBuilder, CommentService, 
       { provide: ActivatedRoute, useValue: mockActivateRoute }

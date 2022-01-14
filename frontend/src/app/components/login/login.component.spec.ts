@@ -5,6 +5,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SessionStorageService } from 'ngx-webstorage';
+import { MaterialModule } from 'src/app/modules/shared/material.module';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { LoginComponent } from './login.component';
@@ -15,8 +16,11 @@ describe('LoginComponent', () => {
 
   beforeAll(()=>{
     TestBed.configureTestingModule({
-      imports: [  RouterTestingModule.withRoutes([{path: 'login', component: LoginComponent}]), 
-                  HttpClientTestingModule ],
+      imports: [  
+        RouterTestingModule.withRoutes([{path: 'login', component: LoginComponent}]), 
+        HttpClientTestingModule,
+        MaterialModule
+      ],
       providers:[
         AuthService, SessionStorageService, FormBuilder
       ]
