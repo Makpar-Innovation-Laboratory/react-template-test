@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MaterialModule } from 'src/app/modules/shared/material.module';
 import { NewsService } from '../../../services/news.service';
 
 import { StoryComponent } from './story.component';
@@ -22,7 +23,8 @@ describe('StoryComponent', () => {
     }
     await TestBed.configureTestingModule({
       imports: [ RouterTestingModule.withRoutes([{path: 'news/:id', component: StoryComponent} ]),
-                 HttpClientTestingModule ],
+                 HttpClientTestingModule,
+                 MaterialModule ],
       providers:[
         NewsService,
         { provide: ActivatedRoute, useValue: mockActivateRoute }

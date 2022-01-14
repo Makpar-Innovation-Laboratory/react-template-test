@@ -55,6 +55,7 @@ export class AppComponent{
   public onSelect(input: string): void {
     this.path = input
   }
+  
   /**
    * # Description
    * Determine if the user in the current session is authorized to view a route.

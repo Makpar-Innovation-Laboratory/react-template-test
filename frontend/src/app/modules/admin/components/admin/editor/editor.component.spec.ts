@@ -21,18 +21,13 @@ describe('EditorComponent', () => {
       snapshot: { url: { toString: () => { return '/admin/add'; } } }
     }
     TestBed.configureTestingModule({
+      declarations: [ EditorComponent ], 
       imports: [ RouterTestingModule, OverlayModule, MaterialModule],
       providers:[
         NewsService, FormBuilder, DomSanitizer,
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
       ]
-    })
-  });
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ EditorComponent ]
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {

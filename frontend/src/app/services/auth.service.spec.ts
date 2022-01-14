@@ -12,13 +12,12 @@ describe('AuthService', () => {
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule, HttpClientTestingModule ],
       providers:[
-        SessionStorageService, 
+        SessionStorageService, AuthService
       ]
     })
   });
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
     service = TestBed.inject(AuthService);
   });
 
