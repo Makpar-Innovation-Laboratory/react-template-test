@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { SessionStorageService } from 'ngx-webstorage';
 import { AppComponent } from './app.component';
 import { AuthService } from './services/auth.service';
@@ -9,6 +9,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatDialogModule } from '@angular/material/dialog';
 import { of } from 'rxjs';
+import { HomeComponent } from './components/home/home.component';
 
 
 describe('AppComponent', () => {
@@ -19,8 +20,8 @@ describe('AppComponent', () => {
     let store : any= {};
     const mockLocalStorage = {
       retrieve: (key: string): string => { return key in store ? store[key] : null; },
-      store: (key: string, value: string) => { store[key] = `${value}`; },
-      clear: (key: string) => { delete store[key]; },
+      store: (key: string, value: string): void=> { store[key] = `${value}`; },
+      clear: (key: string): void => { delete store[key]; },
     };
     const mockActivateRoute = {
       snapshot: { url: { toString: () => { return '/'; } } }
@@ -28,15 +29,14 @@ describe('AppComponent', () => {
     spyOn(SessionStorageService, "retrieve" as never).and.callFake(mockLocalStorage.retrieve as never)
     spyOn(SessionStorageService, 'store' as never).and.callFake(mockLocalStorage.store as never)
     spyOn(SessionStorageService, 'clear' as never).and.callFake(mockLocalStorage.clear as never)
-    const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
-    const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
+
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, OverlayModule, MatDialogModule, HttpClientTestingModule],
+      imports: [RouterTestingModule.withRoutes([{path: '', component: HomeComponent}]), 
+                OverlayModule, MatDialogModule, 
+                HttpClientTestingModule],
       providers: [
         AuthService, SessionStorageService, ActivatedRoute,
         { provide: ActivatedRoute, useValue: of(mockActivateRoute) },
-        { provide: Router, useValue: routerSpy },
-        { provide: HttpClient, useValue: httpClientSpy },
       ]
     })
   });

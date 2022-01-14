@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs';
 import { NewsService } from '../../../services/news.service';
 
 import { StoryComponent } from './story.component';
@@ -15,17 +14,18 @@ describe('StoryComponent', () => {
   let httpTestingController: HttpTestingController;
 
   beforeAll(async ()=>{
-    const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
-    const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
     const mockActivateRoute = {
-      snapshot: { url: { toString: () => { return '/'; } } }
+      snapshot: { 
+        url: { toString: () => { return 'news/1'; } },
+        params: { id: 1 }
+      }
     }
     await TestBed.configureTestingModule({
-      imports: [ RouterTestingModule ],
+      imports: [ RouterTestingModule.withRoutes([{path: 'news/:id', component: StoryComponent} ]),
+                 HttpClientTestingModule ],
       providers:[
         NewsService,
-        { provide: Router, useValue: routerSpy },
-        { provide: ActivatedRoute, useValue: of(mockActivateRoute) }
+        { provide: ActivatedRoute, useValue: mockActivateRoute }
       ]
     })
   });

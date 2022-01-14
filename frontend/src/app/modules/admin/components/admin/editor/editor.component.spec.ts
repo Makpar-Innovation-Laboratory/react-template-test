@@ -3,10 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NewsService } from 'src/app/modules/news/services/news.service';
+import { MaterialModule } from 'src/app/modules/shared/material.module';
 
 import { EditorComponent } from './editor.component';
 
@@ -15,15 +17,14 @@ describe('EditorComponent', () => {
   let fixture: ComponentFixture<EditorComponent>;
 
   beforeAll(()=>{
-    const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
-    const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
+    const mockActivatedRoute = {
+      snapshot: { url: { toString: () => { return '/admin/add'; } } }
+    }
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, OverlayModule, MatDialogModule],
+      imports: [ RouterTestingModule, OverlayModule, MaterialModule],
       providers:[
         NewsService, FormBuilder, DomSanitizer,
-        { provide: HttpClient, useValue: httpClientSpy },
-        { proivde: Router, useValue: routerSpy },
-        { provide: ActivatedRoute, useValue: '/admin/add' },
+        { provide: ActivatedRoute, useValue: mockActivatedRoute },
       ]
     })
   });

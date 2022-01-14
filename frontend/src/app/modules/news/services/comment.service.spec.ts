@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { HostService } from 'src/app/services/host.service';
 
@@ -8,11 +8,10 @@ describe('CommentService', () => {
   let service: CommentService;
 
   beforeAll(()=>{
-    const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
     TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule ],
       providers:[
-        HostService,
-        { provide: HttpClient, useValue: httpClientSpy },
+        HostService
       ]
     })
   });

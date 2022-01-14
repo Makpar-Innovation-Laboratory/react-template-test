@@ -1,24 +1,18 @@
-import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
 import { SessionStorageService } from 'ngx-webstorage';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { AuthService } from './auth.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AuthService', () => {
   let service: AuthService;
 
   beforeAll(() => {
-    const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
-    const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
-
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule ],
+      imports: [ RouterTestingModule, HttpClientTestingModule ],
       providers:[
         SessionStorageService, 
-        { provide: HttpClient, useValue: httpClientSpy },
-        { proivde: Router, useValue: routerSpy },
       ]
     })
   });

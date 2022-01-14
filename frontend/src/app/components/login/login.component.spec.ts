@@ -14,14 +14,11 @@ describe('LoginComponent', () => {
   let fixture: ComponentFixture<LoginComponent>;
 
   beforeAll(()=>{
-    const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
-    const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, HttpClientTestingModule ],
+      imports: [  RouterTestingModule.withRoutes([{path: 'login', component: LoginComponent}]), 
+                  HttpClientTestingModule ],
       providers:[
-        AuthService, SessionStorageService, FormBuilder,
-        { provide: Router, useValue: routerSpy },
-        { provide: HttpClient, useValue: httpClientSpy },
+        AuthService, SessionStorageService, FormBuilder
       ]
     })
   });

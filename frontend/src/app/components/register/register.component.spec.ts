@@ -17,15 +17,12 @@ describe('RegisterComponent', () => {
   let fixture: ComponentFixture<RegisterComponent>;
 
   beforeAll(()=>{
-    const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
-    const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, OverlayModule, MatDialogModule, 
+      imports: [ RouterTestingModule.withRoutes([{path: 'register', component: RegisterComponent}]), 
+                 OverlayModule, MatDialogModule, 
                  HttpClientTestingModule, NoopAnimationsModule ],
       providers:[
-        AuthService, SessionStorageService, FormBuilder, 
-        { provide: HttpClient, useValue: httpClientSpy },
-        { proivde: Router, useValue: routerSpy },
+        AuthService, SessionStorageService, FormBuilder
       ]
     })
   });

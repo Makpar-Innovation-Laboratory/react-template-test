@@ -16,6 +16,8 @@ import { News, NewsResponse } from 'src/app/models/news';
 export class StoryComponent implements OnInit {
   public newsId: number;
   public newsPost: News | undefined;
+  public showComment: boolean = false;
+
 
   /**
    * # Description
@@ -23,16 +25,10 @@ export class StoryComponent implements OnInit {
    * @param news service for retrieving news feed from Innovation Lab API
    * @param activatedRoute currently activated route in user brwoser
    */
-  constructor(
-    private news: NewsService,
-    private activatedRoute: ActivatedRoute
-  ) {
+  constructor(private news: NewsService,
+              private activatedRoute: ActivatedRoute) {
     this.newsId = this.activatedRoute.snapshot.params.id;
-  }
-
-  showComment: boolean = false;
-  showCommentToggle():void {
-    this.showComment = !this.showComment;
+    console.log(this.newsId)
   }
 
   /**
@@ -43,5 +39,12 @@ export class StoryComponent implements OnInit {
       this.newsPost = data.results[0]
       console.log(this.newsPost)
     });
+  }
+
+  /**
+   * 
+   */
+  public toggleComment(): void {
+    this.showComment = !this.showComment;
   }
 }
