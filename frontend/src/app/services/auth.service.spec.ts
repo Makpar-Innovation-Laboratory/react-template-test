@@ -5,10 +5,11 @@ import { AuthService } from './auth.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { mock } from 'src/environments/mock';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Token } from '../models/token';
 import { AppConfig, AppRoute } from 'src/config';
 import { User, UserLogin } from 'src/app/models/user';
+import { AuthInterceptor } from '../modules/shared/interceptors/auth.interceptor';
 
 let session : any= {};
 const mockSessionStorage = {
@@ -28,7 +29,7 @@ describe('AuthService', () => {
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
   let authService: AuthService;
-  let sessionService: SessionStorageService
+  let sessionService: SessionStorageService;
 
   beforeAll(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -38,20 +39,22 @@ describe('AuthService', () => {
       ],
       providers:[
         AuthService,
-        { provide: SessionStorageService, useValue: mockSessionStorage }
+        { provide: SessionStorageService, useValue: mockSessionStorage },
+        { provide: HTTP_INTERCEPTORS, multi: true, useClass: AuthInterceptor }
       ]
     }).compileComponents();
   }));
 
   beforeAll(() => {
+    TestBed.inject(HTTP_INTERCEPTORS);
     httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
     authService = TestBed.inject(AuthService);
-    sessionService = TestBed.inject(SessionStorageService)
+    sessionService = TestBed.inject(SessionStorageService);
   });
 
   afterEach(()=>{
-    httpTestingController.verify()
+    httpTestingController.verify();
   })
 
   it('should be created', () => {
@@ -60,7 +63,7 @@ describe('AuthService', () => {
 
   it('should log user in through backend API', ()=>{
     authService.login(mockCredentials).subscribe((token: Token)=>{
-      expect(token).toEqual(mock.auth.token)
+      expect(token).toEqual(mock.auth.token);
     })
     const req = httpTestingController.expectOne('/api/defaults/token');
     expect(req.request.method).toEqual('POST');
@@ -69,7 +72,7 @@ describe('AuthService', () => {
 
   it('should store token in browser session', ()=>{{
     authService.login(mockCredentials).subscribe((__: Token)=>{
-      expect(authService.getUsername()).toBe(mock.auth.decoded_payload.name)
+      expect(authService.getUsername()).toBe(mock.auth.decoded_payload.name);
     })
     const req = httpTestingController.expectOne('/api/defaults/token');
     expect(req.request.method).toEqual('POST')
@@ -81,25 +84,38 @@ describe('AuthService', () => {
       expect(data).toBe(true);
     })
     const req = httpTestingController.expectOne('/api/defaults/register')
-    expect(req.request.method).toEqual('POST')
+    expect(req.request.method).toEqual('POST');
     req.flush(true);
   });
 
   it('should determine user privileges through session', ()=>{
-    mockSessionStorage.store('groups', 'developer')
+    mockSessionStorage.store('groups', 'developer');
     expect(authService.belongsToGroup('developer')).toBe(true);
     expect(authService.belongsToGroup('client')).toBe(false);
-    mockSessionStorage.store('groups', 'client')
+    mockSessionStorage.store('groups', 'client');
     expect(authService.belongsToGroup('developer')).toBe(false);
     expect(authService.belongsToGroup('client')).toBe(true);
   });
 
   it('should return route rendering based on user permissions', ()=>{
-    mockSessionStorage.store('groups', 'developer')
-    let testRoute: AppRoute = AppConfig.routes[6]
+    mockSessionStorage.store('groups', 'developer');
+    let testRoute: AppRoute = AppConfig.routes[6];
     expect(authService.displayRouteForUser(testRoute)).toBe(true);
-    mockSessionStorage.store('groups', 'client')
+    mockSessionStorage.store('groups', 'client');
     expect(authService.displayRouteForUser(testRoute)).toBe(false);
   });
+
+  it('should verify a user is still logged', ()=>{
+    mockSessionStorage.store('token', mock.auth.token.AuthenticationResult.IdToken);
+    authService.verify().subscribe((verified: boolean)=>{
+      expect(verified).toBe(true);
+    });
+    const req = httpTestingController.expectOne('/api/defaults/verify');
+    expect(req.request.method).toEqual('GET');
+    expect(req.request.headers.has('Authorization')).toBe(true);
+    console.log(req.request.headers.get('Authorization'));
+    expect(req.request.headers.get('Authorization')?.split(' ')[1]).toEqual(mock.auth.token.AuthenticationResult.IdToken);
+    req.flush(true);
+  })
 
 });
