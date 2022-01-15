@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">61.11% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/18</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>2/6</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">42.85% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>3/7</span>
+                <span class='fraction'>11/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>3/6</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">57.14% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>4/7</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/16</span>
+                <span class='fraction'>10/15</span>
             </div>
         
             
@@ -158,8 +158,7 @@
 <a name='L93'></a><a href='#L93'>93</a>
 <a name='L94'></a><a href='#L94'>94</a>
 <a name='L95'></a><a href='#L95'>95</a>
-<a name='L96'></a><a href='#L96'>96</a>
-<a name='L97'></a><a href='#L97'>97</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L96'></a><a href='#L96'>96</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -187,9 +186,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -199,11 +198,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -245,9 +244,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -293,13 +291,13 @@ export class NewsService {
    * @param news {@link News} to be posted
    * @returns observable containing {@link NewsPostResponse}
    */
-  public <span class="fstat-no" title="function not covered" >postNews(</span>news: News): Observable&lt;NewsPostResponse&gt;{
+  public postNews(news: News): Observable&lt;NewsPostResponse&gt;{
     // NOTE: posts must end in trailing slash
-<span class="cstat-no" title="statement not covered" >    if(environment.mock){</span>
+    <span class="missing-if-branch" title="if path not taken" >I</span>if(environment.mock){
 <span class="cstat-no" title="statement not covered" >      this.mock.addMockNews(news);</span>
 <span class="cstat-no" title="statement not covered" >      return of({ id: this.mock.getLatestMockNewsId(), message: 'News Story Saved'})</span>
     }
-    else <span class="cstat-no" title="statement not covered" >return this.http.post&lt;NewsPostResponse&gt;(`${this.host.getHost()}/news/`, news)</span>
+    else return this.http.post&lt;NewsPostResponse&gt;(`${this.host.getHost()}/news/`, news)
   }
   
   /**
@@ -341,8 +339,7 @@ export class NewsService {
    * @returns observable containing {@link NewsResponse}
    */
   public getAllNews(): Observable&lt;NewsResponse&gt;{
-    <span class="missing-if-branch" title="if path not taken" >I</span>if(environment.mock) {
-<span class="cstat-no" title="statement not covered" >      return of(this.mock.getMockNews())}</span>
+    <span class="missing-if-branch" title="if path not taken" >I</span>if(environment.mock) { <span class="cstat-no" title="statement not covered" >return of(this.mock.getMockNews())}</span>
     else return this.http.get&lt;NewsResponse&gt;(`${this.host.getHost()}/news`)
   }
 &nbsp;
@@ -358,7 +355,7 @@ export class NewsService {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener">istanbul</a>
-                at Sat Jan 15 2022 15:12:28 GMT-0500 (Eastern Standard Time)
+                at Sat Jan 15 2022 15:41:53 GMT-0500 (Eastern Standard Time)
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

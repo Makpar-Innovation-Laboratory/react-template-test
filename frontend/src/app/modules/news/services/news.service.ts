@@ -84,8 +84,7 @@ export class NewsService {
    * @returns observable containing {@link NewsResponse}
    */
   public getAllNews(): Observable<NewsResponse>{
-    if(environment.mock) {
-      return of(this.mock.getMockNews())}
+    if(environment.mock) { return of(this.mock.getMockNews())}
     else return this.http.get<NewsResponse>(`${this.host.getHost()}/news`)
   }
 

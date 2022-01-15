@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { MockService } from './mock.service';
 import { NULL_NEWS } from 'src/app/models/news'
-import { TEST_NEWS, TEST_ID, TEST_RESULT } from 'src/environments/environment.testing';
+import { TEST_NEWS, TEST_ID, TEST_RESULT } from 'src/environments/mock';
 
 describe('StateService', () => {
   let mockService: MockService;

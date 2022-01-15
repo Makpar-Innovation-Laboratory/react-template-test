@@ -48,3 +48,9 @@ export const NULL_NEWS : News = {
     comments: [],
     author: null
 }
+export const NULL_NEWS_RESPONSE={
+    results: [NULL_NEWS]
+}
+export const NULL_NEWS_POST_RESPONSE: NewsPostResponse = {
+    id: 0, message: 'made you look'
+}
