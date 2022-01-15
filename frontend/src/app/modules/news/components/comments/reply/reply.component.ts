@@ -90,7 +90,7 @@ export class ReplyComponent{
    * # Description
    * Submit {@link commentForm} if it has passed all of its validation checks. 
    */
-  public onSubmit() {
+  public onSubmit(): void {
     if(this.commentForm.valid){
       this.comments.postComment(this.formToComment()).subscribe((__: any)=>{
         this.commentForm.reset();

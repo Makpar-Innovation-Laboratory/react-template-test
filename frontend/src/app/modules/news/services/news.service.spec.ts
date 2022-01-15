@@ -58,5 +58,12 @@ describe('NewsService', () => {
     expect(req.request.method).toEqual('GET');
     req.flush(NULL_NEWS_RESPONSE)
   });
+
+  // it('should get news by id from the backend API', )
+
+  
+  // it('should update news by id from the backend API', )
+
+  // it('should delete news by id from the backend API', )
   
 });
