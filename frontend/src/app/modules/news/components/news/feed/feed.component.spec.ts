@@ -66,7 +66,8 @@ describe('FeedComponent', () => {
     httpTestingController.verify();
   })
 
-  it('should create', () => {
+  it('should make an API call on initialization', () => {
+    const req = httpTestingController.expectOne('/api/news');
     expect(component).toBeTruthy();
   });
 });
