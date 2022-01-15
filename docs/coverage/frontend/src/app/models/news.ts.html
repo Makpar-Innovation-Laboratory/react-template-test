@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/app/modules/core/components/projects/projects.component.ts</title>
+    <title>Code coverage report for src/app/models/news.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../../../../../prettify.css" />
-    <link rel="stylesheet" href="../../../../../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../../../../../favicon.png" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../../../../../sort-arrow-sprite.png);
+            background-image: url(../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../../../index.html">All files</a> / <a href="index.html">src/app/modules/core/components/projects</a> projects.component.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/app/models</a> news.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
@@ -112,12 +112,7 @@
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -131,11 +126,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -163,7 +153,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -171,61 +160,57 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnInit } from '@angular/core';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { SafeHtml } from "@angular/platform-browser";
 &nbsp;
-interface Project {
-  title: string;
-  description: string;
-  tags: string[];
-  date: string;
+export interface News{
+    news_id: number | null,
+    subject: string[] | null,
+    submitted: string | null,
+    title: string | null,
+    snippet: string | null,
+    content: SafeHtml | null,
+    comments: Comment[] | null,
+    author: string | null,
 }
 &nbsp;
-@Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
-})
-&nbsp;
-&nbsp;
-export class ProjectsComponent implements OnInit {
-&nbsp;
-  projects: Project[] = [
-    { 
-      title: 'Project 1', 
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 
-      tags: ['Tech 1', 'Tech 2', 'Tech 3', 'Tech 4'],
-      date: 'Jan 2022',
-    },
-    { 
-      title: 'Project 2', 
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 
-      tags: ['Tech 1', 'Tech 2', 'Tech 3'],
-      date: 'Nov 2021',
-    },
-    { 
-      title: 'Project 3', 
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 
-      tags: ['Tech 1', 'Tech 2'],
-      date: 'Sep 2021',
-    },
-    { 
-      title: 'Project 4', 
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 
-      tags: ['Tech 1', 'Tech 2'],
-      date: 'May 2021',
-    },
-  ]
-&nbsp;
-  calHeight: number = 100/this.projects.length;
-  yearHeight: string = 100/this.projects.length + '%';
-&nbsp;
-  constructor() { }
-&nbsp;
-  ngOnInit(): void {
-  }
-&nbsp;
+// NOTE: don't need is_author, since author is stored in comment and username is stored in session.
+//          do comparision between Comment.author and AuthService.getUsername() to determine if 
+//          comment belongs to user.
+export interface Comment{
+    author: string | null,
+    child_comments: Comment[] | null,
+    submitted: string | null,
+    comment_id: number | null,
+    parent_comment: number | null,
+    news_id: number | null,
+    content: string | null
 }
-&nbsp;</pre></td></tr></table></pre>
+&nbsp;
+export interface NewsPostResponse{
+    id: number,
+    message: string
+}
+&nbsp;
+export interface CommentPostResponse{
+    id: number,
+    message: string
+}
+&nbsp;
+export interface NewsResponse{
+    results: News[]
+}
+&nbsp;
+export const NULL_NEWS : News = {
+    news_id: null, 
+    submitted: null,
+    subject: null,
+    title: null,
+    snippet: null,
+    content: null,
+    comments: [],
+    author: null
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
@@ -234,14 +219,14 @@ export class ProjectsComponent implements OnInit {
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener">istanbul</a>
                 at Sat Jan 15 2022 15:05:51 GMT-0500 (Eastern Standard Time)
             </div>
-        <script src="../../../../../../prettify.js"></script>
+        <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../../../../../sorter.js"></script>
-        <script src="../../../../../../block-navigation.js"></script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
     </body>
 </html>
     

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
+                <span class="strong">54.54% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/10</span>
+                <span class='fraction'>6/11</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">14.28% </span>
+                <span class="strong">37.5% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/7</span>
+                <span class='fraction'>3/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">55.55% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/9</span>
+                <span class='fraction'>5/9</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -94,7 +94,9 @@
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -107,20 +109,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -143,15 +147,17 @@ export class StateService {
 &nbsp;
   constructor() { }
 &nbsp;
-  public <span class="fstat-no" title="function not covered" >getMockComments(</span>): Comment[] { <span class="cstat-no" title="statement not covered" >return this.mockComments; </span>}
+  public getMockComments(): Comment[] { return this.mockComments; }
 &nbsp;
   public <span class="fstat-no" title="function not covered" >setMockComments(</span>newComments: Comment[]): void { <span class="cstat-no" title="statement not covered" >this.mockComments = newComments; </span>}
 &nbsp;
   public <span class="fstat-no" title="function not covered" >getMockNews(</span>): NewsResponse { <span class="cstat-no" title="statement not covered" >return this.mockNews; </span>}
   
-  public <span class="fstat-no" title="function not covered" >getMockNewsByID(</span>id: number): NewsResponse{ <span class="cstat-no" title="statement not covered" >return { results: [this.mockNews.results[id-1]] }}</span>
+  public <span class="fstat-no" title="function not covered" >getMockNewsByID(</span>id: number): NewsResponse{ 
+<span class="cstat-no" title="statement not covered" >    return { results: this.mockNews.results.filter(<span class="fstat-no" title="function not covered" >news </span>=&gt; <span class="cstat-no" title="statement not covered" >news.news_id == id)</span> }</span>
+  }
 &nbsp;
-  public <span class="fstat-no" title="function not covered" >addMockNews(</span>news: News){ <span class="cstat-no" title="statement not covered" >this.mockNews.results.push(news); </span>}
+  public addMockNews(news: News){ this.mockNews.results.push(news); }
 &nbsp;
   public <span class="fstat-no" title="function not covered" >getLatestMockNewsId(</span>){ <span class="cstat-no" title="statement not covered" >return this.mockNews.results.length; </span>}
 &nbsp;
@@ -163,7 +169,7 @@ export class StateService {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener">istanbul</a>
-                at Sat Jan 15 2022 14:27:46 GMT-0500 (Eastern Standard Time)
+                at Sat Jan 15 2022 14:47:27 GMT-0500 (Eastern Standard Time)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

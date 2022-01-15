@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MaterialModule } from './modules/shared/material.module';
 import { HostService } from './services/host.service';
 import { of } from 'rxjs';
+import { AppConfig } from 'src/config';
 
 let store : any= {};
 const mockSessionStorage = {
@@ -78,8 +79,20 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Makpar Innovation Lab'`, () => {
+  it('should have as title "Makpar Innovation Lab"', () => {
     const app = fixture.componentInstance;
     expect(app.title).toEqual('Makpar Innovation Lab');
   });
+
+  it('should switch active tabs when user clicks on link', ()=>{
+    const app = fixture.componentInstance;
+    let firstRoute = AppConfig.routes[1];
+    let secondRoute = AppConfig.routes[0];
+    app.onSelect(firstRoute.route);
+    expect(app.activeRoute(firstRoute)).toBeTruthy()
+    expect(app.activeRoute(secondRoute)).toBeFalsy();
+    app.onSelect(secondRoute.route);
+    expect(app.activeRoute(firstRoute)).toBeFalsy();
+    expect(app.activeRoute(secondRoute)).toBeTruthy();
+  })
 });

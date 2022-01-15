@@ -81,7 +81,7 @@ describe('AuthService', () => {
 
   it('should register a user through backend API', ()=>{
     authService.register(mockUser).subscribe((data)=>{
-      expect(data).toBe(true);
+      expect(data).toBeTrue();
     })
     const req = httpTestingController.expectOne('/api/defaults/register')
     expect(req.request.method).toEqual('POST');
@@ -90,19 +90,19 @@ describe('AuthService', () => {
 
   it('should determine user privileges through session', ()=>{
     mockSessionStorage.store('groups', 'developer');
-    expect(authService.belongsToGroup('developer')).toBe(true);
-    expect(authService.belongsToGroup('client')).toBe(false);
+    expect(authService.belongsToGroup('developer')).toBeTrue()
+    expect(authService.belongsToGroup('client')).toBeFalse()
     mockSessionStorage.store('groups', 'client');
-    expect(authService.belongsToGroup('developer')).toBe(false);
-    expect(authService.belongsToGroup('client')).toBe(true);
+    expect(authService.belongsToGroup('developer')).toBeFalse();
+    expect(authService.belongsToGroup('client')).toBeTrue();
   });
 
   it('should return route rendering based on user permissions', ()=>{
     mockSessionStorage.store('groups', 'developer');
     let testRoute: AppRoute = AppConfig.routes[6];
-    expect(authService.displayRouteForUser(testRoute)).toBe(true);
+    expect(authService.displayRouteForUser(testRoute)).toBeTrue();
     mockSessionStorage.store('groups', 'client');
-    expect(authService.displayRouteForUser(testRoute)).toBe(false);
+    expect(authService.displayRouteForUser(testRoute)).toBeFalse();
   });
 
   it('should verify a user is still logged', ()=>{
@@ -112,7 +112,7 @@ describe('AuthService', () => {
     });
     const req = httpTestingController.expectOne('/api/defaults/verify');
     expect(req.request.method).toEqual('GET');
-    expect(req.request.headers.has('Authorization')).toBe(true);
+    expect(req.request.headers.has('Authorization')).toBeTrue();
     expect(req.request.headers.get('Authorization')?.split(' ')[1]).toEqual(mock.auth.token.AuthenticationResult.IdToken);
     req.flush(true);
   })
