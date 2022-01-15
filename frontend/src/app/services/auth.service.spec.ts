@@ -31,7 +31,7 @@ describe('AuthService', () => {
   let authService: AuthService;
   let sessionService: SessionStorageService;
 
-  beforeAll(waitForAsync(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ 
         HttpClientTestingModule,
@@ -45,7 +45,7 @@ describe('AuthService', () => {
     }).compileComponents();
   }));
 
-  beforeAll(() => {
+  beforeEach(() => {
     TestBed.inject(HTTP_INTERCEPTORS);
     httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
@@ -113,7 +113,6 @@ describe('AuthService', () => {
     const req = httpTestingController.expectOne('/api/defaults/verify');
     expect(req.request.method).toEqual('GET');
     expect(req.request.headers.has('Authorization')).toBe(true);
-    console.log(req.request.headers.get('Authorization'));
     expect(req.request.headers.get('Authorization')?.split(' ')[1]).toEqual(mock.auth.token.AuthenticationResult.IdToken);
     req.flush(true);
   })

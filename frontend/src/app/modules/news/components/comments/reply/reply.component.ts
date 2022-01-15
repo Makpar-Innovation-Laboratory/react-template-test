@@ -92,7 +92,6 @@ export class ReplyComponent{
    */
   public onSubmit() {
     if(this.commentForm.valid){
-      console.log(this.formToComment())
       this.comments.postComment(this.formToComment()).subscribe((__: any)=>{
         this.commentForm.reset();
         this.showEditor = false;

@@ -127,7 +127,7 @@ export class AuthService {
           this.storeToken(data);
         }),
         catchError((err: any)=> {
-          console.log(err)
+          console.log(err);
           this.loggedIn = false;
           return throwError('login error');
         })

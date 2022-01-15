@@ -28,7 +28,6 @@ export class StoryComponent implements OnInit {
   constructor(private news: NewsService,
               private activatedRoute: ActivatedRoute) {
     this.newsId = this.activatedRoute.snapshot.params.id;
-    console.log(this.newsId)
   }
 
   /**
@@ -37,7 +36,6 @@ export class StoryComponent implements OnInit {
   ngOnInit() {
     this.news.getNews(this.newsId).subscribe((data: NewsResponse)=>{
       this.newsPost = data.results[0]
-      console.log(this.newsPost)
     });
   }
 
