@@ -26,4 +26,9 @@ describe('StateService', () => {
     expect(mockService.getMockNewsByID(TEST_ID)).toEqual(TEST_RESULT);
     expect(mockService.getLatestMockNewsId()).toEqual(TEST_ID)
   })
+
+  it('should mock backend API comment functionality', ()=>{
+    // TODO: THIS!!!
+    expect(true).toBeTrue();
+  })
 });
