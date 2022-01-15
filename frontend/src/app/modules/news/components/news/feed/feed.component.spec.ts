@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { SessionStorageService } from 'ngx-webstorage';
 import { MaterialModule } from 'src/app/modules/shared/material.module';
 import { AuthService } from 'src/app/services/auth.service';
@@ -18,21 +19,18 @@ const mockSessionStorage = {
   store: (key: string, value: string) => { store[key] = `${value}`; },
   clear: (key: string) => { delete store[key]; },
 };
-const mockRouter = jasmine.createSpyObj('Router', ['navigateByUrl']);
-const mockHTTP = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
 
 describe('FeedComponent', () => {
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
   let authService: AuthService;
-  let hostService: HostService;
+  let newsService: NewsService;
+  let sessionService: SessionStorageService;
   let component: FeedComponent;
   let fixture: ComponentFixture<FeedComponent>;
 
-  beforeEach(()=>{
-    spyOn(SessionStorageService, 'retrieve' as never).and.callFake(mockSessionStorage.retrieve as never)
-    spyOn(SessionStorageService, 'store' as never).and.callFake(mockSessionStorage.store as never)
-    spyOn(SessionStorageService, 'clear' as never).and.callFake(mockSessionStorage.clear as never)
+  // Configure testing bed with component specific imports
+  beforeAll(waitForAsync(()=>{
     TestBed.configureTestingModule({
       declarations: [ FeedComponent ],
       imports: [ 
@@ -41,23 +39,24 @@ describe('FeedComponent', () => {
           { path: ':id', component: StoryComponent }
         ]), 
         HttpClientTestingModule, 
-        MaterialModule
+        MaterialModule,
+        NgxPaginationModule,
       ],
       providers:[
         AuthService, 
         NewsService, 
-        { provide: SessionStorageService, useValue: mockSessionStorage},
-        { provide: HttpClient, useValue: mockHTTP },
-        { proivde: Router, useValue: mockRouter },
+        { provide: SessionStorageService, useValue: mockSessionStorage },
       ]
     }).compileComponents()
-  });
+  }));
 
-  beforeEach(() => {
+  // Inject component dependencies into TestBed
+  beforeAll(() => {
     httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
     authService = TestBed.inject(AuthService);
-    hostService = TestBed.inject(HostService);
+    newsService = TestBed.inject(NewsService)
+    sessionService = TestBed.inject(SessionStorageService)
     fixture = TestBed.createComponent(FeedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -41,7 +41,7 @@ export class AppComponent{
     this.path = activatedRoute.snapshot.url.toString();
     router.events.subscribe((val) => {
       if(val instanceof NavigationEnd) { this.path = val.url; }
-  });
+    });
   }
 
   /**

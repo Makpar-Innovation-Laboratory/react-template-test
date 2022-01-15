@@ -59,8 +59,8 @@ export class EditorComponent {
       this.news.getNews(this.activatedRoute.snapshot.params.id).subscribe((blog: NewsResponse)=>{
         this.newsFormGroup.controls.title.setValue(blog.results[0].title);
         this.newsFormGroup.controls.subject.setValue(blog.results[0].subject);
-        this.newsFormGroup.controls.snippet.setValue(blog.results[0].snippet)
-        this.newsFormGroup.controls.content.setValue(blog.results[0].content)
+        this.newsFormGroup.controls.snippet.setValue(blog.results[0].snippet);
+        this.newsFormGroup.controls.content.setValue(blog.results[0].content);
       })
     }
   }

@@ -7,34 +7,37 @@ import { AppComponent } from './app.component';
 import { AuthService } from './services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { of } from 'rxjs';
 import { HomeComponent } from './components/home/home.component';
 import { MaterialModule } from './modules/shared/material.module';
 import { HostService } from './services/host.service';
+import { of } from 'rxjs';
 
 let store : any= {};
-const mockLocalStorage = {
+const mockSessionStorage = {
   retrieve: (key: string): string => { return key in store ? store[key] : null; },
   store: (key: string, value: string): void=> { store[key] = `${value}`; },
   clear: (key: string): void => { delete store[key]; },
 };
-const mockActivateRoute = {
-  snapshot: { url: { toString: () => { return '/'; } } }
-}
-const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
+const mockActivateRoute = { 
+  snapshot: { 
+    url: { 
+      toString: () => { 
+        return '/'; 
+      } 
+    },
+  } 
+};
 
 describe('AppComponent', () => {
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
   let authService: AuthService;
   let hostService: HostService;
+  let sessionService: SessionStorageService;
   let fixture: ComponentFixture<AppComponent>;
 
+  // Configure testing bed with component specific imports
   beforeEach(waitForAsync(()=>{
-    spyOn(SessionStorageService, 'retrieve' as never).and.callFake(mockLocalStorage.retrieve as never)
-    spyOn(SessionStorageService, 'store' as never).and.callFake(mockLocalStorage.store as never)
-    spyOn(SessionStorageService, 'clear' as never).and.callFake(mockLocalStorage.clear as never)
-
     TestBed.configureTestingModule({
       declarations: [ AppComponent ],
       imports: [
@@ -45,16 +48,20 @@ describe('AppComponent', () => {
       ],
       providers: [
         SessionStorageService, 
-        ActivatedRoute, 
         AuthService,
         HostService,
-        { provide: ActivatedRoute, useValue: of(mockActivateRoute) },
-        { provide: Router, useValue: routerSpy },
+        { provide: ActivatedRoute, useValue: mockActivateRoute },
+        { provide: SessionStorageService, useValue: mockSessionStorage },
+
       ]
     }).compileComponents()
   }));
 
+  // Inject component dependencies into TestBed
   beforeEach(()=>{
+    TestBed.inject(Router);
+    TestBed.inject(ActivatedRoute)
+    sessionService = TestBed.inject(SessionStorageService);
     httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
     authService = TestBed.inject(AuthService);
@@ -74,11 +81,5 @@ describe('AppComponent', () => {
   it(`should have as title 'Makpar Innovation Lab'`, () => {
     const app = fixture.componentInstance;
     expect(app.title).toEqual('Makpar Innovation Lab');
-  });
-
-  it('should render title', () => {
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('frontend app is running!');
   });
 });
