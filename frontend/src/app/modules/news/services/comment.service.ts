@@ -19,7 +19,6 @@ import { HostService } from '../../../services/host.service';
 export class CommentService {
 
   private mockComments : Comment[] = []
-  content!: object
   /**
 * # Description
    * Construct an instance of {@link CommentService}
@@ -41,7 +40,7 @@ export class CommentService {
       this.mockComments.push(comment);
       return of({ id: this.mockComments.length, message: 'News Story Saved'})
     }
-    else return this.http.post<CommentPostResponse>(`${this.host.getHost()}/news/post-comment`, this.content)
+    else return this.http.post<CommentPostResponse>(`${this.host.getHost()}/news/post-comment`, comment)
   }
 
   public flagComment(id: number, comment: Comment): Observable<CommentPostResponse>{

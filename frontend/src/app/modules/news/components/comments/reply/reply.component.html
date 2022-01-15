@@ -5,7 +5,7 @@
         <mat-form-field style="width: 100%" color="accent">
           <mat-label>Comment</mat-label>
           <textarea matInput id="comment-input" formControlName="content"
-                    placeholder="Follow the inscrutable extortations of your soul." mat-input></textarea>
+                    placeholder="Follow the inscrutable extortations of your soul."></textarea>
           <mat-error *ngIf="commentForm.controls.content.hasError('required')">What's a matter? Scared?</mat-error>
         </mat-form-field>
       </form>
