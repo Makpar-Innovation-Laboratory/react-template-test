@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -41,6 +42,7 @@ describe('FeedComponent', () => {
         HttpClientTestingModule, 
         MaterialModule,
         NgxPaginationModule,
+        FormsModule,
       ],
       providers:[
         AuthService, 

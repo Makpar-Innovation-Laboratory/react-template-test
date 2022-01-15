@@ -7,12 +7,13 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { mock } from 'src/environments/mock';
 import { HttpClient } from '@angular/common/http';
 import { Token } from '../models/token';
+import { AppRoute } from 'src/config';
 
-let store : any= {};
+let session : any= {};
 const mockSessionStorage = {
-  retrieve: (key: string): string => { return key in store ? store[key] : null; },
-  store: (key: string, value: string): void=> { store[key] = `${value}`; },
-  clear: (key: string): void => { delete store[key]; },
+  retrieve: (key: string): string => { return key in session ? session[key] : null; },
+  store: (key: string, value: string): void=> { session[key] = `${value}`; },
+  clear: (key: string): void => { delete session[key]; },
 };
 
 describe('AuthService', () => {
@@ -45,7 +46,7 @@ describe('AuthService', () => {
     expect(authService).toBeTruthy();
   });
 
-  it('should login', ()=>{
+  it('should log user in through API', ()=>{
     authService.login({ username: 'test', password: 'test'}).subscribe((token: Token)=>{
       expect(token).toEqual(mock.auth.token)
     })
@@ -53,5 +54,22 @@ describe('AuthService', () => {
     expect(req.request.method).toEqual('POST');
     req.flush(mock.auth.token);
     httpTestingController.verify();
+  })
+
+  it('should determine user privileges through session', ()=>{
+    mockSessionStorage.store('groups', 'developer')
+    expect(authService.belongsToGroup('developer')).toBe(true);
+    expect(authService.belongsToGroup('client')).toBe(false);
+    mockSessionStorage.store('groups', 'client')
+    expect(authService.belongsToGroup('developer')).toBe(false);
+    expect(authService.belongsToGroup('client')).toBe(true);
+  })
+
+  it('should return route rendering based on user permissions', ()=>{
+    mockSessionStorage.store('groups', 'developer')
+    let testRoute = { route: '/admin', title: 'ADMIN', tooltip: "Administrative Access to Site", dev: true }
+    expect(authService.displayRouteForUser(testRoute)).toBe(true);
+    mockSessionStorage.store('groups', 'client')
+    expect(authService.displayRouteForUser(testRoute)).toBe(false);
   })
 });

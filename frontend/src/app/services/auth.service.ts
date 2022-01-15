@@ -83,9 +83,7 @@ export class AuthService {
    * Get the username of the current user
    * @returns username in the session
    */
-  public getUsername(): string{
-    return this.session.retrieve('username')
-  }
+  public getUsername(): string{ return this.session.retrieve('username') }
 
   /**
    * # Description
@@ -105,10 +103,10 @@ export class AuthService {
    * @returns `true` is user is authorized, `false` otherwise
    */
   public displayRouteForUser(thisRoute: AppRoute): boolean{
+    console.log(`groups ${this.session.retrieve("groups")}`)
     let dev_routes : AppRoute[] = AppConfig.routes.filter(e=> e.dev)
-    // console.log(`dev routes ${dev_routes}`)
-    if(dev_routes.includes(thisRoute)) return this.belongsToGroup('developer')
-    else return true
+    if(dev_routes.includes(thisRoute)) { return this.belongsToGroup('developer') }
+    else { return true; } 
   }
 
   /**
