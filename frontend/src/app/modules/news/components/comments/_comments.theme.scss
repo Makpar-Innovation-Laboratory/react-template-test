@@ -7,6 +7,9 @@
     $accent-palette: map.get($color-config, 'accent');
     $warn-palette: map.get($color-config, 'warn');
 
+    #photo-placeholder{
+      background: map-get($primary-palette, default);
+    }
     .comment-card{
       background-color: map-get($primary-palette, 50) !important;
       color: map-get($primary-palette, '50-contrast') !important;

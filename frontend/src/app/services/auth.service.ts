@@ -59,7 +59,6 @@ export class AuthService {
    * @param token {@link Token} incoming token.
    */
   private storeToken(token: Token): void{
-    console.log(Object(jwt_decode(token.AuthenticationResult.IdToken))['cognito:username'])
     this.session.store('username', Object(jwt_decode(token.AuthenticationResult.IdToken))['cognito:username'])
     // this.session.store('groups', token.AuthenticationResult.Groups);
     this.session.store('groups', 'developer');
@@ -83,7 +82,9 @@ export class AuthService {
    * Get the username of the current user
    * @returns username in the session
    */
-  public getUsername(): string{ return this.session.retrieve('username') }
+  public getUsername(): string{
+     return this.session.retrieve('username') 
+  }
 
   /**
    * # Description
@@ -103,10 +104,9 @@ export class AuthService {
    * @returns `true` is user is authorized, `false` otherwise
    */
   public displayRouteForUser(thisRoute: AppRoute): boolean{
-    console.log(`groups ${this.session.retrieve("groups")}`)
     let dev_routes : AppRoute[] = AppConfig.routes.filter(e=> e.dev)
-    if(dev_routes.includes(thisRoute)) { return this.belongsToGroup('developer') }
-    else { return true; } 
+    if(dev_routes.includes(thisRoute)) return this.belongsToGroup('developer');
+    else return true; 
   }
 
   /**
@@ -121,15 +121,13 @@ export class AuthService {
       return of(mock.auth.token);
     }
     else{
-      console.log(`posting to ${this.host.getHost()}/defaults/token`)
       return this.http.post<Token>(`${this.host.getHost()}/defaults/token`, userlogin).pipe(
         tap((data: Token)=> { 
-          console.log('wut')
           this.loggedIn = true;
           this.storeToken(data);
         }),
-        catchError((__:any)=> {
-          console.log('error')
+        catchError((err: any)=> {
+          console.log(err)
           this.loggedIn = false;
           return throwError('login error');
         })

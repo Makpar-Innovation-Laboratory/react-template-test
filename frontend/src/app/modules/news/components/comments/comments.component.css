@@ -10,14 +10,16 @@
     flex-direction: column;
     align-items: flex-end;
 }
+#comment-container .header{
+    width: 100%; display: flex; 
+    align-items: center; justify-content: flex-start;
+}
 .mat-card {
     border-radius: 0.5rem;
 }
 #photo-placeholder {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.5rem; height: 2.5rem; 
     border-radius: 1.5rem;
-    background: #FFFFFF;
 }
 button {
     margin-top: 0.5rem !important;
