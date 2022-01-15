@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage lines-valid="333" lines-covered="198" line-rate="0.5945" branches-valid="114" branches-covered="41" branch-rate="0.35960000000000003" timestamp="1642277402449" complexity="0" version="0.1">
+<coverage lines-valid="333" lines-covered="198" line-rate="0.5945" branches-valid="114" branches-covered="41" branch-rate="0.35960000000000003" timestamp="1642277548596" complexity="0" version="0.1">
   <sources>
     <source>C:\Users\Moore\Desktop\repos\innolab\innolab-frontend\frontend</source>
   </sources>

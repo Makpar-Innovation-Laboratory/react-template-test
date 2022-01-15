@@ -115,6 +115,6 @@ describe('AuthService', () => {
     expect(req.request.headers.has('Authorization')).toBeTrue();
     expect(req.request.headers.get('Authorization')?.split(' ')[1]).toEqual(mock.auth.token.AuthenticationResult.IdToken);
     req.flush(true);
-  })
+  });
 
 });
