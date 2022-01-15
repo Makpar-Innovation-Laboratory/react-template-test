@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { environment } from 'src/environments/environment';
 
 import { HostService } from './host.service';
 
@@ -15,6 +16,6 @@ describe('HostService', () => {
   });
 
   it('#getHost should be mocked', () =>{
-    expect(service.getHost()).toEqual('testhost')
+    expect(service.getHost()).toEqual(environment.host)
   })
 });

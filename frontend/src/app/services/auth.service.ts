@@ -123,12 +123,15 @@ export class AuthService {
       return of(mock.auth.token);
     }
     else{
+      console.log(`posting to ${this.host.getHost()}/defaults/token`)
       return this.http.post<Token>(`${this.host.getHost()}/defaults/token`, userlogin).pipe(
         tap((data: Token)=> { 
+          console.log('wut')
           this.loggedIn = true;
           this.storeToken(data);
         }),
         catchError((__:any)=> {
+          console.log('error')
           this.loggedIn = false;
           return throwError('login error');
         })
@@ -145,14 +148,9 @@ export class AuthService {
   public register(user: User): Observable<boolean>{
     if(environment.mock) { return of(true); }
     else{
-
       return this.http.post<Object>(`${this.host.getHost()}/defaults/register`, user).pipe(
-        map((__:any) =>{
-          return true;
-        }),
-        catchError((__:any)=>{
-          return of(false);
-        })
+        map((__:any) =>{ return true; }),
+        catchError((__:any)=>{ return of(false); })
       )
     }
   }
