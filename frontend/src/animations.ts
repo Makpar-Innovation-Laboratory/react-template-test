@@ -65,7 +65,7 @@ export class Animations{
      * # Description
      * Get animation trigger for expanding an element to a given height over a specific time period.
      * @param toHeight height expressed in CSS units (e.g. %, px, em, etc.)
-     * @param animateLength animation length expressed in seconds (e.g. 0.5, 1, 2, etc.)
+     * @param animateLength animation length expressed in seconds (e.g. 0.5, 1, 2, etc.). Common constants are statically accessible through {@link AnimationPeriods}.
      * @returns animation expand trigger
      */
     public static getExpandTrigger(toHeight: string, animateLength: number = AnimationPeriods.short)
@@ -87,7 +87,7 @@ export class Animations{
      * # Description
      * Get animation trigger for scaling an element by a given factor over a specified time period
      * @param scaleFactor scale factor expressed as a ratio of initial height (e.g. 0.5, 1, 1.25, etc.)
-     * @param animateLength animation length expressed in seconds (e.g. 0.5, 1, 2, etc.)
+     * @param animateLength animation length expressed in seconds (e.g. 0.5, 1, 2, etc.). Common constants are statically accessible through {@link AnimationPeriods}.
      * @returns animation scale trigger
      */
     public static getScaleTrigger(scaleFactor: number, animateLength: number = AnimationPeriods.short)
@@ -103,9 +103,10 @@ export class Animations{
     }
 
     /**
-     * # Get animation trigger for highlighting an element by a given factor over a specified time period.
+     * # Description
+     * Get animation trigger for highlighting an element by a given factor over a specified time period.
      * @param scaleFactor highlight factor expressed as a ratio of initial height (e.g. 0.5, 1, 1.25, etc.)
-     * @param animateLength animation length expressed in seconds (e.g. 0.5, 1, 2, etc.)
+     * @param animateLength animation length expressed in seconds (e.g. 0.5, 1, 2, etc.).Common constants are statically accessible through {@link AnimationPeriods}.
      * @returns animation scale trigger
      */
      public static getHighlightTrigger(highlightFactor: number, animateLength: number = AnimationPeriods.short)
@@ -121,9 +122,10 @@ export class Animations{
      }
 
      /**
-      * 
-      * @param animateLength 
-      * @returns 
+      * # Description
+      * Get animation trigger for fading an element's opacity in and out over a specified time period.
+      * @param animateLength animation length expressed in seconds (e.g. 0.5, 1, 2, etc.). Common constants are statically accessible through {@link AnimationPeriods}.
+      * @returns animation fade trigger
       */
      public static getFadeTrigger(animateLength: number = AnimationPeriods.medium)
      : AnimationTriggerMetadata {
@@ -148,30 +150,42 @@ export class Animations{
         ])
      }
 
-     public static getSlideTrigger(animateLength: number = AnimationPeriods.medium)
-     : AnimationTriggerMetadata {
-         return trigger(AnimationTriggers.slide, [
-            transition(':enter',
-                animate(`${animateLength}s`, keyframes([
-                    style({ transform: 'translateX(-100%)', offset: 0}),
-                    style({ transform: 'translateX(-75%)', offset: 0.25}),
-                    style({ transform: 'translateX(-50%)', offset: 0.50}),
-                    style({ transform: 'translateX(-25%)', offset: 0.75}),
-                    style({ transform: 'translateX(0%)', offset: 1})
-                ]))
-            ),
-            transition(':leave', 
-                animate(`${animateLength}s`, keyframes([
-                    style({ transform: 'translateX(100%)', offset: 0}),
-                    style({ transform: 'translateX(75%)', offset: 0.25}),
-                    style({ transform: 'translateX(50%)', offset: 0.50}),
-                    style({ transform: 'translateX(25%)', offset: 0.75}),
-                    style({ transform: 'translateX(0%)', offset: 1}) 
-                ]))
-            )
-        ])
-     }
+     /**
+      * # Description
+      * Get animation trigger for sliding an element horizontally on and off screen over a specified time period. 
+      * @param animateLength animation length expressed in seconds (e.g. 0.5, 1, 2, etc.). Common constants are statically accessible through {@link AnimationPeriods}.
+      * @returns animation slide trigger
+      */
+    public static getSlideTrigger(animateLength: number = AnimationPeriods.medium)
+    : AnimationTriggerMetadata {
+        return trigger(AnimationTriggers.slide, [
+        transition(':enter',
+            animate(`${animateLength}s`, keyframes([
+                style({ transform: 'translateX(-100%)', offset: 0}),
+                style({ transform: 'translateX(-75%)', offset: 0.25}),
+                style({ transform: 'translateX(-50%)', offset: 0.50}),
+                style({ transform: 'translateX(-25%)', offset: 0.75}),
+                style({ transform: 'translateX(0%)', offset: 1})
+            ]))
+        ),
+        transition(':leave', 
+            animate(`${animateLength}s`, keyframes([
+                style({ transform: 'translateX(100%)', offset: 0}),
+                style({ transform: 'translateX(75%)', offset: 0.25}),
+                style({ transform: 'translateX(50%)', offset: 0.50}),
+                style({ transform: 'translateX(25%)', offset: 0.75}),
+                style({ transform: 'translateX(0%)', offset: 1}) 
+            ]))
+        )
+    ])
+    }
 
+    /**
+     * # Description
+     * Get animation trigger for floating an element vertically on and off screen over a specified time period. 
+     * @param animateLength animation length expressed in seconds (e.g. 0.5, 1, 2, etc.). Common constants are statically accessible through {@link AnimationPeriods}.
+     * @returns animation float trigger
+     */
     public static getFloatTrigger(animateLength: number = AnimationPeriods.medium)
     : AnimationTriggerMetadata {
         return trigger(AnimationTriggers.float, [
