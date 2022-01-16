@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { AnimationPeriods, Animations, FadeStates } from 'src/animations';
 import { AuthService } from 'src/app/services/auth.service';
 import { AppConfig, AppRoute, Section } from 'src/config';

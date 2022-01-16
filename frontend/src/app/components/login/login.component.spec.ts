@@ -54,7 +54,7 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should created', () => {
     expect(component).toBeTruthy();
   });
 });

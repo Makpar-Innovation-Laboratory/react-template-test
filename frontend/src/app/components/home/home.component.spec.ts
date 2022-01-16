@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SessionStorageService } from 'ngx-webstorage';
+import { AnimationPeriods, FadeStates } from 'src/animations';
 import { MaterialModule } from 'src/app/modules/shared/material.module';
 import { AuthService } from 'src/app/services/auth.service';
 import { HostService } from 'src/app/services/host.service';
+import { AppConfig } from 'src/config';
+import { mock } from 'src/environments/mock';
 
 import { HomeComponent } from './home.component';
 
@@ -42,16 +45,41 @@ describe('HomeComponent', () => {
   });
 
   beforeEach(() => {
+    TestBed.inject(SessionStorageService);
     httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
     authService = TestBed.inject(AuthService);
     hostService = TestBed.inject(HostService);
+  });
+
+  it('should be created', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should retrieve username upon instantiation', () => {
+    mockSessionStorage.store('username', mock.auth.decoded_payload.name)
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    expect(component.username).toEqual(mock.auth.decoded_payload.name)
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('should should switch sections and set selection', fakeAsync(()=>{
+    fixture = TestBed.createComponent(HomeComponent);
+    component = fixture.componentInstance;
+    component.onSelect(AppConfig.sections[1]);
+    tick(AnimationPeriods.short*1000 + 5);
+    expect(component.selected).toEqual(AppConfig.sections[1]);
+    expect(component.isSelected(AppConfig.sections[1])).toBeTrue();
+  }));
+
+  it('should fade in and out as sections are switched', fakeAsync(()=>{
+    fixture = TestBed.createComponent(HomeComponent);
+    component = fixture.componentInstance;
+    expect(component.sectionFadeState).toEqual(FadeStates.in);
+    component.onSelect(AppConfig.sections[2]);
+    expect(component.sectionFadeState).toEqual(FadeStates.out);
+    tick(AnimationPeriods.short*1000+5);
+    expect(component.sectionFadeState).toEqual(FadeStates.in);
+  }));
 });
