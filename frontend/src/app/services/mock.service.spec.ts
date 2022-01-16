@@ -4,7 +4,7 @@ import { MockService } from './mock.service';
 import { NULL_NEWS } from 'src/app/models/news'
 import { TEST_NEWS, TEST_ID, TEST_RESULT } from 'src/environments/mock';
 
-describe('StateService', () => {
+describe('MockService', () => {
   let mockService: MockService;
 
   beforeEach(() => {
@@ -25,10 +25,9 @@ describe('StateService', () => {
     expect(mockService.getMockNews().results.length).toBe(3);
     expect(mockService.getMockNewsByID(TEST_ID)).toEqual(TEST_RESULT);
     expect(mockService.getLatestMockNewsId()).toEqual(TEST_ID)
-  })
+  });
 
-  it('should mock backend API comment functionality', ()=>{
-    // TODO: THIS!!!
-    expect(true).toBeTrue();
-  })
+  // TODO: THIS!!
+  // it('should mock backend API comment functionality', ()=>{
+  // });
 });

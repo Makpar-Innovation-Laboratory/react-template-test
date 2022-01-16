@@ -8,6 +8,7 @@ import { SessionStorageService } from 'ngx-webstorage';
 import { MaterialModule } from 'src/app/modules/shared/material.module';
 import { AuthService } from 'src/app/services/auth.service';
 import { HostService } from 'src/app/services/host.service';
+import { mock } from 'src/environments/mock';
 
 import { LoginComponent } from './login.component';
 
@@ -84,4 +85,13 @@ describe('LoginComponent', () => {
     expect(component.loginFormGroup.invalid).toBeTrue();
     expect(component.loginFormGroup.controls.email.hasError('email')).toBeTrue();
   });
+
+  it('should pass credentials to AuthService', ()=>{
+    component.loginFormGroup.controls.email.setValue(mock.auth.decoded_payload.name);
+    component.loginFormGroup.controls.password.setValue('fakepassword');
+    component.login();
+    const req = httpTestingController.expectOne('/api/defaults/token');
+    expect(req.request.method).toEqual('POST')
+    req.flush(mock.auth.token);
+  })
 });
