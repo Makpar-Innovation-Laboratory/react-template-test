@@ -50,9 +50,14 @@ describe('HomeComponent', () => {
     httpTestingController = TestBed.inject(HttpTestingController);
     authService = TestBed.inject(AuthService);
     hostService = TestBed.inject(HostService);
+    // need to inject token into session before component is created in second test,
+    // so cannot create component in this block; need to do it on every test.
   });
 
   it('should be created', () => {
+    fixture = TestBed.createComponent(HomeComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 

@@ -17,10 +17,9 @@ import { HomeComponent } from './components/home/home.component';
 
 /**
  * # AppModule
- * 
  * ## Description
- *  
- *  Controls module imports and dependency injection for the Angular application. An {@link AuthInterceptor} is injected into the HTTP middleware so that all outgoing requests have a JWT Bearer token appended to their authorization header.
+ *  Controls module imports and dependency injection for the Angular application.
+ * @module AppModule
  */
 @NgModule({
   declarations: [

@@ -10,6 +10,7 @@ import { TeamComponent } from './components/team/team.component';
  * # CoreModule
  * ## Description
  * Module for the core Innovation Lab site components. Declares and exports {@link MissionComponent}, {@link ProjectsComponent}, {@link ProjectComponent} and {@link TeamComponent} for all other modules that need access to these components.
+ * @module CoreModule
  */
 @NgModule({
   declarations: [

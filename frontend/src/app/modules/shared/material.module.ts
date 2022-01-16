@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox'; 
 import { MatChipsModule } from '@angular/material/chips';
@@ -19,6 +18,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
  * # MaterialModule
  * ## Description
  * Module for import **Angular Material** components.
+ * @module MaterialModule
  */
 @NgModule({
   declarations: [],

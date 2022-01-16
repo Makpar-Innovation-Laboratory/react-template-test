@@ -47,7 +47,9 @@
     </mat-card-content>
     <mat-card-actions id="login-card-actions">
       <button mat-raised-button id="login-button" color="primary" (click)="login()" 
-              [disabled]="loginFormGroup.touched && loginFormGroup.invalid">
+              [disabled]="loginFormGroup.touched && loginFormGroup.invalid"
+              [@highlight]="loginBtnHighlightCntl.state" [@scale]="loginBtnScaleCntl.state"
+              (mouseenter)="animateLoginBtn()" (mouseleave)="primeLoginBtn()">
         Sign In
       </button>
       <button mat-stroked-button id="register-button" routerLink="/register">

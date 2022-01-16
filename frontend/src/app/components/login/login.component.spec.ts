@@ -21,6 +21,7 @@ describe('LoginComponent', () => {
 
   beforeEach(waitForAsync(()=>{
     TestBed.configureTestingModule({
+      declarations: [ LoginComponent ],
       imports: [  
         RouterTestingModule.withRoutes([{path: 'login', component: LoginComponent}]), 
         HttpClientTestingModule,
@@ -34,15 +35,8 @@ describe('LoginComponent', () => {
         SessionStorageService, 
         FormBuilder
       ]
-    })
+    }).compileComponents();
   }));
-  
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
-    })
-    .compileComponents();
-  });
 
   beforeEach(() => {
     httpClient = TestBed.inject(HttpClient);
@@ -54,7 +48,40 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should created', () => {
+  afterEach(()=>{
+    httpTestingController.verify();
+  })
+
+  it('should be created', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should require non-null value in username form field', ()=>{
+    component.loginFormGroup.controls.password.setValue('test');
+    component.loginFormGroup.markAsTouched();
+    expect(component.loginFormGroup.invalid).toBeTrue();
+    expect(component.loginFormGroup.controls.email.hasError('required')).toBeTrue();
+  });
+
+  it('should require non-null value in password form field', ()=>{
+    component.loginFormGroup.controls.email.setValue('test');
+    component.loginFormGroup.markAsTouched();
+    expect(component.loginFormGroup.invalid).toBeTrue();
+    expect(component.loginFormGroup.controls.password.hasError('required')).toBeTrue();
+  })
+
+  it('should require simultaneous non-null values in both form fields', ()=>{
+    component.loginFormGroup.markAsTouched();
+    expect(component.loginFormGroup.invalid);
+    expect(component.loginFormGroup.controls.email.hasError('required')).toBeTrue();
+    expect(component.loginFormGroup.controls.password.hasError('required')).toBeTrue();
+  });
+
+  it('should require valid emails', ()=>{
+    component.loginFormGroup.controls.password.setValue('test')
+    component.loginFormGroup.controls.email.setValue('invalidemail')
+    component.loginFormGroup.markAsTouched();
+    expect(component.loginFormGroup.invalid).toBeTrue();
+    expect(component.loginFormGroup.controls.email.hasError('email')).toBeTrue();
   });
 });

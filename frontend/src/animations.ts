@@ -228,6 +228,7 @@ export class AnimationControl{
      * Trigger {@link AnimationControl} by switching the appropriate {@link state} based on the {@link animationType}
      */
     public animate() { 
+        console.log('inside of animate')
         switch(this.animationType){
             case AnimationTriggers.expand:
                 this.state = ExpandStates.open;
@@ -236,6 +237,7 @@ export class AnimationControl{
                 this.state = HighlightStates.highlight;
                 break;
             case AnimationTriggers.scale:
+                console.log('animationg scale')
                 this.state = ScaleStates.scale;
                 break;
         }

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { NewsRoutingModule } from './news-routing.module';
 import { NewsComponent } from './components/news/news.component';
 import { FeedComponent } from './components/news/feed/feed.component';
@@ -16,6 +15,7 @@ import { NewsService } from './services/news.service';
  * # NewsModule
  * ## Description
  * Module for importing the components and services necessary for interacting with the Innovation Lab backend api. Declares and exports {@link FeedComponent}, {@link NewsComponent}, {@link StoryComponent}, {@link CommentsComponent}, {@link ReplyComponent} and {@link SanitizePipe} for lazy-loading. Imports `NgxPagination`.
+ * @module NewsModule
  */
 @NgModule({
   declarations: [
