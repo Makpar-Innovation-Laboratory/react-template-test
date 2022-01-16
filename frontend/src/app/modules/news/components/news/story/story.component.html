@@ -1,68 +1,45 @@
-<div class="story-container text-white">
-  <div class="story-header">
-    <button
-      mat-button
-      id="back-button"
-      matTooltip="Go back"
-      routerLink="/news/feed"
-      class="btn-primary-style"
-    >
-    Back
-      <!-- <mat-icon>arrow_back</mat-icon> -->
+<div id="story-container" class="text-white" [@slide]>
+  <div id="story-header">
+    <button mat-button id="back-button" class="btn-primary-style mat-elevation-z3" 
+            matTooltip="Go back" routerLink="/news/feed">
+      Back
     </button>
-    <div *ngIf="newsPost" class="story-info">
-      <div id="profile-pic" class="profile-pic">
+
+    <div id="story-info" *ngIf="newsPost">
+      <div id="profile-pic">
         <!-- User Profile Image -->
       </div>
-      <h6 class="mat-subheading-2" style="margin: 1rem 0 0 0">
-        {{ newsPost.author }}
-      </h6>
+      <h6 class="mat-subheading-2" style="margin: 1rem 0 0 0">{{ newsPost.author }}</h6>
       <h6 class="mat-subheading-2">{{ newsPost.submitted }}</h6>
     </div>
   </div>
 
-  <div
-    id="story-detail-container"
-    class="story-detail-container"
-    *ngIf="newsPost"
-  >
-  
-    <h4 class="mat-display-1" style="margin-right: 2rem">
-      {{ newsPost.title }}
-    </h4>
-    <div class="projects-header-border"></div>
+  <div id="story-detail-container" *ngIf="newsPost">
+    <h4 class="mat-display-1">{{ newsPost.title }}</h4>
+    <div id="news-header-border" class="header-border"></div>
+    
     <h6 class="mat-subheading-2">{{ newsPost.subject }}</h6>
-    <div class="content">
+    <div id="story-content">
       <div [innerHTML]="newsPost.content | sanitize: 'html'"></div>
     </div>
 
-    
     <div style="display: flex; align-items: center">
       <h5 class="mat-title">COMMENTS</h5>
-      <button mat-button class="comment-button" (click)="showCommentToggle()">
-        + Add a comment
+      <button mat-button id="comment-button" class="mat-elevation-z3" (click)="toggleComment()">
+        Add a comment
       </button>
     </div>
 
-    <div style="border-left: 2px dashed #ffffffc0; padding-left: 2rem; margin-top: 1rem; width: 90%; display: flex; flex-direction: column; align-items: flex-end;">
+    <div id="comments-container">
       <div style=" width: 100%;">
-        <app-reply
-          *ngIf="showComment"
-          class="mat-elevation-z4"
-          tooltip="Join the fray!"
-        ></app-reply>
+        <app-reply *ngIf="showComment" class="mat-elevation-z4" tooltip="Join the fray!">
+        </app-reply>
       </div>
       
       <div style="width: 100%; padding-left: 2rem;">
-        <app-comments
-        *ngIf="newsPost.comments"
-        [comments]="newsPost.comments"
-      ></app-comments>
+        <app-comments *ngIf="newsPost.comments" [comments]="newsPost.comments"></app-comments>
       </div>
     </div>
 
-    <!-- <h5>COMMENTS</h5>
-    <app-reply class="mat-elevation-z4" tooltip="Join the fray!" [reply_bool]="false"></app-reply>
-    <app-comments *ngIf="newsPost.comments" [comments]="newsPost.comments" ></app-comments> -->
   </div>
 </div>

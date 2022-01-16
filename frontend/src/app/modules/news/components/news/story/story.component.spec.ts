@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { HttpTestingController } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs';
+import { MaterialModule } from 'src/app/modules/shared/material.module';
 import { NewsService } from '../../../services/news.service';
 
 import { StoryComponent } from './story.component';
@@ -14,28 +14,26 @@ describe('StoryComponent', () => {
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
 
-  beforeAll(async ()=>{
-    const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
-    const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
+  beforeAll(waitForAsync(()=>{
     const mockActivateRoute = {
-      snapshot: { url: { toString: () => { return '/'; } } }
+      snapshot: { 
+        url: { toString: () => { return 'news/1'; } },
+        params: { id: 1 }
+      }
     }
-    await TestBed.configureTestingModule({
-      imports: [ RouterTestingModule ],
+    TestBed.configureTestingModule({
+      declarations: [ StoryComponent ],
+      imports: [ 
+        RouterTestingModule.withRoutes([{path: 'news/:id', component: StoryComponent} ]),
+        HttpClientTestingModule,
+        MaterialModule 
+      ],
       providers:[
         NewsService,
-        { provide: Router, useValue: routerSpy },
-        { provide: ActivatedRoute, useValue: of(mockActivateRoute) }
+        { provide: ActivatedRoute, useValue: mockActivateRoute }
       ]
-    })
-  });
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ StoryComponent ]
-    })
-    .compileComponents();
-  });
+    }).compileComponents()
+  }));
 
   beforeEach(() => {
     httpClient = TestBed.inject(HttpClient);

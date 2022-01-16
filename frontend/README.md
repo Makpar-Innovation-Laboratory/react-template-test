@@ -154,10 +154,33 @@ The **AdminComponent** uses the *@kolkov/angular-editor* for editing HTML conten
 Docstrings appends to the classes and methods will get auto-generated into HTML using [Typedoc](https://typedoc.org/). From the */frontend/* directory, 
 
 ```shell
+npm run docs
+```
+
+This will call the script in the *package.json* for **test**, which in turn calls,
+
+```shell
 npx typedoc
 ```
 
-See [comment documentation](https://typedoc.org/guides/doccomments/) for a reference on documenting new **Typescript** code.
+See [doc comment documentation](https://typedoc.org/guides/doccomments/) for a reference on documenting new **Typescript** code.
+
+## Unit Tests
+
+Coverage reports can be generated from the unit tests by running the following command,
+
+```shell
+npm run test
+```
+
+This command from the *package.json* will in turn invoke,
+
+```shell
+ng test --code-coverage --configuration testing
+```
+
+The *testing* configuration provides a mock backend to simulate the API from within the testing harness.
+
 
 ## Dependencies
 

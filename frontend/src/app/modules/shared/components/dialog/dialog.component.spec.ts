@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { DialogComponent } from './dialog.component';
+import { DialogComponent, DialogTypes } from './dialog.component';
 
 describe('DialogComponent', () => {
   let component: DialogComponent;
@@ -12,6 +12,7 @@ describe('DialogComponent', () => {
       imports: [ MatDialogModule ],
       providers: [
         { provide: MatDialogRef, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: {data:{ message: 'test', type: DialogTypes.YesOrNo, route: null } } }
       ]
     })
   });

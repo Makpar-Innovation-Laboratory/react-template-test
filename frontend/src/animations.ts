@@ -1,4 +1,4 @@
-import { animate, AnimationTriggerMetadata, state, style, transition, trigger } from "@angular/animations";
+import { animate, AnimationTriggerMetadata, keyframes, state, style, transition, trigger } from "@angular/animations";
 
 /**
  * Enumeration of {@link Animations} expand animation states.
@@ -20,7 +20,8 @@ export enum FadeStates { in="in", out="out" }
  * Enumeration of triggers for {@link Animations}.
  */
 export enum AnimationTriggers{
-    expand="expand", scale="scale", highlight="highlight", fade="fade"
+    expand="expand", scale="scale", highlight="highlight", 
+    fade="fade", slide="slide", float="float"
 }
 /**
  * Enumeration of animation lengths for {@link Animations}
@@ -146,6 +147,54 @@ export class Animations{
             ])
         ])
      }
+
+     public static getSlideTrigger(animateLength: number = AnimationPeriods.medium)
+     : AnimationTriggerMetadata {
+         return trigger(AnimationTriggers.slide, [
+            transition(':enter',
+                animate(`${animateLength}s`, keyframes([
+                    style({ transform: 'translateX(-100%)', offset: 0}),
+                    style({ transform: 'translateX(-75%)', offset: 0.25}),
+                    style({ transform: 'translateX(-50%)', offset: 0.50}),
+                    style({ transform: 'translateX(-25%)', offset: 0.75}),
+                    style({ transform: 'translateX(0%)', offset: 1})
+                ]))
+            ),
+            transition(':leave', 
+                animate(`${animateLength}s`, keyframes([
+                    style({ transform: 'translateX(100%)', offset: 0}),
+                    style({ transform: 'translateX(75%)', offset: 0.25}),
+                    style({ transform: 'translateX(50%)', offset: 0.50}),
+                    style({ transform: 'translateX(25%)', offset: 0.75}),
+                    style({ transform: 'translateX(0%)', offset: 1}) 
+                ]))
+            )
+        ])
+     }
+
+    public static getFloatTrigger(animateLength: number = AnimationPeriods.medium)
+    : AnimationTriggerMetadata {
+        return trigger(AnimationTriggers.float, [
+        transition(':leave',
+            animate(`${animateLength}s`, keyframes([
+                style({ transform: 'translateY(-100%)', offset: 0}),
+                style({ transform: 'translateY(-75%)', offset: 0.25}),
+                style({ transform: 'translateY(-50%)', offset: 0.50}),
+                style({ transform: 'translateY(-25%)', offset: 0.75}),
+                style({ transform: 'translateY(0%)', offset: 1})
+            ]))
+        ),
+        transition(':enter', 
+            animate(`${animateLength}s`, keyframes([
+                style({ transform: 'translateY(100%)', offset: 0}),
+                style({ transform: 'translateY(75%)', offset: 0.25}),
+                style({ transform: 'translateY(50%)', offset: 0.50}),
+                style({ transform: 'translateY(25%)', offset: 0.75}),
+                style({ transform: 'translateY(0%)', offset: 1}) 
+            ]))
+        )
+    ])
+    }
 }
 
 /**

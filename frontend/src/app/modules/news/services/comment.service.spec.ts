@@ -1,28 +1,36 @@
 import { HttpClient } from '@angular/common/http';
-import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { HostService } from 'src/app/services/host.service';
 
 import { CommentService } from './comment.service';
 
 describe('CommentService', () => {
-  let service: CommentService;
+  let commentService: CommentService;
+  let httpClient: HttpClient;
+  let httpTestingController: HttpTestingController;
 
-  beforeAll(()=>{
-    const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
+  beforeEach(waitForAsync(()=>{
     TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule ],
       providers:[
-        HostService,
-        { provide: HttpClient, useValue: httpClientSpy },
+        HostService
       ]
     })
-  });
+  }));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CommentService);
+    commentService = TestBed.inject(CommentService);
+    httpClient = TestBed.inject(HttpClient);
+    httpTestingController = TestBed.inject(HttpTestingController);
   });
 
+  afterEach(()=>{
+    httpTestingController.verify();
+  })
+  
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(commentService).toBeTruthy();
   });
 });

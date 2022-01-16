@@ -1,20 +1,24 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
+import { environment } from 'src/environments/environment';
 
 import { HostService } from './host.service';
 
 describe('HostService', () => {
   let service: HostService;
 
-  beforeEach(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(HostService);
-  });
+  }));
 
+  beforeEach(()=>{
+    service = TestBed.inject(HostService);
+  })
+  
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('#getHost should be mocked', () =>{
-    expect(service.getHost()).toEqual('testhost')
+  it('should pull host from environment file', () =>{
+    expect(service.getHost()).toEqual(environment.host)
   })
 });

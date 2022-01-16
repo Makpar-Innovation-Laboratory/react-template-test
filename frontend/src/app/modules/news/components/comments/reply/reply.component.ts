@@ -66,7 +66,7 @@ export class ReplyComponent{
   public processClick(): void{
     if(this.showEditor){ 
       this.onSubmit();
-      location.reload();
+      // location.reload();
     }
     else{ this.toggleEditor(); }
   }
@@ -89,9 +89,8 @@ export class ReplyComponent{
    * # Description
    * Submit {@link commentForm} if it has passed all of its validation checks. 
    */
-  public onSubmit() {
+  public onSubmit(): void {
     if(this.commentForm.valid){
-      console.log(this.formToComment())
       this.comments.postComment(this.formToComment()).subscribe((__: any)=>{
         this.commentForm.reset();
         this.showEditor = false;

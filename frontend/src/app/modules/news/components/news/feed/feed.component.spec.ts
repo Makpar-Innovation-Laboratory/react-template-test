@@ -1,54 +1,75 @@
 import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { SessionStorageService } from 'ngx-webstorage';
+import { MaterialModule } from 'src/app/modules/shared/material.module';
 import { AuthService } from 'src/app/services/auth.service';
+import { HostService } from 'src/app/services/host.service';
 import { NewsService } from '../../../services/news.service';
+import { StoryComponent } from '../story/story.component';
 
 import { FeedComponent } from './feed.component';
 
+let store : any= {};
+const mockSessionStorage = {
+  retrieve: (key: string): string => { return key in store ? store[key] : null; },
+  store: (key: string, value: string) => { store[key] = `${value}`; },
+  clear: (key: string) => { delete store[key]; },
+};
+
 describe('FeedComponent', () => {
+  let httpClient: HttpClient;
+  let httpTestingController: HttpTestingController;
+  let authService: AuthService;
+  let newsService: NewsService;
+  let sessionService: SessionStorageService;
   let component: FeedComponent;
   let fixture: ComponentFixture<FeedComponent>;
 
-  beforeAll(()=>{
-    let store : any= {};
-    const mockLocalStorage = {
-      retrieve: (key: string): string => { return key in store ? store[key] : null; },
-      store: (key: string, value: string) => { store[key] = `${value}`; },
-      clear: (key: string) => { delete store[key]; },
-    };
-    const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
-    const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
-    spyOn(SessionStorageService, 'retrieve' as never).and.callFake(mockLocalStorage.retrieve as never)
-    spyOn(SessionStorageService, 'store' as never).and.callFake(mockLocalStorage.store as never)
-    spyOn(SessionStorageService, 'clear' as never).and.callFake(mockLocalStorage.clear as never)
+  // Configure testing bed with component specific imports
+  beforeAll(waitForAsync(()=>{
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, HttpClientTestingModule ],
+      declarations: [ FeedComponent ],
+      imports: [ 
+        RouterTestingModule.withRoutes([
+          { path: 'feed', component: FeedComponent }, 
+          { path: ':id', component: StoryComponent }
+        ]), 
+        HttpClientTestingModule, 
+        MaterialModule,
+        NgxPaginationModule,
+        FormsModule,
+      ],
       providers:[
-        AuthService, NewsService, SessionStorageService,
-        { provide: HttpClient, useValue: httpClientSpy },
-        { proivde: Router, useValue: routerSpy },
+        AuthService, 
+        NewsService, 
+        { provide: SessionStorageService, useValue: mockSessionStorage },
       ]
-    })
-  });
-  
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ FeedComponent ]
-    })
-    .compileComponents();
-  });
+    }).compileComponents()
+  }));
 
-  beforeEach(() => {
+  // Inject component dependencies into TestBed
+  beforeAll(() => {
+    httpClient = TestBed.inject(HttpClient);
+    httpTestingController = TestBed.inject(HttpTestingController);
+    authService = TestBed.inject(AuthService);
+    newsService = TestBed.inject(NewsService)
+    sessionService = TestBed.inject(SessionStorageService)
     fixture = TestBed.createComponent(FeedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  afterEach(()=>{
+    httpTestingController.verify();
+  })
+
+  it('should make an API call on initialization', () => {
+    const req = httpTestingController.expectOne('/api/news');
     expect(component).toBeTruthy();
   });
 });

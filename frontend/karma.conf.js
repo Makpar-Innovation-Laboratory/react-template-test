@@ -4,6 +4,13 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
+    browsers: ['Chrome', 'ChromeHeadless', 'ChromeHeadlessCI'],
+    customLaunchers: {
+      ChromeHeadlessCI: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
@@ -25,11 +32,11 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/frontend'),
+      dir: require('path').join(__dirname, '../docs/coverage/frontend'),
       subdir: '.',
       reporters: [
-        { type: 'html' },
-        { type: 'text-summary' }
+        { type: 'cobertura' },
+        { type: 'html' }
       ]
     },
     reporters: ['progress', 'kjhtml'],

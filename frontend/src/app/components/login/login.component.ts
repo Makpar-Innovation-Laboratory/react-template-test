@@ -21,7 +21,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css'],
   animations: [
     Animations.getScaleTrigger(1.25),
-    Animations.getHighlightTrigger(1.5)
+    Animations.getHighlightTrigger(1.5),
+    Animations.getFloatTrigger(0.5)
   ]
 })
 export class LoginComponent {

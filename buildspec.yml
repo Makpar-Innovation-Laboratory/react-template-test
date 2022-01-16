@@ -30,6 +30,13 @@ phases:
       - |
         aws ecr get-login-password --region $AWS_DEFAULT_REGION |\
           docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      # pull base images
+      - | 
+        bash -c '
+          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/innolab-node:${BRANCH^}
+          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/innolab-nginx:${BRANCH^}    
+          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/innolab-owasp:${BRANCH^}    
+        '
       # install Testing and Documentation Dependencies
       - |
         pip install behave==1.2.6 \
@@ -48,6 +55,14 @@ phases:
     commands:
       # TODO: unit tests!
 
+      - |
+        cd frontend
+        npm run test-headless
+        aws s3 cp ./coverage/frontend/. \
+                s3://${APPLICATION}-coverage/test-coverage/frontend/ \
+                --recursive
+        cd ..
+        
       # lint source code
       # - |
       #   npx eslint --quiet \
@@ -83,7 +98,7 @@ phases:
   
   post_build:
     commands:
-      # BDD Tests 
+      # Start Up Cluster
       - |
         bash -c '
           docker run --publish 8000:8000 \
@@ -105,6 +120,11 @@ phases:
                     --detach \
                     $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
           wait-for-it localhost:8080
+        '
+
+      # BDD Tests 
+      - |
+        bash -c '
           git clone codecommit://${APPLICATION}-test-harness
           cd ${APPLICATION}-test-harness/python
           export FRONTEND_HOST_URL="http://localhost:8080"
@@ -147,11 +167,13 @@ phases:
             --distribution-id $COVERAGE_DISTRIBUTION_ID \
             --paths "/*"
 
-      # Push image to ECR 
+      # Kill Cluster
+      - |
+        docker container stop innolab_backend && docker container rm innolab_backend
+        docker container stop innolab_frontend && docker container rm innolab_frontend
+
+      # Push image to ECR -> Signal deploy pipeline to take over
       - |
         bash -c '
           docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
         '
-cache:
-  path:
-    - frontend/node_modules

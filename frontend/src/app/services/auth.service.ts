@@ -59,7 +59,6 @@ export class AuthService {
    * @param token {@link Token} incoming token.
    */
   private storeToken(token: Token): void{
-    console.log(Object(jwt_decode(token.AuthenticationResult.IdToken))['cognito:username'])
     this.session.store('username', Object(jwt_decode(token.AuthenticationResult.IdToken))['cognito:username'])
     // this.session.store('groups', token.AuthenticationResult.Groups);
     this.session.store('groups', 'developer');
@@ -84,7 +83,7 @@ export class AuthService {
    * @returns username in the session
    */
   public getUsername(): string{
-    return this.session.retrieve('username')
+     return this.session.retrieve('username') 
   }
 
   /**
@@ -106,9 +105,8 @@ export class AuthService {
    */
   public displayRouteForUser(thisRoute: AppRoute): boolean{
     let dev_routes : AppRoute[] = AppConfig.routes.filter(e=> e.dev)
-    // console.log(`dev routes ${dev_routes}`)
-    if(dev_routes.includes(thisRoute)) return this.belongsToGroup('developer')
-    else return true
+    if(dev_routes.includes(thisRoute)) return this.belongsToGroup('developer');
+    else return true; 
   }
 
   /**
@@ -128,7 +126,8 @@ export class AuthService {
           this.loggedIn = true;
           this.storeToken(data);
         }),
-        catchError((__:any)=> {
+        catchError((err: any)=> {
+          console.log(err);
           this.loggedIn = false;
           return throwError('login error');
         })
@@ -145,14 +144,9 @@ export class AuthService {
   public register(user: User): Observable<boolean>{
     if(environment.mock) { return of(true); }
     else{
-
       return this.http.post<Object>(`${this.host.getHost()}/defaults/register`, user).pipe(
-        map((__:any) =>{
-          return true;
-        }),
-        catchError((__:any)=>{
-          return of(false);
-        })
+        map((__:any) =>{ return true; }),
+        catchError((__:any)=>{ return of(false); })
       )
     }
   }

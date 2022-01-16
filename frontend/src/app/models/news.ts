@@ -39,12 +39,14 @@ export interface NewsResponse{
 }
 
 export const NULL_NEWS : News = {
-    news_id: null, 
-    submitted: null,
-    subject: null,
-    title: null,
-    snippet: null,
-    content: null,
-    comments: [],
-    author: null
+    news_id: null, submitted: null,
+    subject: null, title: null,
+    snippet: null, content: null,
+    comments: [], author: null
+}
+export const NULL_NEWS_RESPONSE={
+    results: [NULL_NEWS]
+}
+export const NULL_NEWS_POST_RESPONSE: NewsPostResponse = {
+    id: 0, message: 'made you look'
 }

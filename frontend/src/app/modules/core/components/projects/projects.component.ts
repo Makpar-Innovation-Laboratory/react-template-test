@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AnimationPeriods, Animations } from 'src/animations';
 
 interface Project {
   title: string;
@@ -10,7 +11,10 @@ interface Project {
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  styleUrls: ['./projects.component.css'],
+  animations: [
+    Animations.getSlideTrigger(AnimationPeriods.short)
+  ]
 })
 
 

@@ -1,37 +1,53 @@
 import { OverlayModule } from '@angular/cdk/overlay';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NewsService } from 'src/app/modules/news/services/news.service';
+import { MaterialModule } from 'src/app/modules/shared/material.module';
 
 import { EditorComponent } from './editor.component';
+
+const mockActivatedRoute = {
+  snapshot: { 
+    url: [{ 
+      path:{
+        toString: () => { 
+          return '/admin/add'; 
+        }
+      } 
+    }]
+  }
+}
 
 describe('EditorComponent', () => {
   let component: EditorComponent;
   let fixture: ComponentFixture<EditorComponent>;
 
   beforeAll(()=>{
-    const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
-    const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, OverlayModule, MatDialogModule],
+      declarations: [ EditorComponent ], 
+      imports: [ 
+        RouterTestingModule, 
+        HttpClientTestingModule,
+        OverlayModule, 
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AngularEditorModule,
+        NoopAnimationsModule
+      ],
       providers:[
-        NewsService, FormBuilder, DomSanitizer,
-        { provide: HttpClient, useValue: httpClientSpy },
-        { proivde: Router, useValue: routerSpy },
-        { provide: ActivatedRoute, useValue: '/admin/add' },
+        NewsService, 
+        FormBuilder, 
+        DomSanitizer,
+        { provide: ActivatedRoute, useValue: mockActivatedRoute },
       ]
-    })
-  });
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ EditorComponent ]
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
