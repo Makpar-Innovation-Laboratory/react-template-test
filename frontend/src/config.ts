@@ -14,7 +14,13 @@ export interface Section{ key: string, title: string, description: string }
  /**
   * Interface defining metadata associated with icons, for registering icon files with `MatIconRegistry`.
   */
- export interface IconRegistry { icon: string, location: string }
+ export interface IconRegistry { 
+     /**
+      * {@link }
+      */
+     icon: string, 
+     location: string 
+}
 /**
  * Interface defining configuration attributes for components within the application.
  */
@@ -33,16 +39,32 @@ export interface Config{
 
 /**
  * Instance of the interface {@link Config}. This export is imported into components across the application to configure static values through one central configuration file. 
+ * 
+ * @prop {@link dialogWidth}: Width assigned to all instances of `MatDialog`.
+ * @prop {@link dialogHeight}: Height assigned to all instances of `MatDialog`.
+ * @prop {@link registerMsg}: `MatDialog` message shown in {@link RegisterComponent} when user successfully registers for a new account.
+ * @prop {@link editMsg}: `MatDialog` message shown in {@link EditorComponent} when {@link EditorComponent.mode} is set to {@link EditorModes.edit}
+ * @prop {@link editAlert}: `MatSnackBar` message shown in {@link EditorComponent} when {@link EditorComponent.mode} is set to {@link EditorModes.edit}
+ * @prop {@link createMsg}: `MatDialog` message shown in {@link EditorComponent} when {@link EditorComponent.mode} is set to {@link EditorModes.new}.
+ * @prop {@link createAlert}: `MatSnackBar` message shown in {@link EditorComponent} when {@link EditorComponent.mode} is set to {@link EditorModes.new}.
+ * @prop {@link defaultMsg}: Default `MatDialog` message shown in {@link EditorComponent} when {@link EditorComponent.mode} is not set. (Should be impossible, but in case some edge case breaks the dialog).
+ * @prop {@link signOutMsg}: `MatDialog` message shown in {@link AppComponent} when user signs out.
+ * @prop {@link commentAlert}: `MatSnackBar` message shown in {@link ReplyComponent} when user successfully submits a new comment.
+ * @prop {@link registry}: {@link IconRegistry} for enumerating the icons contained in the *src/assets/* directory. 
+ * @prop {@link routes}: {@link AppRoute} array containing metadata about routes, used for dynamically rendering routes in HTML templates.
+ * @prop {@link sections}: {@link Section} array containing metadata about {@link HomeComponent} sections, used for dynamically rendering each child section in the HTML template.
  */
 export const AppConfig: Config = {
-    dialogWidth: '50%', dialogHeight: '25%',
+    dialogWidth: '50%', 
+    dialogHeight: '25%',
     registerMsg: "Verify your email and then return to the login page",
-    editMsg: "Edit post?", editAlert: "News post updated!",
-    createMsg: "Submit new post?", createAlert: "News post created!",
+    editMsg: "Edit post?", 
+    editAlert: "News post updated!",
+    createMsg: "Submit new post?", 
+    createAlert: "News post created!",
     defaultMsg: "Something seems to have gone wrong...",
     signOutMsg: 'Are you sure you want to sign out?',
     commentAlert: 'Comment submitted!',
-    // Paths are relative to the /app/ directory since they are imported in the AppComponent constructor
     registry:[
         { icon: 'bitcoin', location: '../assets/icons/logo-bitcoin.svg' },
         { icon: 'discord', location: '../assets/icons/logo-discord.svg' },
