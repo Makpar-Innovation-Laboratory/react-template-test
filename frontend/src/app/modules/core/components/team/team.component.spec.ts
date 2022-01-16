@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'src/app/modules/shared/material.module';
 
 import { TeamComponent } from './team.component';
@@ -10,7 +11,10 @@ describe('TeamComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ TeamComponent ],
-      imports: [ MaterialModule ]
+      imports: [ 
+        MaterialModule,
+        NoopAnimationsModule,
+      ]
     })
     .compileComponents();
   });

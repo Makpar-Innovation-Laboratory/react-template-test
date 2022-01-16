@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from 'src/app/modules/shared/material.module';
@@ -26,7 +27,8 @@ describe('StoryComponent', () => {
       imports: [ 
         RouterTestingModule.withRoutes([{path: 'news/:id', component: StoryComponent} ]),
         HttpClientTestingModule,
-        MaterialModule 
+        MaterialModule,
+        NoopAnimationsModule
       ],
       providers:[
         NewsService,

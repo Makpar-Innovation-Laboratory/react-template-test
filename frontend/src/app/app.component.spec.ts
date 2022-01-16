@@ -12,6 +12,7 @@ import { MaterialModule } from './modules/shared/material.module';
 import { HostService } from './services/host.service';
 import { of } from 'rxjs';
 import { AppConfig } from 'src/config';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 let store : any= {};
 const mockSessionStorage = {
@@ -46,6 +47,7 @@ describe('AppComponent', () => {
         HttpClientTestingModule,
         OverlayModule, 
         MaterialModule, 
+        NoopAnimationsModule,
       ],
       providers: [
         SessionStorageService, 
@@ -94,5 +96,14 @@ describe('AppComponent', () => {
     app.onSelect(secondRoute.route);
     expect(app.activeRoute(firstRoute)).toBeFalsy();
     expect(app.activeRoute(secondRoute)).toBeTruthy();
-  })
+  });
+
+  it('should confirm signout with MatDialog', ()=>{
+    const app = fixture.componentInstance;
+    app.confirmLogout();
+    fixture.detectChanges();
+    const dialogContent = document.getElementById('dialog-content') as HTMLElement;
+    expect(dialogContent.innerText).toEqual(AppConfig.signOutMsg);
+  });
+
 });

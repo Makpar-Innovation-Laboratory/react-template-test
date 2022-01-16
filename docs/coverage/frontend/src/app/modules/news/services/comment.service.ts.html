@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.66% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/12</span>
+                <span class='fraction'>5/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>1/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">36.36% </span>
+                <span class="strong">44.44% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/11</span>
+                <span class='fraction'>4/9</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -113,18 +113,7 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -151,7 +140,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,33 +153,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Comment, CommentPostResponse } from '../../../models/news';
 import { HostService } from '../../../services/host.service';
-import {formatDate} from '@angular/common';
+&nbsp;
 /**
  * # CommentService
  * ## Description
@@ -206,7 +184,6 @@ import {formatDate} from '@angular/common';
 export class CommentService {
 &nbsp;
   private mockComments : Comment[] = []
-  content!: object
   /**
 * # Description
    * Construct an instance of {@link CommentService}
@@ -224,26 +201,16 @@ export class CommentService {
    */
    public <span class="fstat-no" title="function not covered" >postComment(</span>comment: Comment){
     // NOTE: posts must end in trailing slash
-<span class="cstat-no" title="statement not covered" >    if (comment.parent_comment === null){</span>
-<span class="cstat-no" title="statement not covered" >      this.content = {</span>
-        news_id: comment.news_id,
-        submitted: formatDate(new Date(), 'yyyy-MM-dd', 'en'),
-        content: comment.content
-      }
-    } else {
-<span class="cstat-no" title="statement not covered" >      this.content = {</span>
-        news_id: comment.news_id,
-        submitted: formatDate(new Date(), 'yyyy-MM-dd', 'en'),
-        content: comment.content,
-        parent_comment: comment.parent_comment
-      }
-    }
-    
 <span class="cstat-no" title="statement not covered" >    if(environment.mock){</span>
 <span class="cstat-no" title="statement not covered" >      this.mockComments.push(comment);</span>
 <span class="cstat-no" title="statement not covered" >      return of({ id: this.mockComments.length, message: 'News Story Saved'})</span>
     }
-    else <span class="cstat-no" title="statement not covered" >return this.http.post&lt;CommentPostResponse&gt;(`${this.host.getHost()}/news/post-comment`, this.content)</span>
+    else <span class="cstat-no" title="statement not covered" >return this.http.post&lt;CommentPostResponse&gt;(`${this.host.getHost()}/news/post-comment`, comment)</span>
+  }
+&nbsp;
+  public <span class="fstat-no" title="function not covered" >flagComment(</span>id: number, comment: Comment): Observable&lt;CommentPostResponse&gt;{
+    // TODO: mock implementation
+<span class="cstat-no" title="statement not covered" >    return this.http.put&lt;CommentPostResponse&gt;(`${this.host.getHost()}/news/comment/${id}`, comment)</span>
   }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -253,7 +220,7 @@ export class CommentService {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener">istanbul</a>
-                at Sat Jan 15 2022 15:43:08 GMT-0500 (Eastern Standard Time)
+                at Sun Jan 16 2022 09:17:40 GMT-0500 (Eastern Standard Time)
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>
