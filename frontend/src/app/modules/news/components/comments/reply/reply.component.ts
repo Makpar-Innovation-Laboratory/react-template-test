@@ -67,7 +67,7 @@ export class ReplyComponent{
   public processClick(): void{
     if(this.showEditor){ 
       this.onSubmit();
-      location.reload();
+      // location.reload();
     }
     else{ this.toggleEditor(); }
   }

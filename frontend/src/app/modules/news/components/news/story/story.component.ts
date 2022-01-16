@@ -2,6 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NewsService } from '../../../services/news.service';
 import { Component, OnInit } from '@angular/core';
 import { News, NewsResponse } from 'src/app/models/news';
+import { AnimationPeriods, Animations } from 'src/animations';
 
 /**
  * # StoryComponent
@@ -12,12 +13,14 @@ import { News, NewsResponse } from 'src/app/models/news';
   selector: 'app-story',
   templateUrl: './story.component.html',
   styleUrls: ['./story.component.css'],
+  animations:[
+    Animations.getSlideTrigger(AnimationPeriods.short)
+  ]
 })
 export class StoryComponent implements OnInit {
   public newsId: number;
   public newsPost: News | undefined;
   public showComment: boolean = false;
-
 
   /**
    * # Description
@@ -42,7 +45,5 @@ export class StoryComponent implements OnInit {
   /**
    * 
    */
-  public toggleComment(): void {
-    this.showComment = !this.showComment;
-  }
+  public toggleComment(): void { this.showComment = !this.showComment; }
 }

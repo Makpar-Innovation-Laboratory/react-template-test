@@ -16,7 +16,8 @@ import { AppConfig, AppRoute, Section } from 'src/config';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   animations:[
-    Animations.getFadeTrigger(AnimationPeriods.short)
+    Animations.getFadeTrigger(AnimationPeriods.short),
+    Animations.getSlideTrigger(AnimationPeriods.short)
   ]
 })
 export class HomeComponent {

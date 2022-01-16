@@ -1,4 +1,4 @@
-<div id="feed-container">
+<div id="feed-container" [@slide]>
   <div id="feed-header" class="text-white">
     <div id="feed-title">
       <h4 class="mat-headline" style="margin-right: 2rem">NEWS FEED</h4>
@@ -46,9 +46,6 @@
           <mat-card-subtitle>Author: {{ story.author }}</mat-card-subtitle>
           <mat-card-subtitle>{{ story.submitted }}</mat-card-subtitle>
         </div>
-        <!-- <div id="subject-container" class="feed-subtitle-container">
-          <mat-card-subtitle>{{ story.author }}</mat-card-subtitle>
-        </div> -->
         <mat-card-content> {{ story.snippet }} </mat-card-content>
         <div id="news-action-container">
           <mat-card-actions>

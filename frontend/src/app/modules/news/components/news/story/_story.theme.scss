@@ -7,6 +7,17 @@
     $accent-palette: map.get($color-config, 'accent');
     $warn-palette: map.get($color-config, 'warn');
 
+    #back-button{
+      background-color: map-get($primary-palette, 500);
+      color: map-get($primary-palette, default-contrast);
+    }
+    #profile-pic{
+      background-color: map-get($primary-palette, default-contrast);
+      border: 1px solid map-get($primary-palette, 500);
+    }
+    #comments-container{
+      border-left: 2px dashed map-get($primary-palette, default-contrast); 
+    }
 }
 
 @mixin theme($theme) {

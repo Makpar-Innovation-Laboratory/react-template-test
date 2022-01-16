@@ -1,21 +1,20 @@
 
-.mat-title, .mat-subheading-2 {
-    margin: 0;
+.mat-title, .mat-subheading-2 { margin: 0; }
+.mat-card {
+    border-radius: 0.5rem;
 }
-
 #comment-container {
-    padding-top: 0.5rem;
-    /* margin-left: 2rem; */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    padding-top: 0.5rem; display: flex;
+    flex-direction: column; align-items: flex-end;
 }
-#comment-container .header{
+#comment-container #comment-header{
     width: 100%; display: flex; 
     align-items: center; justify-content: flex-start;
 }
-.mat-card {
-    border-radius: 0.5rem;
+#reply-container{
+    display: flex; flex-direction: column;
+    align-items: flex-end; padding-top: 0.5rem;
+    width: 90%;
 }
 #photo-placeholder {
     width: 2.5rem; height: 2.5rem; 

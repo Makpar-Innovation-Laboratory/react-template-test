@@ -20,7 +20,8 @@ import { DialogComponent, DialogTypes} from 'src/app/modules/shared/components/d
   styleUrls: ['./register.component.css'],
   animations: [
     Animations.getScaleTrigger(1.25),
-    Animations.getHighlightTrigger(1.25)
+    Animations.getHighlightTrigger(1.25),
+    Animations.getFloatTrigger(0.5)
   ]
 })
 export class RegisterComponent {

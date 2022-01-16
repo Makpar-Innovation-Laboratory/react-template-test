@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { News, NewsPostResponse, NewsResponse } from 'src/app/models/news';
 import { AuthService } from 'src/app/services/auth.service';
 import { NewsService } from 'src/app/modules/news/services/news.service';
+import { AnimationPeriods, Animations } from 'src/animations';
 
 /**
  * # FeedComponent
@@ -11,7 +12,10 @@ import { NewsService } from 'src/app/modules/news/services/news.service';
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
-  styleUrls: ['./feed.component.css']
+  styleUrls: ['./feed.component.css'],
+  animations:[
+    Animations.getSlideTrigger(AnimationPeriods.short)
+  ]
 })
 export class FeedComponent implements OnInit {
 
