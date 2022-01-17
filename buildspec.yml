@@ -58,10 +58,10 @@ phases:
       - |
         cd frontend
         npm run test-headless
-        aws s3 cp ./coverage/frontend/. \
+        cd ..
+        aws s3 cp ./docs/coverage/frontend/. \
                 s3://${APPLICATION}-coverage/test-coverage/frontend/ \
                 --recursive
-        cd ..
         
       # lint source code
       # - |
