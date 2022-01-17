@@ -55,7 +55,7 @@ describe('AuthService', () => {
 
   afterEach(()=>{
     httpTestingController.verify();
-  })
+  });
 
   it('should be created', () => {
     expect(authService).toBeTruthy();

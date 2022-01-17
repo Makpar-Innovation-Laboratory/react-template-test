@@ -1,4 +1,4 @@
-import { News } from "src/app/models/news";
+import { News, NewsResponse } from "src/app/models/news";
 
 /**
  * Mock JWT token with the following payload,
@@ -31,11 +31,11 @@ export const mock={
     }
 }
 
-export const TEST_ID = 57;
-export const TEST_NEWS : News = {
+export const TEST_ID: number = 57;
+export const TEST_NEWS: News = {
     news_id: TEST_ID,  submitted: null,
     subject: ['test'], title: 'test',
     snippet: 'test', content: 'test',
     comments: [], author: 'test'
 }
-export const TEST_RESULT={ results: [ TEST_NEWS ] };
+export const TEST_NEWS_RESPONSE: NewsResponse ={ results: [ TEST_NEWS ] };

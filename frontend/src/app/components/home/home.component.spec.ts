@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
@@ -34,6 +35,7 @@ describe('HomeComponent', () => {
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,
+        CommonModule,
         NoopAnimationsModule,
         MaterialModule
       ],

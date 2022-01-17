@@ -79,7 +79,7 @@ export class ReplyComponent{
     return{
       content: this.commentForm.controls.content.value,
       news_id: this.postId,
-      parent_comment: this.commentId ? this.commentId: null,
+      parent_comment: this.commentId ? this.commentId : null,
       child_comments: null, author: null,
       comment_id: null, submitted: null
     }
