@@ -83,6 +83,8 @@ phases:
           -Dsonar.sources=$(pwd)/frontend/src/ \
           -Dsonar.exclusions=**/*.json,**/*.css,**/*.scss,**/*.spec.ts,**/*.svg,**/*.html \
           -Dsonar.sourceEncoding=UTF-8 \
+          -Dsonar.tests=$(pwd)/frontend/src/ \
+          -Dsonar.test.inclusions=**/*.spec.ts \
           -Dsonar.typescript.lcov.reportPaths=$(pwd)/docs/coverage/lcov.info \
       # see: https://docs.sonarqube.org/latest/analysis/coverage/
 
