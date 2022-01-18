@@ -36,7 +36,8 @@ module.exports = function (config) {
       subdir: '.',
       reporters: [
         { type: 'cobertura' },
-        { type: 'html' }
+        { type: 'html' },
+        { type: 'lcov' }
       ]
     },
     reporters: ['progress', 'kjhtml'],

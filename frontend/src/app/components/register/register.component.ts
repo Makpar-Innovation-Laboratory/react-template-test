@@ -9,10 +9,8 @@ import { DialogComponent, DialogTypes} from 'src/app/modules/shared/components/d
 
 /**
  * # RegisterComponent
- * 
  * ## Description
- * 
- * ## Example Usage
+ * Component for validating user registration info and passing it to {@link AuthService} (and ultimately, the backend Innovation Lab API). 
  */
 @Component({
   selector: 'app-register',
@@ -26,17 +24,29 @@ import { DialogComponent, DialogTypes} from 'src/app/modules/shared/components/d
 })
 export class RegisterComponent {
 
+  /**
+   * `FormGroup` containing validation rules for user input.
+   */
   public registerFormGroup: FormGroup;
+  /**
+   * {@link AnimationControl} for the register button's scale transform animation 
+   */
   public registerBtnScaleCntl: AnimationControl = new AnimationControl(AnimationTriggers.scale);
+  /**
+   * {@link AnimationControl} for the register button's brightness transform animation.
+   */
   public registerBtnHighlightCntl: AnimationControl = new AnimationControl(AnimationTriggers.highlight);
+  /**
+   * `boolean` trigger for the buffer bar shown while subscription loads backend API.
+   */
   public loading: boolean = false;
 
   /**
    * # Description
    * Constructs an instance of {@link RegisterComponent}.
-   * @param auth 
-   * @param router 
-   * @param formBuilder 
+   * @param auth injected instances {@link AuthService} used for passing registration to backend API.
+   * @param router `Router` for routing user to *"/login"* after successful registratino.
+   * @param formBuilder `FormBuilder` for constructing validation rules for {@link registerFormGroup}.
    */
   constructor(private auth: AuthService,
               private dialog: MatDialog, 
@@ -53,7 +63,7 @@ export class RegisterComponent {
    /**
    * # Description
    * Converts {@link registerFormGroup} into an instance of {@link User}
-   * @returns {@link User} with the user attributes from the register form.
+   * @returns an instance of {@link User} populated by {@link registerFormGroup} controls.
    */
   private formToUser(): User{
     return{
@@ -67,7 +77,7 @@ export class RegisterComponent {
 
   /**
    * # Description
-   * 
+   * If {@link registerFormGroup} is valid, then this method passes its contents to {@link AuthService} and then displays a `MatDialog` popup with instructions for user. Popup will redirect to *'/login'* if user clicks "OK".
    */
   public register(): void {
     if(this.registerFormGroup.valid){
@@ -88,6 +98,7 @@ export class RegisterComponent {
 
   /**
    * # Description
+   * Fire the {@link registerBtnHighlightCntl} and {@link registerBtnScaleCntl} animations.
    */
   public animateRegisterBtn(): void{
     if(this.registerFormGroup.valid){
@@ -98,6 +109,7 @@ export class RegisterComponent {
 
   /**
    * # Description
+   * Reset the {@link registerBtnHighlightCntl} and {@link registerBtnScaleCntl} animations.
    */
   public primeRegisterBtn(): void{
     if(this.registerFormGroup.valid){
