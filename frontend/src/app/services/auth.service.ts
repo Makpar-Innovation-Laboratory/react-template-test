@@ -104,6 +104,7 @@ export class AuthService {
    * @returns `true` is user is authorized, `false` otherwise
    */
   public displayRouteForUser(thisRoute: AppRoute): boolean{
+    if(!this.loggedIn) return false;
     let dev_routes : AppRoute[] = AppConfig.routes.filter(e=> e.dev)
     if(dev_routes.includes(thisRoute)) return this.belongsToGroup('developer');
     else return true; 
@@ -168,6 +169,31 @@ export class AuthService {
           return true; 
         }),
         catchError((__: any)=> { 
+          this.clearToken();
+          return of(false);
+        })
+      )
+    }
+  }
+
+  /**
+   * # Description
+   * Determine if the user in the session is authorized to access group level resources
+   * @param group group 
+   * @returns observable containing `true` if user is authorized, `false` otherwie
+   */
+  public verifyGroup(group: string): Observable<boolean>{
+    if(environment.mock){
+      if(this.getToken()) return of(true); 
+      else return of(false);
+    }
+    else{
+      return this.http.get<Object>(`${this.host.getHost()}/defaults/verify/${group}`).pipe(
+        map((__:any)=>{
+          this.loggedIn = true;
+          return true;
+        }),
+        catchError((__:any)=>{
           this.clearToken();
           return of(false);
         })

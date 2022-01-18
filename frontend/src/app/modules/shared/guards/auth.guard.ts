@@ -14,16 +14,28 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    route.url.toString().includes('admin')
-    return this.auth.verify().pipe(
-      tap( (data)=>{
-        if(!data){this.router.navigateByUrl('/login')}
-      }),
-      catchError((err: any)=>{
-        this.router.navigateByUrl('/login')
-        return throwError(err)
-      })
-    );
+    if(route.url.toString().includes('admin')){
+      return this.auth.verifyGroup('developer').pipe(
+        tap( (data)=>{
+          if(!data){this.router.navigateByUrl('/login')}
+        }),
+        catchError((err: any)=>{
+          this.router.navigateByUrl('/login')
+          return throwError(err)
+        })
+      );
+    }
+    else{
+      return this.auth.verify().pipe(
+        tap( (data)=>{
+          if(!data){this.router.navigateByUrl('/login')}
+        }),
+        catchError((err: any)=>{
+          this.router.navigateByUrl('/login')
+          return throwError(err)
+        })
+      );
+    }
   }
   
 }

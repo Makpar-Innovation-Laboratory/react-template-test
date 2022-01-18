@@ -9,7 +9,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NewsService } from 'src/app/modules/news/services/news.service';
 import { MaterialModule } from 'src/app/modules/shared/material.module';
-import { EditorModes } from 'src/config';
+import { AppConfig, EditorModes } from 'src/config';
 import { MockActivatedRoute, MockNews, MockSanitizer } from 'src/mock';
 
 import { EditorComponent } from './editor.component';
@@ -99,6 +99,23 @@ describe('EditorComponent', () => {
     req.flush(news.getNewsResponse());
   });
 
+  it('should confirm update with MatDialog if activated route is admin/update/:id', async()=>{
+    await TestBed.compileComponents();
+    httpTestingController = TestBed.inject(HttpTestingController);
+    fixture = TestBed.createComponent(EditorComponent);
+    sanitizer = TestBed.inject(DomSanitizer);
+    activatedRoute = TestBed.inject(ActivatedRoute);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    const initReq = httpTestingController.expectOne(`/api/news/post/${activatedRoute.snapshot.params.id}`);
+    expect(initReq.request.method).toBe('GET');
+    initReq.flush(news.getNewsResponse());
+    component.confirmSubmission();
+    fixture.detectChanges();
+    const dialogContent = document.getElementById('dialog-content') as HTMLElement;
+    expect(dialogContent.innerText).toEqual(AppConfig.editMsg);
+  })
+
   it('should post update to backend if activated route is admin/update/:id', async()=>{
     await TestBed.compileComponents();
     httpTestingController = TestBed.inject(HttpTestingController);
@@ -173,5 +190,42 @@ describe('EditorComponent', () => {
     fixture.detectChanges();
 
     expect(component.mode).toBe(EditorModes.new);
-  })
+  });
+
+  it('should confirm submission with MatDialog if activated route is admin/add', async()=>{
+    TestBed.overrideProvider(ActivatedRoute, {useFactory: () =>{return new MockActivatedRoute('admin/add' ); } });
+    await TestBed.compileComponents();
+    httpTestingController = TestBed.inject(HttpTestingController);
+    fixture = TestBed.createComponent(EditorComponent);
+    sanitizer = TestBed.inject(DomSanitizer);
+    activatedRoute = TestBed.inject(ActivatedRoute);
+    component = fixture.componentInstance;
+    component.newsFormGroup.controls.title.setValue(news.mockNews.title);
+    component.newsFormGroup.controls.subject.setValue(news.mockNews.subject);
+    component.newsFormGroup.controls.snippet.setValue(news.mockNews.snippet);
+    component.newsFormGroup.controls.content.setValue(news.mockNews.content);
+    component.confirmSubmission();
+    fixture.detectChanges();
+    const dialogContent = document.getElementById('dialog-content') as HTMLElement;
+    expect(dialogContent.innerText).toEqual(AppConfig.createMsg);
+  });
+
+  it('should post new story to backend API if activated route is admin/add', async()=>{
+    TestBed.overrideProvider(ActivatedRoute, {useFactory: () =>{return new MockActivatedRoute('admin/add' ); } });
+    await TestBed.compileComponents();
+    httpTestingController = TestBed.inject(HttpTestingController);
+    fixture = TestBed.createComponent(EditorComponent);
+    sanitizer = TestBed.inject(DomSanitizer);
+    activatedRoute = TestBed.inject(ActivatedRoute);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    component.newsFormGroup.controls.title.setValue(news.mockNews.title);
+    component.newsFormGroup.controls.subject.setValue(news.mockNews.subject);
+    component.newsFormGroup.controls.snippet.setValue(news.mockNews.snippet);
+    component.newsFormGroup.controls.content.setValue(news.mockNews.content);
+    component.submit();
+    const createReq = httpTestingController.expectOne(`/api/news/`);
+    expect(createReq.request.method).toBe('POST')
+    createReq.flush(news.getNewsResponse());
+  });
 });
