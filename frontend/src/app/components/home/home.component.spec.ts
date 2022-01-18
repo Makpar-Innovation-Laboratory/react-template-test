@@ -10,22 +10,16 @@ import { MaterialModule } from 'src/app/modules/shared/material.module';
 import { AuthService } from 'src/app/services/auth.service';
 import { HostService } from 'src/app/services/host.service';
 import { AppConfig } from 'src/config';
-import { mock } from 'src/environments/mock';
+import { mockAuth, MockSessionStorage } from 'src/environments/mock';
 
 import { HomeComponent } from './home.component';
-
-let store : any= {};
-const mockSessionStorage = {
-  retrieve: (key: string): string => { return key in store ? store[key] : null; },
-  store: (key: string, value: string) => { store[key] = `${value}`; },
-  clear: (key: string) => { delete store[key]; },
-};
 
 describe('HomeComponent', () => {
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
   let authService: AuthService;
   let hostService: HostService;
+  let sessionService: SessionStorageService;
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
@@ -40,14 +34,14 @@ describe('HomeComponent', () => {
         MaterialModule
       ],
       providers: [
-        { provide: SessionStorageService, useValue: mockSessionStorage }
+        { provide: SessionStorageService, useClass: MockSessionStorage }
       ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    TestBed.inject(SessionStorageService);
+    sessionService =TestBed.inject(SessionStorageService);
     httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
     authService = TestBed.inject(AuthService);
@@ -64,11 +58,11 @@ describe('HomeComponent', () => {
   });
 
   it('should retrieve username upon instantiation', () => {
-    mockSessionStorage.store('username', mock.auth.decoded_payload.name)
+    sessionService.store('username', mockAuth.decoded_payload.name)
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    expect(component.username).toEqual(mock.auth.decoded_payload.name)
+    expect(component.username).toEqual(mockAuth.decoded_payload.name)
   });
 
   it('should should switch sections and set selection', fakeAsync(()=>{

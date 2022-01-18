@@ -8,7 +8,7 @@ import { Token } from '../models/token';
 import { HostService } from './host.service';
 import { environment } from 'src/environments/environment';
 import { User, UserLogin } from '../models/user';
-import { mock } from 'src/environments/mock';
+import { mockAuth } from 'src/environments/mock';
 
 import jwt_decode from "jwt-decode";
 import { AppConfig, AppRoute } from 'src/config';
@@ -117,8 +117,8 @@ export class AuthService {
    */
   public login(userlogin: UserLogin): Observable<Token>{
     if(environment.mock){ 
-      this.storeToken(mock.auth.token);
-      return of(mock.auth.token);
+      this.storeToken(mockAuth.token);
+      return of(mockAuth.token);
     }
     else{
       return this.http.post<Token>(`${this.host.getHost()}/defaults/token`, userlogin).pipe(

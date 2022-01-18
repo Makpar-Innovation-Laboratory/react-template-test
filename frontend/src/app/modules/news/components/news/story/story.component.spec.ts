@@ -5,20 +5,13 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from 'src/app/modules/shared/material.module';
-import { TEST_NEWS_RESPONSE } from 'src/environments/mock';
+import { mockActivatedRoute, mockNews} from 'src/environments/mock';
 import { NewsService } from '../../../services/news.service';
 
 import { By } from '@angular/platform-browser';
 
 import { StoryComponent } from './story.component';
 import { DebugElement } from '@angular/core';
-
-const mockActivatedRoute = {
-  snapshot: { 
-    url: { toString: () => { return 'news/1'; } },
-    params: { id: 1 }
-  }
-}
 
 describe('StoryComponent', () => {
   let component: StoryComponent;
@@ -64,7 +57,7 @@ describe('StoryComponent', () => {
     expect(component).toBeTruthy();
     const req = httpTestingController.expectOne(`/api/news/post/${mockActivatedRoute.snapshot.params.id}`);
     expect(req.request.method).toEqual('GET')
-    req.flush(TEST_NEWS_RESPONSE)
+    req.flush(mockNews.news_response)
   });
 
   it('should not display reply widget unless user clicks comment button', ()=>{

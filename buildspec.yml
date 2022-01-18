@@ -53,8 +53,7 @@ phases:
   
   pre_build:
     commands:
-      # TODO: unit tests!
-
+      # Run Unit Tests
       - |
         cd frontend
         npm run test-headless
@@ -63,7 +62,8 @@ phases:
                 s3://${APPLICATION}-coverage/test-coverage/frontend/ \
                 --recursive
         
-      # lint source code
+      # Lint Source Code
+      #   TODO: configure for Angular
       # - |
       #   npx eslint --quiet \
       #     --no-error-on-unmatched-pattern ./src/** \
@@ -81,9 +81,9 @@ phases:
           -Dsonar.login=$SONAR_TOKEN \
           -Dsonar.log.level=DEBUG \
           -Dsonar.sources=$(pwd)/frontend/src/ \
-          -Dsonar.exclusions=**/*.json,**/*.css,**/*.test.js,**/*.svg \
-          -Dsonar.sourceEncoding=UTF-8
-      # -Dsonar.coverageReportPaths=path/to/coverage.xml
+          -Dsonar.exclusions=**/*.json,**/*.css,**/*.scss,**/*.spec.ts,**/*.svg,**/*.html \
+          -Dsonar.sourceEncoding=UTF-8 \
+          -Dsonar.coverageReportPaths=$(pwd)/docs/coverage/frontend/cobertura-coverage.xml
       # see: https://docs.sonarqube.org/latest/analysis/coverage/
 
   build:
@@ -152,7 +152,7 @@ phases:
           aws s3 cp ./out/OWASP_report_frontend.html s3://${APPLICATION}-data-files/zap_report/OWASP_report_frontend.html
         '
         
-      # Generate documentation
+      # Generate Documentation
       - |
         cd frontend
         npx typedoc
