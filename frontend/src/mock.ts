@@ -1,3 +1,4 @@
+import { SafeHtml } from "@angular/platform-browser";
 import { News, NewsResponse } from "src/app/models/news";
 import { User, UserLogin } from "src/app/models/user";
 
@@ -87,6 +88,11 @@ export class MockActivatedRoute{
 
 }
 
+export class MockSanitizer{
+
+    public bypassSecurityTrustHtml(content: any){ return content; }
+}
+
 export class MockNews{
 
     public mockNews : News;
@@ -112,6 +118,8 @@ export const mockUser: User = {
 export const mockCredentials: UserLogin = {
     username: 'test', password: 'test'
 }
+
+// TODO: MockAuth class that generates tokens on the fly from inputted user name.
 
 /**
  * Mock JWT token with the following payload,

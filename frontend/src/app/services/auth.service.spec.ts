@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from './auth.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { mockAuth, mockCredentials, MockSessionStorage, mockUser } from 'src/environments/mock';
+import { mockAuth, mockCredentials, MockSessionStorage, mockUser } from 'src/mock';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Token } from '../models/token';
 import { AppConfig, AppRoute } from 'src/config';

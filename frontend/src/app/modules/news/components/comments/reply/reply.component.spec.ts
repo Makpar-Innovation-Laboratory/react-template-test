@@ -9,7 +9,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from 'src/app/modules/shared/material.module';
-import { MockActivatedRoute, MockNews } from 'src/environments/mock';
+import { MockActivatedRoute, MockNews } from 'src/mock';
 import { CommentService } from '../../../services/comment.service';
 
 import { ReplyComponent } from './reply.component';

@@ -8,7 +8,7 @@ import { Token } from '../models/token';
 import { HostService } from './host.service';
 import { environment } from 'src/environments/environment';
 import { User, UserLogin } from '../models/user';
-import { mockAuth } from 'src/environments/mock';
+import { mockAuth } from 'src/mock';
 
 import jwt_decode from "jwt-decode";
 import { AppConfig, AppRoute } from 'src/config';

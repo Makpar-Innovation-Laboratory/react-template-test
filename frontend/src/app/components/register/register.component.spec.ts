@@ -9,7 +9,7 @@ import { SessionStorageService } from 'ngx-webstorage';
 import { MaterialModule } from 'src/app/modules/shared/material.module';
 import { AuthService } from 'src/app/services/auth.service';
 import { AppConfig } from 'src/config';
-import { mockAuth, MockSessionStorage } from 'src/environments/mock';
+import { mockAuth, MockSessionStorage } from 'src/mock';
 
 import { RegisterComponent } from './register.component';
 
