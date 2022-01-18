@@ -5,7 +5,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from 'src/app/modules/shared/material.module';
-import { mockActivatedRoute, mockNews} from 'src/environments/mock';
+import { MockActivatedRoute, mockNews} from 'src/environments/mock';
 import { NewsService } from '../../../services/news.service';
 
 import { By } from '@angular/platform-browser';
@@ -18,19 +18,20 @@ describe('StoryComponent', () => {
   let fixture: ComponentFixture<StoryComponent>;
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
+  let activatedRoute: ActivatedRoute;
 
   beforeEach(waitForAsync(()=>{
     TestBed.configureTestingModule({
       declarations: [ StoryComponent ],
       imports: [ 
-        RouterTestingModule.withRoutes([{path: 'news/:id', component: StoryComponent} ]),
+        RouterTestingModule,
         HttpClientTestingModule,
         MaterialModule,
         NoopAnimationsModule
       ],
       providers:[
         NewsService,
-        { provide: ActivatedRoute, useValue: mockActivatedRoute }
+        { provide: ActivatedRoute, useFactory: ()=>{ return new MockActivatedRoute("news", 1)} }
       ]
     }).compileComponents()
   }));
@@ -38,6 +39,7 @@ describe('StoryComponent', () => {
   beforeEach(() => {
     httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
+    activatedRoute = TestBed.inject(ActivatedRoute);
     fixture = TestBed.createComponent(StoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -49,19 +51,19 @@ describe('StoryComponent', () => {
   
   it('should be constructed with parameters from activated route', () => {
     expect(component).toBeTruthy();
-    const req = httpTestingController.expectOne(`/api/news/post/${mockActivatedRoute.snapshot.params.id}`);
-    expect(component.newsId).toEqual(mockActivatedRoute.snapshot.params.id);
+    const req = httpTestingController.expectOne(`/api/news/post/${activatedRoute.snapshot.params.id}`);
+    expect(component.newsId).toEqual(activatedRoute.snapshot.params.id);
   });
 
   it('should be created and initialize with data from backend API', () => {
     expect(component).toBeTruthy();
-    const req = httpTestingController.expectOne(`/api/news/post/${mockActivatedRoute.snapshot.params.id}`);
+    const req = httpTestingController.expectOne(`/api/news/post/${activatedRoute.snapshot.params.id}`);
     expect(req.request.method).toEqual('GET')
     req.flush(mockNews.news_response)
   });
 
   it('should not display reply widget unless user clicks comment button', ()=>{
-    const req = httpTestingController.expectOne(`/api/news/post/${mockActivatedRoute.snapshot.params.id}`);
+    const req = httpTestingController.expectOne(`/api/news/post/${activatedRoute.snapshot.params.id}`);
     const replyElement: DebugElement = fixture.debugElement.query(By.css('#root-reply'));
     expect(replyElement).toBeNull();
     component.toggleComment();

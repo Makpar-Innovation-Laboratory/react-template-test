@@ -9,7 +9,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from 'src/app/modules/shared/material.module';
-import { mockActivatedRoute, mockNews } from 'src/environments/mock';
+import { MockActivatedRoute, mockNews } from 'src/environments/mock';
 import { CommentService } from '../../../services/comment.service';
 
 import { ReplyComponent } from './reply.component';
@@ -17,6 +17,8 @@ import { ReplyComponent } from './reply.component';
 const TEST_TOOLTIP="Just singing in the rain, what a glorious feeling, I'm happy again"
 
 describe('ReplyComponent', () => {
+  let activatedRoute: ActivatedRoute;
+  let commentService: CommentService;
   let component: ReplyComponent;
   let fixture: ComponentFixture<ReplyComponent>;
 
@@ -35,13 +37,16 @@ describe('ReplyComponent', () => {
       ReactiveFormsModule
     ],
     providers: [
-      FormBuilder, CommentService, 
-      { provide: ActivatedRoute, useValue: mockActivatedRoute }
+      FormBuilder, 
+      CommentService, 
+      { provide: ActivatedRoute, useFactory: () => { return new MockActivatedRoute("news", 1); } }
     ]
   }).compileComponents();
   }));
 
   beforeEach(() => {
+    activatedRoute = TestBed.inject(ActivatedRoute);
+    commentService = TestBed.inject(CommentService);
     fixture = TestBed.createComponent(ReplyComponent);
     component = fixture.componentInstance;
     component.commentId = mockNews.news_id;
@@ -54,7 +59,7 @@ describe('ReplyComponent', () => {
   });
 
   it('should be constructed with parameter from activated route', ()=>{
-    expect(component.postId).toEqual(mockActivatedRoute.snapshot.params.id);
+    expect(component.postId).toEqual(activatedRoute.snapshot.params.id);
   })
 
   it('should display inputted tooltip over reply button', ()=>{

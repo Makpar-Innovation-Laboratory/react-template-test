@@ -3,11 +3,20 @@ import { User, UserLogin } from "src/app/models/user";
 /**
  * # MockSessionStorage
  * ## Description
+ * Class to mock `SessionStorageService`. Stores key-value pairs in memory, instead of in browser session. Exposes the same methods as the `SessionStorageService`, so it can be swithced out for it without affecting the application. Used in unit tests where the tests run in headless mode, i.e. without a browser.
+ * ## Example Usage
+ * In the `TestBed` providers section, use this class as the provider for `SessionStorageService`,
+ * ```javascript
+ * TestBed.configureTestingModule({
+ *  providers:[
+ *      { provide: SessionStorageService, useClass: MockSessionStorage }
+ *  ]}).compileComponents()
+ * ```
  */
 export class MockSessionStorage{
 
     /**
-     * 
+     * Object to hold key-value pairs in memory.
      */
     private session: any = {};
 
@@ -15,6 +24,7 @@ export class MockSessionStorage{
 
     /**
      * # Description
+     * Retrieve a value from a key.
      * @param key 
      * @returns 
      */
@@ -22,6 +32,7 @@ export class MockSessionStorage{
 
     /**
      * # Description
+     * Store a value under a key.
      * @param key 
      * @param value 
      */
@@ -29,9 +40,50 @@ export class MockSessionStorage{
 
     /**
      * # Description
+     * Remove a key-value pair.
      * @param key 
      */
     public clear(key: string): void { delete this.session[key]; }
+}
+
+/**
+ * # MockActivateRoute
+ * ## Description
+ * Class to mock `ActivatedRoute`. Uses constructor parameters to initialize an object that will expose the same properties as a normal `ActivatedRoute`, allowing for it to be switched out for the actual class without affecting the application. Used in unit tests where the tests run in headless mode, i.e. without a browser.
+ * * ## Example Usage
+ * In the `TestBed` providers section, use a factory method as the provider for `ActivatedRoute` and construct the instance with the paramaters desired,
+ * ```javascript
+ * TestBed.configureTestingModule({
+ *  providers:[
+ *      { provide: ActivatedRoute, useFactory: ()=>{ return new MockActivatedRoute('path/to/something', 1); } }
+ *  ]}).compileComponents()
+ */
+export class MockActivatedRoute{
+
+    /**
+     * Object that simulates an `ActivatedRoute` snapshot.
+     */
+    public snapshot : any;
+    
+    /**
+     * # Description
+     * Construct an instance of a {@link MockActivatedRoute}
+     * @param mockPath Path that is being mocked.
+     * @param mockParam *Optional*. Path parameter that is being mocked. Defaults to `null`.
+     */
+    constructor(private mockPath: string, private mockParam: number | string | null = null){
+        this.snapshot = {
+            url: { 
+                toString: () => { 
+                    return this.mockParam ? `${this.mockPath}/${this.mockParam}` : this.mockPath ; 
+                } 
+            },
+            params:{
+                id: this.mockParam
+            }
+        }
+    }
+
 }
 
 export const mockNews={
@@ -53,13 +105,6 @@ export const mockNews={
         ]
     }
 }
-
-export const mockActivatedRoute = {
-    snapshot: { 
-      url: { toString: () => { return 'news/1'; } },
-      params: { id: 1 }
-    } 
-  }
 
 export const mockUser: User = {
     username: 'test', email: 'test', 

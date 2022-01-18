@@ -54,7 +54,7 @@ export class EditorComponent {
       content: this.formBuilder.control('', [Validators.required]),
     })
     // if url path is 'update/:id', initialize form group with news data from API
-    if(this.activatedRoute.snapshot.url[0].path == 'update'){
+    if(this.activatedRoute.snapshot.url.toString().includes('update')){
       this.mode = EditorModes.edit
       this.news.getNews(this.activatedRoute.snapshot.params.id).subscribe((blog: NewsResponse)=>{
         this.newsFormGroup.controls.title.setValue(blog.results[0].title);
