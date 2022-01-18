@@ -81,7 +81,7 @@ phases:
           -Dsonar.login=$SONAR_TOKEN \
           -Dsonar.log.level=DEBUG \
           -Dsonar.sources=$(pwd)/frontend/src/ \
-          -Dsonar.exclusions=**/*.json,**/*.css,**/*.scss,**/*.spec.ts,**/*.svg,**/*.html \
+          -Dsonar.exclusions=**/*.json,**/*.css,**/*.scss,**/*.svg,**/*.html \
           -Dsonar.sourceEncoding=UTF-8 \
           -Dsonar.tests=$(pwd)/frontend/src/ \
           -Dsonar.test.inclusions=**/*.spec.ts \
