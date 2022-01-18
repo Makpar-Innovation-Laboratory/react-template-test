@@ -1,3 +1,4 @@
+import { News, NewsResponse } from "src/app/models/news";
 import { User, UserLogin } from "src/app/models/user";
 
 /**
@@ -86,21 +87,36 @@ export class MockActivatedRoute{
 
 }
 
+export class MockNews{
+
+    public mockNews : News;
+
+    constructor(private news: News ={
+        news_id: 57,  submitted: null,
+        subject: ['test subject'], title: 'test title',
+        snippet: 'test snippet', content: 'test content',
+        comments: [], author: 'test author'
+    }){ this.mockNews = news; }
+
+    public getNewsResponse(): NewsResponse{ return { results: [ this.mockNews ] }; }
+
+    public getNewsId(): number { return mockNews.news_id; }
+}
+
 export const mockNews={
     news_id: 57,
     news: {
         news_id: 57,  submitted: null,
-        subject: ['test'], title: 'test',
-        snippet: 'test', content: 'test',
-        comments: [], author: 'test'
+        subject: ['test subject'], title: 'test title',
+        snippet: 'test snippet', content: 'test content',
+        comments: [], author: 'test author'
     },
     news_response: {
         results: [
             {
-                news_id: 57,  submitted: null,
-                subject: ['test'], title: 'test',
-                snippet: 'test', content: 'test',
-                comments: [], author: 'test'
+                subject: ['test subject'], title: 'test title',
+                snippet: 'test snippet', content: 'test content',
+                comments: [], author: 'test author'
             }
         ]
     }

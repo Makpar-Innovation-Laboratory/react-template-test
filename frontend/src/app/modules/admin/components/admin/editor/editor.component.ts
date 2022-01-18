@@ -13,14 +13,7 @@ import { AppConfig, EditorModes } from 'src/config';
 
 /**
  * # EditorComponent
- * 
  * ## Description
- * 
- * ## Example Usage
- * 
- * ```html
- * <app-editor></app-editor>
- * ```
  */
 @Component({
   selector: 'app-editor',
@@ -28,8 +21,17 @@ import { AppConfig, EditorModes } from 'src/config';
   styleUrls: ['./editor.component.css']
 })
 export class EditorComponent {
+  /**
+   * `FormGroup` for validating user input into an instance of {@link News}
+   */
   public newsFormGroup: FormGroup;
+  /**
+   * `enum` for determining which mode the {@link EditorComponent} was initialized in
+   */
   public mode: EditorModes = EditorModes.new
+  /**
+   * `AngularEditorConfig` for configuring the HTML text editor.
+   */
   public editorConfig: AngularEditorConfig = EditorConfig;
 
   /**
@@ -92,8 +94,9 @@ export class EditorComponent {
   }
 
   /**
-   * 
-   * @returns 
+   * # Description
+   * Converts {@link newsFormGroup} into an instance of {@link News}. The `content` is piped through the `DomSanitizer` to remove any potentially malicious scripts.
+   * @returns an 
    */
   private formToNews(): News{
     return {

@@ -9,7 +9,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from 'src/app/modules/shared/material.module';
-import { MockActivatedRoute, mockNews } from 'src/environments/mock';
+import { MockActivatedRoute, MockNews } from 'src/environments/mock';
 import { CommentService } from '../../../services/comment.service';
 
 import { ReplyComponent } from './reply.component';
@@ -21,6 +21,7 @@ describe('ReplyComponent', () => {
   let commentService: CommentService;
   let component: ReplyComponent;
   let fixture: ComponentFixture<ReplyComponent>;
+  let news : MockNews = new MockNews();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -49,7 +50,7 @@ describe('ReplyComponent', () => {
     commentService = TestBed.inject(CommentService);
     fixture = TestBed.createComponent(ReplyComponent);
     component = fixture.componentInstance;
-    component.commentId = mockNews.news_id;
+    component.commentId = news.getNewsId();
     component.tooltip = TEST_TOOLTIP;
     fixture.detectChanges();
   });
