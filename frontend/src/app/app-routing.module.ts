@@ -7,7 +7,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthGuard } from './modules/shared/guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', canActivate: [ AuthGuard], component: HomeComponent },
+  { path: '', canActivate: [ AuthGuard ], component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) },

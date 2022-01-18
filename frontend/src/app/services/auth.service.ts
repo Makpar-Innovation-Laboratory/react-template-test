@@ -60,8 +60,7 @@ export class AuthService {
    */
   private storeToken(token: Token): void{
     this.session.store('username', Object(jwt_decode(token.AuthenticationResult.IdToken))['cognito:username'])
-    // this.session.store('groups', token.AuthenticationResult.Groups);
-    this.session.store('groups', 'developer');
+    this.session.store('groups', token.AuthenticationResult.Groups);
     this.session.store('token', token.AuthenticationResult.IdToken); 
     this.session.store('refresh', token.AuthenticationResult.RefreshToken);
   }
@@ -104,6 +103,8 @@ export class AuthService {
    * @returns `true` is user is authorized, `false` otherwise
    */
   public displayRouteForUser(thisRoute: AppRoute): boolean{
+    console.log(thisRoute);
+    console.log(this.belongsToGroup('developer'))
     if(!this.loggedIn) return false;
     let dev_routes : AppRoute[] = AppConfig.routes.filter(e=> e.dev)
     if(dev_routes.includes(thisRoute)) return this.belongsToGroup('developer');
