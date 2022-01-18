@@ -100,26 +100,7 @@ export class MockNews{
 
     public getNewsResponse(): NewsResponse{ return { results: [ this.mockNews ] }; }
 
-    public getNewsId(): number { return mockNews.news_id; }
-}
-
-export const mockNews={
-    news_id: 57,
-    news: {
-        news_id: 57,  submitted: null,
-        subject: ['test subject'], title: 'test title',
-        snippet: 'test snippet', content: 'test content',
-        comments: [], author: 'test author'
-    },
-    news_response: {
-        results: [
-            {
-                subject: ['test subject'], title: 'test title',
-                snippet: 'test snippet', content: 'test content',
-                comments: [], author: 'test author'
-            }
-        ]
-    }
+    public getNewsId(): number | null{ return this.mockNews.news_id; }
 }
 
 export const mockUser: User = {

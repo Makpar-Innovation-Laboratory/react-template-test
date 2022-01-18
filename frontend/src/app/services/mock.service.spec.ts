@@ -2,10 +2,11 @@ import { TestBed } from '@angular/core/testing';
 
 import { MockService } from './mock.service';
 import { News, NewsResponse, NULL_NEWS } from 'src/app/models/news'
-import { mockNews} from 'src/environments/mock';
+import { MockNews} from 'src/environments/mock';
 
 describe('MockService', () => {
   let mockService: MockService;
+  let news : MockNews = new MockNews();
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
@@ -21,10 +22,10 @@ describe('MockService', () => {
     expect(mockService.getMockNews().results.length).toBe(1);
     mockService.addMockNews(NULL_NEWS);
     expect(mockService.getMockNews().results.length).toBe(2);
-    mockService.addMockNews(mockNews.news);
+    mockService.addMockNews(news.mockNews);
     expect(mockService.getMockNews().results.length).toBe(3);
-    expect(mockService.getMockNewsByID(mockNews.news_id)).toEqual(mockNews.news_response as NewsResponse);
-    expect(mockService.getLatestMockNewsId()).toEqual(mockNews.news_id)
+    expect(mockService.getMockNewsByID(news.getNewsId() as number)).toEqual(news.getNewsResponse());
+    expect(mockService.getLatestMockNewsId()).toEqual(news.getNewsId() as number)
   });
 
   // TODO: THIS!!
