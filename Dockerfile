@@ -3,7 +3,6 @@ FROM 894427396428.dkr.ecr.us-east-1.amazonaws.com/innolab-node:Dev AS applicatio
 
 COPY /frontend/ /home/app/
 WORKDIR /home/app/
-ENV NODE_OPTIONS=--openssl-legacy-provider
 RUN npm install && npm run build
 
 FROM 894427396428.dkr.ecr.us-east-1.amazonaws.com/innolab-nginx:Dev
