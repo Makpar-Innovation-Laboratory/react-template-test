@@ -80,6 +80,7 @@ phases:
           -Dsonar.login=$SONAR_TOKEN \
           -Dsonar.log.level=DEBUG \
           -Dsonar.sources=$(pwd)/frontend/src/ \
+          -Dsonar.scm.exclusions.disabled=true \
           -Dsonar.exclusions=**/*.json,**/*.css,**/*.scss,**/*.svg,**/*.html \
           -Dsonar.sourceEncoding=UTF-8 \
       # see: https://docs.sonarqube.org/latest/analysis/coverage/
