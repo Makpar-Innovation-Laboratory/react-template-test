@@ -1,12 +1,12 @@
 # Build React application on top of a Node image
-FROM node:latest AS application_build
+FROM 894427396428.dkr.ecr.us-east-1.amazonaws.com/innolab-node:Dev AS application_build
 
 COPY /frontend/ /home/app/
 WORKDIR /home/app/
 ENV NODE_OPTIONS=--openssl-legacy-provider
 RUN npm install && npm run build
 
-FROM nginx:latest
+FROM 894427396428.dkr.ecr.us-east-1.amazonaws.com/innolab-nginx:Dev
 
 # See NOTE below
 # COPY /scripts/docker/entrypoint.sh /home/entrypoint.sh
