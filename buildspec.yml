@@ -30,13 +30,6 @@ phases:
       - |
         aws ecr get-login-password --region $AWS_DEFAULT_REGION |\
           docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-      # pull base images
-      - | 
-        bash -c '
-          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-node:${BRANCH^}
-          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-nginx:${BRANCH^}    
-          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-owasp:${BRANCH^}    
-        '
       # # install Testing and Documentation Dependencies
       # - |
       #   pip install behave==1.2.6 \

@@ -3,6 +3,7 @@ FROM node:latest AS application_build
 
 COPY /frontend/ /home/app/
 WORKDIR /home/app/
+ENV NODE_OPTIONS=--openssl-legacy-provider
 RUN npm install && npm run build
 
 FROM nginx:latest
