@@ -22,13 +22,6 @@ phases:
       #   cd frontend
       #   npm install
       #   cd ..
-      # pull base images
-      - | 
-        bash -c '
-          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/innolab-node:Dev
-          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/innolab-nginx:Dev
-          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/innolab-owasp:Dev    
-        '
       # # start up Docker
       - |
         nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay&
@@ -37,6 +30,13 @@ phases:
       - |
         aws ecr get-login-password --region $AWS_DEFAULT_REGION |\
           docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      # pull base images
+      - | 
+        bash -c '
+          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/innolab-node:Dev
+          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/innolab-nginx:Dev
+          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/innolab-owasp:Dev
+        '
       # # install Testing and Documentation Dependencies
       # - |
       #   pip install behave==1.2.6 \
