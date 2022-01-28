@@ -21,6 +21,7 @@ phases:
       - |
         cd frontend
         npm install --force
+        npm install --global snyk
         cd ..
       # start up Docker
       - |
@@ -61,7 +62,10 @@ phases:
         aws s3 cp ./docs/coverage/frontend/. \
                 s3://${APPLICATION}-coverage/test-coverage/frontend/ \
                 --recursive
-        
+      - |
+        snyk monitor --org=$SNYK_ORG --json > ./report.json
+        aws s3 cp ./report.json s3://${APPLICATION}-data-files/snyk_reports/frontend_report.json
+
       # Lint Source Code
       #   TODO: configure for Angular
       # - |
