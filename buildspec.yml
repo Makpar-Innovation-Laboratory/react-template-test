@@ -22,7 +22,8 @@ phases:
         cd frontend
         npm install --force
         npm install --global snyk
-        snyk auth 
+        echo $SNYK_TOKEN
+        snyk auth $SNYK_TOKEN
         cd ..
       # start up Docker
       - |
