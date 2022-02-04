@@ -22,7 +22,6 @@ phases:
         cd frontend
         npm install --force
         npm install --global snyk
-        echo $SNYK_TOKEN
         snyk auth $SNYK_TOKEN
         cd ..
       # start up Docker
@@ -36,9 +35,9 @@ phases:
       # pull base images
       - | 
         bash -c '
-          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/innolab-node:${BRANCH^}
-          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/innolab-nginx:${BRANCH^}    
-          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/innolab-owasp:${BRANCH^}    
+          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-node:${BRANCH^}
+          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-nginx:${BRANCH^}    
+          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-owasp:${BRANCH^}    
         '
       # install Testing and Documentation Dependencies
       - |
@@ -47,12 +46,14 @@ phases:
                     requests==2.26.0 \
                     selenium==4.0.0 \
                     git-remote-codecommit==1.15.1
+      ## NOTE: UNCOMMENT THIS LINE IF SONARQUBE IS RUNNING AND CREDENTIALS HAVE BEEN DELIVERED TO THE ENVIRONMENT
+      ##  WILL ALSO NEED TO UNCOMMENT THE ACTUAL SCAN BELOW.
       # Download Sonar Scanner
-      - |
-        curl https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip \
-            -o "sonar_scanner.zip"
-        unzip sonar_scanner.zip > /dev/null 2>&1
-        export PATH=$(pwd)/sonar-scanner-4.6.2.2472-linux/bin/:$PATH
+      # - |
+      #   curl https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip \
+      #       -o "sonar_scanner.zip"
+      #   unzip sonar_scanner.zip > /dev/null 2>&1
+      #   export PATH=$(pwd)/sonar-scanner-4.6.2.2472-linux/bin/:$PATH
   
   pre_build:
     commands:
@@ -79,20 +80,21 @@ phases:
       #   aws s3 cp ../docs/linting/index.html \
       #           s3://${APPLICATION}-coverage${ENV}/linting/react/index.html
       
+      ## NOTE: UNCOMMENT FOR SONAR SCAN. SCANNER MUST BE INSTALLED. SEE NOTE ABOVE.
       # SonarQube static code analysis
-      - |
-        sonar-scanner \
-          -Dsonar.projectKey=${APPLICATION}-frontend${ENV} \
-          -Dsonar.host.url=https://$SONAR_URL \
-          -Dsonar.login=$SONAR_TOKEN \
-          -Dsonar.log.level=DEBUG \
-          -Dsonar.sources=$(pwd)/frontend/src/ \
-          -Dsonar.exclusions=**/*.json,**/*.css,**/*.scss,**/*.svg,**/*.html \
-          -Dsonar.sourceEncoding=UTF-8 \
-          -Dsonar.tests=$(pwd)/frontend/src/ \
-          -Dsonar.test.inclusions=**/*.spec.ts \
-          -Dsonar.typescript.lcov.reportPaths=$(pwd)/docs/coverage/lcov.info \
-      # see: https://docs.sonarqube.org/latest/analysis/coverage/
+      # - |
+      #   sonar-scanner \
+      #     -Dsonar.projectKey=${APPLICATION}-frontend${ENV} \
+      #     -Dsonar.host.url=https://$SONAR_URL \
+      #     -Dsonar.login=$SONAR_TOKEN \
+      #     -Dsonar.log.level=DEBUG \
+      #     -Dsonar.sources=$(pwd)/frontend/src/ \
+      #     -Dsonar.exclusions=**/*.json,**/*.css,**/*.scss,**/*.svg,**/*.html \
+      #     -Dsonar.sourceEncoding=UTF-8 \
+      #     -Dsonar.tests=$(pwd)/frontend/src/ \
+      #     -Dsonar.test.inclusions=**/*.spec.ts \
+      #     -Dsonar.typescript.lcov.reportPaths=$(pwd)/docs/coverage/lcov.info \
+      # # see: https://docs.sonarqube.org/latest/analysis/coverage/
 
   build:
     commands:
