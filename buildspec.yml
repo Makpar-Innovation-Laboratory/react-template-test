@@ -15,12 +15,6 @@ phases:
           export ENV=""
         fi
       - cd frontend && npm install
-      - |
-        pip install behave==1.2.6 \
-                    behave-html-formatter==0.9.8 \
-                    requests==2.26.0 \
-                    selenium==4.0.0 \
-                    git-remote-codecommit==1.15.1
 
       # # Download sonar scanner
       # - |
@@ -63,19 +57,6 @@ phases:
         aws s3 cp ./build/. \
           s3://${APPLICATION}-frontend${ENV}-web \
             --recursive
-  
-  post_build:
-    commands:
-      # Generate documentation
-      - |
-        npm run docs
-        aws s3 cp ../docs/package/. \
-                s3://${APPLICATION}-documentation-web/frontend/docs/react \
-                --recursive
-        
-artifacts:
-  files:
-    - frontend/build/**
 
 cache:
   path:

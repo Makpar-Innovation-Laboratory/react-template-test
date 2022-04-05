@@ -1,7 +1,5 @@
 /env/*.env
 /build/*
 /docs/*
-/devops/angular/*
-/devops/react/*
 /frontend/node_modules
 buildspec.yml
