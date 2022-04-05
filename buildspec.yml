@@ -1,10 +1,9 @@
 version: 0.2
 
 phases:
-
-  install: 
+  install:
     runtime-versions:
-      nodejs: latest 
+      nodejs: latest
       python: 3.9
     commands:
       # initialize environment
@@ -15,175 +14,73 @@ phases:
         else
           export ENV=""
         fi
-        apt-get update -y
-        apt-get install -y wait-for-it
-      # install frontend dependencies
-      - |
-        cd frontend
-        npm install --force
-        npm install --global snyk
-        snyk auth $SNYK_TOKEN
-        cd ..
-      # start up Docker
-      - |
-        nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay&
-        timeout 15 sh -c "until docker info; do echo .; sleep 1; done" 
-      # log into ECR
-      - |
-        aws ecr get-login-password --region $AWS_DEFAULT_REGION |\
-          docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-      # pull base images
-      - | 
-        bash -c '
-          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-node:${BRANCH^}
-          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-nginx:${BRANCH^}    
-          docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-owasp:${BRANCH^}    
-        '
-      # install Testing and Documentation Dependencies
+      - cd frontend && npm install
       - |
         pip install behave==1.2.6 \
                     behave-html-formatter==0.9.8 \
                     requests==2.26.0 \
                     selenium==4.0.0 \
                     git-remote-codecommit==1.15.1
-      ## NOTE: UNCOMMENT THIS LINE IF SONARQUBE IS RUNNING AND CREDENTIALS HAVE BEEN DELIVERED TO THE ENVIRONMENT
-      ##  WILL ALSO NEED TO UNCOMMENT THE ACTUAL SCAN BELOW.
-      # Download Sonar Scanner
+      # # Download sonar scanner
       # - |
       #   curl https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip \
       #       -o "sonar_scanner.zip"
       #   unzip sonar_scanner.zip > /dev/null 2>&1
       #   export PATH=$(pwd)/sonar-scanner-4.6.2.2472-linux/bin/:$PATH
   
-  pre_build:
-    commands:
-      # Run Unit Tests
-      - |
-        cd frontend
-        npm run test-headless
-        cd ..
-        aws s3 cp ./docs/coverage/frontend/. \
-                s3://${APPLICATION}-coverage/test-coverage/frontend/ \
-                --recursive
-      - |
-        snyk monitor --org=$SNYK_ORG --json > ./report.json
-        aws s3 cp ./report.json s3://${APPLICATION}-data-files/snyk_reports/frontend_report.json
-
-      # Lint Source Code
-      #   TODO: configure for Angular
-      # - |
-      #   npx eslint --quiet \
-      #     --no-error-on-unmatched-pattern ./src/** \
-      #     --output-file ../docs/linting/index.html \
-      #     --format html \
-      #     || true
-      #   aws s3 cp ../docs/linting/index.html \
-      #           s3://${APPLICATION}-coverage${ENV}/linting/react/index.html
+  # pre_build:
+  #   commands:
+  #     # Lint Source Code
+  #     - |
+  #       npx eslint --quiet \
+  #         --no-error-on-unmatched-pattern ./src/** \
+  #         --output-file ../docs/linting/index.html \
+  #         --format html \
+  #         || true
+  #       aws s3 cp ../docs/linting/index.html \
+  #               s3://${APPLICATION}-coverage${ENV}/linting/react/index.html
       
-      ## NOTE: UNCOMMENT FOR SONAR SCAN. SCANNER MUST BE INSTALLED. SEE NOTE ABOVE.
-      # SonarQube static code analysis
+      # # SonarQube Static Code Analysis
       # - |
       #   sonar-scanner \
       #     -Dsonar.projectKey=${APPLICATION}-frontend${ENV} \
-      #     -Dsonar.host.url=https://$SONAR_URL \
+      #     -Dsonar.sources=./src/ \
+      #     -Dsonar.host.url=http://$SONAR_URL:9000 \
       #     -Dsonar.login=$SONAR_TOKEN \
       #     -Dsonar.log.level=DEBUG \
-      #     -Dsonar.sources=$(pwd)/frontend/src/ \
-      #     -Dsonar.exclusions=**/*.json,**/*.css,**/*.scss,**/*.svg,**/*.html \
-      #     -Dsonar.sourceEncoding=UTF-8 \
-      #     -Dsonar.tests=$(pwd)/frontend/src/ \
-      #     -Dsonar.test.inclusions=**/*.spec.ts \
-      #     -Dsonar.typescript.lcov.reportPaths=$(pwd)/docs/coverage/lcov.info \
+      #     -Dsonar.exclusions=**/*.json,**/*.css,**/*.test.js,**/*.svg \
+      #     -Dsonar.sources=$(pwd)/src \
+      #     -Dsonar.sourceEncoding=UTF-8
+      # # -Dsonar.coverageReportPaths=path/to/coverage.xml
       # # see: https://docs.sonarqube.org/latest/analysis/coverage/
 
+      
   build:
     commands:
       - |
-        bash -c '
-          cp ./conf/nginx.proxy.conf ./conf/nginx.conf
-          docker build -t ${APPLICATION}-frontend:${BRANCH^} .
-          docker tag ${APPLICATION}-frontend:${BRANCH^} \
-              $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
-        '
+        npm run build
+        aws s3 cp ./build/. \
+          s3://${APPLICATION}-frontend${ENV}-web \
+            --recursive
   
   post_build:
     commands:
-      # Start Up Cluster
+      # Generate documentation
       - |
-        bash -c '
-          docker run --publish 8000:8000 \
-                   --name ${APPLICATION}_backend \
-                   --env COGNITO_USER_POOL=$POOL_ID \
-                   --env COGNITO_AUDIENCE=$CLIENT_ID \
-                   --env COGNITO_AWS_REGION=$AWS_DEFAULT_REGION \
-                   --env APP_ENV=test \
-                   --env APP_PORT=8000 \
-                   --detach \
-                   $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-backend:${BRANCH^}
-          wait-for-it localhost:8000
-          docker run --publish 8080:8080 \
-                    --name ${APPLICATION}_frontend \
-                    --env NGINX_PORT=8080 \
-                    --env ROOT_DIR=/home/build \
-                    --env PROXY_HOST=localhost \
-                    --env PROXY_PORT=8000 \
-                    --detach \
-                    $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
-          wait-for-it localhost:8080
-        '
-
-      # BDD Tests 
-      - |
-        bash -c '
-          git clone codecommit://${APPLICATION}-test-harness
-          cd ${APPLICATION}-test-harness/python
-          export FRONTEND_HOST_URL="http://localhost:8080"
-          chmod +x ./configure && ./configure web
-          behave -t "@Web" \
-                --no-skipped \
-                --summary \
-                --outfile behave-report-frontend.html \
-                --format behave_html_formatter:HTMLFormatter \
-                  || true
-          aws s3 cp ./behave-report-frontend.html \
-                    s3://${APPLICATION}-coverage/test-coverage/bdd/behave-report-frontend.html
-          cd ../..
-        '
-      # OWASP ZAP Scan
-      - |
-        bash -c '
-          mkdir -p $(pwd)/out
-          chmod 777 $(pwd)/out
-          docker run --volume $(pwd)/out:/zap/wrk/:rw \
-                     --network host \
-                     --tty \
-                     894427396428.dkr.ecr.us-east-1.amazonaws.com/innolab-owasp:Dev \
-                     zap-full-scan.py -t http://localhost:8080 -r OWASP_report_frontend.html
-          aws s3 cp ./out/OWASP_report_frontend.html s3://${APPLICATION}-data-files/zap_report/OWASP_report_frontend.html
-        '
-        
-      # Generate Documentation
-      - |
-        cd frontend
-        npx typedoc
+        npm run docs
         aws s3 cp ../docs/package/. \
-                s3://${APPLICATION}-coverage/frontend/ \
+                s3://${APPLICATION}-documentation-web/frontend/docs/react \
                 --recursive
         
 
       # Invalidate Frontend & Coverage Distribution Cache
-      - |
         aws cloudfront create-invalidation \
-            --distribution-id $COVERAGE_DISTRIBUTION_ID \
-            --paths "/*"
+              --distribution-id $DISTRIBUTION_ID \
+              --paths "/*"
+artifacts:
+  files:
+    - frontend/build/**
 
-      # Kill Cluster
-      - |
-        docker container stop innolab_backend && docker container rm innolab_backend
-        docker container stop innolab_frontend && docker container rm innolab_frontend
-
-      # Push image to ECR -> Signal deploy pipeline to take over
-      - |
-        bash -c '
-          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${APPLICATION}-frontend:${BRANCH^}
-        '
+cache:
+  path:
+    - frontend/node_modules
