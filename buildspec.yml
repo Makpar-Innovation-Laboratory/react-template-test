@@ -21,6 +21,7 @@ phases:
                     requests==2.26.0 \
                     selenium==4.0.0 \
                     git-remote-codecommit==1.15.1
+
       # # Download sonar scanner
       # - |
       #   curl https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip \
@@ -72,11 +73,6 @@ phases:
                 s3://${APPLICATION}-documentation-web/frontend/docs/react \
                 --recursive
         
-
-      # Invalidate Frontend & Coverage Distribution Cache
-        aws cloudfront create-invalidation \
-              --distribution-id $DISTRIBUTION_ID \
-              --paths "/*"
 artifacts:
   files:
     - frontend/build/**
