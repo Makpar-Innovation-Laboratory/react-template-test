@@ -1,17 +1,36 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+/* eslint-disable import/default */
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+import React from "react";
+import { render } from "react-dom";
+import { AppContainer } from "react-hot-loader";
+import configureStore, { history } from "./store/configureStore";
+import Root from "./components/Root";
+// Yep, that's right. You can import SASS/CSS files too!
+// Webpack will run the associated loader and plug this into the page.
+import "./styles/styles.scss";
+/* istanbul ignore next */
+require("./favicon.ico"); // Tell webpack to load favicon.ico
+/* istanbul ignore next */
+const store = configureStore();
+
+/* istanbul ignore next */
+render(
+  <AppContainer>
+    <Root store={store} history={history} />
+  </AppContainer>,
+  document.getElementById("app")
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+/* istanbul ignore next */
+if (module.hot) {
+  module.hot.accept("./components/Root", () => {
+    const NewRoot = require("./components/Root").default;
+    render(
+      <AppContainer>
+        <NewRoot store={store} history={history} />
+      </AppContainer>,
+      document.getElementById("app")
+    );
+  });
+}
+

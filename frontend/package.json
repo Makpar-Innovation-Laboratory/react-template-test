@@ -1,38 +1,176 @@
 {
-  "name": "frontend",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^12.1.4",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-scripts": "5.0.0",
-    "web-vitals": "^2.1.4"
+  "name": "prag-react-template",
+  "version": "1.0.0",
+  "description": "React & Redux front-end",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "preinstall": "node tools/nodeVersionCheck.js",
+    "start-message": "babel-node tools/startMessage.js",
+    "prestart": "npm run start-message",
+    "start": "concurrently -k -r -s first \"npm run test:watch\" \"npm run open:src\" \"npm run lint:watch\"",
+    "open:src": "babel-node tools/srcServer.js",
+    "open:dist": "babel-node tools/distServer.js",
+    "lint": "esw webpack.config.* src tools --color",
+    "lint:watch": "npm run lint -- --watch",
+    "clean-dist": "npm run remove-dist && mkdir dist",
+    "remove-dist": "rimraf ./dist",
+    "prebuild": "npm run lint && npm run test && npm run clean-dist",
+    "build": "babel-node tools/build.js && npm run open:dist",
+    "build:only": "npm run prebuild && babel-node tools/build.js",
+    "predocker:build": "docker rm prag-react-ui; exit 0",
+    "docker:build": "docker build -t prag-ui .",
+    "docker:run": "docker run --name prag-react-ui -p 5000:8000 -d prag-ui",
+    "test": "babel-node tools/test.js",
+    "test:cover": "babel-node tools/testCover.js",
+    "test:watch": "babel-node tools/testWatch.js",
+    "test:report": "npm run test:cover && babel-node tools/testReport.js",
+    "open:cover": "npm run test:cover && open-cli ./coverage/lcov-report/index.html",
+    "e2e:test": "cypress run",
+    "e2e:open": "cypress open",
+    "pree2e:report": "rimraf ./cypress/reports/*",
+    "e2e:report": "npm run e2e:test && node ./tools/e2e-report.js",
+    "e2e:report:only": "node ./tools/e2e-report.js",
+    "e2e:report:open": "npm run e2e:report && open-cli ./cypress/reports/mochawesome.html",
+    "analyze-bundle": "babel-node ./tools/analyzeBundle.js"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "author": "TSG",
+  "license": "MIT",
+  "dependencies": {
+    "@hot-loader/react-dom": "16.10.2",
+    "connected-react-router": "6.5.2",
+    "dayjs": "1.8.32",
+    "object-assign": "4.1.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-icons": "3.10.0",
+    "react-redux": "7.1.1",
+    "react-router-dom": "5.1.2",
+    "redux": "4.0.4",
+    "redux-thunk": "2.3.0",
+    "uswds": "2.9.0"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@babel/cli": "7.6.4",
+    "@babel/core": "7.6.4",
+    "@babel/node": "7.6.3",
+    "@babel/plugin-proposal-class-properties": "7.5.5",
+    "@babel/plugin-transform-react-constant-elements": "7.6.3",
+    "@babel/plugin-transform-runtime": "7.6.2",
+    "@babel/polyfill": "7.6.0",
+    "@babel/preset-env": "7.6.3",
+    "@babel/preset-react": "7.6.3",
+    "@types/jest": "26.0.15",
+    "acorn": "7.1.0",
+    "ajv": "6.10.2",
+    "autoprefixer": "9.7.0",
+    "axios": "0.19.2",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "10.0.3",
+    "babel-jest": "26.6.3",
+    "babel-loader": "8.0.6",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.24",
+    "browser-sync": "2.26.14",
+    "chalk": "2.4.2",
+    "concurrently": "5.0.0",
+    "connect-history-api-fallback": "1.6.0",
+    "coveralls": "3.0.7",
+    "css-loader": "3.2.0",
+    "cssnano": "4.1.10",
+    "cypress": "6.4.0",
+    "enzyme": "3.10.0",
+    "enzyme-adapter-react-16": "1.15.1",
+    "eslint": "6.6.0",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-jsx-a11y": "6.3.1",
+    "eslint-plugin-react": "7.16.0",
+    "eslint-watch": "6.0.1",
+    "file-loader": "4.2.0",
+    "hard-source-webpack-plugin": "0.13.1",
+    "history": "4.10.1",
+    "html-webpack-plugin": "3.2.0",
+    "identity-obj-proxy": "3.0.0",
+    "isolate-react": "2.0.1",
+    "jest": "26.6.3",
+    "jest-axe": "4.1.0",
+    "jest-cli": "26.6.3",
+    "jest-stare": "2.3.0",
+    "json-loader": "0.5.7",
+    "mini-css-extract-plugin": "0.8.0",
+    "mochawesome": "6.2.1",
+    "mochawesome-merge": "4.2.0",
+    "mochawesome-report-generator": "5.1.0",
+    "mockdate": "2.0.5",
+    "moxios": "0.4.0",
+    "node-sass": "4.14.0",
+    "open-cli": "5.0.0",
+    "postcss-loader": "3.0.0",
+    "prompt": "1.0.0",
+    "prop-types": "15.7.2",
+    "raf": "3.4.1",
+    "react-hot-loader": "4.12.15",
+    "react-test-renderer": "16.13.1",
+    "redux-immutable-state-invariant": "2.1.0",
+    "redux-mock-store": "1.5.3",
+    "replace": "1.1.1",
+    "rimraf": "3.0.0",
+    "sass-loader": "8.0.0",
+    "style-loader": "1.0.0",
+    "url-loader": "2.2.0",
+    "webpack": "4.41.2",
+    "webpack-bundle-analyzer": "3.6.0",
+    "webpack-dev-middleware": "3.7.2",
+    "webpack-hot-middleware": "2.25.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pragmatics/prag-react-template"
+  },
+  "babel": {
+    "env": {
+      "development": {
+        "presets": [
+          "@babel/preset-env",
+          "@babel/preset-react"
+        ],
+        "plugins": [
+          "@babel/plugin-transform-runtime",
+          "@babel/plugin-proposal-class-properties",
+          "react-hot-loader/babel"
+        ]
+      },
+      "production": {
+        "presets": [
+          "@babel/preset-env",
+          "@babel/preset-react"
+        ],
+        "plugins": [
+          "@babel/plugin-transform-runtime",
+          "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-transform-react-constant-elements",
+          "transform-react-remove-prop-types"
+        ]
+      },
+      "test": {
+        "presets": [
+          "@babel/preset-env",
+          "@babel/preset-react"
+        ],
+        "plugins": [
+          "@babel/plugin-transform-runtime",
+          "@babel/plugin-proposal-class-properties"
+        ]
+      }
+    }
+  },
+  "jest-stare": {
+    "resultDir": "reports/jest-stare",
+    "resultHtml": "index.html",
+    "reportTitle": "Jest: Unit Testing Report",
+    "reportHeadline": "Jest: Unit Testing Report",
+    "reportSummary": true,
+    "coverageLink": "../istanbul-coverage/lcov-report/index.html"
   }
 }

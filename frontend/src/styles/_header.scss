@@ -1,0 +1,63 @@
+.lower-banner {
+  background-color: white;
+  height: 80px;
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.header-text {
+  font-size: 1.7em;
+  font-weight: 400;
+  margin: auto 0;
+  color: #08588F;
+}
+
+.picture-container {
+  text-align: center;
+  padding: 0px 5px;
+  color: white;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.header-image {
+  width: 200px;
+}
+
+
+.navigation-area {
+  margin: 15px 30px 0 auto;
+  position: absolute;
+  z-index: 5;
+  background-color: white;
+  opacity: 1;
+}
+
+@media only screen and (min-width: 641px){
+  .navigation-area {
+    top: 30px;
+    right: 20px;
+  }
+}
+
+@media only screen and (max-width: 640px){
+  .navigation-area {
+    margin: 15px 20px 0 auto;
+    position: relative;
+    float: right;
+  }
+}
+
+
+@media only screen and (max-width: 520px){
+  .header-text {
+    font-size: 1.4em;
+    line-height: 1.2em;
+  }
+
+  .header-image {
+    width: 180px;
+  }
+}
