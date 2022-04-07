@@ -55,7 +55,7 @@ phases:
       - |
         npm run build
         aws s3 cp ./build/. \
-          s3://${APPLICATION}-frontend${ENV}-web \
+          s3://${APPLICATION}-laboratory${ENV}-web \
             --recursive
 
 cache:
