@@ -1,0 +1,31 @@
+.active-style-navigation {
+  background-color: #d9e8f6;
+}
+
+
+.navigation-container {
+  background-color: white;
+}
+
+
+#menu-icon {
+  cursor: pointer;
+  color: #08588F;
+  font-size: 40px;
+  background-color: white;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  padding: 2px;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 0 0 0 auto;
+}
+
+
+.navigation-container {
+  ul {
+    margin-top: 2px;
+    border: 1px solid #dfe1e2;
+  }
+}

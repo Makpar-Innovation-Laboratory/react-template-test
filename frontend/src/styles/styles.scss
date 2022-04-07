@@ -1,0 +1,56 @@
+$theme-font-path: "~uswds/src/fonts";
+$theme-image-path: "~uswds/src/img";
+// Quiet the big "Changelog" dump from USWDS
+$theme-show-notifications: false;
+
+@import '~uswds/src/stylesheets/uswds.scss';
+
+/* USWDS overrides */
+
+//
+// Example override - Delete or modify in a real project
+// .usa-grid, .usa-grid-full { max-width: 1280px; }
+
+/* Variables */
+$success-green: #3F6F20;
+$neutral-blue: #005EA2;
+$error-red: #BF3C3C;
+
+/* Our Stuff */
+@import './home-page.scss';
+@import './header.scss';
+@import './navigation.scss';
+@import './adjudicator-home.scss';
+@import './form-review.scss';
+@import './derog-modal.scss';
+@import './derog-banner.scss';
+@import './adjudicator-review.scss';
+@import './auth-loading.scss';
+
+/* Styles */
+body {
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+  color: #4d4d4d;
+  min-width: 230px;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  font-weight: 300;
+  margin: 0;
+}
+
+td {
+	padding: 12px;
+}
+
+h2 {
+	color: $neutral-blue;
+}
+
+textarea{
+  width:90%;
+  max-width: 100%;
+  margin:auto;
+}

@@ -1,0 +1,68 @@
+.banner-wrapper {
+	color: black;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 100%;
+	flex: 1;
+}
+
+.banner-header { margin: 0 auto; }
+
+.banner-image {
+	vertical-align: middle;
+}
+
+.banner-headline { 
+	display: inline-block; 
+	padding: 0.5rem 0;
+	display: flex;
+	justify-content: center;
+}
+
+.banner-text {
+	font-size: 1.15rem;
+}
+
+#case-review-derog-banner-container, .banner-wrapper, .row, .banner-header, .banner-headline {
+	width: 100%;
+}
+#derog-inprogress {
+	background: #AD9244;
+}
+#derog-clean {
+	background: #3F6F20;
+}
+#derog-problem {
+	background: #BF3C3C;
+}
+
+.banner-headline p {
+	font-size: 1rem;
+	color: #FFFFFF;
+}
+
+#derog-view-button {
+	background: none;
+	border: none;
+	color: #FFFFFF;
+	text-decoration: underline;
+	padding: 0;
+	margin-left: 1rem;
+}
+#derog-view-button:hover {
+	cursor: pointer;
+}
+#derog-view-button:focus {
+	outline: none;
+}

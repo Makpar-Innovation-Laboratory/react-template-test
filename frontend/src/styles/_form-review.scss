@@ -1,0 +1,108 @@
+
+#body-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #F7F7F7;
+    padding: 3rem;
+}
+
+#form-review-container {
+    width: 70%;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-bottom: 3rem;
+}
+
+#form-review-header {
+    width: 100%;
+    background: #707070;
+    display: flex;
+    justify-content: center;
+}
+#form-review-header h3 {
+    color: #FFFFFF;
+}
+
+#application-container {
+    width: 80%;
+}
+
+#accordion-tab {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F0F0F0;
+    padding: 0.5rem;
+
+    margin: 1.5rem 0 1rem 0;
+}
+#accordion-tab:hover {
+    cursor: pointer;
+}
+
+#accordion-action {
+    background: none;
+    border: none;
+    padding: 0.2rem;
+}
+
+.accordion-title {
+    margin: 0;
+    color: #1B1B1B;
+    font-size: 16px;
+}
+
+#open-all, #close-all {
+    color: #005EA2;
+    text-decoration: underline;
+    font-weight: bold;
+    margin-left: 1rem;
+    border: none;
+    background: none;
+    padding: 0;
+}
+a:hover {
+    cursor: pointer;
+}
+
+#collapsible-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+#form-review-subheader {
+    margin-left: 2rem;
+}
+.form-review-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.form-review-subheader {
+    width: 90%;
+}
+
+.grid-row {
+    width: 90%;
+}
+.form-review-field {
+    margin: 0 2rem 0.5rem 2rem;
+}
+
+.field-label {
+    font-weight: bold;
+}
+
+#form-review-other-names {
+    margin-bottom: 0.3rem;
+}
+
