@@ -4,9 +4,8 @@ phases:
   install:
     runtime-versions:
       nodejs: latest
-      python: 3.9
     commands:
-      # initialize environment
+      # Initialize environment
       - |
         if [ "${BRANCH}" != prod ]
         then
@@ -14,27 +13,25 @@ phases:
         else
           export ENV=""
         fi
+      # Install Dependencies
       - cd frontend && npm install
-
-      # # Download sonar scanner
+      # # Download Sonar Scanner CLI
       # - |
       #   curl https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip \
       #       -o "sonar_scanner.zip"
       #   unzip sonar_scanner.zip > /dev/null 2>&1
       #   export PATH=$(pwd)/sonar-scanner-4.6.2.2472-linux/bin/:$PATH
   
-  # pre_build:
-  #   commands:
-  #     # Lint Source Code
-  #     - |
-  #       npx eslint --quiet \
-  #         --no-error-on-unmatched-pattern ./src/** \
-  #         --output-file ../docs/linting/index.html \
-  #         --format html \
-  #         || true
-  #       aws s3 cp ../docs/linting/index.html \
-  #               s3://${APPLICATION}-coverage${ENV}/linting/react/index.html
-      
+  pre_build:
+    commands:
+      # Linting
+      - npm run lint
+      # Unit Tests
+      - |
+        npm run test:report
+        aws s3 cp ./reports/istanbul-coverage/lcov-report/. \
+          s3://${APPLICATION}-documentation-web/test-coverage/frontend \
+            --recursive
       # # SonarQube Static Code Analysis
       # - |
       #   sonar-scanner \
