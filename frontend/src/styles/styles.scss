@@ -1,9 +1,11 @@
+
+
 $theme-font-path: "~uswds/src/fonts";
 $theme-image-path: "~uswds/src/img";
 // Quiet the big "Changelog" dump from USWDS
 $theme-show-notifications: false;
 
-@import '~uswds/src/stylesheets/uswds.scss';
+@import "~uswds/src/stylesheets/uswds.scss";
 
 /* USWDS overrides */
 
@@ -12,45 +14,145 @@ $theme-show-notifications: false;
 // .usa-grid, .usa-grid-full { max-width: 1280px; }
 
 /* Variables */
-$success-green: #3F6F20;
-$neutral-blue: #005EA2;
-$error-red: #BF3C3C;
+$success-green: #3f6f20;
+$neutral-blue: #005ea2;
+$error-red: #bf3c3c;
+$primary-color: #193272;
+$white: #ffffff;
 
 /* Our Stuff */
-@import './home-page.scss';
-@import './header.scss';
-@import './navigation.scss';
-@import './adjudicator-home.scss';
-@import './form-review.scss';
-@import './derog-modal.scss';
-@import './derog-banner.scss';
-@import './adjudicator-review.scss';
-@import './auth-loading.scss';
+@import "./home-page.scss";
+@import "./header.scss";
+@import "./navigation.scss";
+@import "./adjudicator-home.scss";
+@import "./form-review.scss";
+@import "./derog-modal.scss";
+@import "./derog-banner.scss";
+@import "./adjudicator-review.scss";
+@import "./auth-loading.scss";
 
 /* Styles */
 body {
-  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.4em;
   color: #4d4d4d;
   min-width: 230px;
   width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
-  font-smoothing: antialiased;
   font-weight: 300;
   margin: 0;
 }
 
 td {
-	padding: 12px;
+  padding: 12px;
 }
 
 h2 {
-	color: $neutral-blue;
+  color: $neutral-blue;
 }
 
-textarea{
-  width:90%;
+textarea {
+  width: 90%;
   max-width: 100%;
-  margin:auto;
+  margin: auto;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+.mb-1 {
+  margin-bottom: 1rem;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.primary-container {
+  background-color: #193272;
+}
+.primary-text {
+  color: #193272;
+}
+.white-text {
+  color: #e4e8f0;
+}
+.toolbar-container, .logo-container{
+  background-color: #193272;
+}
+.link {
+  text-decoration: none;
+}
+/* Typography */
+.mat-display-2 {
+  font-size: 48px;
+  line-height: 60px;
+}
+.mat-headline {
+  font-size: 24px;
+  line-height: 30px;
+}
+.mat-title {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.app-container {
+  background-image: url(../assets/img/bg.png);
+  background-position: center;
+  min-height: 100vh;
+  width: 100vw;
+  padding-bottom: 100px;
+}
+.nav-bar {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  display: flex;
+  width: 100%;
+  height: 70px;
+}
+.nav-bar h1 {
+  margin: 0 0 0 60px;
+  color: $white;
+}
+
+.nav-link {
+  color: $white;
+  text-decoration: none;
+  margin-left: 50px;
+  font-size: 1.2rem;
+}
+
+.component-container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0) ff;
+}
+
+#open-right {
+  border-bottom: 2px dashed #ffffffaf;
+  animation: open-right;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes open-right {
+  0% {
+    clip-path: polygon(0 0, 0% 0, 0% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(0 0%, 100% 0, 100% 100%, 0 100%);
+  }
 }

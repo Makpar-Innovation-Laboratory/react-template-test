@@ -27,7 +27,8 @@ const ContentPanel = ({ userInfo, getCurrentUser }) => {
         { (isClient) && <Route exact={true} path="/" component={Home} /> }
         { (isAdmin) && <Route exact={true} path="/" component={NotFoundPage} /> }
         { (isLoading) && <Route exact={true} path="/" component={AuthLoading} />}
-        <Route component={Login} />
+        {/* <Route component={Login} /> */}
+        <Route component={Home} />
       </Switch>
     </div>
   );

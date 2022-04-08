@@ -14,8 +14,9 @@ import ContentPanel from "./ContentPanel";
 class App extends Component {
   render() {
     return (
-      <div id="main-app-container">
+      <div class="app-container">
         <Header />
+        <div id="open-right" style={{ height: "0.1rem", width: "100vw" }}></div>
         <ContentPanel />
       </div>
     );
