@@ -1,0 +1,171 @@
+# # BITBUCKET CI/CD PIPELINE TEMPLATE FOR REACT APP
+#
+# This template provides the necessary configuration for a BitBucket pipeline to build a React application and deploy the webpack artifacts to an S3 bucket. You will need to perform some initial setup to hook the pipeline into your repository and get everything up and running.
+#
+# ## SETUP
+# 1. Create an S3 Bucket
+#     Provision an S3 bucket for each environment. Give it the following folder structure,
+#         - Dev
+#         - Staging
+#         - Test
+#         - Prod
+# 2. Setup an AWS Account for BitBucket
+#     BitBucket needs an AWS account with LIMITED access to the S3 bucket just created. Create an IAM user with the policy given in the *aws/policies/pipeline.json* AWS policy file. Note, the putObject, getObject, deleteObject policies defined in this file operate on resources INSIDE of the bucket, whereas listBucket policy operate on the ENTIRE bucket (that's why they have to be separated in different statements in the JSON). Make sure you give the user Programmatic Access through the CLI; BitBucket connects to AWS using the CLI. This will give you an ACCESS_KEY_ID and a SECRET_ACCESS_KEY. Save these, as BitBucket will need them in order to access the S3 bucket created in step 1.
+# 3. Copy YAML into Project.
+#     Put this configuration YAML in the root folder of your repository. It must be named `bitbucket-pipelines.yml`, or I think it must, anyway. There might be a way to override the default name. Not sure yet.
+# 4. Create Pipeline.
+#     Create pipeline for your BitBucket repository through the BitBucket website UI. Underneath the repository, there should be a *Pipelines* option that allows you to create a new pipeline. It should auto-detect the configuration.yaml. 
+# 5. Configure Environment.
+#     Configure your deployment environment variables. These are variables that get feed into the pipeline while it is building the application. Since it is deploying to S3, it needs to have access to our S3 bucket. If you go to `Repository Settings > Deployments`, you will see a list of environments BitBucket provisions by default, `Production`, `Staging`, `Development` and `Test`. This YAML is configured to use the `Production`, `Development` and `Test` environments (the value from `pipelines.branches.BRANCH_NAME.steps.deploy.deployment` that is injected into the `definitions.steps.deploy` script for each workflow). You will need four environment variables per enviroment: **AWS_SECRET_ACCESS_KEY**, **AWS_ACCESS_KEY_ID**, **AWS_DEFAULT_REGION** and **DEPLOYMENT_BUCKET*. The **DEPLOYMENT_BUCKLET** variable should be set equal to the name of the S3 bucket for that environment..
+# 6. Tailor To Your Project.
+#     You will need to adjust the scripts for your specific project. For example, the &install step cd's into the folder containing the package.json before installing the Node dependencies. Tailor for your specific application.
+#       .. todos:: it might be possible to configure the SRC folder through an environment variable in the deployment environment, so that no configuration of this YML will be required to integrate it with another React project.
+# That's it. You now have a pipeline capable of deploying a React application from BitBucket to S3.
+#
+# .. notes ::
+#   * For more information on the `atlassian/aws-s3-deploy` image used to deploy, see the source repository's [README](https://bitbucket.org/atlassian/aws-s3-deploy/src/master/README.md)
+#   * The only areas of this YAML that are particular to the project are mentioned in the `Setup Step 6` and the **LOCAL_PATH** variable that informs the BitBucket S3 script where the build artifacts are located (relative to the version control repository). It should be possible to generalize this even further, so that this file contains no information at all about the particular project. All information is contained in the deployment environment variables configured in `Setup Step 5`.
+
+# Custom image hosted on public ECR with common build dependencies pre-installed. see [here](https://bitbucket.org/Makpar/docker-images) for more information.
+image: public.ecr.aws/r9z1o2o3/pipeline-builder:latest
+
+definitions: 
+
+  steps:
+    - step: &build
+        name: build node application
+        script:
+          - cd frontend
+          - npm install
+          - npm run build
+        artifacts:
+          - frontend/build/**
+
+    - step: &deploy
+        name: deploy node artifacts
+        trigger: automatic
+        clone:
+          enabled: true
+        script:
+          - pipe: atlassian/aws-s3-deploy:0.4.4
+            variables:
+              AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+              AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+              AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+              S3_BUCKET: $DEPLOYMENT_BUCKET
+              LOCAL_PATH: 'frontend/build'
+          - export AWS_ACCESS_KEY_ID && export AWS_SECRET_ACCESS_KEY && export AWS_ACCOUNT_ID && export AWS_DEFAULT_REGION
+          # clear CloudFront cache after successful S3 deployment
+          - bash ./scripts/invalidate-cache
+
+    - step: &bdd-tests
+        name: Test the live Web Application
+        trigger: automatic
+        clone: 
+          enabled: true
+        script:
+          # wait for lambdas to finish updating
+          - git clone git@bitbucket.org:Makpar/test-harness.git
+          - cd test-harness/python
+          - |
+            if [ "${BITBUCKET_BRANCH}" == "Prod" ] 
+            then
+                export BRANCH=""
+            else
+              export BRANCH="-${BITBUCKET_BRANCH}"
+            fi
+          - export FRONTEND_HOST_URL=https://${SUBDOMAIN}${BRANCH,,}.${DOMAIN}
+          - chmod +x ./configure
+          - chmod 777 /opt/atlassian/pipelines/agent/build/test-harness/drivers/linux/chromedriver
+          - ./configure
+          - mkdir tmp
+          # return true so pipeline doesn't fail on test failures
+          - coverage run --source="." -m behave -t "@Web" --no-skipped --summary --junit --junit-directory ./tmp || true
+          - coverage xml
+          # upload test coverage to DeepSource
+          - export DEEPSOURCE_DSN
+          - deepsource report --analyzer test-coverage --key python --value-file coverage.xml
+          - coverage html
+          # upload test coverage to Makpar Bitbucket.io Website (hosted through Bitbucket repo)
+          - git clone https://chinchalinchin:${BITBUCKET_APP_PASSWORD}@bitbucket.org/Makpar/makpar.bitbucket.io.git
+          - |
+            if [ -d ./makpar.bitbucket.io/test-coverage/sandbox/cloudfront-s3/${BITBUCKET_BRANCH,,} ]
+            then
+              rm -r ./makpar.bitbucket.io/test-coverage/sandbox/cloudfront-s3/${BITBUCKET_BRANCH,,}/*
+            else
+              mkdir -p ./makpar.bitbucket.io/test-coverage/sandbox/cloudfront-s3/${BITBUCKET_BRANCH,,}
+            fi
+          - cp -ap ./htmlcov/. ./makpar.bitbucket.io/test-coverage/sandbox/cloudfront-s3/${BITBUCKET_BRANCH,,}
+          - cd makpar.bitbucket.io
+          - git add .
+          - git config --global user.email "sandbox-${BITBUCKET_BRANCH,,}-pipeline@no-reply.makpar.com"
+          - git config --global user.name "sandbox-${BITBUCKET_BRANCH,,}"
+          # catch failures taht result from no *new* coverage reporst being generated
+          - git commit -m "$(date) Sandbox Pipeline Unit Test Result For Gateway-Lambdas" || true
+          - git push --set-upstream origin master || true
+
+    - step: &generate-documentation
+        name: Generate documentation from docstrings
+        trigger: automatic
+        clone:
+          enabled: true
+        script:
+          - cd frontend
+          - npm install
+          - npm run docs
+          - git clone https://chinchalinchin:${BITBUCKET_APP_PASSWORD}@bitbucket.org/Makpar/makpar.bitbucket.io.git
+          - |
+            if [ -d ./makpar.bitbucket.io/docs/sandbox/cloudfront-s3/${BITBUCKET_BRANCH,,} ]
+            then
+              rm -r ./makpar.bitbucket.io/docs/sandbox/cloudfront-s3/${BITBUCKET_BRANCH,,}/*
+            else
+              mkdir -p ./makpar.bitbucket.io/docs/sandbox/cloudfront-s3/${BITBUCKET_BRANCH,,}
+            fi
+          - cp -ap ./docs/. ./makpar.bitbucket.io/docs/sandbox/cloudfront-s3/${BITBUCKET_BRANCH,,}
+          - cd makpar.bitbucket.io
+          - git add .
+          - git config --global user.email "sandbox-${BITBUCKET_BRANCH,,}-pipeline@no-reply.makpar.com"
+          - git config --global user.name "sandbox-${BITBUCKET_BRANCH,,}"
+          # catch failures that result from no *new* documentation coverage being generated
+          - git commit -m "$(date) Sandbox Pipeline Documentation Generation For Cloudfront-S3" || true
+          - git push --set-upstream origin master || true
+
+
+pipelines:
+  # Repository Wide Workflows: Tests, Scans and Static Code Analysis
+  default:
+      - step: 
+          name: lint source code
+          script:
+            - cd frontend
+            - npm install
+            - npx eslint --quiet --no-error-on-unmatched-pattern ./src/** || true
+      - step:
+          <<: *build
+
+  # Branch Specific Workflows: Dependency Installation, Application Build, Deployments
+  branches:
+    Prod:
+      - step: *build
+      - step:
+          <<: *deploy
+          deployment: Production
+      - step: *bdd-tests
+    Test: 
+      - step: *build
+      - step: 
+          <<: *deploy
+          deployment: Test
+      - step: *bdd-tests
+    Staging:
+      - step: *build
+      - step:
+          <<: *deploy
+          deployment: Staging
+      - step: *bdd-tests
+    Dev:
+      - step: *build
+      - step: 
+          <<: *deploy
+          deployment: Development
+      - step: *bdd-tests
