@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JSX Tests :: <Root /> Rendering Sanity Check Snapshot Rendering 1`] = `
+"<Provider store={{...}}>
+  <Connect(ConnectedRouterWithContext) history={{...}}>
+    <App />
+  </Connect(ConnectedRouterWithContext)>
+</Provider>"
+`;

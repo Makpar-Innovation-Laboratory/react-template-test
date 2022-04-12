@@ -28,7 +28,9 @@
   justify-content: flex-end;
   margin-top: 1rem;
 }
-
+.service-selector .mat-headline:hover {
+  cursor: pointer;
+}
 
 .card {
   width: 50%;
@@ -44,10 +46,10 @@
   font-size: 1.6rem;
 }
 
-.selected li {
+#selected li {
   font-weight: bold;
 }
-.selected #line {
+#selected #line {
   border-bottom: 2px dashed #234286;
 }
 

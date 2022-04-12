@@ -1,18 +1,4 @@
 
-
-$theme-font-path: "~uswds/src/fonts";
-$theme-image-path: "~uswds/src/img";
-// Quiet the big "Changelog" dump from USWDS
-$theme-show-notifications: false;
-
-@import "~uswds/src/stylesheets/uswds.scss";
-
-/* USWDS overrides */
-
-//
-// Example override - Delete or modify in a real project
-// .usa-grid, .usa-grid-full { max-width: 1280px; }
-
 /* Variables */
 $success-green: #3f6f20;
 $neutral-blue: #005ea2;
@@ -30,39 +16,27 @@ $white: #ffffff;
 @import "./derog-banner.scss";
 @import "./adjudicator-review.scss";
 @import "./auth-loading.scss";
+@import "./mission-page.scss";
+@import "./team-page.scss";
 
-/* Styles */
-body {
-  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
-  line-height: 1.4em;
-  color: #4d4d4d;
-  min-width: 230px;
-  width: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  font-weight: 300;
-  margin: 0;
-}
-
-td {
-  padding: 12px;
-}
-
-h2 {
-  color: $neutral-blue;
-}
-
-textarea {
-  width: 90%;
-  max-width: 100%;
-  margin: auto;
-}
-
+/* Typography */
 .mt-1 {
   margin-top: 1rem;
 }
 .mb-1 {
   margin-bottom: 1rem;
+}
+.ml-1 {
+  margin-left: 1rem;
+}
+.mr-1 {
+  margin-right: 1rem;
+}
+.ml-2 {
+  margin-left: 2rem;
+}
+.mr-2 {
+  margin-right: 2rem;
 }
 .flex-column {
   display: flex;
@@ -77,14 +51,41 @@ textarea {
 .text-center {
   text-align: center;
 }
-.primary-container {
-  background-color: #193272;
-}
+/* Text Colors */
 .primary-text {
-  color: #193272;
+  color: $primary-color;
 }
 .white-text {
-  color: #e4e8f0;
+  color: $white;
+}
+.red-text {
+  color: $error-red;
+}
+.green-text {
+  color: $success-green;
+}
+/* Text Size */
+.mat-display-2 {
+  font-size: 48px;
+  line-height: 60px;
+}
+.mat-headline, h4 {
+  font-size: 24px;
+  line-height: 30px;
+}
+h5 {
+  font-size: 20px;
+  line-height: 30px;
+}
+.mat-title, p {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+
+/* General Stylings */
+.primary-container {
+  background-color: #193272;
 }
 .toolbar-container, .logo-container{
   background-color: #193272;
@@ -92,20 +93,6 @@ textarea {
 .link {
   text-decoration: none;
 }
-/* Typography */
-.mat-display-2 {
-  font-size: 48px;
-  line-height: 60px;
-}
-.mat-headline {
-  font-size: 24px;
-  line-height: 30px;
-}
-.mat-title {
-  font-size: 18px;
-  line-height: 22px;
-}
-
 .app-container {
   background-image: url(../assets/img/bg.png);
   background-position: center;
@@ -125,14 +112,12 @@ textarea {
   margin: 0 0 0 60px;
   color: $white;
 }
-
 .nav-link {
   color: $white;
   text-decoration: none;
   margin-left: 50px;
   font-size: 1.2rem;
 }
-
 .component-container {
   width: 100vw;
   display: flex;
@@ -140,7 +125,26 @@ textarea {
   align-items: center;
   background: rgba(255, 255, 255, 0) ff;
 }
+body {
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+  color: #4d4d4d;
+  min-width: 230px;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-weight: 300;
+  margin: 0;
+}
+textarea {
+  width: 90%;
+  max-width: 100%;
+  margin: auto;
+}
 
+
+
+/* Animations */
 #open-right {
   border-bottom: 2px dashed #ffffffaf;
   animation: open-right;

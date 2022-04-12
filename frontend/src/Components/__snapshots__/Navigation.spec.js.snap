@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JSX Tests :: <Navigation /> Rendering Sanity Check Snapshot Rendering 1`] = `
+"{\\"nodeType\\":\\"html\\",\\"type\\":\\"div\\",\\"name\\":\\"div\\",\\"props\\":{\\"className\\":\\"navigation-container\\",\\"children\\":[{\\"type\\":\\"div\\",\\"key\\":null,\\"ref\\":null,\\"props\\":{\\"id\\":\\"menu-icon\\",\\"children\\":\\"☰\\"},\\"_owner\\":null,\\"_store\\":{}},false]},\\"key\\":\\"null\\"}
+ -> {\\"nodeType\\":\\"html\\",\\"type\\":\\"div\\",\\"name\\":\\"div\\",\\"props\\":{\\"id\\":\\"menu-icon\\",\\"children\\":\\"☰\\"},\\"key\\":\\"null\\"}
+  -> {\\"nodeType\\":\\"string\\",\\"type\\":\\"☰\\",\\"props\\":{},\\"name\\":\\"\\",\\"key\\":\\"undefined\\"}
+ -> {\\"nodeType\\":\\"nothing\\",\\"type\\":\\"false\\",\\"name\\":\\"\\",\\"props\\":{}}"
+`;

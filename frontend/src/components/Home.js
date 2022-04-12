@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Home () {
+
+  const [selected, setSelected] = useState("Cybersecurity");
 
   return (
     <div className="home-container">
@@ -14,16 +16,16 @@ export default function Home () {
         <div>
           <div className="flex-column">
             <div className="white-text mat-headline mb-1" style={{ marginRight: "50px", textAlign: "right" }}>
-              <Link to="/" className="white-text link">MISSION</Link>
+              <Link to="/mission" className="white-text link">MISSION</Link>
             </div>
             <div className="white-text mat-headline mb-1" style={{ marginRight: "50px", textAlign: "right" }}>
-              <Link to="/" className="white-text link">TEAM</Link>
+              <Link to="/team" className="white-text link">TEAM</Link>
             </div>
             <div className="white-text mat-headline mb-1" style={{ marginRight: "50px", textAlign: "right" }}>
-              <Link to="/" className="white-text link">PROJECTS</Link>
+              <Link to="/projects" className="white-text link">PROJECTS</Link>
             </div>
             <div className="white-text mat-headline mb-1" style={{ marginRight: "50px", textAlign: "right" }}>
-              <Link to="/" className="white-text link">ARCHIVE</Link>
+              <Link to="/archive" className="white-text link">ARCHIVE</Link>
             </div>
           </div>
           <div id="open-left-white" style={{ height: "0.5rem", width: "18rem" }}></div>
@@ -47,25 +49,25 @@ export default function Home () {
 
           <div style={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
             <ul className="primary-text" style={{ width: "100%" }}>
-              <div className="selected service-selector">
-                <div className="mat-headline">CYBERSECURITY</div>
+              <div className="service-selector" id={ selected == "Cybersecurity" ? "selected" : "" }>
+                <div className="mat-headline" onClick={(e) => setSelected("Cybersecurity")}>CYBERSECURITY</div>
                 <div id="line" style={{ height: "1.5rem", width: "50%" }}></div>
               </div>
-              <div className="service-selector">
-                <div className="mat-headline">MACHINE LEARNING</div>
+              <div className="service-selector" id={ selected == "MachineLearning" ? "selected" : "" }>
+                <div className="mat-headline" onClick={(e) => setSelected("MachineLearning")}>MACHINE LEARNING</div>
                 <div id="line" style={{ height: "1.5rem", width: "50%" }}></div>
               </div>
-              <div className="service-selector">
-                <div className="mat-headline">CLOUD MIGRATION</div>
+              <div className="service-selector" id={ selected == "CloudMigration" ? "selected" : "" }>
+                <div className="mat-headline" onClick={(e) => setSelected("CloudMigration")}>CLOUD MIGRATION</div>
                 <div id="line" style={{ height: "1.5rem", width: "50%" }}></div>
               </div>
-              <div className="service-selector">
-                <div className="mat-headline">DEVSECOPS</div>
+              <div className="service-selector" id={ selected == "Devsecops" ? "selected" : "" }>
+                <div className="mat-headline" onClick={(e) => setSelected("Devsecops")}>DEVSECOPS</div>
                 <div id="line" style={{ height: "1.5rem", width: "50%" }}></div>
               </div>
-              <div className="service-selector">
-                <div className="mat-headline">AGILE</div>
-                <div id="hr-line" style={{ height: "1.5rem", width: "50%" }}></div>
+              <div className="service-selector" id={ selected == "Agile" ? "selected" : "" }>
+                <div className="mat-headline" onClick={(e) => setSelected("Agile")}>AGILE</div>
+                <div id="line" style={{ height: "1.5rem", width: "50%" }}></div>
               </div>
             </ul>
           </div>

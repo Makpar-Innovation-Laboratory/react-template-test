@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JSX Tests :: <App /> Rendering Sanity Check Snapshot Rendering 1`] = `
+"<div class=\\"app-container\\">
+  <Header />
+  <div id=\\"open-right\\" style={{...}} />
+  <Connect(ContentPanel) />
+</div>"
+`;
