@@ -12,7 +12,7 @@ export default function Mission() {
         className="white-text mission-header"
       >
         <div style={{ width: "20%", textAlign: "right" }}>
-          <h4 className="mat-headline mr-2">MISSION</h4>
+          <h3 className="mr-2">MISSION</h3>
         </div>
 
         <div style={{ width: "80%", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>

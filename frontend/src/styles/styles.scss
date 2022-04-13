@@ -1,4 +1,3 @@
-
 /* Variables */
 $success-green: #3f6f20;
 $neutral-blue: #005ea2;
@@ -18,13 +17,74 @@ $white: #ffffff;
 @import "./auth-loading.scss";
 @import "./mission-page.scss";
 @import "./team-page.scss";
+@import "./projects-page.scss";
+@import "./archive-page.scss";
 
+/* Text Size */
+.mat-display-2 {
+  font-size: 48px;
+  line-height: 60px;
+  margin: 0;
+  word-wrap: break-word;
+}
+h3 {
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: normal;
+  word-wrap: break-word;
+  margin: 0;
+}
+.mat-headline,
+h4 {
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: normal;
+  word-wrap: break-word;
+  margin: 0;
+}
+h5 {
+  font-size: 20px;
+  line-height: 30px;
+  margin: 0;
+  word-wrap: break-word;
+}
+.mat-title,
+p {
+  font-size: 16px;
+  line-height: 22px;
+  word-wrap: break-word;
+  margin: 0;
+}
 /* Typography */
+.bg-white {
+  background-color: $white;
+}
+.bg-primary {
+  background-color: $primary-color;
+}
+.my-1 {
+  margin: 1rem 0;
+}
+.my-2 {
+  margin: 2rem 0;
+}
+.mx-1 {
+  margin: 0 1rem;
+}
+.mx-2 {
+  margin: 0 2rem;
+}
 .mt-1 {
   margin-top: 1rem;
 }
+.mt-2 {
+  margin-top: 2rem;
+}
 .mb-1 {
   margin-bottom: 1rem;
+}
+.mb-2 {
+  margin-bottom: 2rem;
 }
 .ml-1 {
   margin-left: 1rem;
@@ -64,30 +124,28 @@ $white: #ffffff;
 .green-text {
   color: $success-green;
 }
-/* Text Size */
-.mat-display-2 {
-  font-size: 48px;
-  line-height: 60px;
+/* Buttons */
+.btn-primary {
+  background: $primary-color;
+  color: $white;
+  border: none;
+  padding: 0.35rem 1.5rem;
+  border-radius: 1rem;
 }
-.mat-headline, h4 {
-  font-size: 24px;
-  line-height: 30px;
+.btn-white {
+  background: $white;
+  color: $primary-color;
+  border: 1px solid $primary-color;
+  padding: 0.35rem 1.5rem;
+  border-radius: 1rem;
 }
-h5 {
-  font-size: 20px;
-  line-height: 30px;
-}
-.mat-title, p {
-  font-size: 18px;
-  line-height: 22px;
-}
-
 
 /* General Stylings */
 .primary-container {
   background-color: #193272;
 }
-.toolbar-container, .logo-container{
+.toolbar-container,
+.logo-container {
   background-color: #193272;
 }
 .link {
@@ -141,7 +199,20 @@ textarea {
   max-width: 100%;
   margin: auto;
 }
-
+/* Header */
+.header-border {
+  width: 7rem;
+  margin: 1rem 0;
+  border-bottom: 2px solid $white;
+}
+.page-header {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+}
+.page-header h5 {
+  font-weight: normal;
+}
 
 
 /* Animations */

@@ -1,0 +1,79 @@
+.projects-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.projects-header {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+}
+.projects-header h5 {
+  margin-bottom: 0.5rem 0;
+  font-weight: normal;
+}
+
+.projects-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.projects-year {
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.projects {
+  width: 70%;
+  border-left: 2px dashed #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.preview-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.preview {
+  width: 90%;
+  display: flex;
+  margin-top: 2rem;
+}
+
+.preview h5 {
+  border-bottom: 2px dashed #224185;
+}
+.preview h6 {
+  margin-bottom: 0;
+}
+
+.preview-image {
+  width: 50%;
+}
+
+.preview-info {
+  padding: 1.5rem;
+  width: 50%;
+}
+
+.project-tag {
+  background: $primary-color;
+  color: $white;
+  border: none;
+  // background: $white;
+  // color: $primary-color;
+  // border: 1px solid $primary-color;
+  padding: 0.3rem 1rem;
+  border-radius: 1.5rem;
+  margin-top: 0.5rem;
+}
+.project-tag:not(:last-child) {
+  margin-right: 0.5rem;
+}

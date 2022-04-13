@@ -9,6 +9,7 @@ import NotFoundPage from "./NotFoundPage";
 import Mission from "./Mission";
 import Team from "./Team";
 import Projects from "./Projects";
+import Archive from "./Archive";
 
 import { userRoles } from "../constants";
 import { getCurrentUser } from "../actions";
@@ -35,6 +36,7 @@ const ContentPanel = ({ userInfo, getCurrentUser }) => {
         <Route path="/mission" component={Mission} />
         <Route path="/team" component={Team} />
         <Route path="/projects" component={Projects} />
+        <Route path="/archive" component={Archive} />
         <Route path="/" component={Home} />
         {/* <Route component={Login} /> */}
 

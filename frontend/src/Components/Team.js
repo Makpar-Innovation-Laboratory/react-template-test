@@ -13,18 +13,17 @@ export default function Team() {
   ]
 
   return (
-    <div className="team-container" style={{ padding: "3rem 0 15rem 0" }}>
+    <div className="team-container" style={{ padding: "3rem 0 0 0" }}>
       <div
-        style={{ display: "flex", justifyContent: "center", width: "80%" }}
         className="white-text team-header"
       >
         <div style={{ width: "20%", textAlign: "right" }}>
-          <h4 className="mat-headline mr-2">TEAM</h4>
+          <h3 className="mr-2">TEAM</h3>
         </div>
 
         <div style={{ width: "80%", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
           <h5 className="mat-title">LOREM IPSUM DOLOR SIT AMET</h5>
-          <div className="team-header-border"></div>
+          <div className="header-border"></div>
           <p className="mat-subheading-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -63,13 +62,13 @@ export default function Team() {
                   }}
                 >
                   <img src="../../assets/icon/user-icon.svg" height="250px" />
-                  <h5 className="mat-title white-text" style={{ marginTop: "1rem" }}>
+                  <h4 className="white-text mt-1">
                     {/* {{member.name.toUpperCase()}} */}
                     {i.name}
-                  </h5>
+                  </h4>
                   <h5
                     className="mat-title white-text"
-                    style={{ borderBottom: "2px dashed #ffffff", paddingBottom: "0.5rem" }}
+                    style={{ borderBottom: "2px dashed #ffffff", padding: "0.5rem" }}
                   >
                     {/* {{member.position}} */}
                     {i.position}

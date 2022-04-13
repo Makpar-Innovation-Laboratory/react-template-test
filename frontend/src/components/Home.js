@@ -5,6 +5,14 @@ export default function Home () {
 
   const [selected, setSelected] = useState("Cybersecurity");
 
+  const services = [
+    { name: "Cybersecurity", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Consectetur adipiscing elit, incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam." },
+    { name: "Machine Learning", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. Labore et dolore magna aliqua. Ut enim ad minim veniam. Sed do eiusmod tempor incididunt." },
+    { name: "Cloud Migration", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Consectetur adipiscing elit, sed do eiusmod tempor incididunt." },
+    { name: "DevSecOps", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Consectetur adipiscing elit, sed do eiusmod tempor incididunt." },
+    { name: "Agile", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Sed do eiusmod tempor incididunt." },
+  ]
+
   return (
     <div className="home-container">
       <div className="heading-container">
@@ -37,11 +45,6 @@ export default function Home () {
           <div style={{ width: "100%" }}>
             <div style={{ display: "flex", paddingLeft: "50px", marginTop: "15px" }}>
               <div className="primary-text mat-headline text-left">SERVICES</div>
-              <img
-                className="right-arrow mat-headline"
-                src="../assets/icon/right_arrow_icon.svg"
-                style={{ marginLeft: "30px" }}
-              />
             </div>
 
             <div id="open-left" style={{ height: "0.5rem", width: "8rem" }}></div>
@@ -53,16 +56,16 @@ export default function Home () {
                 <div className="mat-headline" onClick={(e) => setSelected("Cybersecurity")}>CYBERSECURITY</div>
                 <div id="line" style={{ height: "1.5rem", width: "50%" }}></div>
               </div>
-              <div className="service-selector" id={ selected == "MachineLearning" ? "selected" : "" }>
-                <div className="mat-headline" onClick={(e) => setSelected("MachineLearning")}>MACHINE LEARNING</div>
+              <div className="service-selector" id={ selected == "Machine Learning" ? "selected" : "" }>
+                <div className="mat-headline" onClick={(e) => setSelected("Machine Learning")}>MACHINE LEARNING</div>
                 <div id="line" style={{ height: "1.5rem", width: "50%" }}></div>
               </div>
-              <div className="service-selector" id={ selected == "CloudMigration" ? "selected" : "" }>
-                <div className="mat-headline" onClick={(e) => setSelected("CloudMigration")}>CLOUD MIGRATION</div>
+              <div className="service-selector" id={ selected == "Cloud Migration" ? "selected" : "" }>
+                <div className="mat-headline" onClick={(e) => setSelected("Cloud Migration")}>CLOUD MIGRATION</div>
                 <div id="line" style={{ height: "1.5rem", width: "50%" }}></div>
               </div>
-              <div className="service-selector" id={ selected == "Devsecops" ? "selected" : "" }>
-                <div className="mat-headline" onClick={(e) => setSelected("Devsecops")}>DEVSECOPS</div>
+              <div className="service-selector" id={ selected == "DevSecOps" ? "selected" : "" }>
+                <div className="mat-headline" onClick={(e) => setSelected("DevSecOps")}>DEVSECOPS</div>
                 <div id="line" style={{ height: "1.5rem", width: "50%" }}></div>
               </div>
               <div className="service-selector" id={ selected == "Agile" ? "selected" : "" }>
@@ -74,18 +77,24 @@ export default function Home () {
         </div>
 
         <div className="card primary-container"  style={{ margin: 0, width: "50%", height: "100%" }}>
-          <div style={{ margin: "50px 40px", padding: "5rem 0" }}>
-            <div className="mat-headline white-text text-center mb-1">
-              CYBERSECURITY
-            </div>
 
-            <div className="mat-title white-text text-center">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam. Consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt.
-            </div>
-          </div>
+            { services ? services.map((service, sid) => {
+              console.log(service.name + " == " + selected)
+              if (service.name == selected) {
+                return (
+                  <div key={sid} style={{ margin: "50px 40px", padding: "5rem 0" }}>
+                    <div className="mat-headline white-text text-center mb-1">
+                      <h4>{service.name.toUpperCase()}</h4>
+                    </div>
+
+                    <div className="mat-title white-text text-center">
+                      <h5 style={{ fontWeight: "normal" }}>{service.description}</h5>
+                    </div>
+                  </div>
+                )
+              }
+            }) : ""}
+
         </div>
       </div>
     </div>
