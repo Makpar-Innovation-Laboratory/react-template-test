@@ -50,7 +50,7 @@ h5 {
 }
 .mat-title,
 p {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 22px;
   word-wrap: break-word;
   margin: 0;
@@ -141,6 +141,9 @@ p {
 }
 
 /* General Stylings */
+a {
+  text-decoration: none;
+}
 .primary-container {
   background-color: #193272;
 }
@@ -230,4 +233,9 @@ textarea {
   100% {
     clip-path: polygon(0 0%, 100% 0, 100% 100%, 0 100%);
   }
+}
+
+.dashed-hr-white {
+  border-bottom: 2px dashed $white;
+  margin: 0.5rem 0;
 }

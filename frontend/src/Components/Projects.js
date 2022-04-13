@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Projects() {
 
@@ -63,9 +64,9 @@ export default function Projects() {
                   </div>
                   <div className="preview-info">
                     {/* <a routerlink="/project"> */}
-                    <a>
-                      <h4>{project.title}</h4>
-                    </a>
+                    <Link to="/project">
+                      <h4 className="primary-text">{project.title}</h4>
+                    </Link>
                     <p className="my-1">{project.description}</p>
                     <div style={{ display: "flex", flexWrap: "wrap" }}>
                       { project.tags ? project.tags.map((tag, tid) => {

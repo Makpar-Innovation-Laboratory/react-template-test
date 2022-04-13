@@ -1,12 +1,12 @@
 import React from "react";
 import { isolateComponent } from "isolate-react";
-import Home from "./Home";
+import Login from "./Login";
 // import { shallow, mount } from "enzyme";
 
-describe("JSX Tests :: <Home /> Rendering", () => {
+describe("JSX Tests :: <Header /> Rendering", () => {
 
   test("Sanity Check Snapshot Rendering", () => {
-    const wrapper = isolateComponent(<Home />);
+    const wrapper = isolateComponent(<Login />);
 
     expect(wrapper.debug()).toMatchSnapshot();
   });

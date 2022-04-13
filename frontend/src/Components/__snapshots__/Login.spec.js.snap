@@ -1,0 +1,6 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JSX Tests :: <Header /> Rendering Sanity Check Snapshot Rendering 1`] = `
+"{\\"nodeType\\":\\"html\\",\\"type\\":\\"div\\",\\"name\\":\\"div\\",\\"props\\":{\\"className\\":\\"container w-25\\",\\"children\\":\\"Login Page\\"},\\"key\\":\\"null\\"}
+ -> {\\"nodeType\\":\\"string\\",\\"type\\":\\"Login Page\\",\\"props\\":{},\\"name\\":\\"\\",\\"key\\":\\"undefined\\"}"
+`;

@@ -10,16 +10,16 @@ describe("JSX Tests :: <Header /> Rendering", () => {
     expect(wrapper.debug()).toMatchSnapshot();
   });
 
-  test("Explanation Banner Shows When Toggled", () => {
-    const wrapper = isolateComponent(<Header />);
-    const toggleBtn = wrapper.findOne("#explanation-btn");
-    const explanation = wrapper.findAll("#gov-banner");
+  // test("Explanation Banner Shows When Toggled", () => {
+  //   const wrapper = isolateComponent(<Header />);
+  //   const toggleBtn = wrapper.findOne("#explanation-btn");
+  //   const explanation = wrapper.findAll("#gov-banner");
 
-    expect(explanation.length).toEqual(0);
+  //   expect(explanation.length).toEqual(0);
 
-    toggleBtn.props.onClick();
-    const explanationAfter = wrapper.findAll("#gov-banner");
+  //   toggleBtn.props.onClick();
+  //   const explanationAfter = wrapper.findAll("#gov-banner");
 
-    expect(explanationAfter.length).toEqual(1);
-  });
+  //   expect(explanationAfter.length).toEqual(1);
+  // });
 });
