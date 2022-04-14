@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import './App.css'
 
-import Navigation from './Components/Navigation/Navigation'
 import Home from './Components/Home/Home'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -25,7 +24,6 @@ function App () {
           <Switch>
             <Route path='/'>
               <div className='main-wrapper d-flex'>
-                <Navigation />
                 <Home />
               </div>
             </Route>
