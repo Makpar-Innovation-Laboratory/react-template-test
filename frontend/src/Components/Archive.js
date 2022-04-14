@@ -5,6 +5,8 @@ import viewIcon from "../assets/icon/right_arrow_icon.svg";
 
 export default function Archive() {
 
+  // Connected
+
   const blogs = [
     { title: "Lorem Ipsum Dolor Dit Amet 1", author: "John Doe", submitted: "02-12-2022", feature_image: "image_1" },
     { title: "Lorem Ipsum Dolor Dit Amet 2", author: "John Doe", submitted: "02-13-2022", feature_image: "image_1" },
