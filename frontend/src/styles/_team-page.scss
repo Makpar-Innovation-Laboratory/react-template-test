@@ -1,0 +1,25 @@
+.team-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.team-header-border {
+  width: 7rem;
+  margin: 1rem 0;
+  border-bottom: 2px solid $white;
+}
+.team-header {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+}
+.team-header h5 {
+  font-weight: normal;
+}
+.row h5 {
+  font-weight: normal;
+}
+.row-wrapper {
+  transform: translateY(-8rem);
+}

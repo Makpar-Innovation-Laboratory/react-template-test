@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">63.63% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>7/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>8/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">63.63% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>7/11</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -117,16 +117,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -153,22 +153,22 @@ class MockApi {
   // Mock implementations of the REST calls in MainApi
   //
 &nbsp;
-<span class="fstat-no" title="function not covered" >  st</span>atic getCurrentUser(client=<span class="branch-0 cbranch-no" title="branch not covered" >false,</span> admin=<span class="branch-0 cbranch-no" title="branch not covered" >false,</span> specific=<span class="branch-0 cbranch-no" title="branch not covered" >true,</span> shouldFail=<span class="branch-0 cbranch-no" title="branch not covered" >false)</span> {
+  static getCurrentUser(client=false, admin=false, specific=true, shouldFail=false) {
     // Use the above flags to get the specific user type you need
-<span class="cstat-no" title="statement not covered" >    return new Promise( <span class="fstat-no" title="function not covered" >(r</span>esolve, reject) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      setTimeout( <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        if (!shouldFail) {</span>
-<span class="cstat-no" title="statement not covered" >          if (client) {</span>
+    return new Promise( (resolve, reject) =&gt; {
+      setTimeout( () =&gt; {
+        if (!shouldFail) {
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (client) {
 <span class="cstat-no" title="statement not covered" >            resolve({ ...getRandomClient() });</span>
-          } else <span class="cstat-no" title="statement not covered" >if (admin) {</span>
+          } else <span class="missing-if-branch" title="if path not taken" >I</span>if (admin) {
 <span class="cstat-no" title="statement not covered" >            resolve({ ...getRandomAdmin() });</span>
-          } else <span class="cstat-no" title="statement not covered" >if (specific) {</span>
+          } else if (specific) {
             // Pick your specific user here
-<span class="cstat-no" title="statement not covered" >            resolve({ ...sampleUsers[4] });</span>
-          } else {
+            resolve({ ...sampleUsers[4] });
+          } else <span class="missing-if-branch" title="else path not taken" >E</span>{
 <span class="cstat-no" title="statement not covered" >            resolve({ ...getRandomUser() });</span>
           }
-        } else {
+        } else <span class="missing-if-branch" title="else path not taken" >E</span>{
 <span class="cstat-no" title="statement not covered" >          reject("Test failure for unit testing purposes only -- getCurrentUser");</span>
         }
       }, delay);
@@ -184,7 +184,7 @@ export default MockApi;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Thu Apr 07 2022 21:34:13 GMT+0000 (Coordinated Universal Time)
+                at Wed Apr 13 2022 18:03:41 GMT-0400 (Eastern Daylight Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>

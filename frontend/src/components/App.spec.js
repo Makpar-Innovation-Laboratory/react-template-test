@@ -4,9 +4,9 @@ import App from "./App";
 
 describe("JSX Tests :: <App /> Rendering", () => {
 
-  test("Sanity Check Snapshot Rendering", () => {
+  // test("Sanity Check Snapshot Rendering", () => {
 
-    const wrapper = shallow(<App />);
-    expect(wrapper.debug()).toMatchSnapshot();
-  });
+  //   const wrapper = shallow(<App />);
+  //   expect(wrapper.debug()).toMatchSnapshot();
+  // });
 });

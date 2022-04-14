@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/16</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/16</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -130,7 +130,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -140,8 +140,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -154,13 +154,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,22 +166,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">71x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">66x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * Collection of useful or general purpose helper functions
@@ -191,7 +191,7 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >dayjs.extend(relativeTime);</span>
+dayjs.extend(relativeTime);
 &nbsp;
  /**
  * A simple blank string checker.
@@ -201,8 +201,8 @@ import relativeTime from "dayjs/plugin/relativeTime";
  *
  * @param {string} inputStr The string to test
  */
-export const isBlank = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(i</span>nputStr) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >  !inputStr</span>
+export const isBlank = (inputStr) =&gt; (
+  !inputStr
   || inputStr === null
   || typeof(inputStr) !== "string"
   || inputStr.length &lt; 1
@@ -215,11 +215,11 @@ export const isBlank = <span class="cstat-no" title="statement not covered" ><sp
  * @param {number} time Epoch time in milliseconds
  * @returns A formatted string (e.g. "2 days ago")
  */
-export const timeAgo = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(t</span>ime) =&gt; {</span>
-  const postTime = <span class="cstat-no" title="statement not covered" >dayjs(time);</span>
-  const now = <span class="cstat-no" title="statement not covered" >dayjs(new Date());</span>
+export const timeAgo = (time) =&gt; {
+  const postTime = dayjs(time);
+  const now = dayjs(new Date());
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return postTime.from(now);</span>
+  return postTime.from(now);
 };
 &nbsp;
 /**
@@ -229,22 +229,22 @@ export const timeAgo = <span class="cstat-no" title="statement not covered" ><sp
  * @param {string} str The string to convert
  * @returns A string in capital-case form
  */
-export const convertToCapCase = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>tr) =&gt; {</span>
-  let retVal = <span class="cstat-no" title="statement not covered" >"";</span>
+export const convertToCapCase = (str) =&gt; {
+  let retVal = "";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (str &amp;&amp; !isBlank(str)) {</span>
-    const letters = <span class="cstat-no" title="statement not covered" >str.split("");</span>
+  if (str &amp;&amp; !isBlank(str)) {
+    const letters = str.split("");
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    letters.forEach( <span class="fstat-no" title="function not covered" >(l</span>, idx) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      if (idx === 0) {</span>
-<span class="cstat-no" title="statement not covered" >        retVal += l.toUpperCase();</span>
+    letters.forEach( (l, idx) =&gt; {
+      if (idx === 0) {
+        retVal += l.toUpperCase();
       } else {
-<span class="cstat-no" title="statement not covered" >        retVal += l.toLowerCase();</span>
+        retVal += l.toLowerCase();
       }
     });
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return retVal;</span>
+  return retVal;
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -253,7 +253,7 @@ export const convertToCapCase = <span class="cstat-no" title="statement not cove
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Thu Apr 07 2022 21:34:13 GMT+0000 (Coordinated Universal Time)
+                at Wed Apr 13 2022 18:03:41 GMT-0400 (Eastern Daylight Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>

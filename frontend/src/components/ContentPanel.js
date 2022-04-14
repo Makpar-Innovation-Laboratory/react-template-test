@@ -1,11 +1,17 @@
 import React, { useEffect } from "react";
 import { func, object } from "prop-types";
-import { Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import Home from "./Home"
-import Login from "./Login"
+import Home from "./Home";
+import Login from "./Login";
 import AuthLoading from "./AuthLoading";
 import NotFoundPage from "./NotFoundPage";
+import Mission from "./Mission";
+import Team from "./Team";
+import Projects from "./Projects";
+import Project from "./Project";
+import Archive from "./Archive";
+
 
 import { userRoles } from "../constants";
 import { getCurrentUser } from "../actions";
@@ -23,12 +29,22 @@ const ContentPanel = ({ userInfo, getCurrentUser }) => {
 
   return (
     <div id="content-panel">
+
       <Switch>
-        { (isClient) && <Route exact={true} path="/" component={Home} /> }
+        {/* { (isClient) && <Route exact={true} path="/" component={Home} /> }
         { (isAdmin) && <Route exact={true} path="/" component={NotFoundPage} /> }
-        { (isLoading) && <Route exact={true} path="/" component={AuthLoading} />}
-        <Route component={Login} />
+        { (isLoading) && <Route exact={true} path="/" component={AuthLoading} />} */}
+        {/* <Route path="/" component={Home} /> */}
+        <Route path="/mission" component={Mission} />
+        <Route path="/team" component={Team} />
+        <Route path="/projects" component={Projects} />
+        <Route path="/project" component={Project} />
+        <Route path="/archive" component={Archive} />
+        <Route path="/" component={Home} />
+        {/* <Route component={Login} /> */}
+
       </Switch>
+
     </div>
   );
 };
