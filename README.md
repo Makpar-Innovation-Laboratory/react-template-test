@@ -6,28 +6,21 @@ Refer to the [official frontend documentation](https://innolab-coverage.makpar-i
 
 ```
 cd frontend
-ng serve
+npm run start
 ```
 
 ## Build
 
 ```
 cd frontend
-ng build --output-hashing none
-```
-
-## Docs
-
-```
-cd frontend
-npm run docs
+npm run build
 ```
 
 ## Unit Tests
 
 ```
 cd frontend
-npm run test
+npm run test:cover
 ```
 
 ## Docker Image
