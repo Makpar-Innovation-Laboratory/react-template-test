@@ -31,6 +31,24 @@ export const sampleUsers = [{
   roles: ["ADMIN"],
 }];
 
+export const services = [
+  { name: "Cybersecurity", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Consectetur adipiscing elit, incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam." },
+  { name: "Machine Learning", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. Labore et dolore magna aliqua. Ut enim ad minim veniam. Sed do eiusmod tempor incididunt." },
+  { name: "Cloud Migration", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Consectetur adipiscing elit, sed do eiusmod tempor incididunt." },
+  { name: "DevSecOps", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Consectetur adipiscing elit, sed do eiusmod tempor incididunt." },
+  { name: "Agile", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Sed do eiusmod tempor incididunt." },
+];
+
+export const blogs = [
+  { title: "Lorem Ipsum Dolor Dit Amet 1", author: "John Doe", submitted: "02-12-2022", feature_image: "image_1" },
+  { title: "Lorem Ipsum Dolor Dit Amet 2", author: "John Doe", submitted: "02-13-2022", feature_image: "image_1" },
+  { title: "Lorem Ipsum Dolor Dit Amet 3", author: "John Doe", submitted: "02-14-2022", feature_image: "image_1" },
+  { title: "Lorem Ipsum Dolor Dit Amet 4", author: "John Doe", submitted: "02-15-2022", feature_image: "image_1" },
+  { title: "Lorem Ipsum Dolor Dit Amet 5", author: "John Doe", submitted: "02-15-2022", feature_image: "image_1" }
+];
+
+
+
 /**
  * @returns A mock user in the shape expected by the JSON Contract
  */

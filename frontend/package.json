@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "react-template",
+=======
+  "name": "innolab-react-template",
+>>>>>>> 6dfc4e23dd446dfb1652b24f3b1b839bf14656e8
   "version": "1.0.0",
   "description": "React & Redux front-end",
   "engines": {
@@ -123,7 +127,11 @@
   },
   "repository": {
     "type": "git",
+<<<<<<< HEAD
     "url": "https://github.com/Makpar-Innovation-Laboratory/react-template"
+=======
+    "url": ""
+>>>>>>> 6dfc4e23dd446dfb1652b24f3b1b839bf14656e8
   },
   "babel": {
     "env": {
