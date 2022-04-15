@@ -5,6 +5,7 @@ phases:
     runtime-versions:
       nodejs: latest
     commands:
+      - n 17.
       # Initialize environment
       - |
         if [ "${BRANCH}" != prod ]
