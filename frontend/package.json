@@ -1,9 +1,9 @@
 {
-  "name": "prag-react-template",
+  "name": "react-template",
   "version": "1.0.0",
   "description": "React & Redux front-end",
   "engines": {
-    "node": ">=8",
+    "node": ">=8 <=16",
     "npm": ">=3"
   },
   "scripts": {
@@ -21,9 +21,9 @@
     "build": "babel-node tools/build.js && npm run open:dist",
     "build:only": "npm run prebuild && babel-node tools/build.js",
     "test": "babel-node tools/test.js",
-    "test:cover": "babel-node tools/testCover.js",
-    "test:watch": "babel-node tools/testWatch.js",
-    "test:report": "npm run test:cover && babel-node tools/testReport.js",
+    "test:cover": "NODE_ENV='test' jest --coverage",
+    "test:watch": "NODE_ENV='test' jest --watchAll",
+    "test:report": "npm run test:cover && NODE='test' jest --reporters='' --reporters=''",
     "open:cover": "npm run test:cover && open-cli ./coverage/lcov-report/index.html",
     "e2e:test": "cypress run",
     "e2e:open": "cypress open",
@@ -123,7 +123,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Pragmatics/prag-react-template"
+    "url": "https://github.com/Makpar-Innovation-Laboratory/react-template"
   },
   "babel": {
     "env": {
@@ -152,8 +152,12 @@
       },
       "test": {
         "presets": [
-          "@babel/preset-env",
-          "@babel/preset-react"
+          [
+            "@babel/preset-env"
+          ],
+          [
+            "@babel/preset-react"
+          ]
         ],
         "plugins": [
           "@babel/plugin-transform-runtime",

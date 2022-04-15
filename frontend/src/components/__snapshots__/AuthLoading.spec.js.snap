@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JSX Tests :: <AuthLoading /> Rendering Sanity Check Snapshot Rendering 1`] = `
+"<div id=\\"auth-loading-container\\">
+  <div id=\\"message\\">
+    Please wait, your user account is currently being authenticated.
+  </div>
+  <div id=\\"loader-container\\">
+    <div className=\\"loader\\" id=\\"loader-left\\" />
+     
+    <div className=\\"loader\\" id=\\"loader-right\\" />
+     
+  </div>
+</div>"
+`;

@@ -2,12 +2,12 @@
 *.env
 !.sample.env
 # dependencies
-/node_modules
 /.pnp
 .pnp.js
 
 # testing
 /coverage
+/frontend/reports/**
 
 # production
 /build
@@ -18,11 +18,6 @@
 .env.development.local
 .env.test.local
 .env.production.local
-conf/nginx.conf
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
 # docs
 /docs/*
 !/docs/.gitkeep

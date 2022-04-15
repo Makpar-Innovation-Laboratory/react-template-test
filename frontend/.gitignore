@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-/reports/**
+/reports/istanbul-coverage/**
 
 # production
 /build
