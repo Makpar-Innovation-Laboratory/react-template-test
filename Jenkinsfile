@@ -1,12 +1,4 @@
 
-
-cd frontend && npm install
-npm run build
-        aws s3 cp ./build/. \
-          s3://${APPLICATION}-laboratory${ENV}-web \
-            --recursive
-
-
 pipeline {
     // This line is required for declarative pipelines. Just keep it here.
     agent any
