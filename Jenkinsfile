@@ -20,7 +20,7 @@ pipeline {
              // script {
              //    commit_id = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
              // }
-              sh "cd frontend && nvm install 14.13.8"
+              sh "cd frontend && npm install"
               sh "npm run build"
          }
        }
