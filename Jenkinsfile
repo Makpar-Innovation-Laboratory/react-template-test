@@ -1,4 +1,3 @@
-
 pipeline {
     // This line is required for declarative pipelines. Just keep it here.
     agent any
@@ -11,7 +10,6 @@ pipeline {
     
     // Here you can define one or more stages for your pipeline.
     // Each stage can execute one or more steps.
-	// write access?
     stages {
         // This is a stage.
         stage('Build') {
@@ -20,8 +18,11 @@ pipeline {
              // script {
              //    commit_id = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
              // }
+		  nodejs(nodeJSInstallationName: 'Node 8.0', configId: 'odos-nodejs') {
+                    sh 'npm config ls'  
               sh "cd frontend && npm install"
               sh "npm run build"
+		  }
          }
        }
         stage('Upload') {
