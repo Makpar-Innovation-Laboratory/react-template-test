@@ -1,7 +1,7 @@
 pipeline {
     // This line is required for declarative pipelines. Just keep it here.
     agent any
-
+	tools {nodejs "node"}
     // This section contains environment variables which are available for use in the
     // pipeline's stages.
     // environment {
@@ -18,11 +18,11 @@ pipeline {
              // script {
              //    commit_id = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
              // }
-		  nodejs(nodeJSInstallationName: 'Node 14.18.3', configId: 'odos-nodejs') {
-                    sh 'npm config ls'  
+		  
+        
               sh "cd frontend && npm install"
               sh "npm run build"
-		  }
+		  
          }
        }
         stage('Upload') {
