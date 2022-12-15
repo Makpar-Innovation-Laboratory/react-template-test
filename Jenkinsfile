@@ -19,6 +19,8 @@ pipeline {
     
     // Here you can define one or more stages for your pipeline.
     // Each stage can execute one or more steps.
+	
+// testing if I have write access
     stages {
         // This is a stage.
         stage('Build') {
